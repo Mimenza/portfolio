@@ -4,11 +4,12 @@ import LightButton from "../ui/lightButton";
 
 const MainComponentAboutMe = () => {
   return (
-    <div className="h-auto w-screen flex flex-col md:flex-row items-center bg-black sm:h-auto md:h-screen lg:h-screen xl:h-screen 2xl:h-screen xl:pl-60 xl:pr-20 2xl:pl-60 2xl:pr-20 sm:pl-10 sm:pr-10 sm:py-20">
-      <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-pink-500 rounded-full blur-3xl opacity-30 animate-floating1 animate-pulse"/>
-      <div className="absolute top-1/2 left-2/4 w-80 h-80 bg-purple-500 rounded-full blur-3xl opacity-20 animate-floating2 animate-pulse"/>
-      <div className="absolute top-2/3 left-1/4 w-72 h-72 bg-blue-500 rounded-full blur-3xl opacity-25 animate-floating3 animate-pulse"/>
-    
+    <div className="relative h-auto w-screen flex flex-col md:flex-row items-center bg-black sm:h-auto md:h-screen lg:h-screen xl:h-screen 2xl:h-screen xl:pl-60 xl:pr-20 2xl:pl-60 2xl:pr-20 sm:pl-10 sm:pr-10 sm:py-20">
+      {/* Animaciones de fondo */}
+      <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-pink-500 rounded-full blur-3xl opacity-30 animate-floating1 animate-pulse" />
+      <div className="absolute top-1/2 left-2/4 w-80 h-80 bg-orange-500 rounded-full blur-3xl opacity-20 animate-floating2 animate-pulse" />
+      <div className="absolute top-2/3 left-1/4 w-72 h-72 bg-blue-500 rounded-full blur-3xl opacity-25 animate-floating3 animate-pulse" />
+
       {/* Left Text Div */}
       <div className="flex-[2] text-white flex flex-col justify-center pr-10">
         <h4 className="text-5xl font-bold mb-6">About me</h4>
@@ -44,7 +45,7 @@ const MainComponentAboutMe = () => {
           <LightButton text="Read my Cv" onClick={() => {}} />
         </div>
       </div>
-      
+
       {/* Right Image Div */}
       <div className="flex-[1] flex items-center justify-center order-first md:order-none sm:pb-">
         <div className="h-96 w-72 bg-gray-400 rounded-xl overflow-hidden z-10">
