@@ -10,7 +10,7 @@ const MainComponentProyects = () => {
         <div className="flex flex-row justify-between"> 
         <p className="mt-4 text-lg">Here you can find some of my projects.</p>
         <LightButton
-          text="See all projects"
+          text="Check all my projects"
           onClick={() => {}}
         />
         </div>
