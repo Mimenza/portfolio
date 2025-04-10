@@ -7,7 +7,7 @@ const ProjectCard = ({
   onClick?: () => void;
   onClose?: () => void;
 }) => (
-  <div className="flex flex-col shadow-lg m-5 z-10" onClick={onClick}>
+  <div className="flex flex-col shadow-lg m-5 z-10 cursor-pointer" onClick={onClick}>
     {/* Contenedor de la imagen */}
     <div className="w-full sm:w-full md:w-full lg:w-full xl:w-[450px] aspect-[16/9] bg-gray-400 rounded-[25px] overflow-hidden group">
       <img

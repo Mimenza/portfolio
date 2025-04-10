@@ -16,15 +16,15 @@ const MainScreen = () => {
     // Desactiva el scroll globalmente
     document.body.style.overflow = "hidden";
 
-    let scrollDelta = 0; // Acumulador de scroll
-    let isScrolling = false; // Bandera para evitar múltiples cambios durante la animación
+    let scrollDelta = 0;
+    let isScrolling = false;
 
     const handleScroll = (event: WheelEvent) => {
-      if (isScrolling) return; // Evita manejar eventos mientras se está desplazando
+      if (isScrolling) return;
 
       scrollDelta += event.deltaY;
 
-      const threshold = 100; // Umbral para cambiar de sección
+      const threshold = 100;
 
       if (
         scrollDelta > threshold &&
@@ -37,27 +37,27 @@ const MainScreen = () => {
         });
         setTimeout(() => {
           setCurrentSectionIndex((prevIndex) => prevIndex + 1);
-          scrollDelta = 0; // Reinicia el acumulador
-          isScrolling = false; // Permite manejar nuevos eventos
-        }, 500); // Tiempo estimado de la animación
+          scrollDelta = 0;
+          isScrolling = false;
+        }, 500);
       } else if (scrollDelta < -threshold && currentSectionIndex > 0) {
-        // Scroll hacia arriba
+        
         isScrolling = true;
         sections[currentSectionIndex - 1]?.current?.scrollIntoView({
           behavior: "smooth",
         });
         setTimeout(() => {
           setCurrentSectionIndex((prevIndex) => prevIndex - 1);
-          scrollDelta = 0; // Reinicia el acumulador
-          isScrolling = false; // Permite manejar nuevos eventos
-        }, 500); // Tiempo estimado de la animación
+          scrollDelta = 0;
+          isScrolling = false;
+        }, 500);
       }
     };
 
     window.addEventListener("wheel", handleScroll);
 
     return () => {
-      // Limpia el estilo y el evento al desmontar el componente
+      
       document.body.style.overflow = "auto";
       window.removeEventListener("wheel", handleScroll);
     };
@@ -66,7 +66,8 @@ const MainScreen = () => {
   return (
     <div className="flex flex-col min-h-screen w-screen bg-black overflow-hidden relative">
       {/* Indicador de secciones */}
-      <div className="fixed top-1/2 right-4 transform -translate-y-1/2 flex flex-col gap-2">
+      
+      <div className="fixed top-1/2 right-4 transform -translate-y-1/2 flex flex-col gap-2 z-20">
         {sections.map((_, index) => (
           <div
             key={index}

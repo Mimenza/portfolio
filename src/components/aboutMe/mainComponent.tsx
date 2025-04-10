@@ -3,13 +3,15 @@ import React from "react";
 import { IoChatbubbleOutline } from "react-icons/io5";
 
 import LightButton from "../ui/lightButton";
+import { ImgSpotlightBorder } from "../ui/imgSpotlightBorder";
+
 const MainComponentAboutMe = () => {
   return (
     <div className="relative h-auto w-screen flex flex-col items-center justify-center bg-black sm:h-auto md:h-screen lg:h-screen xl:h-screen 2xl:h-screen xl:pl-20 xl:pr-20 2xl:pl-20 2xl:pr-20 sm:pl-10 sm:pr-10 sm:py-20">
       {/* Animaciones de fondo */}
-      <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-pink-500 rounded-full blur-3xl opacity-30 animate-floating1 animate-pulse" />
-      <div className="absolute top-1/2 left-2/4 w-80 h-80 bg-orange-500 rounded-full blur-3xl opacity-20 animate-floating2 animate-pulse" />
-      <div className="absolute top-2/3 left-1/4 w-72 h-72 bg-blue-500 rounded-full blur-3xl opacity-25 animate-floating3 animate-pulse" />
+      <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-pink-500 rounded-full blur-3xl opacity-30  animate-pulse z-10" />
+      <div className="absolute top-1/2 left-2/4 w-80 h-80 bg-orange-500 rounded-full blur-3xl opacity-20  animate-pulse z-10" />
+      <div className="absolute top-2/3 left-1/4 w-72 h-72 bg-blue-500 rounded-full blur-3xl opacity-25  animate-pulse z-10" />
 
       {/* Nueva fila: Botón adicional */}
       <div className="w-full flex py-6 absolute top-0 justify-between items-center px-40 animate-fadeInDown">
@@ -64,7 +66,7 @@ const MainComponentAboutMe = () => {
         </div>
 
         {/* Right Image Div */}
-        <div className="flex-[1] hidden md:flex items-center justify-center order-first md:order-none">
+        {/* <div className="flex-[1] hidden md:flex items-center justify-center order-first md:order-none">
           <div className="h-96 w-72 bg-gray-400 rounded-xl overflow-hidden z-10">
             <img
               src="/path/to/your/image.jpg"
@@ -72,7 +74,8 @@ const MainComponentAboutMe = () => {
               className="h-full w-full object-cover"
             />
           </div>
-        </div>
+        </div> */}
+        <ImgSpotlightBorder/>
       </div>
     </div>
   );
