@@ -1,6 +1,7 @@
 import React from "react";
 
-import { IoChatbubbleOutline } from "react-icons/io5";
+import { PiChatTeardropThin } from "react-icons/pi";
+import { FaGithub } from "react-icons/fa";
 
 import LightButton from "../ui/lightButton";
 import { ImgSpotlightBorder } from "../ui/imgSpotlightBorder";
@@ -20,7 +21,7 @@ const MainComponentAboutMe = () => {
         </button>
         <button className="bg-white text-black px-6 py-2 rounded-full mr-20 flex flex-row items-center justify-between space-x-2">
           <p>Say hi!</p>
-          {/* <IoChatbubbleOutline /> */}
+          <PiChatTeardropThin />
         </button>
       </div>
 
@@ -28,14 +29,14 @@ const MainComponentAboutMe = () => {
       <div className="w-full flex flex-col md:flex-row items-center pl-40 animate-fadeInUp">
         {/* Left Text Div */}
         <div className="flex-[2] text-white flex flex-col justify-center pr-10">
-          <h4 className="text-5xl font-bold mb-6">About me</h4>
+          <h4 className="text-8xl font-bold mb-6">About me</h4>
           <p className="text-lg leading-relaxed mb-6 text-gray-400">
             I'm <span className="font-bold text-white">Endika Mimenza</span>,
             24-year-old web and mobile developer, with experience in application
             development. Currently learning React and React Native, while
             expanding my knowledge in backend development and languages like C
             and C++ at{" "}
-            <a href="#" className="text-white no-underline">
+            <a href="https://42urduliz.com" className="text-white no-underline">
               42 Urduliz
             </a>
             . Passionate about technology and continuous learning.
@@ -43,23 +44,27 @@ const MainComponentAboutMe = () => {
           <p className="text-lg leading-relaxed mb-6 text-gray-400">
             I'm passionate about the world of vintage technology and mechanical
             keyboards. In my free time, I'm working on a mobile app called{" "}
-            <a href="#" className="text-white no-underline">
+            <a
+              href="https://travellens.com"
+              className="text-white no-underline"
+            >
               TravelLens
             </a>
             , built with React Native. I've also created other mobile apps like{" "}
-            <a href="#" className="text-white no-underline">
+            <a href="https://sagarrajo.com" className="text-white no-underline">
               Sagarra Jo
             </a>{" "}
             and{" "}
-            <a href="#" className="text-white no-underline">
+            <a href="https://zap.com" className="text-white no-underline">
               Zap
             </a>
             . These are personal projects that let me explore and enjoy the
             intersection of creativity, code, and tech.
           </p>
           <div className="flex space-x-4">
-            <button className="bg-white text-black px-6 py-2 rounded-full font-bold hover:bg-gray-400">
-              Github
+            <button className="bg-white text-black px-6 py-2 rounded-full font-bold hover:bg-gray-400 flex flex-row items-center space-x-2">
+              <span>Github</span>
+              <FaGithub />
             </button>
             <LightButton text="Read my Cv" onClick={() => {}} />
           </div>
@@ -75,7 +80,7 @@ const MainComponentAboutMe = () => {
             />
           </div>
         </div> */}
-        <ImgSpotlightBorder/>
+        <ImgSpotlightBorder />
       </div>
     </div>
   );
