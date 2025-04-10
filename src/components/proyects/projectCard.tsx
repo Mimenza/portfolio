@@ -1,9 +1,15 @@
 import React from "react";
 
-const ProjectCard = () => (
-  <div className="flex flex-col shadow-lg m-5 z-10">
+const ProjectCard = ({
+  onClick,
+  onClose,
+}: {
+  onClick?: () => void;
+  onClose?: () => void;
+}) => (
+  <div className="flex flex-col shadow-lg m-5 z-10" onClick={onClick}>
     {/* Contenedor de la imagen */}
-    <div className="w-full sm:w-full md:w-full lg:w-full xl:w-[500px] aspect-[16/9] bg-gray-400 rounded-[25px] overflow-hidden group">
+    <div className="w-full sm:w-full md:w-full lg:w-full xl:w-[450px] aspect-[16/9] bg-gray-400 rounded-[25px] overflow-hidden group">
       <img
         src="https://picsum.photos/200/300"
         alt="Project"
@@ -19,6 +25,17 @@ const ProjectCard = () => (
         the project. This is a placeholder text and should be replaced with
         actual content.
       </p>
+      {onClose && (
+        <button
+          className="mt-2 bg-red-500 text-white px-4 py-2 rounded"
+          onClick={(e) => {
+            e.stopPropagation(); // Prevent triggering onClick
+            onClose();
+          }}
+        >
+          Close
+        </button>
+      )}
     </div>
   </div>
 );
