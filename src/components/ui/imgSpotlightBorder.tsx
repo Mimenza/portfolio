@@ -13,7 +13,7 @@ export const ImgSpotlightBorder = () => {
 
   return (
     <div
-      className="flex-[1] hidden md:flex items-center justify-center order-first md:order-none"
+      className="flex-[1] hidden md:flex items-center justify-center order-first md:order-none z-10"
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setOpacity(1)}
       onMouseLeave={() => setOpacity(0)}

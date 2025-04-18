@@ -1,13 +1,22 @@
 import React from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
+import Aurora from "../../blocks/Backgrounds/Aurora/Aurora";
 
 const MainComponentContact = () => {
   return (
     <div className="h-screen w-screen relative">
-      <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-pink-500 rounded-full blur-3xl opacity-30  animate-pulse z-10" />
+      {/* <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-pink-500 rounded-full blur-3xl opacity-30  animate-pulse z-10" />
       <div className="absolute top-1/2 left-2/4 w-80 h-80 bg-orange-500 rounded-full blur-3xl opacity-20  animate-pulse z-10" />
-      <div className="absolute top-2/3 left-1/4 w-72 h-72 bg-blue-500 rounded-full blur-3xl opacity-25  animate-pulse z-10" />
+      <div className="absolute top-2/3 left-1/4 w-72 h-72 bg-blue-500 rounded-full blur-3xl opacity-25  animate-pulse z-10" /> */}
+      <div className="absolute bottom-0 left-0 w-full h-full z-0 rotate-180">
+              <Aurora
+                colorStops={["#e303fc", "#5a03fc", "#038cfc"]}
+                blend={1}
+                amplitude={0.5}
+                speed={0.5}
+              />
+            </div>
       <div className="flex flex-col bg-black xl:pl-60 xl:pr-20 2xl:pl-60 2xl:pr-20 sm:pl-10 sm:pr-10 sm:py-20">
         <div className="flex flex-col w-full h-auto">
           <h1 className="text-white text-8xl font-bold">Contact</h1>

@@ -5,6 +5,7 @@ import MainComponentProyects from "../components/proyects/mainComponent";
 import MainComponentTecnologies from "../components/tecnologies/mainComponent";
 import MainComponentContact from "../components/contactMe/mainComponent";
 
+
 const MainScreen = () => {
   const aboutMeRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
