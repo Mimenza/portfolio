@@ -2,6 +2,7 @@ import React from "react";
 
 import { PiChatTeardropThin } from "react-icons/pi";
 import { FaGithub } from "react-icons/fa";
+import { PiMouseScrollThin } from "react-icons/pi";
 
 import LightButton from "../ui/lightButton";
 import Aurora from "../../blocks/Backgrounds/Aurora/Aurora";
@@ -43,7 +44,7 @@ const MainComponentAboutMe = () => {
       {/* Contenido existente */}
       <div className="w-full flex flex-col md:flex-row items-center pl-40 animate-fadeInUp">
         {/* Left Text Div */}
-        <div className="flex-[2] text-white flex flex-col justify-center pr-10">
+        <div className="flex-[2] text-white flex flex-col justify-center pr-10 animate-float">
           {/* <h4 className="text-8xl font-bold mb-6 z-10">About me</h4> */}
 
           <BlurText
@@ -107,6 +108,12 @@ const MainComponentAboutMe = () => {
           </div>
         </div> */}
         <ImgSpotlightBorder />
+      </div>
+      {/* Footer */}
+      <div className="absolute bottom-5 left-0 w-full h-20 bg-black flex items-center justify-center">
+          <div className="border border-white w-[50px] h-[75px] rounded-2xl flex items-center justify-center animate-float">
+            <div className="h-3 w-3 rounded-full bg-white animate-fadeInDownScroll"/>
+          </div>
       </div>
     </div>
   );

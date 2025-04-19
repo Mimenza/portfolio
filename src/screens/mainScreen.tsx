@@ -1,10 +1,15 @@
-import React, { useRef, useState, useMemo, useEffect, useCallback } from "react";
+import React, {
+  useRef,
+  useState,
+  useMemo,
+  useEffect,
+  useCallback,
+} from "react";
 
 import MainComponentAboutMe from "../components/aboutMe/mainComponent";
 import MainComponentProyects from "../components/proyects/mainComponent";
 import MainComponentTecnologies from "../components/tecnologies/mainComponent";
 import MainComponentContact from "../components/contactMe/mainComponent";
-
 
 const MainScreen = () => {
   const aboutMeRef = useRef<HTMLDivElement>(null);
@@ -12,7 +17,10 @@ const MainScreen = () => {
   const technologiesRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
 
-  const sections = useMemo(() => [aboutMeRef, projectsRef, technologiesRef,contactRef], []);
+  const sections = useMemo(
+    () => [aboutMeRef, projectsRef, technologiesRef, contactRef],
+    []
+  );
 
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
 
@@ -78,18 +86,31 @@ const MainScreen = () => {
     handleIndicatorClick(0);
   }, [handleIndicatorClick]);
 
+  const sectionTitles = ["About Me", "Projects", "Technologies", "Contact"];
   return (
     <div className="flex flex-col min-h-screen w-screen bg-black overflow-hidden relative">
       {/* Section Indicator */}
-      <div className="fixed top-1/2 right-4 transform -translate-y-1/2 flex flex-col gap-2 z-20">
+      <div className="fixed top-1/2 right-[-120px] transform -translate-y-1/2 flex flex-col gap-2 z-20 group transition-all duration-300 transform hover:translate-x-[-130px]">
         {sections.map((_, index) => (
-          <div
-            key={index}
-            className={`w-3 h-3 rounded-full cursor-pointer ${
-              currentSectionIndex === index ? "bg-white" : "bg-gray-500"
-            }`}
-            onClick={() => handleIndicatorClick(index)}
-          ></div>
+          <div key={index} className="grid grid-cols-2 items-center">
+            <div
+              className={`w-3 h-3 rounded-full cursor-pointer transition-transform duration-300 ${
+                currentSectionIndex === index
+                  ? "bg-white scale-125"
+                  : "bg-gray-500"
+              } hover:bg-gray-200 active:scale-75`}
+              onClickCapture={() => handleIndicatorClick(index)}
+              style={{ justifySelf: "center" }}
+            />
+            <h1
+              className={`font-bold cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
+                currentSectionIndex === index ? "text-white" : "text-gray-500"
+              } hover:text-gray-200`}
+              onClick={() => handleIndicatorClick(index)}
+            >
+              {sectionTitles[index]}
+            </h1>
+          </div>
         ))}
       </div>
 
