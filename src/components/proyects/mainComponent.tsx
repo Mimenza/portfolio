@@ -34,12 +34,12 @@ const MainComponentProyects = () => {
         </div>
         <div className="flex justify-center w-full h-auto mt-5">
           <div className="grid grid-cols-1 h-auto w-full xl:w-auto sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            <ProjectCard2 onClick={handleProjectCardClick} />
-            <ProjectCard2 onClick={handleProjectCardClick} />
-            <ProjectCard2 onClick={handleProjectCardClick} />
-            <ProjectCard2 onClick={handleProjectCardClick} />
-            <ProjectCard2 onClick={handleProjectCardClick} />
-            <ProjectCard2 onClick={handleProjectCardClick} />
+            <ProjectCard onClickCode={handleProjectCardClick} onClickProject={handleProjectCardClick}/>
+            <ProjectCard onClickCode={handleProjectCardClick} onClickProject={handleProjectCardClick}/>
+            <ProjectCard onClickCode={handleProjectCardClick} onClickProject={handleProjectCardClick}/>
+            <ProjectCard onClickCode={handleProjectCardClick} onClickProject={handleProjectCardClick}/>
+            <ProjectCard onClickCode={handleProjectCardClick} onClickProject={handleProjectCardClick}/>
+            <ProjectCard onClickCode={handleProjectCardClick} onClickProject={handleProjectCardClick}/>
           </div>
         </div>
       </div>

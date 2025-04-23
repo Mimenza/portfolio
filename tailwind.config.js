@@ -3,7 +3,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
+        sans: ["Montserrat", "-apple-system", "system-ui", "sans-serif"],
+
       },
       animation: {
         fadeInUp: "fadeInUp 2s ease-in-out",

@@ -103,7 +103,7 @@ const MainScreen = () => {
               style={{ justifySelf: "center" }}
             />
             <h1
-              className={`font-bold cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
+              className={`cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
                 currentSectionIndex === index ? "text-white" : "text-gray-500"
               } hover:text-gray-200`}
               onClick={() => handleIndicatorClick(index)}
