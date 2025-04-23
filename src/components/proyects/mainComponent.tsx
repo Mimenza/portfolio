@@ -3,7 +3,7 @@ import LightButton from "../ui/lightButton";
 
 import MainComponentProjectDetail from "../projectDetail/mainComponent";
 import ProjectCard from "./projectCard";
-
+import ProjectCard2 from "./projectCard2";
 const MainComponentProyects = () => {
   const [showProjectDetail, setShowProjectDetail] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
@@ -24,7 +24,7 @@ const MainComponentProyects = () => {
     <>
       <div className="h-auto xl:h-screen w-auto flex flex-col justify-center bg-black xl:px-60 sm:px-10">
         <div className="text-white">
-          <h1 className="text-8xl font-bold mt-1">Proyects</h1>
+          <h1 className="text-7xl font-bold mt-1">Proyects</h1>
           <div className="flex flex-row justify-between">
             <p className="mt-4 text-lg">
               Here you can find some of my projects.
@@ -33,11 +33,13 @@ const MainComponentProyects = () => {
           </div>
         </div>
         <div className="flex justify-center w-full h-auto mt-5">
-          <div className="grid grid-cols-1 h-auto w-full xl:w-auto sm:grid-cols-1 md:grid-cols-2">
-            <ProjectCard onClick={handleProjectCardClick} />
-            <ProjectCard onClick={handleProjectCardClick} />
-            <ProjectCard onClick={handleProjectCardClick} />
-            <ProjectCard onClick={handleProjectCardClick} />
+          <div className="grid grid-cols-1 h-auto w-full xl:w-auto sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <ProjectCard2 onClick={handleProjectCardClick} />
+            <ProjectCard2 onClick={handleProjectCardClick} />
+            <ProjectCard2 onClick={handleProjectCardClick} />
+            <ProjectCard2 onClick={handleProjectCardClick} />
+            <ProjectCard2 onClick={handleProjectCardClick} />
+            <ProjectCard2 onClick={handleProjectCardClick} />
           </div>
         </div>
       </div>
