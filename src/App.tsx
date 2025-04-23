@@ -1,7 +1,7 @@
 import "./App.css";
-import React, { useEffect } from "react";
+import React, { useEffect} from "react";
 import MainScreen from "./screens/mainScreen";
-import ClickSpark from "./blocks/Animations/ClickSpark/ClickSpark";
+
 const useBreakpointLogger = () => {
   useEffect(() => {
     const breakpoints = {
@@ -49,15 +49,8 @@ function App() {
   useBreakpointLogger();
   return (
     <div className="h-screen w-screen bg-black">
-      <ClickSpark
-        sparkColor="#fff"
-        sparkSize={10}
-        sparkRadius={15}
-        sparkCount={8}
-        duration={400}
-      >
-        <MainScreen />
-      </ClickSpark>
+      
+      <MainScreen />
     </div>
   );
 }

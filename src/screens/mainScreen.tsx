@@ -88,6 +88,7 @@ const MainScreen = () => {
 
   const sectionTitles = ["About Me", "Projects", "Technologies", "Contact"];
   return (
+    
     <div className="flex flex-col min-h-screen w-screen bg-black overflow-hidden relative">
       {/* Section Indicator */}
       <div className="fixed top-1/2 right-[-120px] transform -translate-y-1/2 flex flex-col gap-2 z-20 group transition-all duration-300 transform hover:translate-x-[-130px]">

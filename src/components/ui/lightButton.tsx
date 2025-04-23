@@ -1,11 +1,11 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 interface LightButtonProps {
-  text: string;
+  children: ReactNode; // Cambiado de 'text' a 'children'
   onClick?: () => void;
 }
 
-const LightButton: React.FC<LightButtonProps> = ({ text, onClick }) => {
+const LightButton: React.FC<LightButtonProps> = ({ children, onClick }) => {
   return (
     <button
       className="relative px-6 py-2 rounded-full font-medium text-white overflow-hidden"
@@ -32,8 +32,8 @@ const LightButton: React.FC<LightButtonProps> = ({ text, onClick }) => {
         style={{ backgroundColor: "black" }}
       />
 
-      {/* Text */}
-      <span className="relative z-20">{text}</span>
+      {/* Content */}
+      <span className="relative z-20">{children}</span>
 
       {/* Inline keyframes via style tag */}
       <style>

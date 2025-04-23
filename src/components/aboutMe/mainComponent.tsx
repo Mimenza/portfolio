@@ -1,14 +1,15 @@
-import React from "react";
+// import { useRef } from "react";
 
 import { PiChatTeardropThin } from "react-icons/pi";
 import { FaGithub } from "react-icons/fa";
-import { PiMouseScrollThin } from "react-icons/pi";
 
 import LightButton from "../ui/lightButton";
 import Aurora from "../../blocks/Backgrounds/Aurora/Aurora";
 import BlurText from "../../blocks/TextAnimations/BlurText/BlurText";
 
 import { ImgSpotlightBorder } from "../ui/imgSpotlightBorder";
+
+// import VariableProximity from "../../blocks/TextAnimations/VariableProximity/VariableProximity";
 
 const MainComponentAboutMe = () => {
   const handleAnimationComplete = () => {
@@ -26,9 +27,8 @@ const MainComponentAboutMe = () => {
         />
       </div>
       {/*Nueva fila: Botón adicional */}
-       <div className="w-full flex py-6 absolute top-0 justify-between items-center px-40 animate-fadeInDown">
-        <button className="px-6 py-2 rounded-full mr-20 flex flex-row items-center justify-between space-x-2">
-        </button>
+      <div className="w-full flex py-6 absolute top-0 justify-between items-center px-40 animate-fadeInDown">
+        <button className="px-6 py-2 rounded-full mr-20 flex flex-row items-center justify-between space-x-2"></button>
         <button className="bg-white text-black px-6 py-2 rounded-full mr-20 flex flex-row items-center justify-between space-x-2">
           <p>Say hi!</p>
           <PiChatTeardropThin />
@@ -38,9 +38,7 @@ const MainComponentAboutMe = () => {
       {/* Contenido existente */}
       <div className="w-full flex flex-col md:flex-row items-center animate-fadeInUp justify-around">
         {/* Left Text Div */}
-        <div className=" text-white flex flex-col justify-center animate-float w-[50%]">
-          {/* <h4 className="text-8xl font-bold mb-6 z-10">About me</h4> */}
-
+        <div className=" text-white flex flex-col justify-center animate-float w-[50%] relative">
           <BlurText
             text="About me"
             delay={150}
@@ -50,6 +48,18 @@ const MainComponentAboutMe = () => {
             className="text-8xl font-bold mb-6 z-10"
             threshold={1}
           />
+
+          {/* <div ref={containerRef} style={{ position: "relative" }}>
+            <VariableProximity
+              label={"About me"}
+              className={"variable-proximity-demo text-8xl font-bold mb-6 z-10"}
+              fromFontVariationSettings="'wght' 400, 'opsz' 9"
+              toFontVariationSettings="'wght' 1000, 'opsz' 40"
+              containerRef={containerRef}
+              radius={100}
+              falloff="gaussian"
+            />
+          </div> */}
 
           <p className="text-lg leading-relaxed mb-6 text-gray-400 z-10">
             I'm <span className="font-bold text-white">Endika Mimenza</span>,
@@ -87,17 +97,17 @@ const MainComponentAboutMe = () => {
               <span>Github</span>
               <FaGithub />
             </button>
-            <LightButton text="Read my Cv" onClick={() => {}} />
+            <LightButton onClick={() => {}}> Read my cv!</LightButton>
           </div>
         </div>
-        
+
         <ImgSpotlightBorder />
       </div>
       {/* Footer */}
       <div className="absolute bottom-5 left-0 w-full h-20 bg-black flex items-center justify-center">
-          <div className="border border-white w-[50px] h-[75px] rounded-2xl flex items-center justify-center animate-float">
-            <div className="h-3 w-3 rounded-full bg-white animate-fadeInDownScroll"/>
-          </div>
+        <div className="border border-white w-[50px] h-[75px] rounded-2xl flex items-center justify-center animate-float">
+          <div className="h-3 w-3 rounded-full bg-white animate-fadeInDownScroll" />
+        </div>
       </div>
     </div>
   );
