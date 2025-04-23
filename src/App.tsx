@@ -1,7 +1,8 @@
 import "./App.css";
-import React, { useEffect} from "react";
+import React, {useEffect} from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import MainScreen from "./screens/mainScreen";
-
+import AllProjectScreen from "./screens/allProjectsScreen"; 
 const useBreakpointLogger = () => {
   useEffect(() => {
     const breakpoints = {
@@ -48,10 +49,14 @@ const useBreakpointLogger = () => {
 function App() {
   useBreakpointLogger();
   return (
-    <div className="h-screen w-screen bg-black">
-      
-      <MainScreen />
-    </div>
+    <Router>
+      <div className="h-screen w-screen bg-black">
+        <Routes>
+          <Route path="/" element={<MainScreen />} />
+          <Route path="/projects" element={<AllProjectScreen />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

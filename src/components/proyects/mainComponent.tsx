@@ -3,6 +3,7 @@ import LightButton from "../ui/lightButton";
 import MainComponentProjectDetail from "../projectDetail/mainComponent";
 import ProjectCard from "./projectCard";
 import CountUp from "../../blocks/TextAnimations/CountUp/CountUp";
+import { useNavigate } from "react-router-dom";
 
 const MainComponentProyects = () => {
   const [showProjectDetail, setShowProjectDetail] = useState(false);
@@ -50,7 +51,7 @@ const MainComponentProyects = () => {
   }, []);
 
   const projects = [1, 2, 3, 4, 5, 6];
-
+  const navigate = useNavigate();
   return (
     <>
       <div
@@ -70,7 +71,7 @@ const MainComponentProyects = () => {
                   : "transition-transform"
               }
             >
-              <LightButton onClick={() => {}}>
+              <LightButton onClick={() => {navigate("/projects")}}>
                 <CountUp
                   from={0}
                   to={100}
