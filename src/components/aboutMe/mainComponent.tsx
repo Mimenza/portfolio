@@ -93,7 +93,7 @@ const MainComponentAboutMe = () => {
             intersection of creativity, code, and tech.
           </p>
           <div className="flex space-x-4 z-10">
-            <button className="bg-white text-black px-6 py-2 rounded-full font-bold hover:bg-gray-400 flex flex-row items-center space-x-2">
+            <button className="bg-white text-black px-6 py-2 rounded-full font-bold hover:bg-gray-400 flex flex-row items-center space-x-2" onClick={() => window.open("https://github.com/Mimenza", "_blank")}>
               <span>Github</span>
               <FaGithub />
             </button>

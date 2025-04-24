@@ -4,6 +4,7 @@ import MainComponentProjectDetail from "../projectDetail/mainComponent";
 import ProjectCard from "./projectCard";
 import CountUp from "../../blocks/TextAnimations/CountUp/CountUp";
 import { useNavigate } from "react-router-dom";
+import supabase from "../../supabase/client";
 
 const MainComponentProyects = () => {
   const [showProjectDetail, setShowProjectDetail] = useState(false);
@@ -11,6 +12,8 @@ const MainComponentProyects = () => {
   const [animateNbr, setAnimateNbr] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isButtonAnimating, setIsButtonAnimating] = useState(false);
+  const [projects, setProjects] = useState<any[]>([]);
+  const [selectedProject, setSelectedProject] = useState<any | null>(null); // Cambiado para almacenar el proyecto completo
 
   const handleCountUpEnd = () => {
     setIsButtonAnimating(true);
@@ -19,7 +22,8 @@ const MainComponentProyects = () => {
     }, 300);
   };
 
-  const handleProjectCardClick = () => {
+  const handleProjectCardClick = (project: any) => {
+    setSelectedProject(project); // Guardar el proyecto completo
     setShowProjectDetail(true);
     setIsClosing(false);
   };
@@ -28,6 +32,7 @@ const MainComponentProyects = () => {
     setIsClosing(true);
     setTimeout(() => {
       setShowProjectDetail(false);
+      setSelectedProject(null); // Limpiar el proyecto seleccionado
     }, 500);
   };
 
@@ -50,7 +55,30 @@ const MainComponentProyects = () => {
     };
   }, []);
 
-  const projects = [1, 2, 3, 4, 5, 6];
+  useEffect(() => {
+    const getProjects = async () => {
+      try {
+
+        const { data, error } = await supabase.from("Projects").select("*").eq("frontPage", true).order("id", { ascending: true });
+  
+        if (data?.length === 0) {
+          console.error("No projects found");
+          return;
+        }
+  
+        if (data) {
+          setProjects(data);
+        } else {
+          console.error("No projects found");
+        }
+      } catch (err) {
+        console.error("Error:", err);
+      }
+    };
+  
+    getProjects();
+  }, []);
+
   const navigate = useNavigate();
   return (
     <>
@@ -93,16 +121,20 @@ const MainComponentProyects = () => {
             {projects.map((project, index) => (
               <div key={index} className="animate-fadeInUp w-full">
                 <ProjectCard
-                  onClickCode={handleProjectCardClick}
-                  onClickProject={handleProjectCardClick}
+                  onClickProject={() => handleProjectCardClick(project)} // Pasar el proyecto completo
+                  id={project.id}
+                  name={project.name}
+                  link={project.link}
+                  status={project.status}
                 />
               </div>
             ))}
           </div>
         </div>
       </div>
-      {showProjectDetail && (
+      {showProjectDetail && selectedProject && (
         <MainComponentProjectDetail
+          projectDetails={selectedProject} // Pasar el proyecto seleccionado
           onClose={handleClose}
           isClosing={isClosing}
         />

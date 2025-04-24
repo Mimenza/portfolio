@@ -48,7 +48,7 @@ const AllProjectScreen = () => {
         />
       </div>
 
-      {/* Contenido principal */}
+      {/* Contenido principal
       <div className="relative w-full h-auto z-40 px-60 py-20">
         <div className="relative w-full ">
           <p className="text-6xl font-bold mt-1 text-white">Proyects</p>
@@ -75,7 +75,7 @@ const AllProjectScreen = () => {
           onClose={handleClose}
           isClosing={isClosing}
         />
-      )}
+      )} */}
       {/* Aurora invertido */}
       <div className="absolute bottom-0 left-0 w-screen h-full z-0 rotate-180">
         <Aurora

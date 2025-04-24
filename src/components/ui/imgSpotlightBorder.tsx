@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { use, useRef, useState, useEffect } from "react";
 
 export const ImgSpotlightBorder = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -35,7 +35,7 @@ export const ImgSpotlightBorder = () => {
         {/* Imagen */}
         <div className="relative h-full w-full z-20 rounded-[22px] overflow-hidden">
           <img
-            src="https://picsum.photos/200/300"
+            src={process.env.REACT_APP_SUPABASE_PROFILE_PHOTO_URL}
             alt="About Me"
             className="h-full w-full object-cover rounded-[22px]"
           />

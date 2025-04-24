@@ -34,7 +34,6 @@ const LoginScreen = () => {
       }
 
       if (data) {
-        console.log("Usuario encontrado:", data);
         navigate("/homePage");
         setLogedUser(true);
       } else {
