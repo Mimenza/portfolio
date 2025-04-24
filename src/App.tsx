@@ -1,8 +1,10 @@
 import "./App.css";
-import React, {useEffect} from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import MainScreen from "./screens/mainScreen";
-import AllProjectScreen from "./screens/allProjectsScreen"; 
+import AllProjectScreen from "./screens/allProjectsScreen";
+import LoginScreen from "./screens/loginScreen";
+
 const useBreakpointLogger = () => {
   useEffect(() => {
     const breakpoints = {
@@ -52,8 +54,11 @@ function App() {
     <Router>
       <div className="h-screen w-screen bg-black">
         <Routes>
-          <Route path="/" element={<MainScreen />} />
+          <Route path="/homePage" element={<MainScreen />} />
           <Route path="/projects" element={<AllProjectScreen />} />
+          <Route path="/login" element={<LoginScreen />} />
+          <Route path="/" element={<Navigate to="/login" />} /> {/* Redirect root */}
+          <Route path="*" element={<Navigate to="/login" />} /> {/* Redirect catch-all */}
         </Routes>
       </div>
     </Router>

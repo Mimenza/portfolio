@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import './tailwind.css';
-
+import { LogedUserProvider } from "./context/logedUserContext";
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -11,7 +11,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
+    <LogedUserProvider>
     <App />
+    </LogedUserProvider>
   </React.StrictMode>
 );
 

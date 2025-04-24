@@ -1,4 +1,7 @@
-import React from "react";
+import React, {useEffect} from "react";
+
+import { useNavigate } from "react-router-dom";
+import { useLogedUser } from "../context/logedUserContext";
 
 import Aurora from "../blocks/Backgrounds/Aurora/Aurora";
 import ProjectCard2 from "../components/proyects/projectCard2";
@@ -7,10 +10,17 @@ import MainComponentProjectDetail from "../components/projectDetail/mainComponen
 const AllProjectScreen = () => {
   // const projects = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; // Array de proyectos
   const projects = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]; // Array de proyectos
-  
+   const navigate = useNavigate();
+    const { logedUser, setLogedUser } = useLogedUser();
    //const projects = [1, 2, 3];
 
   const [showProjectDetail, setShowProjectDetail] = React.useState(false);
+
+   useEffect(() => {
+        if (!logedUser) {
+          navigate("/login");
+        }
+      }, []);
 
   const handleProjectCardClick = () => {
     setShowProjectDetail(true);
