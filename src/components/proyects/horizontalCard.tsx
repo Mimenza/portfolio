@@ -1,25 +1,27 @@
 import { FaCode } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa6";
 
-const ProjectCard = ({
+const HorizontalCard = ({
   onClickProject,
   id,
   name,
   link,
-  status
+  status,
+  description,
 }: {
-  onClickProject?: (id:Number) => void;
+  onClickProject?: (id: Number) => void;
   onClose?: () => void;
   id: Number;
   name: string;
   link: string;
   status: string;
+    description: string;
 }) => {
   return (
-    <div className="flex flex-col z-10 w-full sm:w-full md:w-full lg:w-full">
+    <div className="flex flex-col z-10 w-full sm:w-full md:w-full lg:w-full bg-gray-600 bg-opacity-25 hover:bg-opacity-50 p-5 rounded-[25px]">
       {/* Contenedor de la imagen */}
       <div
-        className=" aspect-[16/9] rounded-[25px] overflow-hidden group cursor-pointer"
+        className="aspect-[16/9] overflow-hidden group cursor-pointer rounded-[25px]"
         onClick={() => onClickProject && onClickProject(id)}
       >
         <img
@@ -49,9 +51,14 @@ const ProjectCard = ({
             <FaArrowRight className="text-gray-300 h-full w-full" />
           </button>
         </div>
+        
       </div>
+      <div className="text-md text-gray-300 mt-2">
+            {description}
+        </div>
+      
     </div>
   );
 };
 
-export default ProjectCard;
+export default HorizontalCard;

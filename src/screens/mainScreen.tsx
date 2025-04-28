@@ -19,7 +19,7 @@ const MainScreen = () => {
   const technologiesRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-  const { logedUser, setLogedUser } = useLogedUser();
+  const { logedUser } = useLogedUser();
 
   useEffect(() => {
     if (!logedUser) {
@@ -142,7 +142,7 @@ const MainScreen = () => {
           <div className="w-10 h-15" />
           <div className="flex flex-col justify-center pl-4 rounded-bl-xl bg-gray-600 bg-opacity-25 w-[calc(100%-2.5rem)]">
             <div className="border-t border-gray-600 h-1 w-[100%] mx-auto self-center" />
-            <h1 className="cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:text-white text-gray-500 my-1">
+            <h1 className="cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:text-white text-gray-500 my-1" onClick={() => {navigate("/projects")}}>
               Projects
             </h1>
             <h1 className="cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:text-white text-gray-500 my-1">
