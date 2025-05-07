@@ -69,10 +69,10 @@ const MainComponentProyects = () => {
               Tecnologies ( name )
             ),
             Projects-Storage (
-              Storage ( link, description )
+              Storage ( link, cover )
             )
           `)
-          .eq("frontPage", true)
+          .eq("frontPage", true) // Filtrar solo los proyectos de la página principal
           .order("id", { ascending: true });
 
         if (error) {
@@ -89,6 +89,9 @@ const MainComponentProyects = () => {
             storage: project["Projects-Storage"]
               .filter((store: any) => store.Storage) // Filter out null Storage entries
               .map((store: any) => store.Storage.link),
+            cover: project["Projects-Storage"]
+              .filter((store: any) => store.Storage?.cover) // Find the one with cover set to true
+              .map((store: any) => store.Storage.link)[0] || null, // Use the first match or null
           }));
           setProjects(formattedProjects);
           console.log("Projects:", formattedProjects);
@@ -188,6 +191,7 @@ const MainComponentProyects = () => {
                   status={project.status}
                   img={project.storage}
                   technologies={project.technologies}
+                  cover={project.cover}
                 />
               </div>
             ))}

@@ -47,7 +47,7 @@ const AllProjectScreen = () => {
               Tecnologies ( name )
             ),
             Projects-Storage (
-              Storage ( link, description )
+              Storage ( link, cover )
             )
           `)
           .order("id", { ascending: true });
@@ -66,6 +66,9 @@ const AllProjectScreen = () => {
             storage: project["Projects-Storage"]
               .filter((store: any) => store.Storage) // Filter out null Storage entries
               .map((store: any) => store.Storage.link),
+            cover: project["Projects-Storage"]
+              .filter((store: any) => store.Storage?.cover) // Find the one with cover set to true
+              .map((store: any) => store.Storage.link)[0] || null, // Use the first match or null
           }));
           setProjects(formattedProjects);
           console.log("Projects:", formattedProjects);
@@ -115,6 +118,7 @@ const AllProjectScreen = () => {
                 description={project.description}
                 img={project.storage}
                 technologies={project.technologies}
+                cover={project.cover}
               />
             </div>
           ))}

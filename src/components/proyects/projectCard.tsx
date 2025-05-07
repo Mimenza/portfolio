@@ -11,6 +11,7 @@ const ProjectCard = ({
   status,
   img,
   technologies,
+  cover,
 }: {
   onClickProject?: (id:Number) => void;
   onClose?: () => void;
@@ -20,6 +21,7 @@ const ProjectCard = ({
   status: string;
   img: Array<string>;
   technologies: Array<string>;
+  cover: string;
 }) => {
   return (
     <div
@@ -28,7 +30,7 @@ const ProjectCard = ({
       {/* Contenedor de la imagen */}
       <div className="aspect-[16/9] rounded-[25px] overflow-hidden group">
         <img
-          src={img[0] || Default}
+          src={cover || Default}
           alt="Project"
           className="h-full w-full object-cover rounded-[25px] transition-transform duration-300 ease-in-out group-hover:scale-105"
         />

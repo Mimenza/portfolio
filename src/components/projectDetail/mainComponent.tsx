@@ -26,6 +26,10 @@ import { IoLogoFirebase } from "react-icons/io5"; //Firebase
 import { FaPlus } from "react-icons/fa"; //Plus
 import { RxFontStyle } from "react-icons/rx"; // StyleSheet
 
+import { IoLogoVercel } from "react-icons/io5"; //Vercel
+import { SiExpo } from "react-icons/si"; //Expo
+import { FaGithub } from "react-icons/fa"; //Github
+
 interface ProjectDetails {
   id: number;
   name: string;
@@ -59,6 +63,9 @@ const technologyIcons: { [key: string]: React.ReactNode } = {
   AppWrite: <SiAppwrite className="h-full w-full" />,
   Firebase: <IoLogoFirebase className="h-full w-full" />,
   StyleSheet: <RxFontStyle className="h-full w-full" />,
+  Vercel: <IoLogoVercel className="h-full w-full" />,
+  Expo: <SiExpo className="h-full w-full" />,
+  Github: <FaGithub className="h-full w-full" />,
 };
 
 const MainComponentProjectDetail = ({

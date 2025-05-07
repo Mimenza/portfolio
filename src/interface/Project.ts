@@ -8,4 +8,5 @@ export interface Project {
     frontPage: boolean;
     technologies: string[];
     storage: string[];
+    cover: string;
   }

@@ -25,6 +25,10 @@ import { IoLogoFirebase } from "react-icons/io5"; //Firebase
 import { FaPlus } from "react-icons/fa"; //Plus
 import { RxFontStyle } from "react-icons/rx"; // StyleSheet
 
+import { IoLogoVercel } from "react-icons/io5"; //Vercel
+import { SiExpo } from "react-icons/si"; //Expo
+import { FaGithub } from "react-icons/fa"; //Github
+
 import Default from "../../assets/verde.png";
 
 const HorizontalCard = ({
@@ -36,6 +40,7 @@ const HorizontalCard = ({
   description,
   img,
   technologies,
+  cover,
 }: {
   onClickProject?: (id: Number) => void;
   onClose?: () => void;
@@ -46,6 +51,7 @@ const HorizontalCard = ({
   description: string;
   img: string[];
   technologies: string[];
+  cover: string;
 }) => {
   const technologyIcons: { [key: string]: React.ReactNode } = {
     Java: <FaJava className="h-full w-full" />,
@@ -70,6 +76,9 @@ const HorizontalCard = ({
     AppWrite: <SiAppwrite className="h-full w-full" />,
     Firebase: <IoLogoFirebase className="h-full w-full" />,
     StyleSheet: <RxFontStyle className="h-full w-full" />,
+    Vercel: <IoLogoVercel className="h-full w-full" />,
+    Expo: <SiExpo className="h-full w-full" />,
+    Github: <FaGithub className="h-full w-full" />,
   };
 
   return (
@@ -80,7 +89,7 @@ const HorizontalCard = ({
             onClick={() => onClickProject && onClickProject(id)}
           >
             <img
-              src={img[0] || Default}
+              src={cover || Default}
               alt="Project"
               className="h-full w-full object-cover rounded-[25px] transition-transform duration-300 ease-in-out group-hover:scale-105"
             />
