@@ -60,7 +60,7 @@ function App() {
 
   return (
     <div
-      className={`h-screen w-screen bg-[#0b0b0d] ${
+      className={`h-screen w-screen ${
         location.pathname === "/projects" ? "overflow-x-hidden" : ""
       }`}
     >

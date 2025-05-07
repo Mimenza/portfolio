@@ -1,12 +1,16 @@
 import { FaCode } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa6";
+import Default from "../../assets/verde.png";
+import { useEffect } from "react";
 
 const ProjectCard = ({
   onClickProject,
   id,
   name,
   link,
-  status
+  status,
+  img,
+  technologies,
 }: {
   onClickProject?: (id:Number) => void;
   onClose?: () => void;
@@ -14,6 +18,8 @@ const ProjectCard = ({
   name: string;
   link: string;
   status: string;
+  img: Array<string>;
+  technologies: Array<string>;
 }) => {
   return (
     <div
@@ -22,7 +28,7 @@ const ProjectCard = ({
       {/* Contenedor de la imagen */}
       <div className="aspect-[16/9] rounded-[25px] overflow-hidden group">
         <img
-          src="https://picsum.photos/200/300"
+          src={img[0] || Default}
           alt="Project"
           className="h-full w-full object-cover rounded-[25px] transition-transform duration-300 ease-in-out group-hover:scale-105"
         />

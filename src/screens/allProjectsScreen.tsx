@@ -24,7 +24,7 @@ const AllProjectScreen = () => {
   }, []);
 
   const handleProjectCardClick = (project: any) => {
-    setSelectedProject(project); // Guardar el proyecto completo
+    setSelectedProject(project);
     setShowProjectDetail(true);
     setIsClosing(false);
   };
@@ -39,19 +39,36 @@ const AllProjectScreen = () => {
   useEffect(() => {
     const getProjects = async () => {
       try {
-        const { data, error } = await supabase
+        const { data: projects, error } = await supabase
           .from("Projects")
-          .select("*")
+          .select(`
+            *,
+            Projects-Tecnologies (
+              Tecnologies ( name )
+            ),
+            Projects-Storage (
+              Storage ( link, description )
+            )
+          `)
           .order("id", { ascending: true });
 
-        if (data?.length === 0) {
-          console.error("No projects found");
+        if (error) {
+          console.error("Error fetching projects:", error);
           return;
         }
 
-        if (data) {
-          setProjects(data);
-          console.log("Projects:", data);
+        if (projects) {
+          const formattedProjects = projects.map((project: any) => ({
+            ...project,
+            technologies: project["Projects-Tecnologies"]
+              .map((tech: any) => tech.Tecnologies?.name)
+              .filter((name: string | undefined) => name !== undefined), // Ensure no undefined values
+            storage: project["Projects-Storage"]
+              .filter((store: any) => store.Storage) // Filter out null Storage entries
+              .map((store: any) => store.Storage.link),
+          }));
+          setProjects(formattedProjects);
+          console.log("Projects:", formattedProjects);
         } else {
           console.error("No projects found");
         }
@@ -66,7 +83,7 @@ const AllProjectScreen = () => {
   const [isClosing, setIsClosing] = React.useState(false);
 
   return (
-    <div className="min-h-screen w-full relative overflow-x-hidden overflow-y-auto bg-[#0b0b0d] py-20 sm:px-[100px] 2xl:px-[200px] px-5 justify-center items-center flex flex-col">
+    <div className="min-h-screen w-full relative overflow-x-hidden overflow-y-auto py-20 sm:px-[100px] 2xl:px-[200px] px-5 justify-center items-center flex flex-col">
       {/* <div className="absolute top-0 left-0 w-screen h-full z-0">
         <Aurora
           colorStops={["#e303fc", "#5a03fc", "#038cfc"]}
@@ -79,7 +96,7 @@ const AllProjectScreen = () => {
       <div className="fixed top-0 left-0 w-screen h-10 z-20 bg-gradient-to-b from-[#0b0b0d] to-transparent"></div>
       <div className="fixed bottom-0 left-0 w-screen h-10 z-20 bg-gradient-to-b from-transparent to-[#0b0b0d]"></div>
       {/* Contenido principal */}
-      <div className="h-full w-full 2xl:w-[1200px] z-10 relative">
+      <div className="h-full w-full 2xl:w-[2000px] z-10 relative">
         <p className="text-6xl font-bold mt-1 text-white">Proyects</p>
         <p className="m-4 text-lg text-gray-300">
           Here you can find most of my projects.
@@ -96,6 +113,8 @@ const AllProjectScreen = () => {
                 link={project.link}
                 status={project.status}
                 description={project.description}
+                img={project.storage}
+                technologies={project.technologies}
               />
             </div>
           ))}

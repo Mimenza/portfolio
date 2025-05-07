@@ -18,14 +18,15 @@ const MainComponentAboutMe = () => {
 
   return (
     <div className="relative h-auto w-screen flex flex-col items-center justify-center sm:h-auto md:h-screen lg:h-screen xl:h-screen 2xl:h-screen xl:pl-20 xl:pr-20 2xl:pl-20 2xl:pr-20 sm:pl-10 sm:pr-10 sm:py-20">
-      <div className="absolute top-[-350px] left-0 w-full h-full z-0">
+      {/* <div className="absolute top-0 left-0 w-full h-full z-0">
         <Aurora
           colorStops={["#e303fc", "#5a03fc", "#038cfc"]}
           blend={1}
           amplitude={0.7}
           speed={0.5}
         />
-      </div>
+      </div> */}
+      
       {/*Nueva fila: Botón adicional */}
       <div className="w-full flex py-6 absolute top-0 justify-between items-center px-40 animate-fadeInDown">
         <button className="px-6 py-2 rounded-full mr-20 flex flex-row items-center justify-between space-x-2"></button>

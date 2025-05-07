@@ -6,6 +6,8 @@ import CountUp from "../../blocks/TextAnimations/CountUp/CountUp";
 import GradientText from "../../blocks/TextAnimations/GradientText/GradientText";
 import { useNavigate } from "react-router-dom";
 import supabase from "../../supabase/client";
+import { Project } from "../../interface/Project";
+
 
 const MainComponentProyects = () => {
   const [showProjectDetail, setShowProjectDetail] = useState(false);
@@ -13,8 +15,8 @@ const MainComponentProyects = () => {
   const [animateNbr, setAnimateNbr] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isButtonAnimating, setIsButtonAnimating] = useState(false);
-  const [projects, setProjects] = useState<any[]>([]);
-  const [selectedProject, setSelectedProject] = useState<any | null>(null); // Cambiado para almacenar el proyecto completo
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const handleCountUpEnd = () => {
     setIsButtonAnimating(true);
@@ -59,19 +61,37 @@ const MainComponentProyects = () => {
   useEffect(() => {
     const getProjects = async () => {
       try {
-        const { data, error } = await supabase
+        const { data: projects, error } = await supabase
           .from("Projects")
-          .select("*")
+          .select(`
+            *,
+            Projects-Tecnologies (
+              Tecnologies ( name )
+            ),
+            Projects-Storage (
+              Storage ( link, description )
+            )
+          `)
           .eq("frontPage", true)
           .order("id", { ascending: true });
 
-        if (data?.length === 0) {
-          console.error("No projects found");
+        if (error) {
+          console.error("Error fetching projects:", error);
           return;
         }
 
-        if (data) {
-          setProjects(data);
+        if (projects) {
+          const formattedProjects = projects.map((project: any) => ({
+            ...project,
+            technologies: project["Projects-Tecnologies"]
+              .map((tech: any) => tech.Tecnologies?.name)
+              .filter((name: string | undefined) => name !== undefined), // Ensure no undefined values
+            storage: project["Projects-Storage"]
+              .filter((store: any) => store.Storage) // Filter out null Storage entries
+              .map((store: any) => store.Storage.link),
+          }));
+          setProjects(formattedProjects);
+          console.log("Projects:", formattedProjects);
         } else {
           console.error("No projects found");
         }
@@ -166,6 +186,8 @@ const MainComponentProyects = () => {
                   name={project.name}
                   link={project.link}
                   status={project.status}
+                  img={project.storage}
+                  technologies={project.technologies}
                 />
               </div>
             ))}

@@ -98,7 +98,7 @@ const MainScreen = () => {
 
   const sectionTitles = ["About Me", "Projects", "Technologies", "Contact"];
   return (
-    <div className="flex flex-col min-h-screen w-screen bg-[#0b0b0d] overflow-hidden relative">
+    <div className="flex flex-col min-h-screen w-screen overflow-hidden relative">
       {/* Section Indicator */}
       <div className="fixed top-1/2 right-[-142px] transform -translate-y-1/2 z-20 group transition-all duration-300 hover:translate-x-[-130px]">
         {sections.map((_, index) => (

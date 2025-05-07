@@ -18,7 +18,7 @@ export const ImgSpotlightBorder = () => {
       <div className="relative h-96 w-72">
 
         {/* Imagen */}
-        <div className="relative h-full w-full z-20 rounded-[22px] overflow-hidden border-2 border-muted border-opacity-25">
+        <div className="relative h-full w-full z-20 rounded-[22px] overflow-hidden border-4 border-muted border-opacity-25">
           <img
             src={process.env.REACT_APP_SUPABASE_PROFILE_PHOTO_URL}
             alt="About Me"
