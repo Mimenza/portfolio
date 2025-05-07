@@ -32,13 +32,13 @@ const ProjectCard = ({
         </div>
         <div className="flex flex-row h-full space-x-2 items-center">
           <button
-            className="h-full w-full aspect-square border border-gray-700 rounded-[15px] p-2 bg-black hover:bg-neutral-900 transition duration-300 ease-in-out"
+            className="h-full w-full aspect-square border border-muted border-opacity-25 rounded-[15px] p-2 bg-black hover:bg-neutral-900 transition duration-300 ease-in-out"
             onClick={onClickCode}
           >
             <FaCode className="text-gray-300 h-full w-full" />
           </button>
           <button
-            className="h-full w-full aspect-square border border-gray-700 rounded-[15px] p-2 bg-black hover:bg-neutral-900 transition duration-300 ease-in-out "
+            className="h-full w-full aspect-square border border-muted border-opacity-25 rounded-[15px] p-2 bg-black hover:bg-neutral-900 transition duration-300 ease-in-out "
             onClick={onClickProject}
           >
             <FaArrowRight className="text-gray-300 h-full w-full" />

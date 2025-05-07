@@ -4,7 +4,15 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["Montserrat", "-apple-system", "system-ui", "sans-serif"],
-
+      },
+      colors: {
+        primary: "#1E40AF", // Example blue
+        secondary: "#9333EA", // Example purple
+        accent: "#F59E0B", // Example amber
+        muted: "#374151", // gray-700
+        text_primary: "#FFFF", // white
+        text_secondary: "#9CA3AF", // gray-400
+        text_third: "#D1D5DB", // gray-300
       },
       animation: {
         fadeInUp: "fadeInUp 2s ease-in-out",

@@ -14,26 +14,11 @@ export const ImgSpotlightBorder = () => {
   return (
     <div
       className="hidden md:flex items-center justify-center order-first md:order-none z-10"
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setOpacity(1)}
-      onMouseLeave={() => setOpacity(0)}
     >
-      <div ref={containerRef} className="relative h-96 w-72">
-        {/* Borde tipo spotlight */}
-        <div
-          className="absolute -inset-1 rounded-[26px] z-10 pointer-events-none transition-opacity duration-300"
-          style={{
-            opacity,
-            background: "linear-gradient(135deg, #ff6ec4, #7873f5)", // 🎨 Gradiente personalizado
-            maskImage: `radial-gradient(100px 100px at ${position.x}px ${position.y}px, white 30%, transparent 80%)`,
-            WebkitMaskImage: `radial-gradient(100px 100px at ${position.x}px ${position.y}px, white 30%, transparent 80%)`,
-            maskComposite: "exclude",
-            WebkitMaskComposite: "destination-out",
-          }}
-        />
+      <div className="relative h-96 w-72">
 
         {/* Imagen */}
-        <div className="relative h-full w-full z-20 rounded-[22px] overflow-hidden">
+        <div className="relative h-full w-full z-20 rounded-[22px] overflow-hidden border-2 border-muted border-opacity-25">
           <img
             src={process.env.REACT_APP_SUPABASE_PROFILE_PHOTO_URL}
             alt="About Me"

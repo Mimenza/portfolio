@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@hugeicons/react": "^1.0.5",
     "@react-spring/web": "^9.7.5",
     "@supabase/supabase-js": "^2.49.4",
     "@testing-library/dom": "^10.4.0",

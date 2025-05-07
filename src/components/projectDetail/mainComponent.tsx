@@ -38,8 +38,8 @@ const MainComponentProjectDetail = ({
         </button>
         <div className="min-w-[40%] max-w-[60%]">
           <p className="text-white text-5xl font-bold">{projectDetails.name}</p>
-          <p className="text-gray-400 text-lg mt-4">{projectDetails.description}</p>
-          <p className="text-gray-400 text-lg mt-4">
+          <p className="text-text_secondary text-lg mt-4">{projectDetails.description}</p>
+          <p className="text-text_secondary text-lg mt-4">
             <span className="text-white font-bold">Technologies used:</span>{" "}
             React, TypeScript, Tailwind CSS, Node.js, Express
           </p>
