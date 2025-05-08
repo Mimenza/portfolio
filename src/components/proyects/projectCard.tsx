@@ -1,7 +1,9 @@
 import { FaCode } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa6";
-import Default from "../../assets/verde.png";
+import { env } from "process";
 import { useEffect } from "react";
+const Default = process.env.REACT_APP_PROJECT_DEFAULT_IMG;
+
 
 const ProjectCard = ({
   onClickProject,
@@ -31,7 +33,6 @@ const ProjectCard = ({
       <div className="aspect-[16/9] rounded-[25px] overflow-hidden group">
         <img
           src={cover || Default}
-          alt="Project"
           className="h-full w-full object-cover rounded-[25px] transition-transform duration-300 ease-in-out group-hover:scale-105"
         />
       </div>

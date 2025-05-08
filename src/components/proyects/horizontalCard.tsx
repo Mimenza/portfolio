@@ -29,7 +29,8 @@ import { IoLogoVercel } from "react-icons/io5"; //Vercel
 import { SiExpo } from "react-icons/si"; //Expo
 import { FaGithub } from "react-icons/fa"; //Github
 
-import Default from "../../assets/verde.png";
+import { env } from "process";
+const Default = process.env.REACT_APP_PROJECT_DEFAULT_IMG;
 
 const HorizontalCard = ({
   onClickProject,
@@ -90,7 +91,6 @@ const HorizontalCard = ({
           >
             <img
               src={cover || Default}
-              alt="Project"
               className="h-full w-full object-cover rounded-[25px] transition-transform duration-300 ease-in-out group-hover:scale-105"
             />
           </div>
