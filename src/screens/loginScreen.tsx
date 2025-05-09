@@ -13,7 +13,7 @@ const LoginScreen = () => {
 
   useEffect(() => {
     if (logedUser) {
-      navigate("/homePage");
+      navigate("/home");
     }
   }, []);
 
@@ -34,7 +34,7 @@ const LoginScreen = () => {
       }
 
       if (data) {
-        navigate("/homePage");
+        navigate("/home");
         setLogedUser(true);
       } else {
         setError("Usuario no encontrado.");

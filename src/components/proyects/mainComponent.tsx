@@ -192,6 +192,7 @@ const MainComponentProyects = () => {
                   img={project.storage}
                   technologies={project.technologies}
                   cover={project.cover}
+                  slug={project.slug}
                 />
               </div>
             ))}

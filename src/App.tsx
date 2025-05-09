@@ -10,6 +10,8 @@ import {
 import MainScreen from "./screens/mainScreen";
 import AllProjectScreen from "./screens/allProjectsScreen";
 import LoginScreen from "./screens/loginScreen";
+import ProjectPageScreen from "./screens/projectPageScreen";
+import Test from "./screens/test";
 
 const useBreakpointLogger = () => {
   useEffect(() => {
@@ -65,13 +67,13 @@ function App() {
       }`}
     >
       <Routes>
-        <Route path="/homePage" element={<MainScreen />} />
+        <Route path="/home" element={<MainScreen />} />
         <Route path="/projects" element={<AllProjectScreen />} />
         <Route path="/login" element={<LoginScreen />} />
         <Route path="/" element={<Navigate to="/login" />} />{" "}
-        {/* Redirect root */}
         <Route path="*" element={<Navigate to="/login" />} />{" "}
-        {/* Redirect catch-all */}
+        <Route path="projects/:slug" element={<ProjectPageScreen />} />
+        <Route path="/test" element={<Test />} />
       </Routes>
     </div>
   );

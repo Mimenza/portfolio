@@ -9,4 +9,5 @@ export interface Project {
     technologies: string[];
     storage: string[];
     cover: string;
+    slug: string;
   }
