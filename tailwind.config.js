@@ -13,6 +13,7 @@ module.exports = {
         text_primary: "#FFFF", // white
         text_secondary: "#9CA3AF", // gray-400
         text_third: "#D1D5DB", // gray-300
+        
       },
       animation: {
         fadeInUp: "fadeInUp 2s ease-in-out",

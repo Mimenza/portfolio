@@ -94,7 +94,7 @@ const MainComponentProyects = () => {
               .map((store: any) => store.Storage.link)[0] || null, // Use the first match or null
           }));
           setProjects(formattedProjects);
-          console.log("Projects:", formattedProjects);
+          // console.log("Projects:", formattedProjects);
         } else {
           console.error("No projects found");
         }
@@ -136,12 +136,12 @@ const MainComponentProyects = () => {
                           SOME OF MY WORK
                         </GradientText>
           </div>
-          <h1 className="text-7xl font-bold mt-1 text-text_primary">
-            Proyects
+          <h1 className="text-6xl font-bold mt-1 text-text_primary">
+            Selected Proyects
           </h1>
           <div className="flex flex-row justify-between">
             <p className="mt-4 text-lg text-text_secondary">
-              Here you can find some of my projects.
+              Here's a selection showcasing my expertise and the achieved results
             </p>
             <div
               className={

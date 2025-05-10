@@ -80,9 +80,9 @@ const MainComponentProjectDetail = ({
   projectDetails: ProjectDetails;
 }) => {
   const navigate = useNavigate(); // Asegúrate de llamar al hook aquí
-  useEffect(() => {
-    console.log("Project Details:", projectDetails);
-  },[]);
+  // useEffect(() => {
+  //   console.log("Project Details:", projectDetails);
+  // },[]);
   return (
     // Main component for project details modal
     <div
@@ -91,12 +91,12 @@ const MainComponentProjectDetail = ({
       }`}
     >
       {/* Backdrop Blur */}
-      <div className="absolute inset-0 backdrop-blur-sm bg-black/50"></div>
+      <div className="absolute inset-0 backdrop-blur-sm bg-[#0b0b0d]/50"></div>
       {/* Modal Content */}
-      <div className="bg-black border border-gray-800 rounded-[25px] w-[90%] h-[90%] relative flex flex-col overflow-hidden p-5">
-        <div className="w-full flex flex-[2] bg-black justify-between">
+      <div className="bg-[#0b0b0d] border border-gray-800 rounded-[25px] w-[90%] h-[90%] relative flex flex-col overflow-hidden p-5">
+        <div className="w-full flex flex-[2] justify-between">
           <button
-            className="bg-black text-white border border-white px-6 py-2 rounded-full font-bold absolute top-5 right-5 flex flex-row items-center justify-between space-x-2"
+            className="text-white border border-white px-6 py-2 rounded-full font-bold absolute top-5 right-5 flex flex-row items-center justify-between space-x-2"
             onClick={onClose}
           >
             <span>Close</span>

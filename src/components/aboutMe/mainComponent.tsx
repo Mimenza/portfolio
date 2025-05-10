@@ -8,10 +8,12 @@ import Aurora from "../../blocks/Backgrounds/Aurora/Aurora";
 import BlurText from "../../blocks/TextAnimations/BlurText/BlurText";
 import GradientText from "../../blocks/TextAnimations/GradientText/GradientText";
 import { ImgSpotlightBorder } from "../ui/imgSpotlightBorder";
+import { useNavigate } from "react-router-dom";
 
 // import VariableProximity from "../../blocks/TextAnimations/VariableProximity/VariableProximity";
 
 const MainComponentAboutMe = () => {
+  const navigate = useNavigate();
   const handleAnimationComplete = () => {
     console.log("Animation completed!");
   };
@@ -28,13 +30,13 @@ const MainComponentAboutMe = () => {
       </div> */}
       
       {/*Nueva fila: Botón adicional */}
-      <div className="w-full flex py-6 absolute top-0 justify-between items-center px-40 animate-fadeInDown">
+      {/* <div className="w-full flex py-6 absolute top-0 justify-between items-center px-40 animate-fadeInDown">
         <button className="px-6 py-2 rounded-full mr-20 flex flex-row items-center justify-between space-x-2"></button>
         <button className="bg-white text-black px-6 py-2 rounded-full mr-20 flex flex-row items-center justify-between space-x-2">
           <p>Say hi!</p>
           <PiChatTeardropThin />
         </button>
-      </div>
+      </div> */}
 
       {/* Contenido existente */}
       <div className="w-full flex flex-col md:flex-row items-center animate-fadeInUp justify-around">
@@ -64,7 +66,7 @@ const MainComponentAboutMe = () => {
           </div>
 
           <BlurText
-            text="About me"
+            text="Hi there!"
             delay={150}
             animateBy="letters"
             direction="bottom"
@@ -73,22 +75,10 @@ const MainComponentAboutMe = () => {
             threshold={1}
           />
 
-          {/* <div ref={containerRef} style={{ position: "relative" }}>
-            <VariableProximity
-              label={"About me"}
-              className={"variable-proximity-demo text-8xl font-bold mb-6 z-10"}
-              fromFontVariationSettings="'wght' 400, 'opsz' 9"
-              toFontVariationSettings="'wght' 1000, 'opsz' 40"
-              containerRef={containerRef}
-              radius={100}
-              falloff="gaussian"
-            />
-          </div> */}
-
           <p className="text-lg leading-relaxed mb-6 text-text_secondary z-10">
             I'm{" "}
             <span className="font-bold text-text_primary">Endika Mimenza</span>,
-            24-year-old web and mobile developer, with experience in application
+            25-year-old web and mobile developer, with experience in application
             development. Currently learning React and React Native, while
             expanding my knowledge in backend development and languages like C
             and C++ at{" "}
@@ -136,7 +126,7 @@ const MainComponentAboutMe = () => {
               <span>Github</span>
               <FaGithub />
             </button>
-            <LightButton onClick={() => {}}> Read my cv!</LightButton>
+            <LightButton onClick={() => {navigate("/about")}}> Read about me!</LightButton>
           </div>
         </div>
 

@@ -49,7 +49,7 @@ const MainComponentContact = () => {
               LETS CONNECT
             </GradientText>
           </div>
-          <h1 className="text-text_primary text-8xl font-bold">Contact</h1>
+          <h1 className="text-text_primary text-6xl font-bold">Contact</h1>
           <p className="mt-4 text-lg text-text_secondary">
             Feel free to drop me a message anytime— I'm all ears for cool and
             creative ideas!

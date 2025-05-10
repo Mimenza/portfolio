@@ -7,11 +7,14 @@ import {
   Navigate,
   useLocation,
 } from "react-router-dom";
-import MainScreen from "./screens/mainScreen";
-import AllProjectScreen from "./screens/allProjectsScreen";
+import HomeScreen from "./screens/homeScreen";
+import ProjectsScreen from "./screens/projectsScreen";
 import LoginScreen from "./screens/loginScreen";
-import ProjectPageScreen from "./screens/projectPageScreen";
+import SlugScreen from "./screens/slugScreen";
+import AboutScreen from "./screens/aboutScreen";
 import Test from "./screens/test";
+
+import { useVariablesContext } from "./context/variablesContext";
 
 const useBreakpointLogger = () => {
   useEffect(() => {
@@ -59,20 +62,36 @@ const useBreakpointLogger = () => {
 function App() {
   useBreakpointLogger();
   const location = useLocation();
+  const { setScrollPosition } = useVariablesContext();
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+      console.log("Scroll position:", window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  
   return (
     <div
-      className={`h-screen w-screen ${
-        location.pathname === "/projects" ? "overflow-x-hidden" : ""
-      }`}
+      className={`h-screen w-screen scrollbar-hide`}
+      style={ { } }	
     >
+      {/* ${
+        location.pathname === "/projects" ? "overflow-x-hidden" : ""
+      } */}
       <Routes>
-        <Route path="/home" element={<MainScreen />} />
-        <Route path="/projects" element={<AllProjectScreen />} />
+        <Route path="/home" element={<HomeScreen />} />
+        <Route path="/projects" element={<ProjectsScreen />} />
         <Route path="/login" element={<LoginScreen />} />
+        <Route path="/about" element={<AboutScreen />} />
         <Route path="/" element={<Navigate to="/login" />} />{" "}
         <Route path="*" element={<Navigate to="/login" />} />{" "}
-        <Route path="projects/:slug" element={<ProjectPageScreen />} />
+        <Route path="projects/:slug" element={<SlugScreen />} />
         <Route path="/test" element={<Test />} />
       </Routes>
     </div>

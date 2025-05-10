@@ -35,7 +35,7 @@ const MainComponentTecnologies = () => {
               WHAT DO I USE?
             </GradientText>
           </div>
-          <h1 className="text-text_primary text-7xl font-bold">Tecnologies</h1>
+          <h1 className="text-text_primary text-6xl font-bold">Tecnologies</h1>
           <p className="mt-4 text-lg text-text_secondary">
             Here you can find some of the tecnologies I have worked with.
           </p>
