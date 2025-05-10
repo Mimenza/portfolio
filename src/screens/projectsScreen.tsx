@@ -24,6 +24,8 @@ const ProjectsScreen = () => {
     if (!logedUser) {
       navigate("/login");
     }
+    // Disable global scrolling X
+    document.body.style.overflowX = "hidden";
   }, []);
 
   const handleProjectCardClick = (project: any) => {
@@ -92,7 +94,7 @@ const ProjectsScreen = () => {
   const [isClosing, setIsClosing] = React.useState(false);
 
   return (
-    <div className="min-h-screen relative py-20 sm:px-[100px] 2xl:px-[200px] px-5 items-center flex flex-col">
+    <div className="min-h-screen overflow-x-hidden relative py-20 sm:px-[100px] 2xl:px-[200px] px-5 items-center flex flex-col">
         <Menu selectedSection={2} />
         {/* Gradientes */}
         <div className="fixed top-0 left-0 w-screen h-10 z-20 bg-gradient-to-b from-[#0b0b0d] to-transparent"></div>
