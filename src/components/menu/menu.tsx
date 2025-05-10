@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { FaCircle } from "react-icons/fa";
 import { IoIosSunny } from "react-icons/io";
 import { IoMoon } from "react-icons/io5";
@@ -12,15 +12,33 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
   const [isSunny, setIsSunny] = useState(true);
   const { scrollPosition } = useVariablesContext();
   const navigate = useNavigate();
+  const [activeIcon, setActiveIcon] = useState<number | null>(null); // Track the active icon
+  const [isAnimating, setIsAnimating] = useState(false); // Track animation state
+
+  useEffect(() => {
+    setTimeout(() => setActiveIcon(selectedSection), 100); // Animate to size 100 on load
+  }, [selectedSection]);
 
   const toggleIcon = () => {
     setIsSunny((prev) => !prev);
   };
 
   const handleNavigation = (index: number) => {
-    if (index === 0) navigate("/home");
-    else if (index === 1) navigate("/about");
-    else if (index === 2) navigate("/projects");
+    setTimeout(() => {
+      if (index === 0) navigate("/home");
+      else if (index === 1) navigate("/about");
+      else if (index === 2) navigate("/projects");
+    }, 500); // Delay for animation
+  };
+
+  const handleIconClick = (index: number) => {
+    if (activeIcon === index) return; // Prevent shrinking the same active icon
+    setIsAnimating(true); // Start shrinking animation
+    setTimeout(() => {
+      setActiveIcon(index); // Set the new active icon after shrinking
+      setIsAnimating(false); // Reset animation state
+      handleNavigation(index);
+    }, 300); // Match the animation duration
   };
 
   // Calculate styles based on scroll position
@@ -47,42 +65,60 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
         <p className="text-text_primary text-2xl">EM</p>
         <div className="flex flex-row gap-4">
           <p
-            className={`flex flex-row justify-between items-center gap-1 cursor-pointer ${
+            className={`flex flex-row items-center gap-1 cursor-pointer ${
               selectedSection === 0
                 ? "text-text_primary"
                 : "text-text_secondary"
             }`}
-            onClick={() => handleNavigation(0)}
+            onClick={() => handleIconClick(0)}
           >
-            {selectedSection === 0 && (
-              <FaCircle className="h-2 w-2 text-secondary" />
-            )}
+            <span className="inline-block w-4 h-4 flex items-center justify-center">
+              {selectedSection === 0 && (
+                <FaCircle
+                  className={`h-2 w-2 text-secondary transition-transform duration-300 ${
+                    activeIcon === 0 ? "scale-100" : "scale-0"
+                  }`}
+                />
+              )}
+            </span>
             Home
           </p>
           <p
-            className={`flex flex-row justify-between items-center gap-1 cursor-pointer ${
+            className={`flex flex-row items-center gap-1 cursor-pointer ${
               selectedSection === 1
                 ? "text-text_primary"
                 : "text-text_secondary"
             }`}
-            onClick={() => handleNavigation(1)}
+            onClick={() => handleIconClick(1)}
           >
-            {selectedSection === 1 && (
-              <FaCircle className="h-2 w-2 text-secondary" />
-            )}
+            <span className="inline-block w-4 h-4 flex items-center justify-center">
+              {selectedSection === 1 && (
+                <FaCircle
+                  className={`h-2 w-2 text-secondary transition-transform duration-300 ${
+                    activeIcon === 1 ? "scale-100" : "scale-0"
+                  }`}
+                />
+              )}
+            </span>
             About
           </p>
           <p
-            className={`flex flex-row justify-between items-center gap-1 cursor-pointer ${
+            className={`flex flex-row items-center gap-1 cursor-pointer ${
               selectedSection === 2
                 ? "text-text_primary"
                 : "text-text_secondary"
             }`}
-            onClick={() => handleNavigation(2)}
+            onClick={() => handleIconClick(2)}
           >
-            {selectedSection === 2 && (
-              <FaCircle className="h-2 w-2 text-secondary" />
-            )}
+            <span className="inline-block w-4 h-4 flex items-center justify-center">
+              {selectedSection === 2 && (
+                <FaCircle
+                  className={`h-2 w-2 text-secondary transition-transform duration-300 ${
+                    activeIcon === 2 ? "scale-100" : "scale-0"
+                  }`}
+                />
+              )}
+            </span>
             Projects
           </p>
         </div>

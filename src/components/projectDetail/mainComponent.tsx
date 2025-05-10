@@ -165,13 +165,35 @@ const MainComponentProjectDetail = ({
           style={{ scrollbarGutter: "stable" }}
         >
           <div className="flex flex-nowrap space-x-4">
-            {projectDetails.storage.map((link, index) => (
-              <div
-                key={index}
-                className="h-full aspect-video flex-shrink-0 rounded-[20px] bg-cover bg-center"
-                style={{ backgroundImage: `url(${link})` }}
-              ></div>
-            ))}
+            {projectDetails.storage.map((link, index) => {
+              const isVideo =
+                link.includes(".mp4") ||
+                link.includes(".webm") ||
+                link.includes(".ogg");
+
+              return (
+                <div
+                  key={index}
+                  className="h-full aspect-video flex-shrink-0 rounded-[20px] overflow-hidden bg-black"
+                >
+                  {isVideo ? (
+                    <video
+                      src={link}
+                      className="w-full h-full object-cover"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                    />
+                  ) : (
+                    <div
+                      className="w-full h-full bg-cover bg-center"
+                      style={{ backgroundImage: `url(${link})` }}
+                    />
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

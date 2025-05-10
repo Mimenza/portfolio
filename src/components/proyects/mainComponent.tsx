@@ -137,7 +137,7 @@ const MainComponentProyects = () => {
                         </GradientText>
           </div>
           <h1 className="text-6xl font-bold mt-1 text-text_primary">
-            Selected Proyects
+            Proyects
           </h1>
           <div className="flex flex-row justify-between">
             <p className="mt-4 text-lg text-text_secondary">
