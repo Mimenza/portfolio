@@ -78,7 +78,7 @@ function App() {
   
   return (
     <div
-      className={`h-screen w-screen scrollbar-hide`}
+      className={`h-screen w-screen scrollbar-hide `}
       style={ { } }	
     >
       {/* ${

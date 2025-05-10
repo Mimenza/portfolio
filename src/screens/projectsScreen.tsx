@@ -133,7 +133,7 @@ const ProjectsScreen = () => {
             Here you can find most of my projects.
           </p>
           <div className="grid lg:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-5 h-auto w-auto">
-            {/* {projects.map((project, index) => (
+            {projects.map((project, index) => (
               <div key={index} className="animate-fadeInUp w-full">
                 <HorizontalCard
                   onClickProject={() => {
@@ -149,7 +149,7 @@ const ProjectsScreen = () => {
                   cover={project.cover}
                 />
               </div>
-            ))} */}
+            ))}
           </div>
         </div>
 
