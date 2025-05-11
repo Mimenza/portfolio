@@ -67,7 +67,6 @@ function App() {
   useEffect(() => {
     const handleScroll = () => {
       setScrollPosition(window.scrollY);
-      console.log("Scroll position:", window.scrollY);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -78,12 +77,7 @@ function App() {
   
   return (
     <div
-      className={`h-screen w-screen `}
-      style={ { } }	
-    >
-      {/* ${
-        location.pathname === "/projects" ? "overflow-x-hidden" : ""
-      } */}
+      className="h-screen w-screen sm:px-[100px] 2xl:px-[200px]">
       <Routes>
         <Route path="/home" element={<HomeScreen />} />
         <Route path="/projects" element={<ProjectsScreen />} />

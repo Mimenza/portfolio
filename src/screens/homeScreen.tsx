@@ -24,7 +24,7 @@ const HomeScreen = () => {
   const contactRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const { logedUser } = useLogedUser();
-  const { section, setSection} = useVariablesContext();
+  const { section, setSection } = useVariablesContext();
 
   useEffect(() => {
     if (!logedUser) {
@@ -74,7 +74,7 @@ const HomeScreen = () => {
         setSection(currentSectionIndex + 1);
         setTimeout(() => {
           setCurrentSectionIndex((prevIndex) => prevIndex + 1);
-          
+
           scrollDelta = 0;
           isScrolling = false;
         }, 500);
@@ -105,10 +105,9 @@ const HomeScreen = () => {
     handleIndicatorClick(0);
   }, [handleIndicatorClick]);
 
-
   const sectionTitles = ["Presentation", "Projects", "Technologies", "Contact"];
   return (
-    <div className="flex flex-col min-h-screen w-screen overflow-hidden relative">
+    <div className="flex flex-col w-full overflow-hidden relative">
       {/* Section Indicator */}
       <div className="fixed top-1/2 right-[-142px] transform -translate-y-1/2 z-20 group transition-all duration-300 hover:translate-x-[-130px]">
         {sections.map((_, index) => (
@@ -159,18 +158,18 @@ const HomeScreen = () => {
         </div> */}
       </div>
 
-      <Menu selectedSection={0}/>
+      <Menu selectedSection={0} />
       {/* Sections */}
-      <div ref={aboutMeRef} className="h-screen">
+      <div ref={aboutMeRef} className="h-screen w-full py-20">
         <MainComponentAboutMe />
       </div>
-      <div ref={projectsRef} className="h-screen">
+      <div ref={projectsRef} className="h-screen w-full py-20">
         <MainComponentProyects />
       </div>
-      <div ref={technologiesRef} className="h-screen">
+      <div ref={technologiesRef} className="h-screen w-full py-20">
         <MainComponentTecnologies />
       </div>
-      <div ref={contactRef} className="h-screen">
+      <div ref={contactRef} className="h-screen w-full py-20">
         <MainComponentContact />
       </div>
     </div>

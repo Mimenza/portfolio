@@ -3,8 +3,8 @@ import GradientText from "../../blocks/TextAnimations/GradientText/GradientText"
 
 const MainComponentTecnologies = () => {
   return (
-    <div className="h-auto w-screen">
-      <div className="flex flex-col md:flex-row sm:h-auto md:h-screen lg:h-screen xl:h-screen 2xl:h-screen xl:pl-60 xl:pr-20 2xl:pl-60 2xl:pr-20 sm:pl-10 sm:pr-10 sm:py-20">
+    <div className="h-full w-full">
+      <div className="flex flex-col">
         <div className="flex flex-col w-full h-auto">
           <div className="flex flex-row items-center gap-2 mb-2">
             <svg

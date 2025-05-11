@@ -92,15 +92,16 @@ const ProjectsScreen = () => {
   }, []);
 
   const [isClosing, setIsClosing] = React.useState(false);
-
+  // sm:px-[100px] 2xl:px-[200px] px-5
+  // 2xl:w-[1500px]
   return (
-    <div className="min-h-screen overflow-x-hidden relative py-20 sm:px-[100px] 2xl:px-[200px] px-5 items-center flex flex-col">
+    <div className="min-h-screen overflow-x-hidden relative py-20  items-center flex flex-col">
         <Menu selectedSection={2} />
         {/* Gradientes */}
         <div className="fixed top-0 left-0 w-screen h-10 z-20 bg-gradient-to-b from-[#0b0b0d] to-transparent"></div>
         <div className="fixed bottom-0 left-0 w-screen h-10 z-20 bg-gradient-to-b from-transparent to-[#0b0b0d]"></div>
         {/* Contenido principal */}
-        <div className="h-full w-full 2xl:w-[1500px] z-10 relative mt-10">
+        <div className="h-full w-full  z-10 relative mt-10">
           <div className="flex flex-row items-center gap-2 mb-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -136,7 +137,7 @@ const ProjectsScreen = () => {
           </p>
           <div className="grid lg:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-5 h-auto w-auto">
             {projects.map((project, index) => (
-              <div key={index} className="animate-fadeInUp w-full">
+              <div key={index} className="w-full">
                 <HorizontalCard
                   onClickProject={() => {
                     handleProjectCardClick(project);
