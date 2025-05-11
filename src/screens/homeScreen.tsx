@@ -6,20 +6,25 @@ import React, {
   useCallback,
 } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { useLogedUser } from "../context/logedUserContext";
+import { useVariablesContext } from "../context/variablesContext";
 
 import MainComponentAboutMe from "../components/aboutMe/mainComponent";
 import MainComponentProyects from "../components/proyects/mainComponent";
 import MainComponentTecnologies from "../components/tecnologies/mainComponent";
 import MainComponentContact from "../components/contactMe/mainComponent";
 
-const MainScreen = () => {
+import Menu from "../components/menu/menu";
+
+const HomeScreen = () => {
   const aboutMeRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
   const technologiesRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const { logedUser } = useLogedUser();
+  const { section, setSection } = useVariablesContext();
 
   useEffect(() => {
     if (!logedUser) {
@@ -38,6 +43,7 @@ const MainScreen = () => {
     (index: number) => {
       sections[index]?.current?.scrollIntoView({ behavior: "smooth" });
       setCurrentSectionIndex(index);
+      setSection(index);
     },
     [sections]
   );
@@ -65,8 +71,10 @@ const MainScreen = () => {
         sections[currentSectionIndex + 1]?.current?.scrollIntoView({
           behavior: "smooth",
         });
+        setSection(currentSectionIndex + 1);
         setTimeout(() => {
           setCurrentSectionIndex((prevIndex) => prevIndex + 1);
+
           scrollDelta = 0;
           isScrolling = false;
         }, 500);
@@ -76,6 +84,7 @@ const MainScreen = () => {
         sections[currentSectionIndex - 1]?.current?.scrollIntoView({
           behavior: "smooth",
         });
+        setSection(currentSectionIndex - 1);
         setTimeout(() => {
           setCurrentSectionIndex((prevIndex) => prevIndex - 1);
           scrollDelta = 0;
@@ -96,9 +105,9 @@ const MainScreen = () => {
     handleIndicatorClick(0);
   }, [handleIndicatorClick]);
 
-  const sectionTitles = ["About Me", "Projects", "Technologies", "Contact"];
+  const sectionTitles = ["Presentation", "Projects", "Technologies", "Contact"];
   return (
-    <div className="flex flex-col min-h-screen w-screen overflow-hidden relative">
+    <div className="flex flex-col w-full overflow-hidden relative">
       {/* Section Indicator */}
       <div className="fixed top-1/2 right-[-142px] transform -translate-y-1/2 z-20 group transition-all duration-300 hover:translate-x-[-130px]">
         {sections.map((_, index) => (
@@ -135,38 +144,36 @@ const MainScreen = () => {
         ))}
 
         {/* Nuevas dos columnas estáticas debajo */}
-        <div className="flex">
-          {/* <div className="w-10 h-15 bg-gray-600 bg-opacity-25">
-            <div className="w-full h-full bg-black rounded-tr-xl"></div>
-          </div> */}
+        {/* <div className="flex">
           <div className="w-10 h-15" />
           <div className="flex flex-col justify-center pl-4 rounded-bl-xl bg-gray-600 bg-opacity-25 w-[calc(100%-2.5rem)]">
             <div className="border-t border-gray-600 h-1 w-[100%] mx-auto self-center" />
             <h1 className="cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:text-white text-gray-500 my-1" onClick={() => {navigate("/projects")}}>
               Projects
             </h1>
-            <h1 className="cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:text-white text-gray-500 my-1">
-              CV here
+            <h1 className="cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:text-white text-gray-500 my-1" onClick={() => {navigate("/about")}}>
+              About me
             </h1>
           </div>
-        </div>
+        </div> */}
       </div>
 
+      <Menu selectedSection={0} />
       {/* Sections */}
-      <div ref={aboutMeRef} className="h-screen">
+      <div ref={aboutMeRef} className="h-screen w-full py-10">
         <MainComponentAboutMe />
       </div>
-      <div ref={projectsRef} className="h-screen">
+      <div ref={projectsRef} className="h-screen w-full py-10">
         <MainComponentProyects />
       </div>
-      <div ref={technologiesRef} className="h-screen">
+      <div ref={technologiesRef} className="h-screen w-full py-10">
         <MainComponentTecnologies />
       </div>
-      <div ref={contactRef} className="h-screen">
+      <div ref={contactRef} className="h-screen w-full py-10">
         <MainComponentContact />
       </div>
     </div>
   );
 };
 
-export default MainScreen;
+export default HomeScreen;

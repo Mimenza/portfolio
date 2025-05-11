@@ -13,7 +13,7 @@ const LoginScreen = () => {
 
   useEffect(() => {
     if (logedUser) {
-      navigate("/homePage");
+      navigate("/home");
     }
   }, []);
 
@@ -34,7 +34,7 @@ const LoginScreen = () => {
       }
 
       if (data) {
-        navigate("/homePage");
+        navigate("/home");
         setLogedUser(true);
       } else {
         setError("Usuario no encontrado.");
@@ -46,7 +46,7 @@ const LoginScreen = () => {
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-black flex items-center justify-center">
+    <div className="min-h-screen overflow-hidden flex items-center justify-center">
       {/* Aurora de fondo */}
       <div className="absolute top-0 left-0 w-screen h-full z-0">
         <Aurora
@@ -68,7 +68,7 @@ const LoginScreen = () => {
       </div>
 
       {/* Login Form */}
-      <div className="relative z-10 bg-black p-8 rounded-lg shadow-lg w-96">
+      <div className="relative z-10 p-8 rounded-lg shadow-lg w-96">
         <h2 className="text-2xl font-bold mb-4 text-center text-white">
           Login
         </h2>

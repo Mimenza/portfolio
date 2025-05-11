@@ -13,6 +13,7 @@ module.exports = {
         text_primary: "#FFFF", // white
         text_secondary: "#9CA3AF", // gray-400
         text_third: "#D1D5DB", // gray-300
+        
       },
       animation: {
         fadeInUp: "fadeInUp 2s ease-in-out",
@@ -51,5 +52,15 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('taos/plugin')],
+  // safelist: [
+  //   '!duration-[0ms]',
+  //   '!delay-[0ms]',
+  //   'html.js :where([class*="taos:"]:not(.taos-init))'
+  // ],
+  //  content: {
+  //   relative: true,
+  //   transform: (content) => content.replace(/taos:/g, ''),
+  //   files: ['./src/*.{html,js}'],
+  // },
 };

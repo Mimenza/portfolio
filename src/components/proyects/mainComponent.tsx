@@ -94,7 +94,7 @@ const MainComponentProyects = () => {
               .map((store: any) => store.Storage.link)[0] || null, // Use the first match or null
           }));
           setProjects(formattedProjects);
-          console.log("Projects:", formattedProjects);
+          // console.log("Projects:", formattedProjects);
         } else {
           console.error("No projects found");
         }
@@ -111,7 +111,7 @@ const MainComponentProyects = () => {
     <>
       <div
         ref={sectionRef}
-        className="h-auto xl:h-screen w-auto flex flex-col justify-center xl:px-60 sm:px-10"
+        className="h-full w-full flex flex-col justify-center"
       >
         <div className="">
           <div className="flex flex-row items-center gap-2 mb-2">
@@ -136,12 +136,12 @@ const MainComponentProyects = () => {
                           SOME OF MY WORK
                         </GradientText>
           </div>
-          <h1 className="text-7xl font-bold mt-1 text-text_primary">
+          <h1 className="text-6xl font-bold mt-1 text-text_primary">
             Proyects
           </h1>
           <div className="flex flex-row justify-between">
             <p className="mt-4 text-lg text-text_secondary">
-              Here you can find some of my projects.
+              Here's a selection showcasing my expertise and the achieved results
             </p>
             <div
               className={
@@ -150,24 +150,6 @@ const MainComponentProyects = () => {
                   : "transition-transform"
               }
             >
-              {/* <LightButton
-                onClick={() => {
-                  navigate("/projects");
-                }}
-              >
-                <CountUp
-                  from={0}
-                  to={100}
-                  separator=","
-                  direction="up"
-                  delay={2}
-                  duration={1}
-                  className="count-up-text"
-                  startWhen={animateNbr}
-                  onEnd={handleCountUpEnd}
-                />
-                {" Projects here!"}
-              </LightButton> */}
               <button
                 className="bg-white text-black text-sm px-6 py-2 rounded-full hover:bg-opacity-90 flex flex-row items-center space-x-2"
                 onClick={() => {
@@ -180,7 +162,7 @@ const MainComponentProyects = () => {
           </div>
         </div>
         <div className="flex justify-center w-full h-auto mt-5">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-4 w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 w-full">
             {projects.map((project, index) => (
               <div key={index} className="animate-fadeInUp w-full">
                 <ProjectCard
@@ -192,6 +174,7 @@ const MainComponentProyects = () => {
                   img={project.storage}
                   technologies={project.technologies}
                   cover={project.cover}
+                  slug={project.slug}
                 />
               </div>
             ))}

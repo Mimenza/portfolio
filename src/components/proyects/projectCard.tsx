@@ -14,6 +14,7 @@ const ProjectCard = ({
   img,
   technologies,
   cover,
+  slug,
 }: {
   onClickProject?: (id:Number) => void;
   onClose?: () => void;
@@ -24,6 +25,7 @@ const ProjectCard = ({
   img: Array<string>;
   technologies: Array<string>;
   cover: string;
+  slug: string;
 }) => {
   return (
     <div

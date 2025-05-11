@@ -89,9 +89,26 @@ const HorizontalCard = ({
             className="aspect-[16/9] overflow-hidden cursor-pointer rounded-[25px]"
             onClick={() => onClickProject && onClickProject(id)}
           >
-            <img
-              src={cover || Default}
+            <video
+              src={cover}
+              autoPlay
+              muted
+              loop
               className="h-full w-full object-cover rounded-[25px] transition-transform duration-300 ease-in-out group-hover:scale-105"
+              onError={(e) => {
+                const videoElement = e.target as HTMLVideoElement;
+                videoElement.style.display = "none";
+                const imgElement = videoElement.nextElementSibling as HTMLImageElement;
+                imgElement.style.display = "block";
+              }}
+            />
+            <img
+              src={cover}
+              className="h-full w-full object-cover rounded-[25px] transition-transform duration-300 ease-in-out group-hover:scale-105 hidden"
+              onError={(e) => {
+                const imgElement = e.target as HTMLImageElement;
+                imgElement.src = Default || "";
+              }}
             />
           </div>
     
