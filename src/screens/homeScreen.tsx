@@ -160,16 +160,16 @@ const HomeScreen = () => {
 
       <Menu selectedSection={0} />
       {/* Sections */}
-      <div ref={aboutMeRef} className="h-screen w-full py-20">
+      <div ref={aboutMeRef} className="h-screen w-full py-10">
         <MainComponentAboutMe />
       </div>
-      <div ref={projectsRef} className="h-screen w-full py-20">
+      <div ref={projectsRef} className="h-screen w-full py-10">
         <MainComponentProyects />
       </div>
-      <div ref={technologiesRef} className="h-screen w-full py-20">
+      <div ref={technologiesRef} className="h-screen w-full py-10">
         <MainComponentTecnologies />
       </div>
-      <div ref={contactRef} className="h-screen w-full py-20">
+      <div ref={contactRef} className="h-screen w-full py-10">
         <MainComponentContact />
       </div>
     </div>
