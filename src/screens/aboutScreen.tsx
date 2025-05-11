@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Menu from "../components/menu/menu";
 import Footer from "../components/footer/footer";
 
+import { useLogedUser } from "../context/logedUserContext";
+import { useNavigate } from "react-router-dom";
 const AboutScreen: React.FC = () => {
-  // Disable global scrolling X
-  document.body.style.overflowX = "hidden";
+  const { logedUser } = useLogedUser();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!logedUser) {
+      navigate("/login");
+    }
+    // Disable global scrolling X
+    document.body.style.overflowX = "hidden";
+  }, []);
 
   return (
     <div className="w-full h-full">
