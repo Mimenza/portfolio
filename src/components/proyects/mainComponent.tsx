@@ -73,7 +73,7 @@ const MainComponentProyects = () => {
             )
           `)
           .eq("frontPage", true) // Filtrar solo los proyectos de la página principal
-          .order("id", { ascending: true });
+          .order("date", { ascending: false });
 
         if (error) {
           console.error("Error fetching projects:", error);
