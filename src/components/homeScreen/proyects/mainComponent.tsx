@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import ProjectCard from "./projectCard";
-import GradientText from "../../blocks/TextAnimations/GradientText/GradientText";
+import GradientText from "../../../blocks/TextAnimations/GradientText/GradientText";
 import { useNavigate } from "react-router-dom";
-import supabase from "../../supabase/client";
-import { Project } from "../../interface/Project";
+
+import MainComponentProjectDetail from "../../shared/projectDetail/mainComponent";
+import supabase from "../../../supabase/client";
+import { Project } from "../../../interface/Project";
 
 const MainComponentProyects = () => {
   const [showProjectDetail, setShowProjectDetail] = useState(false);
@@ -162,6 +164,15 @@ const MainComponentProyects = () => {
             ))}
           </div>
         </div>
+
+        {showProjectDetail && selectedProject && (
+          <MainComponentProjectDetail
+            projectDetails={selectedProject} // Pasar el proyecto seleccionado
+            onClose={handleClose}
+            isClosing={isClosing}
+            prevRoute="home"
+          />
+        )}
       </div>
     </>
   );

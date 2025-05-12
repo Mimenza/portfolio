@@ -10,12 +10,12 @@ import { useNavigate } from "react-router-dom";
 import { useLogedUser } from "../context/logedUserContext";
 import { useVariablesContext } from "../context/variablesContext";
 
-import MainComponentAboutMe from "../components/aboutMe/mainComponent";
-import MainComponentProyects from "../components/proyects/mainComponent";
-import MainComponentTecnologies from "../components/tecnologies/mainComponent";
-import MainComponentContact from "../components/contactMe/mainComponent";
+import MainComponentAboutMe from "../components/homeScreen/aboutMe/mainComponent";
+import MainComponentProyects from "../components/homeScreen/proyects/mainComponent";
+import MainComponentTecnologies from "../components/homeScreen/tecnologies/mainComponent";
+import MainComponentContact from "../components/homeScreen/contactMe/mainComponent";
 
-import Menu from "../components/menu/menu";
+import Menu from "../components/shared/menu/menu";
 
 const HomeScreen = () => {
   const aboutMeRef = useRef<HTMLDivElement>(null);
@@ -50,8 +50,8 @@ const HomeScreen = () => {
 
   useEffect(() => {
     // Disable global scrolling
-     document.body.style.overflow = "hidden";
-
+    document.body.style.overflow = "hidden";
+    document.title = "🔧 Emimenza | Home";
     let scrollDelta = 0;
     let isScrolling = false;
 

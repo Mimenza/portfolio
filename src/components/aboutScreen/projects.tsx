@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-import supabase from "../../../supabase/client";
-import { Project } from "../../../interface/Project";
-import AboutMeProjectCard from "../../proyects/projectCardAboutMe";
+import supabase from "../../supabase/client";
+import { Project } from "../../interface/Project";
+import AboutMeProjectCard from "../aboutScreen/projectCardAboutMe";
 import { useNavigate } from "react-router-dom";
 
 const Projects: React.FC = () => {
@@ -62,7 +62,7 @@ const Projects: React.FC = () => {
   return (
     <div className="w-full h-auto flex flex-col gap-10">
       <div className="flex flex-row justify-between items-center">
-        <p className="text-text_primary text-bold flex flex-row items-center gap-2">
+        <p className="text-text_primary text-bold flex flex-row items-center gap-2 font-bold text-xl">
           {" "}
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -10,50 +10,50 @@ const SlugScreen = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const { logedUser } = useLogedUser();
-  
+
   useEffect(() => {
-      if (!logedUser) {
-        navigate("/login");
-      }
-    }, []);
-
-useEffect(() => {
-  const fetchProject = async () => {
-    const { data, error } = await supabase
-      .from("Projects")
-      .select("*")
-      .eq("slug", slug)
-      .single();
-
-    if (error) {
-      console.error("Error fetching project:", error);
-      setHtmlContent("<h1>Proyect not found</h1>");
-      navigate("/home");
-    } else {
-
-      // Verifica si data.html es un enlace
-      if (data.htmlLink && data.htmlLink.startsWith("http")) {
-        try {
-          const response = await fetch(data.htmlLink);
-          if (!response.ok) {
-            throw new Error("Error fetching HTML file");
-          }
-          const html = await response.text();
-          setHtmlContent(html);
-        } catch (fetchError) {
-          console.error("Error fetching HTML file:", fetchError);
-          setHtmlContent("<h1>Error loading project content</h1>");
-        }
-      } else {
-        setHtmlContent(data.html);
-      }
+    if (!logedUser) {
+      navigate("/login");
     }
+  }, []);
 
-    setLoading(false);
-  };
+  useEffect(() => {
+    const fetchProject = async () => {
+      const { data, error } = await supabase
+        .from("Projects")
+        .select("*")
+        .eq("slug", slug)
+        .single();
 
-  fetchProject();
-}, [slug]);
+      if (error) {
+        console.error("Error fetching project:", error);
+        setHtmlContent("<h1>Proyect not found</h1>");
+        navigate("/home");
+      } else {
+        // Verifica si data.html es un enlace
+        if (data.htmlLink && data.htmlLink.startsWith("http")) {
+          try {
+            const response = await fetch(data.htmlLink);
+            if (!response.ok) {
+              throw new Error("Error fetching HTML file");
+            }
+            const html = await response.text();
+            setHtmlContent(html);
+            document.title = `🔧 Emimenza | ${data.slug}`;
+          } catch (fetchError) {
+            console.error("Error fetching HTML file:", fetchError);
+            setHtmlContent("<h1>Error loading project content</h1>");
+          }
+        } else {
+          setHtmlContent(data.html);
+        }
+      }
+
+      setLoading(false);
+    };
+
+    fetchProject();
+  }, [slug]);
 
   if (loading) return <div>Cargando...</div>;
 

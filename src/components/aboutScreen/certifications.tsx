@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { Certification as CertificationInterface } from "../../../interface/Certification";
-import supabase from "../../../supabase/client";
+import { Certification as CertificationInterface } from "../../interface/Certification";
+import supabase from "../../supabase/client";
 
 const Certification: React.FC = () => {
   const [certification, setCertification] = React.useState<
@@ -35,7 +35,7 @@ const Certification: React.FC = () => {
 
   return (
     <div className="w-full flex flex-col h-auto gap-5">
-      <p className="text-text_primary text-bold flex flex-row items-center gap-2">
+      <p className="text-text_primary text-bold flex flex-row items-center gap-2 font-bold text-xl">
         {" "}
         <svg
           xmlns="http://www.w3.org/2000/svg"

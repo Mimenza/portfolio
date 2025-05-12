@@ -1,9 +1,9 @@
-import React from "react";
-import GradientText from "../../blocks/TextAnimations/GradientText/GradientText";
+import Footer from "../../shared/footer/footer";
+import GradientText from "../../../blocks/TextAnimations/GradientText/GradientText";
 
-const MainComponentTecnologies = () => {
+const MainComponentContact = () => {
   return (
-    <div className="h-full w-full">
+    <div className="h-full w-full flex flex-col">
       <div className="flex flex-col mt-20">
         <div className="flex flex-col w-full h-auto">
           <div className="flex flex-row items-center gap-2 mb-2">
@@ -35,14 +35,17 @@ const MainComponentTecnologies = () => {
               WHAT DO I USE?
             </GradientText>
           </div>
-          <h1 className="text-text_primary text-6xl font-bold">Tecnologies</h1>
+          <h1 className="text-text_primary text-6xl font-bold">Contact</h1>
           <p className="mt-4 text-lg text-text_secondary">
-            Here you can find some of the tecnologies I have worked with.
+            Feel free to drop me a message anytime— I'm all ears for cool and
+            creative ideas!
           </p>
         </div>
       </div>
+      <div className="flex-[1]"></div>
+      <Footer />
     </div>
   );
 };
 
-export default MainComponentTecnologies;
+export default MainComponentContact;

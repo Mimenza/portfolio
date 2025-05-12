@@ -15,6 +15,7 @@ const LoginScreen = () => {
     if (logedUser) {
       navigate("/home");
     }
+    document.title = "🔧 Emimenza | Login";
   }, []);
 
   const handleLogin = async () => {

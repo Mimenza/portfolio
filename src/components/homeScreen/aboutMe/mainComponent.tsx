@@ -2,10 +2,10 @@
 
 import { FaGithub } from "react-icons/fa";
 
-import LightButton from "../ui/lightButton";
-import BlurText from "../../blocks/TextAnimations/BlurText/BlurText";
-import GradientText from "../../blocks/TextAnimations/GradientText/GradientText";
-import { ImgSpotlightBorder } from "../ui/imgSpotlightBorder";
+import LightButton from "../../ui/lightButton";
+import BlurText from "../../../blocks/TextAnimations/BlurText/BlurText";
+import GradientText from "../../../blocks/TextAnimations/GradientText/GradientText";
+import { ImgSpotlightBorder } from "../../ui/imgSpotlightBorder";
 import { useNavigate } from "react-router-dom";
 
 // import VariableProximity from "../../blocks/TextAnimations/VariableProximity/VariableProximity";

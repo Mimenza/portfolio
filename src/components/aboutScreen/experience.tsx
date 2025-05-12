@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { Experience as ExperienceInterface } from "../../../interface/Experience";
-import supabase from "../../../supabase/client";
+import { Experience as ExperienceInterface } from "../../interface/Experience";
+import supabase from "../../supabase/client";
 
 const Experience: React.FC = () => {
   const [experience, setExperience] = React.useState<ExperienceInterface[]>([]);
@@ -33,7 +33,7 @@ const Experience: React.FC = () => {
 
   return (
     <div className="w-full flex flex-col h-auto gap-5">
-      <p className="text-text_primary text-bold flex flex-row items-center gap-2">
+      <p className="text-text_primary text-bold flex flex-row items-center gap-2 font-bold text-xl">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 16 16"

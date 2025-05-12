@@ -3,7 +3,7 @@ import { FaCircle } from "react-icons/fa";
 import { IoIosSunny } from "react-icons/io";
 import { IoMoon } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import { useVariablesContext } from "../../context/variablesContext";
+import { useVariablesContext } from "../../../context/variablesContext";
 interface MenuProps {
   selectedSection: number; // 0 for Home, 1 for About, 2 for Projects
 }

@@ -74,15 +74,22 @@ const MainComponentProjectDetail = ({
   onClose,
   isClosing,
   projectDetails,
+  prevRoute,
 }: {
   onClose: () => void;
   isClosing: boolean;
   projectDetails: ProjectDetails;
+  prevRoute: string;
 }) => {
-  const navigate = useNavigate(); // Asegúrate de llamar al hook aquí
-  // useEffect(() => {
-  //   console.log("Project Details:", projectDetails);
-  // },[]);
+  const navigate = useNavigate();
+  useEffect(() => {
+    document.title = `🔧 Emimenza | ${projectDetails.slug}`;
+  }, []);
+  
+  const handleClose = () => {
+    document.title = `🔧 Emimenza | ${prevRoute}`;
+    onClose();
+  };
   return (
     // Main component for project details modal
     <div
@@ -97,7 +104,7 @@ const MainComponentProjectDetail = ({
         <div className="w-full flex flex-[2] justify-between">
           <button
             className="text-white border border-white px-6 py-2 rounded-full font-bold absolute top-5 right-5 flex flex-row items-center justify-between space-x-2"
-            onClick={onClose}
+            onClick={handleClose}
           >
             <span>Close</span>
             <IoMdClose />

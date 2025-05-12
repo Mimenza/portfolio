@@ -5,13 +5,13 @@ import { useLogedUser } from "../context/logedUserContext";
 
 import supabase from "../supabase/client";
 
-import Menu from "../components/menu/menu";
+import Menu from "../components/shared/menu/menu";
 
-import Footer from "../components/footer/footer";
+import Footer from "../components/shared/footer/footer";
 import GradientText from "../blocks/TextAnimations/GradientText/GradientText";
 import Aurora from "../blocks/Backgrounds/Aurora/Aurora";
-import HorizontalCard from "../components/proyects/horizontalCard";
-import MainComponentProjectDetail from "../components/projectDetail/mainComponent";
+import HorizontalCard from "../components/projectScreen/horizontalCard";
+import MainComponentProjectDetail from "../components/shared/projectDetail/mainComponent";
 
 const ProjectsScreen = () => {
   const navigate = useNavigate();
@@ -27,6 +27,9 @@ const ProjectsScreen = () => {
     }
     // Disable global scrolling X
     document.body.style.overflowX = "hidden";
+    document.title = "🔧 Emimenza | Projects";
+    // Scroll to top on page load
+    window.scrollTo(0, 0);
   }, []);
 
   const handleProjectCardClick = (project: any) => {
@@ -164,6 +167,7 @@ const ProjectsScreen = () => {
           projectDetails={selectedProject} // Pasar el proyecto seleccionado
           onClose={handleClose}
           isClosing={isClosing}
+          prevRoute="projects"
         />
       )}
     </div>

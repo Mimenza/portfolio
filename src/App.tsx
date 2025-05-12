@@ -61,7 +61,6 @@ const useBreakpointLogger = () => {
 
 function App() {
   useBreakpointLogger();
-  const location = useLocation();
   const { setScrollPosition } = useVariablesContext();
 
   useEffect(() => {

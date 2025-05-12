@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import Menu from "../components/menu/menu";
-import Footer from "../components/footer/footer";
-import AboutMe from "../components/aboutMe/aboutScreen/aboutMe";
-import Projects from "../components/aboutMe/aboutScreen/projects";
-import Experience from "../components/aboutMe/aboutScreen/experience";
-import Certification from "../components/aboutMe/aboutScreen/certifications";
-import Education from "../components/aboutMe/aboutScreen/education";
+import Menu from "../components/shared/menu/menu";
+import Footer from "../components/shared/footer/footer";
+import AboutMe from "../components/aboutScreen/aboutMe";
+import Projects from "../components/aboutScreen/projects";
+import Experience from "../components/aboutScreen/experience";
+import Certification from "../components/aboutScreen/certifications";
+import Education from "../components/aboutScreen/education";
 
 import { useLogedUser } from "../context/logedUserContext";
 import { useNavigate } from "react-router-dom";
@@ -20,6 +20,9 @@ const AboutScreen: React.FC = () => {
     }
     // Disable global scrolling X
     document.body.style.overflowX = "hidden";
+    document.title = "🔧 Emimenza | About";
+    // Scroll to top on page load
+    window.scrollTo(0, 0);
   }, [logedUser, navigate]);
 
   return (
@@ -28,7 +31,7 @@ const AboutScreen: React.FC = () => {
 
       <div className="w-full flex flex-col min-h-screen pt-20 pb-10">
         <div className="flex-grow min-h-screen h-auto flex justify-center my-10 mb-40">
-          <div className="h-full w-full sm:mx-[100px] 2xl:mx-[300px] flex flex-col gap-10">
+          <div className="h-full w-full sm:mx-[100px] 2xl:mx-[300px] flex flex-col gap-20">
             <div className="flex flex-row gap-5">
               <img
                 className="flex-[1] rounded-full w-24 aspect-square object-cover"
