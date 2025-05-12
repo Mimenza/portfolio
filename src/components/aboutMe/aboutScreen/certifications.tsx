@@ -2,34 +2,34 @@ import React, { useEffect } from "react";
 import { Certification as CertificationInterface } from "../../../interface/Certification";
 import supabase from "../../../supabase/client";
 
-const Certification: React.FC = ({}) => {
+const Certification: React.FC = () => {
   const [certification, setCertification] = React.useState<
     CertificationInterface[]
   >([]);
 
-  const getCertification = async () => {
-    try {
-      const { data: Certification, error } = await supabase
-        .from("Certificates")
-        .select("*")
-        .order("date", { ascending: false });
-
-      if (error) {
-        console.error("Error fetching Certification:", error);
-        return;
-      }
-
-      if (Certification) {
-        setCertification(Certification);
-      } else {
-        console.error("No Certification found");
-      }
-    } catch (err) {
-      console.error("Error:", err);
-    }
-  };
-
   useEffect(() => {
+    const getCertification = async () => {
+      try {
+        const { data: Certification, error } = await supabase
+          .from("Certificates")
+          .select("*")
+          .order("date", { ascending: false });
+
+        if (error) {
+          console.error("Error fetching Certification:", error);
+          return;
+        }
+
+        if (Certification) {
+          setCertification(Certification);
+        } else {
+          console.error("No Certification found");
+        }
+      } catch (err) {
+        console.error("Error:", err);
+      }
+    };
+
     getCertification();
   }, []);
 

@@ -2,32 +2,32 @@ import React, { useEffect } from "react";
 import { Experience as ExperienceInterface } from "../../../interface/Experience";
 import supabase from "../../../supabase/client";
 
-const Experience: React.FC = ({}) => {
+const Experience: React.FC = () => {
   const [experience, setExperience] = React.useState<ExperienceInterface[]>([]);
-
-  const getExperience = async () => {
-    try {
-      const { data: experience, error } = await supabase
-        .from("Experience")
-        .select("*")
-        .order("date", { ascending: false });
-
-      if (error) {
-        console.error("Error fetching experience:", error);
-        return;
-      }
-
-      if (experience) {
-        setExperience(experience);
-      } else {
-        console.error("No experience found");
-      }
-    } catch (err) {
-      console.error("Error:", err);
-    }
-  };
-
+  
   useEffect(() => {
+    const getExperience = async () => {
+      try {
+        const { data: experience, error } = await supabase
+          .from("Experience")
+          .select("*")
+          .order("date", { ascending: false });
+
+        if (error) {
+          console.error("Error fetching experience:", error);
+          return;
+        }
+
+        if (experience) {
+          setExperience(experience);
+        } else {
+          console.error("No experience found");
+        }
+      } catch (err) {
+        console.error("Error:", err);
+      }
+    };
+
     getExperience();
   }, []);
 

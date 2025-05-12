@@ -1,6 +1,3 @@
-import { FaCode } from "react-icons/fa";
-import { FaArrowRight } from "react-icons/fa6";
-
 import { FaJava } from "react-icons/fa"; //Java
 import { FaAngular } from "react-icons/fa"; //Angular
 import { FaPhp } from "react-icons/fa"; //Php
@@ -29,7 +26,6 @@ import { IoLogoVercel } from "react-icons/io5"; //Vercel
 import { SiExpo } from "react-icons/si"; //Expo
 import { FaGithub } from "react-icons/fa"; //Github
 
-const Default = process.env.REACT_APP_PROJECT_DEFAULT_IMG;
 const ProjectCard = ({
   id,
   name,

@@ -2,32 +2,32 @@ import React, { useEffect } from "react";
 import { Education as EducationInterface } from "../../../interface/Education";
 import supabase from "../../../supabase/client";
 
-const Education: React.FC = ({}) => {
+const Education: React.FC = () => {
   const [education, setEducation] = React.useState<EducationInterface[]>([]);
 
-  const getEducation = async () => {
-    try {
-      const { data: education, error } = await supabase
-        .from("Education")
-        .select("*")
-        .order("date", { ascending: false });
-
-      if (error) {
-        console.error("Error fetching education:", error);
-        return;
-      }
-
-      if (education) {
-        setEducation(education);
-      } else {
-        console.error("No Education found");
-      }
-    } catch (err) {
-      console.error("Error:", err);
-    }
-  };
-
   useEffect(() => {
+    const getEducation = async () => {
+      try {
+        const { data: education, error } = await supabase
+          .from("Education")
+          .select("*")
+          .order("date", { ascending: false });
+
+        if (error) {
+          console.error("Error fetching education:", error);
+          return;
+        }
+
+        if (education) {
+          setEducation(education);
+        } else {
+          console.error("No Education found");
+        }
+      } catch (err) {
+        console.error("Error:", err);
+      }
+    };
+
     getEducation();
   }, []);
 

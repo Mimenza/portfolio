@@ -1,8 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import LightButton from "../ui/lightButton";
 import MainComponentProjectDetail from "../projectDetail/mainComponent";
 import ProjectCard from "./projectCard";
-import CountUp from "../../blocks/TextAnimations/CountUp/CountUp";
 import GradientText from "../../blocks/TextAnimations/GradientText/GradientText";
 import { useNavigate } from "react-router-dom";
 import supabase from "../../supabase/client";
@@ -12,18 +10,9 @@ import { Project } from "../../interface/Project";
 const MainComponentProyects = () => {
   const [showProjectDetail, setShowProjectDetail] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
-  const [animateNbr, setAnimateNbr] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [isButtonAnimating, setIsButtonAnimating] = useState(false);
   const [projects, setProjects] = useState<Project[]>([]);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
-  const handleCountUpEnd = () => {
-    setIsButtonAnimating(true);
-    setTimeout(() => {
-      setIsButtonAnimating(false);
-    }, 300);
-  };
 
   const handleProjectCardClick = (project: any) => {
     setSelectedProject(project); // Guardar el proyecto completo
@@ -38,25 +27,6 @@ const MainComponentProyects = () => {
       setSelectedProject(null); // Limpiar el proyecto seleccionado
     }, 500);
   };
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setAnimateNbr(entry.isIntersecting);
-      },
-      { threshold: 0.5 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
 
   useEffect(() => {
     const getProjects = async () => {
@@ -144,11 +114,7 @@ const MainComponentProyects = () => {
               Here's a selection showcasing my expertise and the achieved results
             </p>
             <div
-              className={
-                isButtonAnimating
-                  ? "scale-110 transition-transform duration-300"
-                  : "transition-transform"
-              }
+              className=""
             >
               <button
                 className="bg-white text-black text-sm px-6 py-2 rounded-full hover:bg-opacity-90 flex flex-row items-center space-x-2"

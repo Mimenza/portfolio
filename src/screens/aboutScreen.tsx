@@ -20,7 +20,7 @@ const AboutScreen: React.FC = () => {
     }
     // Disable global scrolling X
     document.body.style.overflowX = "hidden";
-  }, []);
+  }, [logedUser, navigate]);
 
   return (
     <div className="w-full h-full">
@@ -30,7 +30,11 @@ const AboutScreen: React.FC = () => {
         <div className="flex-grow min-h-screen h-auto flex justify-center my-10 mb-40">
           <div className="h-full w-full sm:mx-[100px] 2xl:mx-[400px] flex flex-col gap-10">
             <div className="flex flex-row gap-5">
-              <img className="flex-[1] rounded-full w-24 aspect-square object-cover" src={process.env.REACT_APP_SUPABASE_PROFILE_PHOTO_URL} alt="profilePic"/>
+              <img
+                className="flex-[1] rounded-full w-24 aspect-square object-cover"
+                src={process.env.REACT_APP_SUPABASE_PROFILE_PHOTO_URL}
+                alt="profilePic"
+              />
               <div className="flex-[3] flex flex-col h-auto justify-center">
                 <p className="text-text_primary">Endika Mimenza</p>
                 <p className="text-text_secondary">Developer</p>
@@ -46,12 +50,11 @@ const AboutScreen: React.FC = () => {
                 </p>
               </div>
             </div>
-            <AboutMe/>
-            <Projects/>
-            <Experience/>
-            <Education/>
-            <Certification/>
-            
+            <AboutMe />
+            <Projects />
+            <Experience />
+            <Education />
+            <Certification />
           </div>
         </div>
         <Footer />
