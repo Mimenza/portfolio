@@ -1,10 +1,8 @@
 // import { useRef } from "react";
 
-import { PiChatTeardropThin } from "react-icons/pi";
 import { FaGithub } from "react-icons/fa";
 
 import LightButton from "../ui/lightButton";
-import Aurora from "../../blocks/Backgrounds/Aurora/Aurora";
 import BlurText from "../../blocks/TextAnimations/BlurText/BlurText";
 import GradientText from "../../blocks/TextAnimations/GradientText/GradientText";
 import { ImgSpotlightBorder } from "../ui/imgSpotlightBorder";

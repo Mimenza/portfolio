@@ -1,5 +1,3 @@
-import React from "react";
-
 import Footer from "../footer/footer";
 import GradientText from "../../blocks/TextAnimations/GradientText/GradientText";
 
