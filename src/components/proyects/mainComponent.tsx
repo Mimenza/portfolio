@@ -1,11 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
-import MainComponentProjectDetail from "../projectDetail/mainComponent";
 import ProjectCard from "./projectCard";
 import GradientText from "../../blocks/TextAnimations/GradientText/GradientText";
 import { useNavigate } from "react-router-dom";
 import supabase from "../../supabase/client";
 import { Project } from "../../interface/Project";
-
 
 const MainComponentProyects = () => {
   const [showProjectDetail, setShowProjectDetail] = useState(false);
@@ -13,9 +11,16 @@ const MainComponentProyects = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [projects, setProjects] = useState<Project[]>([]);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleProjectCardClick = (project: any) => {
-    setSelectedProject(project); // Guardar el proyecto completo
+    setSelectedProject(project);
     setShowProjectDetail(true);
     setIsClosing(false);
   };
@@ -24,7 +29,7 @@ const MainComponentProyects = () => {
     setIsClosing(true);
     setTimeout(() => {
       setShowProjectDetail(false);
-      setSelectedProject(null); // Limpiar el proyecto seleccionado
+      setSelectedProject(null);
     }, 500);
   };
 
@@ -33,7 +38,8 @@ const MainComponentProyects = () => {
       try {
         const { data: projects, error } = await supabase
           .from("Projects")
-          .select(`
+          .select(
+            `
             *,
             Projects-Tecnologies (
               Tecnologies ( name )
@@ -41,8 +47,9 @@ const MainComponentProyects = () => {
             Projects-Storage (
               Storage ( link, cover )
             )
-          `)
-          .eq("frontPage", true) // Filtrar solo los proyectos de la página principal
+          `
+          )
+          .eq("frontPage", true)
           .order("date", { ascending: false });
 
         if (error) {
@@ -55,16 +62,16 @@ const MainComponentProyects = () => {
             ...project,
             technologies: project["Projects-Tecnologies"]
               .map((tech: any) => tech.Tecnologies?.name)
-              .filter((name: string | undefined) => name !== undefined), // Ensure no undefined values
+              .filter((name: string | undefined) => name !== undefined),
             storage: project["Projects-Storage"]
-              .filter((store: any) => store.Storage) // Filter out null Storage entries
+              .filter((store: any) => store.Storage)
               .map((store: any) => store.Storage.link),
-            cover: project["Projects-Storage"]
-              .filter((store: any) => store.Storage?.cover) // Find the one with cover set to true
-              .map((store: any) => store.Storage.link)[0] || null, // Use the first match or null
+            cover:
+              project["Projects-Storage"]
+                .filter((store: any) => store.Storage?.cover)
+                .map((store: any) => store.Storage.link)[0] || null,
           }));
           setProjects(formattedProjects);
-          // console.log("Projects:", formattedProjects);
         } else {
           console.error("No projects found");
         }
@@ -77,13 +84,14 @@ const MainComponentProyects = () => {
   }, []);
 
   const navigate = useNavigate();
+
+  const isLg = width >= 1024 && width < 1280;
+  const itemsToShow = isLg ? 4 : 6;
+
   return (
     <>
-      <div
-        ref={sectionRef}
-        className="h-full w-full flex flex-col justify-center"
-      >
-        <div className="">
+      <div ref={sectionRef} className="w-full h-full flex flex-col">
+        <div className="mt-20">
           <div className="flex flex-row items-center gap-2 mb-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -98,24 +106,30 @@ const MainComponentProyects = () => {
               />
             </svg>
             <GradientText
-                          colors={["#e303fc", "#5a03fc", "#038cfc", "#e303fc", "#5a03fc", "#038cfc"]}
-                          animationSpeed={2}
-                          showBorder={false}
-                          className=""
-                        >
-                          SOME OF MY WORK
-                        </GradientText>
+              colors={[
+                "#e303fc",
+                "#5a03fc",
+                "#038cfc",
+                "#e303fc",
+                "#5a03fc",
+                "#038cfc",
+              ]}
+              animationSpeed={2}
+              showBorder={false}
+              className=""
+            >
+              SOME OF MY WORK
+            </GradientText>
           </div>
           <h1 className="text-6xl font-bold mt-1 text-text_primary">
             Proyects
           </h1>
           <div className="flex flex-row justify-between">
             <p className="mt-4 text-lg text-text_secondary">
-              Here's a selection showcasing my expertise and the achieved results
+              Here's a selection showcasing my expertise and the achieved
+              results
             </p>
-            <div
-              className=""
-            >
+            <div>
               <button
                 className="bg-white text-black text-sm px-6 py-2 rounded-full hover:bg-opacity-90 flex flex-row items-center space-x-2"
                 onClick={() => {
@@ -127,12 +141,14 @@ const MainComponentProyects = () => {
             </div>
           </div>
         </div>
-        <div className="flex justify-center w-full h-auto mt-5">
-          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 w-full">
-            {projects.map((project, index) => (
-              <div key={index} className="animate-fadeInUp w-full">
+
+        {/* Container for Projects */}
+        <div className="h-full w-full flex justify-center items-center">
+          <div className="w-full grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-5">
+            {projects.slice(0, itemsToShow).map((project, index) => (
+              <div key={index}>
                 <ProjectCard
-                  onClickProject={() => handleProjectCardClick(project)} // Pasar el proyecto completo
+                  onClickProject={() => handleProjectCardClick(project)}
                   id={project.id}
                   name={project.name}
                   link={project.link}
@@ -147,13 +163,6 @@ const MainComponentProyects = () => {
           </div>
         </div>
       </div>
-      {showProjectDetail && selectedProject && (
-        <MainComponentProjectDetail
-          projectDetails={selectedProject} // Pasar el proyecto seleccionado
-          onClose={handleClose}
-          isClosing={isClosing}
-        />
-      )}
     </>
   );
 };

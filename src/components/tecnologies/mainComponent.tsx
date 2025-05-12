@@ -4,7 +4,7 @@ import GradientText from "../../blocks/TextAnimations/GradientText/GradientText"
 const MainComponentTecnologies = () => {
   return (
     <div className="h-full w-full">
-      <div className="flex flex-col">
+      <div className="flex flex-col mt-20">
         <div className="flex flex-col w-full h-auto">
           <div className="flex flex-row items-center gap-2 mb-2">
             <svg

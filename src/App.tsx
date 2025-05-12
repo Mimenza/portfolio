@@ -77,7 +77,7 @@ function App() {
   
   return (
     <div
-      className="h-screen w-screen sm:px-[100px] 2xl:px-[200px]">
+      className="h-screen w-screen sm:px-[100px] 2xl:px-[20%]">
       <Routes>
         <Route path="/home" element={<HomeScreen />} />
         <Route path="/projects" element={<ProjectsScreen />} />

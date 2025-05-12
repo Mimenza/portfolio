@@ -84,7 +84,7 @@ const Projects: React.FC = () => {
       </div>
 
       {projects.map((project, index) => (
-        <div key={index} className="animate-fadeInUp w-full">
+        <div key={index}>
           <AboutMeProjectCard
             id={project.id}
             name={project.name}

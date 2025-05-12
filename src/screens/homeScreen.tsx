@@ -50,7 +50,7 @@ const HomeScreen = () => {
 
   useEffect(() => {
     // Disable global scrolling
-    document.body.style.overflow = "hidden";
+     document.body.style.overflow = "hidden";
 
     let scrollDelta = 0;
     let isScrolling = false;
@@ -142,34 +142,20 @@ const HomeScreen = () => {
             </div>
           </div>
         ))}
-
-        {/* Nuevas dos columnas estáticas debajo */}
-        {/* <div className="flex">
-          <div className="w-10 h-15" />
-          <div className="flex flex-col justify-center pl-4 rounded-bl-xl bg-gray-600 bg-opacity-25 w-[calc(100%-2.5rem)]">
-            <div className="border-t border-gray-600 h-1 w-[100%] mx-auto self-center" />
-            <h1 className="cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:text-white text-gray-500 my-1" onClick={() => {navigate("/projects")}}>
-              Projects
-            </h1>
-            <h1 className="cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:text-white text-gray-500 my-1" onClick={() => {navigate("/about")}}>
-              About me
-            </h1>
-          </div>
-        </div> */}
       </div>
 
       <Menu selectedSection={0} />
       {/* Sections */}
-      <div ref={aboutMeRef} className="h-screen w-full py-10">
+      <div ref={aboutMeRef} className=" h-auto md:h-screen w-full py-10">
         <MainComponentAboutMe />
       </div>
-      <div ref={projectsRef} className="h-screen w-full py-10">
+      <div ref={projectsRef} className="h-auto md:h-screen w-full py-10">
         <MainComponentProyects />
       </div>
-      <div ref={technologiesRef} className="h-screen w-full py-10">
+      <div ref={technologiesRef} className="h-auto md:h-screen w-full py-10">
         <MainComponentTecnologies />
       </div>
-      <div ref={contactRef} className="h-screen w-full py-10">
+      <div ref={contactRef} className="h-auto md:h-screen w-full py-10">
         <MainComponentContact />
       </div>
     </div>

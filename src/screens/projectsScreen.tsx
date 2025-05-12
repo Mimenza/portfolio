@@ -102,7 +102,7 @@ const ProjectsScreen = () => {
       <div className="fixed top-0 left-0 w-screen h-10 z-20 bg-gradient-to-b from-[#0b0b0d] to-transparent"></div>
       <div className="fixed bottom-0 left-0 w-screen h-10 z-20 bg-gradient-to-b from-transparent to-[#0b0b0d]"></div>
       {/* Contenido principal */}
-      <div className="h-full w-full z-10 relative my-20">
+      <div className="min-h-screen h-full w-full z-10 relative my-20">
         <div className="flex flex-row items-center gap-2 mb-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"

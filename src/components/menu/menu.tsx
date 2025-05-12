@@ -52,7 +52,7 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
   const border = `1px solid rgba(11, 11, 13, ${normalizedScroll})`; // Border with dynamic opacity
 // py-5 fixed inset-0 mx-[250px] bg-blue-200 z-20 justify-center items-center
   return (
-    <div className="fixed h-20 inset-0 sm:mx-[100px] 2xl:mx-[200px] z-20 justify-center items-center flex">
+    <div className="fixed h-20 inset-0 sm:mx-[100px] 2xl:mx-[500px] z-20 justify-center items-center flex">
       <div
         className="p-2 rounded-full flex flex-row items-center justify-between transition-all duration-300"
         style={{
