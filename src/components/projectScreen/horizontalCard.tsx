@@ -83,7 +83,7 @@ const HorizontalCard = ({
   };
 
   return (
-        <div className="flex flex-col z-10 w-full sm:w-full md:w-full lg:w-full bg-gray-600 bg-opacity-25 p-5 rounded-[25px] group transition-transform duration-300 ease-in-out">
+        <div className="flex flex-col z-10 w-full sm:w-full md:w-full lg:w-full dark:bg-dark-muted bg-muted bg-opacity-25 p-5 rounded-[25px] group transition-transform duration-300 ease-in-out">
           {/* Contenedor de la imagen */}
           <div
             className="aspect-[16/9] overflow-hidden cursor-pointer rounded-[25px]"
@@ -115,8 +115,8 @@ const HorizontalCard = ({
           {/* Contenedor de texto */}
           <div className="justify-between flex flex-row h-[60px] m-2">
             <div className="items-center h-full w-auto">
-              <h3 className="text-[clamp(1.25rem,2.5vw,1.5rem)] text-text_primary font-bold mb-2">{name}</h3>
-              <p className="text-[clamp(0.75rem,1.5vw,1.25rem)] text-text_secondary whitespace-nowrap">{status}</p>
+              <h3 className="text-[clamp(1.25rem,2.5vw,1.5rem)] text-text_primary dark:text-dark-text_primary font-bold mb-2">{name}</h3>
+              <p className="text-[clamp(0.75rem,1.5vw,1.25rem)] text-text_secondary dark:text-dark-text_secondary dark:text-dark-text_primary whitespace-nowrap">{status}</p>
             </div>
             <div className="flex flex-row h-full space-x-2 items-center ">
 
@@ -130,7 +130,7 @@ const HorizontalCard = ({
             ))}
             </div>
           </div>
-          <div className="text-md text-text_third mt-4 w-full text-justify">
+          <div className="text-md text-text_third dark:text-dark-text_third mt-4 w-full text-justify">
             {description.length > 200
               ? `${description.substring(0, 200)}...`
               : description}

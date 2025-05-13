@@ -10,8 +10,7 @@ const MainComponentTecnologies = () => {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
-              fill="#e303fc"
-              className="size-4"
+              className="size-4 dark:fill-dark-secondary fill-secondary"
             >
               <path
                 fillRule="evenodd"
@@ -35,8 +34,8 @@ const MainComponentTecnologies = () => {
               WHAT DO I USE?
             </GradientText>
           </div>
-          <h1 className="text-text_primary text-6xl font-bold">Tecnologies</h1>
-          <p className="mt-4 text-lg text-text_secondary">
+          <h1 className="text-text_primary dark:text-dark-text_primary text-6xl font-bold">Tecnologies</h1>
+          <p className="mt-4 text-lg text-text_secondary dark:text-dark-text_secondary">
             Here you can find some of the tecnologies I have worked with.
           </p>
         </div>

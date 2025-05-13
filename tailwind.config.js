@@ -6,14 +6,23 @@ module.exports = {
         sans: ["Montserrat", "-apple-system", "system-ui", "sans-serif"],
       },
       colors: {
-        primary: "#1E40AF", // Example blue
-        secondary: "#9333EA", // Example purple
-        accent: "#F59E0B", // Example amber
-        muted: "#374151", // gray-700
-        text_primary: "#FFFF", // white
-        text_secondary: "#9CA3AF", // gray-400
-        text_third: "#D1D5DB", // gray-300
-        
+        // 💡 Modo claro (por defecto)
+        background: "#ababab", // blanco
+        secondary: "#7e22ce", // púrpura
+        muted: "#f3f4f6", // gris claro
+        text_primary: "#111827", // gris oscuro casi negro
+        text_secondary: "#6b7280", // gris medio
+        text_third: "#9ca3af", // gris claro
+
+        // 🌑 Modo oscuro (usando clases `dark:`)
+        dark: {
+          background: "#0b0b0d",
+          secondary: "#9333EA", // Example purple
+          muted: "#17181d", // gray-700
+          text_primary: "#FFFF", // white
+          text_secondary: "#9CA3AF", // gray-400
+          text_third: "#D1D5DB", // gray-300
+        },
       },
       animation: {
         fadeInUp: "fadeInUp 2s ease-in-out",
@@ -52,15 +61,6 @@ module.exports = {
       },
     },
   },
-  plugins: [require('taos/plugin')],
-  // safelist: [
-  //   '!duration-[0ms]',
-  //   '!delay-[0ms]',
-  //   'html.js :where([class*="taos:"]:not(.taos-init))'
-  // ],
-  //  content: {
-  //   relative: true,
-  //   transform: (content) => content.replace(/taos:/g, ''),
-  //   files: ['./src/*.{html,js}'],
-  // },
+  plugins: [require("taos/plugin")],
+  darkMode: "class", // Usar clase para activar el modo oscuro
 };

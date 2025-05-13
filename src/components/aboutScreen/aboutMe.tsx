@@ -3,13 +3,12 @@ import React from "react";
 const AboutMe: React.FC = () => {
   return (
     <div className="w-full flex flex-col h-auto gap-5">
-      <p className="text-text_primary text-bold flex flex-row items-center gap-2 font-bold text-xl">
+      <p className="text-text_primary dark:text-dark-text_primary text-bold flex flex-row items-center gap-2 font-bold text-xl">
         {" "}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 16 16"
-          fill="#e303fc"
-          className="size-4"
+          className="size-4 dark:fill-dark-secondary fill-secondary"
         >
           <path
             fillRule="evenodd"
@@ -20,39 +19,39 @@ const AboutMe: React.FC = () => {
         About
       </p>
       <div>
-        <p className="text-lg leading-relaxed mb-6 text-text_secondary z-10">
+        <p className="text-lg leading-relaxed mb-6 text-text_secondary dark:text-dark-text_secondary z-10">
           I'm{" "}
-          <span className="font-bold text-text_primary">Endika Mimenza</span>,
+          <span className="font-bold text-text_primary dark:text-dark-text_primary">Endika Mimenza</span>,
           25-year-old web and mobile developer, with experience in application
           development. Currently learning React and React Native, while
           expanding my knowledge in backend development and languages like C and
           C++ at{" "}
           <a
             href="https://42urduliz.com"
-            className="text-text_primary no-underline"
+            className="text-text_primary dark:text-dark-text_primary no-underline"
           >
             42 Urduliz
           </a>
           . Passionate about technology and continuous learning.
         </p>
-        <p className="text-lg leading-relaxed mb-6 text-text_secondary z-10">
+        <p className="text-lg leading-relaxed mb-6 text-text_secondary dark:text-dark-text_secondary z-10">
           I'm passionate about the world of vintage technology and mechanical
           keyboards. In my free time, I'm working on a mobile app called{" "}
           <a
             href="https://emimenza/projects/TravelLens.vercel.app"
-            className="text-text_primary no-underline"
+            className="text-text_primary dark:text-dark-text_primary no-underline"
           >
             TravelLens
           </a>
           , built with React Native. I've also created other mobile apps like{" "}
           <a
             href="https://emimenza/projects/SagarraJo.vercel.app"
-            className="text-text_primary no-underline"
+            className="text-text_primary dark:text-dark-text_primary no-underline"
           >
             Sagarra Jo
           </a>{" "}
           and{" "}
-          <a href="https://emimenza/projects/Zap.vercel.app" className="text-text_primary no-underline">
+          <a href="https://emimenza/projects/Zap.vercel.app" className="text-text_primary dark:text-dark-text_primary no-underline">
             Zap
           </a>
           . These are personal projects that let me explore and enjoy the

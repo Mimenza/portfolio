@@ -35,13 +35,12 @@ const Certification: React.FC = () => {
 
   return (
     <div className="w-full flex flex-col h-auto gap-5">
-      <p className="text-text_primary text-bold flex flex-row items-center gap-2 font-bold text-xl">
+      <p className="text-text_primary dark:text-dark-text_primary text-bold flex flex-row items-center gap-2 font-bold text-xl">
         {" "}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 16 16"
-          fill="#e303fc"
-          className="size-4"
+          className="size-4 dark:fill-dark-secondary fill-secondary"
         >
           <path
             fillRule="evenodd"
@@ -55,18 +54,18 @@ const Certification: React.FC = () => {
       {certification.map((cer, index) => (
         <div key={index} className="h-auto w-full flex flex-row">
           <div className="flex-[1]">
-            <p className="text-text_primary">{cer.date}</p>
+            <p className="text-text_primary dark:text-dark-text_primary">{cer.date}</p>
           </div>
           <div className="flex flex-[2] flex-col gap-5">
             <div className="flex flex-row justify-between items-center h-10">
-              <div className="font-bold text-text_primary">{cer.name}</div>
+              <div className="font-bold text-text_primary dark:text-dark-text_primary">{cer.name}</div>
               <img
                 src={cer.logo}
                 alt="logo"
                 className="h-full aspect-square rounded-[10px]"
               />
             </div>
-            <div className="text-text_secondary">{cer.description}</div>
+            <div className="text-text_secondary dark:text-dark-text_secondary">{cer.description}</div>
           </div>
         </div>
       ))}

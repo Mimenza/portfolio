@@ -26,6 +26,7 @@ const ProjectsScreen = () => {
       navigate("/login");
     }
     // Disable global scrolling X
+       document.body.style.overflow = "auto";
     document.body.style.overflowX = "hidden";
     document.title = "🔧 Emimenza | Projects";
     // Scroll to top on page load
@@ -102,16 +103,15 @@ const ProjectsScreen = () => {
     <div className="min-h-screen overflow-x-hidden relative py-10  items-center flex flex-col">
       <Menu selectedSection={2} />
       {/* Gradientes */}
-      <div className="fixed top-0 left-0 w-screen h-10 z-20 bg-gradient-to-b from-[#0b0b0d] to-transparent"></div>
-      <div className="fixed bottom-0 left-0 w-screen h-10 z-20 bg-gradient-to-b from-transparent to-[#0b0b0d]"></div>
+      <div className="fixed top-0 left-0 w-screen h-10 z-20 bg-gradient-to-b from-background dark:from-dark-background to-transparent"></div>
+      <div className="fixed bottom-0 left-0 w-screen h-10 z-20 bg-gradient-to-b from-transparent dark:to-dark-background to-background"></div>
       {/* Contenido principal */}
       <div className="min-h-screen h-full w-full z-10 relative my-20">
         <div className="flex flex-row items-center gap-2 mb-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
-            fill="#e303fc"
-            className="size-4"
+            className="size-4 dark:fill-dark-secondary fill-secondary"
           >
             <path
               fillRule="evenodd"

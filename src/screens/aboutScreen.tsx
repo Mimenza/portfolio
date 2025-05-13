@@ -19,6 +19,7 @@ const AboutScreen: React.FC = () => {
       navigate("/login");
     }
     // Disable global scrolling X
+    document.body.style.overflow = "auto";
     document.body.style.overflowX = "hidden";
     document.title = "🔧 Emimenza | About";
     // Scroll to top on page load
@@ -26,7 +27,7 @@ const AboutScreen: React.FC = () => {
   }, [logedUser, navigate]);
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-auto">
       <Menu selectedSection={1} />
 
       <div className="w-full flex flex-col min-h-screen pt-20 pb-10">
@@ -39,14 +40,14 @@ const AboutScreen: React.FC = () => {
                 alt="profilePic"
               />
               <div className="flex-[3] flex flex-col h-auto justify-center">
-                <p className="text-text_primary">Endika Mimenza</p>
-                <p className="text-text_secondary">Developer</p>
-                <p className="text-text_secondary">
+                <p className="text-text_primary dark:text-dark-text_primary">Endika Mimenza</p>
+                <p className="text-text_secondary dark:text-dark-text_secondary">Developer</p>
+                <p className="text-text_secondary dark:text-dark-text_secondary">
                   <a
                     href="https://emimenza.vercel.app"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-text_primary cursor-pointer"
+                    className="hover:text-text_primary hover:dark:text-dark-text_primary cursor-pointer"
                   >
                     emimenza.vercel.app
                   </a>

@@ -4,6 +4,7 @@ import React, {
   useMemo,
   useEffect,
   useCallback,
+  use,
 } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -24,19 +25,22 @@ const HomeScreen = () => {
   const contactRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const { logedUser } = useLogedUser();
-  const { section, setSection } = useVariablesContext();
+  const { section, setSection, customScroll } = useVariablesContext();
 
+  // Check if the user is logged in
   useEffect(() => {
     if (!logedUser) {
       navigate("/login");
     }
+    document.title = "🔧 Emimenza | Home";
+    document.body.style.overflow = "hidden";
   }, []);
 
+  // Section references
   const sections = useMemo(
     () => [aboutMeRef, projectsRef, technologiesRef, contactRef],
     []
   );
-
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
 
   const handleIndicatorClick = useCallback(
@@ -49,14 +53,13 @@ const HomeScreen = () => {
   );
 
   useEffect(() => {
-    // Disable global scrolling
-    document.body.style.overflow = "hidden";
-    document.title = "🔧 Emimenza | Home";
     let scrollDelta = 0;
     let isScrolling = false;
 
     const handleScroll = (event: WheelEvent) => {
-      if (isScrolling) return;
+      if (isScrolling || customScroll) {
+        return;
+      }
 
       scrollDelta += event.deltaY;
 
@@ -96,11 +99,22 @@ const HomeScreen = () => {
     window.addEventListener("wheel", handleScroll);
 
     return () => {
-      document.body.style.overflow = "auto";
+      // document.body.style.overflow = "auto";
       window.removeEventListener("wheel", handleScroll);
     };
   }, [currentSectionIndex, sections]);
 
+  useEffect(() => {
+    if (customScroll) {
+      document.body.style.overflow = "auto";
+      document.body.style.overflowX = "hidden";
+    } else {
+      document.body.style.overflow = "hidden";
+      setCurrentSectionIndex(0);
+      setSection(0);
+      window.scrollTo(0, 0);
+    }
+  }, [customScroll]);
   useEffect(() => {
     handleIndicatorClick(0);
   }, [handleIndicatorClick]);
@@ -109,7 +123,11 @@ const HomeScreen = () => {
   return (
     <div className="flex flex-col w-full overflow-hidden relative">
       {/* Section Indicator */}
-      <div className="fixed top-1/2 right-[-142px] transform -translate-y-1/2 z-20 group transition-all duration-300 hover:translate-x-[-130px]">
+      <div
+        className={`fixed top-1/2 ${
+          customScroll ? "right-[-200px]" : "right-[-142px]"
+        } transform -translate-y-1/2 z-20 group transition-all duration-[600ms] hover:translate-x-[-130px]`}
+      >
         {sections.map((_, index) => (
           <div
             key={index}

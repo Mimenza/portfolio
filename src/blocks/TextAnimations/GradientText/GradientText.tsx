@@ -37,7 +37,7 @@ export default function GradientText({
           }}
         >
           <div
-            className="absolute inset-0 bg-black rounded-[1.25rem] z-[-1]"
+            className="absolute inset-0 bg-background dark:bg-dark-background rounded-[1.25rem] z-[-1]"
             style={{
               width: "calc(100% - 2px)",
               height: "calc(100% - 2px)",

@@ -114,23 +114,23 @@ const MainComponentProjectDetail = ({
               <p className="text-white text-5xl font-bold">
                 {projectDetails.name}
               </p>
-              <p className="text-text_secondary text-lg mt-4">
+              <p className="text-text_secondary dark:text-dark-text_secondary text-lg mt-4">
                 {projectDetails.description}
               </p>
             </div>
             <div>
-              <p className="text-text_secondary text-lg mt-4">
+              <p className="text-text_secondary dark:text-dark-text_secondary text-lg mt-4">
                 <span className="text-white font-bold">Technologies used:</span>
               </p>
               <div className="flex flex-wrap gap-4 mt-2">
                 {projectDetails.technologies.map((tech, index) => (
                   <div key={index} className="flex items-center gap-2">
-                    <div className="h-6 w-6 text-text_secondary">
+                    <div className="h-6 w-6 text-text_secondary dark:text-dark-text_secondary">
                       {technologyIcons[tech] || (
                         <FaPlus className="h-full w-full" />
                       )}
                     </div>
-                    <span className="text-text_secondary text-lg">{tech}</span>
+                    <span className="text-text_secondary dark:text-dark-text_secondary text-lg">{tech}</span>
                   </div>
                 ))}
               </div>
@@ -181,7 +181,7 @@ const MainComponentProjectDetail = ({
               return (
                 <div
                   key={index}
-                  className="h-full aspect-video flex-shrink-0 rounded-[20px] overflow-hidden bg-black"
+                  className="h-full aspect-video flex-shrink-0 rounded-[20px] overflow-hidden bg-background dark:bg-dark-background"
                 >
                   {isVideo ? (
                     <video

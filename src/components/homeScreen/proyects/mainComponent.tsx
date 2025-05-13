@@ -98,8 +98,7 @@ const MainComponentProyects = () => {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
-              fill="#e303fc"
-              className="size-4"
+              className="size-4 dark:fill-dark-secondary fill-secondary"
             >
               <path
                 fillRule="evenodd"
@@ -123,11 +122,11 @@ const MainComponentProyects = () => {
               SOME OF MY WORK
             </GradientText>
           </div>
-          <h1 className="text-6xl font-bold mt-1 text-text_primary">
+          <h1 className="text-6xl font-bold mt-1 text-text_primary dark:text-dark-text_primary">
             Proyects
           </h1>
           <div className="flex flex-row justify-between">
-            <p className="mt-4 text-lg text-text_secondary">
+            <p className="mt-4 text-lg text-text_secondary dark:text-dark-text_secondary">
               Here's a selection showcasing my expertise and the achieved
               results
             </p>

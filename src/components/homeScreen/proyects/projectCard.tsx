@@ -29,7 +29,7 @@ const ProjectCard = ({
 }) => {
   return (
     <div
-      className="flex flex-col z-10 w-full sm:w-full md:w-full lg:w-full bg-muted bg-opacity-25 rounded-[25px] shadow-lg shadow-black/30 border border-muted border-opacity-25 p-2 m-2 cursor-pointer group"
+      className="flex flex-col z-10 w-full sm:w-full md:w-full lg:w-full dark:bg-dark-muted bg-muted bg-opacity-25 rounded-[25px] shadow-lg shadow-black/30 border dark:border-dark-muted border-muted border-opacity-25 p-2 m-2 cursor-pointer group"
     >
       {/* Contenedor de la imagen */}
       <div className="aspect-[16/9] rounded-[25px] overflow-hidden group">
@@ -41,21 +41,21 @@ const ProjectCard = ({
       {/* Contenedor de texto */}
       <div className="justify-between flex flex-row h-[60px] m-2">
         <div className="items-center h-full w-auto">
-          <h3 className="text-2xl text-text_primary font-bold mb-2">{name}</h3>
-          <p className="text-md text-text_secondary">{status}</p>
+          <h3 className="text-2xl text-text_primary dark:text-dark-text_primary font-bold mb-2">{name}</h3>
+          <p className="text-md text-text_secondary dark:text-dark-text_secondary">{status}</p>
         </div>
         <div className="flex flex-row h-full space-x-2 items-center">
           <button
-            className="h-full w-full aspect-square border border-muted border-opacity-25 rounded-[15px] p-2 hover:bg-neutral-900 transition duration-300 ease-in-out"
+            className="h-full w-full aspect-square border dark:border-dark-muted border-muted border-opacity-25 rounded-[15px] p-2 hover:bg-neutral-900 transition duration-300 ease-in-out"
             onClick={() => window.open(link, "_blank")}
           >
-            <FaCode className="text-text_third h-full w-full" />
+            <FaCode className="text-text_third dark:text-dark-text_third h-full w-full" />
           </button>
           <button
-            className="h-full w-full aspect-square border border-muted border-opacity-25 rounded-[15px] p-2 hover:bg-neutral-900 transition duration-300 ease-in-out"
+            className="h-full w-full aspect-square border dark:border-dark-muted border-muted border-opacity-25 rounded-[15px] p-2 hover:bg-neutral-900 transition duration-300 ease-in-out"
             onClick={() => onClickProject && onClickProject(id)}
           >
-            <FaArrowRight className="text-text_third h-full w-full" />
+            <FaArrowRight className="text-text_third dark:text-dark-text_third h-full w-full" />
           </button>
         </div>
       </div>

@@ -15,15 +15,15 @@ import { MdOutlineContactPage } from "react-icons/md";
 const Footer: React.FC = () => {
   return (
     <div className="w-full h-[200px] flex flex-col items-center justify-center">
-      <div className="w-full border-t border-t-text_secondary border-opacity-25 mx-[20px] my-5" />
+      <div className="w-full border-t border-t-text_secondary dark:border-t-dark-text_secondary border-opacity-25 mx-[20px] my-5" />
       <div className="w-full flex items-center justify-between">
         <div className="flex gap-5">
-          <SiGmail className="h-10 w-10 text-text_secondary hover:text-text_primary cursor-pointer" />{" "}
-          <FaGithub className="h-10 w-10 text-text_secondary hover:text-text_primary cursor-pointer" />{" "}
-          <FaLinkedin className="h-10 w-10 text-text_secondary hover:text-text_primary cursor-pointer" />
+          <SiGmail className="h-10 w-10 text-text_secondary dark:text-dark-text_secondary hover:text-text_primary hover:dark:text-dark-text_primary cursor-pointer" />{" "}
+          <FaGithub className="h-10 w-10 text-text_secondary dark:text-dark-text_secondary hover:text-text_primary hover:dark:text-dark-text_primary  cursor-pointer" />{" "}
+          <FaLinkedin className="h-10 w-10 text-text_secondary dark:text-dark-text_secondary hover:text-text_primary hover:dark:text-dark-text_primary  cursor-pointer" />
         </div>
         <div>
-          <div className="grid grid-cols-3 gap-y-3 text-text_secondary items-center w-full">
+          <div className="grid grid-cols-3 gap-y-3 text-text_secondary dark:text-dark-text_secondary items-center w-full">
             <span className="justify-self-start">Built with</span>
             <FaReact className="h-5 w-5 justify-self-center" />
             <span className="justify-self-end">React</span>
@@ -42,22 +42,22 @@ const Footer: React.FC = () => {
           </div>
         </div>
         <div>
-          <div className="flex flex-col gap-5  text-text_secondary">
-            <span className="flex flex-row items-center gap-5 justify-between hover:text-text_primary cursor-pointer">
+          <div className="flex flex-col gap-5  text-text_secondary dark:text-dark-text_secondary">
+            <span className="flex flex-row items-center gap-5 justify-between hover:text-text_primary hover:dark:text-dark-text_primary  cursor-pointer">
               TravelLens <CiPlane className="h-5 w-5" />
             </span>
-            <span className="flex flex-row items-center gap-5 justify-between hover:text-text_primary cursor-pointer">
+            <span className="flex flex-row items-center gap-5 justify-between hover:text-text_primary hover:dark:text-dark-text_primary  cursor-pointer">
               Transcendence <TbPingPong className="h-5 w-5" />
             </span>
-            <span className="flex flex-row items-center gap-5 justify-between hover:text-text_primary cursor-pointer">
+            <span className="flex flex-row items-center gap-5 justify-between hover:text-text_primary hover:dark:text-dark-text_primary  cursor-pointer">
               Portfolio <MdOutlineContactPage className="h-5 w-5" />
             </span>
           </div>
         </div>
       </div>
-      <div className="w-full border-t border-t-text_secondary border-opacity-25 mx-[20px] my-5" />
+      <div className="w-full border-t border-t-text_secondary dark:border-t-dark-text_secondary border-opacity-25 mx-[20px] my-5" />
       <div className="w-full flex items-center justify-center my-5">
-        <span className="text-text_secondary">
+        <span className="text-text_secondary dark:text-dark-text_secondary">
           © 2025 - All rights reserved
         </span>
       </div>

@@ -62,13 +62,12 @@ const Projects: React.FC = () => {
   return (
     <div className="w-full h-auto flex flex-col gap-10">
       <div className="flex flex-row justify-between items-center">
-        <p className="text-text_primary text-bold flex flex-row items-center gap-2 font-bold text-xl">
+        <p className="text-text_primary dark:text-dark-text_primary text-bold flex flex-row items-center gap-2 font-bold text-xl">
           {" "}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
-            fill="#e303fc"
-            className="size-4"
+            className="size-4 dark:fill-dark-secondary fill-secondary"
           >
             <path
               fillRule="evenodd"
