@@ -1,6 +1,10 @@
 import Footer from "../../shared/footer/footer";
 import GradientText from "../../../blocks/TextAnimations/GradientText/GradientText";
 
+import { SiGmail } from "react-icons/si";
+import { FaLinkedin } from "react-icons/fa6";
+import { FaGithub } from "react-icons/fa";
+
 const MainComponentContact = () => {
   return (
     <div className="h-full w-full flex flex-col">
@@ -34,14 +38,58 @@ const MainComponentContact = () => {
               WHAT DO I USE?
             </GradientText>
           </div>
-          <h1 className="text-text_primary dark:text-dark-text_primary text-6xl font-bold">Contact</h1>
+          <h1 className="text-text_primary dark:text-dark-text_primary text-6xl font-bold">
+            Contact
+          </h1>
           <p className="mt-4 text-lg text-text_secondary dark:text-dark-text_secondary">
-            Feel free to drop me a message anytime— I'm all ears for cool and
-            creative ideas!
+            Have a question or want to get in touch? Feel free to reach out.{" "}
+            <br />
           </p>
         </div>
       </div>
-      <div className="flex-[1]"></div>
+      <div className="flex-[1] flex flex-row  mb-10">
+        <div className="flex-[1] flex flex-col gap-5 mt-10">
+         <div className="flex flex-row text-text_secondary dark:text-dark-text_secondary hover:text-text_primary hover:dark:text-dark-text_primary items-center gap-2">
+            <SiGmail className="h-10 w-10  cursor-pointer" />
+            Gmail
+          </div>
+          <div className="flex flex-row text-text_secondary dark:text-dark-text_secondary hover:text-text_primary hover:dark:text-dark-text_primary items-center gap-2">
+            <FaGithub className="h-10 w-10  cursor-pointer" />
+            Github
+          </div>
+          <div className="flex flex-row text-text_secondary dark:text-dark-text_secondary hover:text-text_primary hover:dark:text-dark-text_primary items-center gap-2">
+            <FaLinkedin className="h-10 w-10  cursor-pointer" />
+            LinkedIn
+          </div>
+        </div>
+        <div className="flex-[1] flex p-2">
+          <div className="flex-[1] p-4">
+            <form className="flex flex-col gap-4 h-full">
+              <input
+                type="text"
+                placeholder="Subject"
+                className="p-2 rounded-md bg-background_light dark:bg-dark-muted_light text-text_primary dark:text-dark-text_primary placeholder:text-left focus:outline focus:outline-secondary"
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                className="p-2 rounded-md bg-background_light dark:bg-dark-muted_light text-text_primary dark:text-dark-text_primary placeholder:text-left focus:outline focus:outline-secondary"
+              />
+              <textarea
+                placeholder="Message"
+                rows={4}
+                className="p-2 rounded-md bg-background_light dark:bg-dark-muted_light text-text_primary dark:text-dark-text_primary flex-grow placeholder:text-left resize-none overflow-auto focus:outline focus:outline-secondary"
+              ></textarea>
+              <button
+                type="submit"
+                className="p-2 bg-primary bg-background_light dark:bg-dark-muted_light text-text_primary dark:text-dark-text_primary rounded-md dark:hover:bg-dark-primary-dark"
+              >
+                Send
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
       <Footer />
     </div>
   );

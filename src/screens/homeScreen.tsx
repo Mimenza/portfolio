@@ -131,7 +131,7 @@ const HomeScreen = () => {
         {sections.map((_, index) => (
           <div
             key={index}
-            className={`flex items-center bg-gray-600 bg-opacity-25 ${
+            className={`flex items-center bg-muted dark:bg-dark-muted bg-opacity-25 ${
               index === 0 ? "rounded-tl-xl" : ""
             } ${index === sections.length - 1 ? "rounded-bl-xl" : ""}`}
           >

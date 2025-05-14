@@ -50,12 +50,12 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
   const handleDarkModeToggle = () => {
     setDarkMode((prev) => !prev);
     if (darkMode) {
-      document.documentElement.classList.add("dark"); // Activar modo oscuro
-    } else {
       document.documentElement.classList.remove("dark"); // Desactivar modo oscuro
+    } else {
+      document.documentElement.classList.add("dark"); // Activar modo oscuro
     }
   };
-  
+
   // Calculate styles based on scroll position
   const normalizedScroll = Math.min(scrollPosition / 150, 1); // Normalize scroll position to a range of 0 to 1
   const bgOpacity = normalizedScroll * 0.9; // Gradual opacity up to 0.5
@@ -65,16 +65,44 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
       : "440px"; // Gradual width reduction from 100% to 400px
   const gap = `${80 - normalizedScroll * 60}px`; // Gradual gap reduction from 80px to 20px
   const border = `1px solid rgba(11, 11, 13, ${normalizedScroll})`; // Border with dynamic opacity
+  const isDark = document.documentElement.classList.contains("dark");
+  const backgroundColor = isDark ? "#0b0b0d" : "#ababab";
+  interface HexToRgbaParams {
+    hex: string;
+    opacity: number;
+  }
+
+  const hexToRgba = (
+    hex: HexToRgbaParams["hex"],
+    opacity: HexToRgbaParams["opacity"]
+  ): string => {
+    hex = hex.replace("#", "");
+
+    // Soporta shorthand (#fff)
+    if (hex.length === 3) {
+      hex = hex
+        .split("")
+        .map((c) => c + c)
+        .join("");
+    }
+
+    const r = parseInt(hex.slice(0, 2), 16);
+    const g = parseInt(hex.slice(2, 4), 16);
+    const b = parseInt(hex.slice(4, 6), 16);
+
+    return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+  };
+
   // py-5 fixed inset-0 mx-[250px] bg-blue-200 z-20 justify-center items-center
   return (
     <div className="fixed h-20 inset-0 sm:mx-[100px] 2xl:mx-[400px] z-20 justify-center items-center flex">
       <div
-        className="p-2 rounded-full flex flex-row items-center justify-between transition-all duration-300 dark:bg-dark-background bg-background"
+        className="p-2 rounded-full flex flex-row items-center justify-between transition-all duration-300"
         style={{
           width: width,
           gap: gap,
           border: border,
-          // Opacity: `${bgOpacity} `,
+          backgroundColor: hexToRgba(backgroundColor, bgOpacity), // 👈 Solo afecta el fondo
         }}
       >
         <p className="text-text_primary dark:text-dark-text_primary text-2xl">

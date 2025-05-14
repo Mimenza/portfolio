@@ -1,4 +1,5 @@
 module.exports = {
+  darkMode: "class", // Usar clase para activar el modo oscuro
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
@@ -8,8 +9,10 @@ module.exports = {
       colors: {
         // 💡 Modo claro (por defecto)
         background: "#ababab", // blanco
+        background_light: "#ababab",
         secondary: "#7e22ce", // púrpura
         muted: "#f3f4f6", // gris claro
+        muted_light: "#f9fafb", // gris más claro
         text_primary: "#111827", // gris oscuro casi negro
         text_secondary: "#6b7280", // gris medio
         text_third: "#9ca3af", // gris claro
@@ -17,8 +20,10 @@ module.exports = {
         // 🌑 Modo oscuro (usando clases `dark:`)
         dark: {
           background: "#0b0b0d",
+          background_light: "#17171c",
           secondary: "#9333EA", // Example purple
           muted: "#17181d", // gray-700
+          muted_light: "#212226", // gray-800
           text_primary: "#FFFF", // white
           text_secondary: "#9CA3AF", // gray-400
           text_third: "#D1D5DB", // gray-300

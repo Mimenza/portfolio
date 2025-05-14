@@ -61,26 +61,31 @@ const useBreakpointLogger = () => {
 
 function App() {
   useBreakpointLogger();
-  const { setScrollPosition, setDarkMode, darkMode, setCustomScroll, customScroll} = useVariablesContext();
+  const {
+    setScrollPosition,
+    setDarkMode,
+    darkMode,
+    setCustomScroll,
+    customScroll,
+  } = useVariablesContext();
 
   useEffect(() => {
-     setDarkMode(true); // Set dark mode to true by default
-     setCustomScroll(false); // Disable custom scroll by default
-    
+    setDarkMode(true); // Set dark mode to true by default
+    document.documentElement.classList.add("dark"); // Activar modo oscuro
+    setCustomScroll(false); // Disable custom scroll by default
+
     const handleScroll = () => {
       setScrollPosition(window.scrollY);
     };
-
 
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []); // Add darkMode as a dependency
-  
+
   return (
-    <div
-      className="h-auto w-screen sm:px-[100px] 2xl:px-[20%] dark:bg-dark-background bg-background">
+    <div className="h-auto w-screen sm:px-[100px] 2xl:px-[20%] dark:bg-dark-background bg-background transition-colors duration-700 ">
       <Routes>
         <Route path="/home" element={<HomeScreen />} />
         <Route path="/projects" element={<ProjectsScreen />} />

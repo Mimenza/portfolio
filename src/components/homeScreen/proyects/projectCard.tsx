@@ -29,7 +29,7 @@ const ProjectCard = ({
 }) => {
   return (
     <div
-      className="flex flex-col z-10 w-full sm:w-full md:w-full lg:w-full dark:bg-dark-muted bg-muted bg-opacity-25 rounded-[25px] shadow-lg shadow-black/30 border dark:border-dark-muted border-muted border-opacity-25 p-2 m-2 cursor-pointer group"
+      className="flex flex-col z-10 w-full sm:w-full md:w-full lg:w-full dark:bg-dark-muted bg-muted bg-opacity-25 rounded-[25px] shadow-lg shadow-black/30 border dark:border-dark-muted border-muted border-opacity-25 p-2 cursor-pointer group"
     >
       {/* Contenedor de la imagen */}
       <div className="aspect-[16/9] rounded-[25px] overflow-hidden group">
