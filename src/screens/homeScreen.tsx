@@ -15,6 +15,7 @@ import MainComponentAboutMe from "../components/homeScreen/aboutMe/mainComponent
 import MainComponentProyects from "../components/homeScreen/proyects/mainComponent";
 import MainComponentTecnologies from "../components/homeScreen/tecnologies/mainComponent";
 import MainComponentContact from "../components/homeScreen/contactMe/mainComponent";
+import FooterSlider from "../components/shared/footer/aboutFooterSlider";
 
 import Menu from "../components/shared/menu/menu";
 
@@ -120,8 +121,9 @@ const HomeScreen = () => {
   }, [handleIndicatorClick]);
 
   const sectionTitles = ["Presentation", "Projects", "Technologies", "Contact"];
+  const heightClass = !customScroll ? "h-screen" : "h-auto";
   return (
-    <div className="flex flex-col w-full overflow-hidden relative">
+    <div className="flex flex-col w-full overflow-hidden relative scrollbar-thin scrollbar-webkit">
       {/* Section Indicator */}
       <div
         className={`fixed top-1/2 ${
@@ -164,16 +166,29 @@ const HomeScreen = () => {
 
       <Menu selectedSection={0} />
       {/* Sections */}
-      <div ref={aboutMeRef} className=" h-auto md:h-screen w-full py-10">
+      <div
+        ref={aboutMeRef}
+        className={`relative w-full py-20 justify-center items-center flex sm:${heightClass} md:min-h-screen h-auto`}
+      >
         <MainComponentAboutMe />
+        <FooterSlider />
       </div>
-      <div ref={projectsRef} className="h-auto md:h-screen w-full py-10">
+      <div
+        ref={projectsRef}
+        className={`w-full py-10 justify-center items-center flex md:${heightClass} h-auto`}
+      >
         <MainComponentProyects />
       </div>
-      <div ref={technologiesRef} className="h-auto md:h-screen w-full py-10">
+      <div
+        ref={technologiesRef}
+        className={`w-full py-10 justify-center items-center flex md:${heightClass} h-auto`}
+      >
         <MainComponentTecnologies />
       </div>
-      <div ref={contactRef} className="h-auto md:h-screen w-full py-10">
+      <div
+        ref={contactRef}
+        className={`w-full py-10 justify-center items-center flex md:${heightClass} h-auto`}
+      >
         <MainComponentContact />
       </div>
     </div>

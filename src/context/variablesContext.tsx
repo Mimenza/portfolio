@@ -21,7 +21,7 @@ export const VariablesProvider: React.FC<{ children: React.ReactNode }> = ({
   const [section, setSection] = useState<number>(0);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [darkMode, setDarkMode] = useState(() => true);
-  const [customScroll, setCustomScroll] = useState(true);
+  const [customScroll, setCustomScroll] = useState(false);
   return (
     <VariablesContext.Provider
       value={{

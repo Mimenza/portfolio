@@ -9,7 +9,7 @@ module.exports = {
       colors: {
         // 💡 Modo claro (por defecto)
         background: "#ababab", // blanco
-        background_light: "#ababab",
+        background_light: "#111827",
         secondary: "#7e22ce", // púrpura
         muted: "#f3f4f6", // gris claro
         muted_light: "#f9fafb", // gris más claro
@@ -66,6 +66,9 @@ module.exports = {
       },
     },
   },
-  plugins: [require("taos/plugin")],
+  plugins: [
+    require("taos/plugin"),
+   
+  ],
   darkMode: "class", // Usar clase para activar el modo oscuro
 };

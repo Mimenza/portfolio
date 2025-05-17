@@ -24,10 +24,30 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
   const navigate = useNavigate();
   const [activeIcon, setActiveIcon] = useState<number | null>(null); // Track the active icon
   const [isAnimating, setIsAnimating] = useState(false); // Track animation state
+  const [showCloud, setShowCloud] = useState(true);
+  const [cloudPosition, setCloudPosition] = useState<{
+    top: number;
+    left: number;
+  }>({ top: 0, left: 0 });
+  const cloudText =
+    "Activate a beta custom scroll here! Click to toggle it on/off.";
+
+  const mouseBtnRef = React.useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
     setTimeout(() => setActiveIcon(selectedSection), 100); // Animate to size 100 on load
   }, [selectedSection]);
+
+  useEffect(() => {
+    // Solo calcula la posición si la nube debe mostrarse y el botón existe
+    if (showCloud && mouseBtnRef.current) {
+      const rect = mouseBtnRef.current.getBoundingClientRect();
+      setCloudPosition({
+        top: rect.bottom + window.scrollY + 12,
+        left: rect.left + window.scrollX - 40, // Ajusta para centrar la nube respecto al botón
+      });
+    }
+  }, [showCloud, selectedSection, customScroll]);
 
   const handleNavigation = (index: number) => {
     setTimeout(() => {
@@ -93,9 +113,78 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
     return `rgba(${r}, ${g}, ${b}, ${opacity})`;
   };
 
+  useEffect(() => {
+    const updateCloudPosition = () => {
+      if (showCloud && mouseBtnRef.current) {
+        const rect = mouseBtnRef.current.getBoundingClientRect();
+        setCloudPosition({
+          top: rect.bottom + 12,
+          left: rect.left - 40,
+        });
+      }
+    };
+
+    // Actualiza la posición al montar y cada vez que cambian las dependencias
+    updateCloudPosition();
+
+    // Escuchar scroll y resize para actualizar la posición en tiempo real
+    window.addEventListener("scroll", updateCloudPosition);
+    window.addEventListener("resize", updateCloudPosition);
+
+    // Cleanup para evitar fugas de memoria
+    return () => {
+      window.removeEventListener("scroll", updateCloudPosition);
+      window.removeEventListener("resize", updateCloudPosition);
+    };
+  }, [showCloud, selectedSection, customScroll]);
+
   // py-5 fixed inset-0 mx-[250px] bg-blue-200 z-20 justify-center items-center
   return (
     <div className="fixed h-20 inset-0 sm:mx-[100px] 2xl:mx-[400px] z-20 justify-center items-center flex">
+      {/* Nube tipo tooltip apuntando al botón del ratón */}
+      {showCloud && selectedSection === 0 && (
+        <div
+          style={{
+            position: "fixed",
+            top: cloudPosition.top,
+            left: cloudPosition.left,
+            zIndex: 50,
+            background: "white",
+            border: "1px solid #ccc",
+            borderRadius: "12px",
+            padding: "14px 20px 14px 16px",
+            boxShadow: "0 2px 12px rgba(0,0,0,0.13)",
+            width: "220px",
+            display: "flex",
+            alignItems: "center",
+            gap: "12px",
+          }}
+        >
+          <span className="text-black flex-1">{cloudText}</span>
+          <button
+            aria-label="Cerrar"
+            className="ml-2 text-gray-500 hover:text-gray-800 font-bold text-lg px-2 py-0 rounded transition"
+            style={{ background: "none", border: "none", cursor: "pointer" }}
+            onClick={() => setShowCloud(false)}
+          >
+            ×
+          </button>
+          {/* Flecha apuntando al botón */}
+          <span
+            style={{
+              position: "absolute",
+              top: -10,
+              left: 50,
+              width: 0,
+              height: 0,
+              borderLeft: "10px solid transparent",
+              borderRight: "10px solid transparent",
+              borderBottom: "10px solid white",
+              filter: "drop-shadow(0px -1px 1px #ccc)",
+            }}
+          />
+        </div>
+      )}
       <div
         className="p-2 rounded-full flex flex-row items-center justify-between transition-all duration-300"
         style={{
@@ -182,8 +271,12 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
 
           {selectedSection === 0 && (
             <p
+              ref={mouseBtnRef}
               className="text-text_primary dark:text-dark-text_primary text-2xl cursor-pointer transition-all duration-300 ease-in-out transform"
-              onClick={() => setCustomScroll((prev) => !prev)}
+              onClick={() => {
+                setCustomScroll((prev) => !prev);
+                if (showCloud) setShowCloud(false);
+              }}
             >
               <span
                 key={customScroll ? "scroll" : "scroll-fill"}

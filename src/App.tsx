@@ -7,6 +7,7 @@ import {
   Navigate,
   useLocation,
 } from "react-router-dom";
+import './tailwind.css';
 import HomeScreen from "./screens/homeScreen";
 import ProjectsScreen from "./screens/projectsScreen";
 import LoginScreen from "./screens/loginScreen";
@@ -72,7 +73,7 @@ function App() {
   useEffect(() => {
     setDarkMode(true); // Set dark mode to true by default
     document.documentElement.classList.add("dark"); // Activar modo oscuro
-    setCustomScroll(false); // Disable custom scroll by default
+    setCustomScroll(true); // Disable custom scroll by default
 
     const handleScroll = () => {
       setScrollPosition(window.scrollY);
@@ -85,7 +86,7 @@ function App() {
   }, []); // Add darkMode as a dependency
 
   return (
-    <div className="h-auto w-screen sm:px-[100px] 2xl:px-[20%] dark:bg-dark-background bg-background transition-colors duration-700 ">
+    <div className="h-auto w-screen sm:px-[100px] 2xl:px-[20%] dark:bg-dark-background bg-background transition-colors duration-700 scrollbar-custom">
       <Routes>
         <Route path="/home" element={<HomeScreen />} />
         <Route path="/projects" element={<ProjectsScreen />} />

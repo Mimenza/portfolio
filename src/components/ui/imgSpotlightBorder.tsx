@@ -15,7 +15,11 @@ export const ImgSpotlightBorder = () => {
     <div
       className="hidden md:flex items-center justify-center order-first md:order-none z-10"
     >
-      <div className="relative h-96 w-72">
+      <div className="relative sm:h-48 sm:w-36 
+         md:h-[224px] md:w-[168px] 
+         lg:h-64 lg:w-48 
+         xl:h-80 xl:w-60 
+         2xl:h-96 2xl:w-72">
 
         {/* Imagen */}
         <div className="relative h-full w-full z-20 rounded-[22px] overflow-hidden border-4 dark:border-dark-muted border-muted border-opacity-25">

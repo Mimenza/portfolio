@@ -2,21 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-
 body {
-    @font-family: 'Montserrat', -apple-system, system-ui, sans-serif;
+  font-family: 'Montserrat', -apple-system, system-ui, sans-serif;
 }
 
 .scrollbar-custom {
   scrollbar-width: thin;
-  scrollbar-color: #a0aec0 transparent; /* light mode colors */
+  scrollbar-color: #a0aec0 transparent; /* Firefox light mode */
 }
 
-.dark .scrollbar-custom {
-  scrollbar-color: #4a5568 transparent; /* dark mode colors */
+/* Firefox dark mode */
+:root.dark .scrollbar-custom {
+  scrollbar-color: #4a5568 transparent;
 }
 
-/* Para navegadores basados en WebKit (Chrome, Edge, Safari) */
+/* Chrome, Safari, Edge (WebKit) */
 .scrollbar-custom::-webkit-scrollbar {
   width: 8px;
 }
@@ -26,6 +26,6 @@ body {
   border-radius: 4px;
 }
 
-.dark .scrollbar-custom::-webkit-scrollbar-thumb {
+:root.dark .scrollbar-custom::-webkit-scrollbar-thumb {
   background-color: #4a5568;
 }

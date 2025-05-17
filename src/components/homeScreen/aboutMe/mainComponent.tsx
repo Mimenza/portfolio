@@ -19,9 +19,11 @@ const MainComponentAboutMe = () => {
   return (
     <div className="relative h-full w-full flex flex-col items-center justify-center">
       {/* Contenido existente */}
-      <div className="w-full flex flex-col md:flex-row items-center animate-fadeInUp justify-between">
+      <div className="w-full flex flex-col md:flex-row items-center animate-fadeInUp justify-between gap-6 md:gap-12">
+
         {/* Left Text Div */}
-        <div className="flex flex-col justify-center animate-float w-[50%] relative">
+        {/* Left Text Div */}
+        <div className="flex flex-col justify-center animate-float w-full max-w-[700px] relative">
           <div className="flex flex-row items-center gap-2 mb-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +37,14 @@ const MainComponentAboutMe = () => {
               />
             </svg>
             <GradientText
-              colors={["#e303fc", "#5a03fc", "#038cfc", "#e303fc", "#5a03fc", "#038cfc"]}
+              colors={[
+                "#e303fc",
+                "#5a03fc",
+                "#038cfc",
+                "#e303fc",
+                "#5a03fc",
+                "#038cfc",
+              ]}
               animationSpeed={2}
               showBorder={false}
               className=""
@@ -50,17 +59,19 @@ const MainComponentAboutMe = () => {
             animateBy="letters"
             direction="bottom"
             onAnimationComplete={handleAnimationComplete}
-            className="text-8xl font-bold mb-6 z-10 text-text_primary dark:text-dark-text_primary"
+            className="[font-size:clamp(3rem,8vw,6rem)] font-bold mb-6 z-10 text-text_primary dark:text-dark-text_primary"
             threshold={1}
           />
 
-          <p className="text-lg leading-relaxed mb-6 text-text_secondary dark:text-dark-text_secondary z-10">
+          <p className="[font-size:clamp(1rem,2.5vw,1.125rem)] leading-relaxed mb-6 text-text_secondary dark:text-dark-text_secondary z-10 text-justify">
             I'm{" "}
-            <span className="font-bold text-text_primary dark:text-dark-text_primary">Endika Mimenza</span>,
-            25-year-old web and mobile developer, with experience in application
-            development. Currently learning React and React Native, while
-            expanding my knowledge in backend development and languages like C
-            and C++ at{" "}
+            <span className="font-bold text-text_primary dark:text-dark-text_primary">
+              Endika Mimenza
+            </span>
+            , 25-year-old web and mobile developer, with experience in
+            application development. Currently learning React and React Native,
+            while expanding my knowledge in backend development and languages
+            like C and C++ at{" "}
             <a
               href="https://42urduliz.com"
               className="text-text_primary dark:text-dark-text_primary no-underline"
@@ -69,7 +80,7 @@ const MainComponentAboutMe = () => {
             </a>
             . Passionate about technology and continuous learning.
           </p>
-          <p className="text-lg leading-relaxed mb-6 text-text_secondary dark:text-dark-text_secondary z-10">
+          <p className="[font-size:clamp(1rem,2.5vw,1.125rem)] leading-relaxed mb-6 text-text_secondary dark:text-dark-text_secondary z-10 text-justify">
             I'm passionate about the world of vintage technology and mechanical
             keyboards. In my free time, I'm working on a mobile app called{" "}
             <a
@@ -105,18 +116,20 @@ const MainComponentAboutMe = () => {
               <span>Github</span>
               <FaGithub />
             </button>
-            <LightButton onClick={() => {navigate("/about")}}> Read about me!</LightButton>
+            <LightButton
+              onClick={() => {
+                navigate("/about");
+              }}
+            >
+              {" "}
+              Read about me!
+            </LightButton>
           </div>
         </div>
 
         <ImgSpotlightBorder />
       </div>
-      {/* Footer */}
-      <div className="absolute bottom-5 left-0 w-full h-20 flex items-center justify-center">
-        <div className="border border-white w-[50px] h-[75px] rounded-2xl flex items-center justify-center animate-float">
-          <div className="h-3 w-3 rounded-full bg-white animate-fadeInDownScroll" />
-        </div>
-      </div>
+      
     </div>
   );
 };
