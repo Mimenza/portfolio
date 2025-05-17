@@ -7,7 +7,7 @@ import {
   Navigate,
   useLocation,
 } from "react-router-dom";
-import './tailwind.css';
+import "./tailwind.css";
 import HomeScreen from "./screens/homeScreen";
 import ProjectsScreen from "./screens/projectsScreen";
 import LoginScreen from "./screens/loginScreen";
@@ -25,11 +25,14 @@ const useBreakpointLogger = () => {
       lg: window.matchMedia("(min-width: 1024px)"),
       xl: window.matchMedia("(min-width: 1280px)"),
       "2xl": window.matchMedia("(min-width: 1536px)"),
+      "3xl": window.matchMedia("(min-width: 1920px)"),
     };
 
     const logBreakpoint = () => {
       if (breakpoints["2xl"].matches) {
         console.log("Breakpoint: 2xl");
+      } else if (breakpoints["3xl"].matches) {
+        console.log("Breakpoint: xl-plus");
       } else if (breakpoints.xl.matches) {
         console.log("Breakpoint: xl");
       } else if (breakpoints.lg.matches) {

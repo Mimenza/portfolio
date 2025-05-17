@@ -1,4 +1,8 @@
 import React, { useEffect } from "react";
+
+import Gallery from "./gallery";
+
+import { useVariablesContext } from "../../../context/variablesContext";
 import { IoMdClose } from "react-icons/io";
 import { FiExternalLink } from "react-icons/fi";
 
@@ -82,10 +86,12 @@ const MainComponentProjectDetail = ({
   prevRoute: string;
 }) => {
   const navigate = useNavigate();
+  const { showGallery,setShowGallery } = useVariablesContext();
+
   useEffect(() => {
     document.title = `🔧 Emimenza | ${projectDetails.slug}`;
-  }, []);
-  
+  }, [showGallery]);
+
   const handleClose = () => {
     document.title = `🔧 Emimenza | ${prevRoute}`;
     onClose();
@@ -114,7 +120,7 @@ const MainComponentProjectDetail = ({
               <p className="text-white text-5xl font-bold">
                 {projectDetails.name}
               </p>
-              <p className="text-text_secondary dark:text-dark-text_secondary text-lg mt-4">
+              <p className="text-text_secondary dark:text-dark-text_secondary [font-size:clamp(1rem,2.5vw,1.125rem)] mt-4">
                 {projectDetails.description}
               </p>
             </div>
@@ -171,7 +177,7 @@ const MainComponentProjectDetail = ({
           className="w-full flex flex-[4] overflow-x-hidden hover:overflow-x-auto"
           style={{ scrollbarGutter: "stable" }}
         >
-          <div className="flex flex-nowrap space-x-4">
+          <div className="flex flex-nowrap space-x-4 cursor-pointer" onClick={() => setShowGallery(true)}>
             {projectDetails.storage.map((link, index) => {
               const isVideo =
                 link.includes(".mp4") ||
@@ -204,6 +210,17 @@ const MainComponentProjectDetail = ({
           </div>
         </div>
       </div>
+
+      {/* Gallery */}
+      {showGallery && (
+        <Gallery
+          items={projectDetails.storage.map((link) => ({
+          src: link,
+          type: link.includes(".mp4") ? "video" : "image",
+        }))}
+        onClose={() => setShowGallery(false)}
+      />
+      )}
     </div>
   );
 };

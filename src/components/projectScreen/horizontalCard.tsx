@@ -83,60 +83,68 @@ const HorizontalCard = ({
   };
 
   return (
-        <div className="flex flex-col z-10 w-full sm:w-full md:w-full lg:w-full dark:bg-dark-muted bg-muted bg-opacity-25 p-5 rounded-[25px] group transition-transform duration-300 ease-in-out">
-          {/* Contenedor de la imagen */}
-          <div
-            className="aspect-[16/9] overflow-hidden cursor-pointer rounded-[25px]"
-            onClick={() => onClickProject && onClickProject(id)}
-          >
-            <video
-              src={cover}
-              autoPlay
-              muted
-              loop
-              className="h-full w-full object-cover rounded-[25px] transition-transform duration-300 ease-in-out group-hover:scale-105"
-              onError={(e) => {
-                const videoElement = e.target as HTMLVideoElement;
-                videoElement.style.display = "none";
-                const imgElement = videoElement.nextElementSibling as HTMLImageElement;
-                imgElement.style.display = "block";
-              }}
-            />
-            <img
-              src={cover}
-              className="h-full w-full object-cover rounded-[25px] transition-transform duration-300 ease-in-out group-hover:scale-105 hidden"
-              onError={(e) => {
-                const imgElement = e.target as HTMLImageElement;
-                imgElement.src = Default || "";
-              }}
-            />
-          </div>
-    
-          {/* Contenedor de texto */}
-          <div className="justify-between flex flex-row h-[60px] m-2">
-            <div className="items-center h-full w-auto">
-              <h3 className="text-[clamp(1.25rem,2.5vw,1.5rem)] text-text_primary dark:text-dark-text_primary font-bold mb-2">{name}</h3>
-              <p className="text-[clamp(0.75rem,1.5vw,1.25rem)] text-text_secondary dark:text-dark-text_secondary dark:text-dark-text_primary whitespace-nowrap">{status}</p>
-            </div>
-            <div className="flex flex-row h-full space-x-2 items-center ">
+    <div className="flex flex-col z-10 w-full sm:w-full md:w-full lg:w-full dark:bg-dark-muted bg-muted bg-opacity-25 p-5 rounded-[25px] group transition-transform duration-300 ease-in-out">
+      {/* Contenedor de la imagen */}
+      <div
+        className="aspect-[16/9] overflow-hidden cursor-pointer rounded-[25px]"
+        onClick={() => onClickProject && onClickProject(id)}
+      >
+        <video
+          src={cover}
+          autoPlay
+          muted
+          loop
+          className="h-full w-full object-cover rounded-[25px] transition-transform duration-300 ease-in-out group-hover:scale-105"
+          onError={(e) => {
+            const videoElement = e.target as HTMLVideoElement;
+            videoElement.style.display = "none";
+            const imgElement =
+              videoElement.nextElementSibling as HTMLImageElement;
+            imgElement.style.display = "block";
+          }}
+        />
+        <img
+          src={cover}
+          className="h-full w-full object-cover rounded-[25px] transition-transform duration-300 ease-in-out group-hover:scale-105 hidden"
+          onError={(e) => {
+            const imgElement = e.target as HTMLImageElement;
+            imgElement.src = Default || "";
+          }}
+        />
+      </div>
 
-              {technologies.slice(0, 4).map((tech, index) => (
-              <div
-                key={index}
-                className="h-full w-full aspect-square border border-gray-600 border-opacity-25 rounded-[15px] p-2 hover:bg-neutral-900 transition duration-300 ease-in-out text-gray-300"
-              >
-                {technologyIcons[tech] || <FaPlus className="h-full w-full" />}
-              </div>
-            ))}
-            </div>
-          </div>
-          <div className="text-md text-text_third dark:text-dark-text_third mt-4 w-full text-justify">
-            {description.length > 200
-              ? `${description.substring(0, 200)}...`
-              : description}
-          </div>
+      {/* Contenedor de texto */}
+      <div className="justify-between flex flex-row h-[60px] m-2">
+        <div className="h-full w-auto flex flex-col flex-[1]">
+          <h3 className="text-[clamp(1.25rem,2.5vw,1.5rem)] text-text_primary dark:text-dark-text_primary font-bold mb-2">
+            {name}
+          </h3>
+          <p className="text-[clamp(0.75rem,1.5vw,1.25rem)] text-text_secondary dark:text-dark-text_secondary dark:text-dark-text_primary whitespace-nowrap">
+            {status}
+          </p>
         </div>
-      );
-    };
+        <div className="flex flex-wrap gap-2 items-center justify-end flex-[1] overflow-hidden">
+          {technologies.slice(0, 4).map((tech, index) => (
+            <div
+              key={index}
+              className="h-full w-full flex items-center justify-center aspect-square max-w-[60px] max-h-[60px] flex-shrink-0 border border-gray-600 border-opacity-25 rounded-[15px] p-1 hover:bg-neutral-900 transition duration-300 ease-in-out text-gray-300"
+            >
+              <div className="w-full h-full">
+                {technologyIcons[tech] || (
+                  <FaPlus className="w-full h-full object-contain" />
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="text-md text-text_third dark:text-dark-text_third mt-4 w-full text-justify">
+        {description.length > 200
+          ? `${description.substring(0, 200)}...`
+          : description}
+      </div>
+    </div>
+  );
+};
 
 export default HorizontalCard;

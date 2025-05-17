@@ -48,18 +48,25 @@ const MainComponentContact = () => {
         </div>
       </div>
       <div className="flex-[1] flex flex-row  mb-10">
-        <div className="flex-[1] flex flex-col gap-5 mt-10">
-         <div className="flex flex-row text-text_secondary dark:text-dark-text_secondary hover:text-text_primary hover:dark:text-dark-text_primary items-center gap-2">
-            <SiGmail className="h-10 w-10  cursor-pointer" />
-            Gmail
+        <div className="flex-[1] flex flex-col gap-4 items-center">
+          <div className="flex flex-row gap-5 mt-10 ">
+            <div className="group flex flex-row text-text_secondary dark:text-dark-text_secondary hover:text-text_primary hover:dark:text-dark-text_primary items-center gap-2 cursor-pointer" onClick={() => window.open("mailto:mimenzae@gmail.com")}>
+              <SiGmail className="h-10 w-10" />
+              Gmail
+            </div>
+            <div className="group flex flex-row text-text_secondary dark:text-dark-text_secondary hover:text-text_primary hover:dark:text-dark-text_primary items-center gap-2 cursor-pointer" onClick={() => window.open("https://github.com/mimenza")}>
+              <FaGithub className="h-10 w-10" />
+              Github
+            </div>
+            <div className="group flex flex-row text-text_secondary dark:text-dark-text_secondary hover:text-text_primary hover:dark:text-dark-text_primary items-center gap-2 cursor-pointer" onClick={() => window.open("https://www.linkedin.com/in/endika-m-99aa26252/")}>
+              <FaLinkedin className="h-10 w-10" />
+              LinkedIn
+            </div>
           </div>
-          <div className="flex flex-row text-text_secondary dark:text-dark-text_secondary hover:text-text_primary hover:dark:text-dark-text_primary items-center gap-2">
-            <FaGithub className="h-10 w-10  cursor-pointer" />
-            Github
-          </div>
-          <div className="flex flex-row text-text_secondary dark:text-dark-text_secondary hover:text-text_primary hover:dark:text-dark-text_primary items-center gap-2">
-            <FaLinkedin className="h-10 w-10  cursor-pointer" />
-            LinkedIn
+          <div className="group flex flex-col items-center">
+            <span className="text-text_secondary dark:text-dark-text_secondary group-hover:text-text_primary group-hover:dark:text-dark-text_primary transition-colors cursor-pointer" >
+              mimenzae@gmail.com
+            </span>
           </div>
         </div>
         <div className="flex-[1] flex p-2">

@@ -81,7 +81,7 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
   const bgOpacity = normalizedScroll * 0.9; // Gradual opacity up to 0.5
   const width =
     normalizedScroll < 1
-      ? `calc(100% - ${normalizedScroll * (window.innerWidth - 700)}px)`
+      ? `calc(100% - ${normalizedScroll * (window.innerWidth - 950)}px)`
       : "440px"; // Gradual width reduction from 100% to 400px
   const gap = `${80 - normalizedScroll * 60}px`; // Gradual gap reduction from 80px to 20px
   const border = `1px solid rgba(11, 11, 13, ${normalizedScroll})`; // Border with dynamic opacity

@@ -64,6 +64,9 @@ module.exports = {
           "50%": { transform: "translateY(-5px)" },
         },
       },
+      screens:{
+        '3xl': '1920px',
+      }
     },
   },
   plugins: [
