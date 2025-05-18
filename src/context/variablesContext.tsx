@@ -11,6 +11,8 @@ interface VariablesContextProps {
   setCustomScroll: React.Dispatch<React.SetStateAction<boolean>>;
   showGallery: boolean;
   setShowGallery: React.Dispatch<React.SetStateAction<boolean>>;
+  phoneView: boolean;
+  setPhoneView: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const VariablesContext = createContext<VariablesContextProps | undefined>(
@@ -25,6 +27,7 @@ export const VariablesProvider: React.FC<{ children: React.ReactNode }> = ({
   const [darkMode, setDarkMode] = useState(() => true);
   const [customScroll, setCustomScroll] = useState(false);
   const [showGallery, setShowGallery] = useState(false);
+  const [phoneView, setPhoneView] = useState(false);
   return (
     <VariablesContext.Provider
       value={{
@@ -38,6 +41,8 @@ export const VariablesProvider: React.FC<{ children: React.ReactNode }> = ({
         setCustomScroll,
         showGallery,
         setShowGallery,
+        phoneView,
+        setPhoneView,
       }}
     >
       {children}

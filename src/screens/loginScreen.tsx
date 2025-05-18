@@ -70,7 +70,7 @@ const LoginScreen = () => {
 
       {/* Login Form */}
       <div className="relative z-10 p-8 rounded-lg shadow-lg w-96">
-        <h2 className="text-2xl font-bold mb-4 text-center text-white">
+        <h2 className="text-2xl-custom font-bold mb-4 text-center text-white">
           Login
         </h2>
         {error && <p className="text-red-500 text-sm mb-4">{error}</p>}

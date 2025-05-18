@@ -1,11 +1,13 @@
 import Footer from "../../shared/footer/footer";
 import GradientText from "../../../blocks/TextAnimations/GradientText/GradientText";
 
+import { useVariablesContext } from "../../../context/variablesContext";
 import { SiGmail } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
 
 const MainComponentContact = () => {
+  const {phoneView} = useVariablesContext();
   return (
     <div className="h-full w-full flex flex-col">
       <div className="flex flex-col mt-20">
@@ -38,29 +40,29 @@ const MainComponentContact = () => {
               WHAT DO I USE?
             </GradientText>
           </div>
-          <h1 className="text-text_primary dark:text-dark-text_primary text-6xl font-bold">
+          <h1 className="text-text_primary dark:text-dark-text_primary text-6xl-custom font-bold">
             Contact
           </h1>
-          <p className="mt-4 text-lg text-text_secondary dark:text-dark-text_secondary">
+          <p className="mt-4 text-lg-custom text-text_secondary dark:text-dark-text_secondary">
             Have a question or want to get in touch? Feel free to reach out.{" "}
             <br />
           </p>
         </div>
       </div>
-      <div className="flex-[1] flex flex-row  mb-10">
+      <div className="flex-[1] flex flex-col md:flex-row mb-20">
         <div className="flex-[1] flex flex-col gap-4 items-center">
           <div className="flex flex-row gap-5 mt-10 ">
             <div className="group flex flex-row text-text_secondary dark:text-dark-text_secondary hover:text-text_primary hover:dark:text-dark-text_primary items-center gap-2 cursor-pointer" onClick={() => window.open("mailto:mimenzae@gmail.com")}>
               <SiGmail className="h-10 w-10" />
-              Gmail
+             {!phoneView ? ("Gmail") : null}
             </div>
             <div className="group flex flex-row text-text_secondary dark:text-dark-text_secondary hover:text-text_primary hover:dark:text-dark-text_primary items-center gap-2 cursor-pointer" onClick={() => window.open("https://github.com/mimenza")}>
               <FaGithub className="h-10 w-10" />
-              Github
+              {!phoneView ? ("Github") : null}
             </div>
             <div className="group flex flex-row text-text_secondary dark:text-dark-text_secondary hover:text-text_primary hover:dark:text-dark-text_primary items-center gap-2 cursor-pointer" onClick={() => window.open("https://www.linkedin.com/in/endika-m-99aa26252/")}>
               <FaLinkedin className="h-10 w-10" />
-              LinkedIn
+              {!phoneView ? ("LinkedIn") : null}
             </div>
           </div>
           <div className="group flex flex-col items-center">

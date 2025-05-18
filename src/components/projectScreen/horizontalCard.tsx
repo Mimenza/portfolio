@@ -116,10 +116,10 @@ const HorizontalCard = ({
       {/* Contenedor de texto */}
       <div className="justify-between flex flex-row h-[60px] m-2">
         <div className="h-full w-auto flex flex-col flex-[1]">
-          <h3 className="text-[clamp(1.25rem,2.5vw,1.5rem)] text-text_primary dark:text-dark-text_primary font-bold mb-2">
+          <h3 className="text-lg-custom text-text_primary dark:text-dark-text_primary font-bold mb-2">
             {name}
           </h3>
-          <p className="text-[clamp(0.75rem,1.5vw,1.25rem)] text-text_secondary dark:text-dark-text_secondary dark:text-dark-text_primary whitespace-nowrap">
+          <p className="text-lg-custom text-text_secondary dark:text-dark-text_secondary dark:text-dark-text_primary whitespace-nowrap">
             {status}
           </p>
         </div>
@@ -138,7 +138,7 @@ const HorizontalCard = ({
           ))}
         </div>
       </div>
-      <div className="text-md text-text_third dark:text-dark-text_third mt-4 w-full text-justify">
+      <div className="text-md-custom text-text_third dark:text-dark-text_third mt-4 w-full text-justify">
         {description.length > 200
           ? `${description.substring(0, 200)}...`
           : description}

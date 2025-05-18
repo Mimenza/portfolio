@@ -3,7 +3,7 @@ import React from "react";
 const AboutMe: React.FC = () => {
   return (
     <div className="w-full flex flex-col h-auto gap-5">
-      <p className="text-text_primary dark:text-dark-text_primary text-bold flex flex-row items-center gap-2 font-bold text-xl">
+      <p className="text-text_primary dark:text-dark-text_primary text-bold flex flex-row items-center gap-2 font-bold text-xl-custom">
         {" "}
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -19,7 +19,7 @@ const AboutMe: React.FC = () => {
         About
       </p>
       <div>
-        <p className="text-lg leading-relaxed mb-6 text-text_secondary dark:text-dark-text_secondary z-10">
+        <p className="text-lg-custom leading-relaxed mb-6 text-text_secondary dark:text-dark-text_secondary z-10">
           I'm{" "}
           <span className="font-bold text-text_primary dark:text-dark-text_primary">Endika Mimenza</span>,
           25-year-old web and mobile developer, with experience in application
@@ -34,7 +34,7 @@ const AboutMe: React.FC = () => {
           </a>
           . Passionate about technology and continuous learning.
         </p>
-        <p className="text-lg leading-relaxed mb-6 text-text_secondary dark:text-dark-text_secondary z-10">
+        <p className="text-lg-custom leading-relaxed mb-6 text-text_secondary dark:text-dark-text_secondary z-10">
           I'm passionate about the world of vintage technology and mechanical
           keyboards. In my free time, I'm working on a mobile app called{" "}
           <a

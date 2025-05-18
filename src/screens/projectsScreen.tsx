@@ -135,8 +135,8 @@ const ProjectsScreen = () => {
             MOST OF MY WORK
           </GradientText>
         </div>
-        <p className="text-6xl font-bold mt-1 text-white">Proyects</p>
-        <p className="m-4 text-lg text-gray-300">
+        <p className="text-6xl-custom font-bold mt-1 text-white">Proyects</p>
+        <p className="m-4 text-lg-custom text-gray-300">
           Here you can find most of my projects.
         </p>
         <div className="grid lg:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-5 h-auto w-auto">

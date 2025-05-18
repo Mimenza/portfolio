@@ -41,8 +41,8 @@ const ProjectCard = ({
       {/* Contenedor de texto */}
       <div className="justify-between flex flex-row h-[60px] m-2">
         <div className="items-center h-full w-auto">
-          <h3 className="text-2xl text-text_primary dark:text-dark-text_primary font-bold mb-2">{name}</h3>
-          <p className="text-md text-text_secondary dark:text-dark-text_secondary">{status}</p>
+          <h3 className="text-2xl-custom text-text_primary dark:text-dark-text_primary font-bold mb-2">{name}</h3>
+          <p className="text-md-custom text-text_secondary dark:text-dark-text_secondary">{status}</p>
         </div>
         <div className="flex flex-row h-full space-x-2 items-center">
           <button

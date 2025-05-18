@@ -86,7 +86,7 @@ const MainComponentProjectDetail = ({
   prevRoute: string;
 }) => {
   const navigate = useNavigate();
-  const { showGallery,setShowGallery } = useVariablesContext();
+  const { showGallery, setShowGallery, phoneView } = useVariablesContext();
 
   useEffect(() => {
     document.title = `🔧 Emimenza | ${projectDetails.slug}`;
@@ -106,107 +106,130 @@ const MainComponentProjectDetail = ({
       {/* Backdrop Blur */}
       <div className="absolute inset-0 backdrop-blur-sm bg-[#0b0b0d]/50"></div>
       {/* Modal Content */}
-      <div className="bg-[#0b0b0d] border border-gray-800 rounded-[25px] w-[90%] h-[90%] relative flex flex-col overflow-hidden p-5">
+      <div className="bg-[#0b0b0d] border border-gray-800 rounded-[25px] w-[90%] h-[90%] relative flex flex-col md:overflow-hidden overflow-auto p-5">
         <div className="w-full flex flex-[2] justify-between">
-          <button
-            className="text-white border border-white px-6 py-2 rounded-full font-bold absolute top-5 right-5 flex flex-row items-center justify-between space-x-2"
-            onClick={handleClose}
-          >
-            <span>Close</span>
-            <IoMdClose />
-          </button>
-          <div className="min-w-[40%] max-w-[60%] flex flex-col justify-between mb-2">
-            <div>
-              <p className="text-white text-5xl font-bold">
-                {projectDetails.name}
-              </p>
-              <p className="text-text_secondary dark:text-dark-text_secondary [font-size:clamp(1rem,2.5vw,1.125rem)] mt-4">
-                {projectDetails.description}
-              </p>
+          <div className="flex md:flex-row flex-col justify-between">
+            <div className="flex min-w-[40%] md:max-w-[60%] flex flex-col justify-between mb-2">
+              <div className="flex flex-row items-center justify-between">
+                <p className="text-white text-5xl-custom font-bold text-lg-custom mt-4">
+                  {projectDetails.name}
+                </p>
+                <button
+                  className="text-white border border-white px-2 py-2 rounded-full font-bold flex flex-row items-center justify-between space-x-2"
+                  onClick={handleClose}
+                >
+                  {!phoneView ? <span>Close</span> : null}
+
+                  <IoMdClose />
+                </button>
+              </div>
+              <div className="">
+                {/* descriptions */}
+                <p className="text-text_secondary dark:text-dark-text_secondary text-lg-custom mt-4">
+                  {projectDetails.description}
+                </p>
+                {/* technologies */}
+                <div>
+                  <p className="text-text_secondary dark:text-dark-text_secondary text-lg-custom mt-4">
+                    <span className="text-white font-bold">
+                      Technologies used:
+                    </span>
+                  </p>
+                  <div className="flex flex-wrap gap-4 mt-2">
+                    {projectDetails.technologies.map((tech, index) => (
+                      <div key={index} className="flex items-center gap-2">
+                        <div className="h-6 w-6 text-text_secondary dark:text-dark-text_secondary">
+                          {technologyIcons[tech] || (
+                            <FaPlus className="h-full w-full" />
+                          )}
+                        </div>
+                        <span className="text-text_secondary dark:text-dark-text_secondary text-lg-custom">
+                          {tech}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* links */}
+                <div className=" flex flex-col md:pt-20 py-5 gap-2">
+                  <div className="flex flex-row justify-between items-center ">
+                    <div className="text-lg-custom text-white font-bold">
+                      Date:
+                    </div>
+                    <div className="text-lg-custom text-gray-300 px-2">
+                      {projectDetails.date}
+                    </div>
+                  </div>
+                  <div className="flex flex-row justify-between items-center">
+                    <div className="text-lg-custom text-white font-bold">
+                      Docu:
+                    </div>
+                    <div
+                      className="text-lg-custom Scroll text-gray-300 flex flex-row items-center justify-center space-x-2 cursor-pointer px-2"
+                      onClick={() =>
+                        navigate(`/projects/${projectDetails.slug}`)
+                      }
+                    >
+                      <span>Go</span>
+                      <FiExternalLink />
+                    </div>
+                  </div>
+                  <div className="flex flex-row justify-between items-center">
+                    <div className="text-lg-custom text-white font-bold">
+                      Code:
+                    </div>
+                    <div
+                      className="text-lg-custom text-gray-300 flex flex-row items-center justify-center space-x-2 cursor-pointer px-2"
+                      onClick={() => window.open(projectDetails.link, "_blank")}
+                    >
+                      <span>Visit</span>
+                      <FiExternalLink />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div>
-              <p className="text-text_secondary dark:text-dark-text_secondary text-lg mt-4">
-                <span className="text-white font-bold">Technologies used:</span>
-              </p>
-              <div className="flex flex-wrap gap-4 mt-2">
-                {projectDetails.technologies.map((tech, index) => (
-                  <div key={index} className="flex items-center gap-2">
-                    <div className="h-6 w-6 text-text_secondary dark:text-dark-text_secondary">
-                      {technologyIcons[tech] || (
-                        <FaPlus className="h-full w-full" />
+
+            <div
+              className="w-full flex flex-[4] overflow-x-hidden hover:overflow-x-auto min-h-[150px]"
+              style={{ scrollbarGutter: "stable" }}
+            >
+              <div
+                className="flex flex-nowrap space-x-4 cursor-pointer"
+                onClick={() => setShowGallery(true)}
+              >
+                {projectDetails.storage.map((link, index) => {
+                  const isVideo =
+                    link.includes(".mp4") ||
+                    link.includes(".webm") ||
+                    link.includes(".ogg");
+
+                  return (
+                    <div
+                      key={index}
+                      className="h-full aspect-video flex-shrink-0 rounded-[20px] overflow-hidden bg-background dark:bg-dark-background"
+                    >
+                      {isVideo ? (
+                        <video
+                          src={link}
+                          className="w-full h-full object-cover"
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                        />
+                      ) : (
+                        <div
+                          className="w-full h-full bg-cover bg-center"
+                          style={{ backgroundImage: `url(${link})` }}
+                        />
                       )}
                     </div>
-                    <span className="text-text_secondary dark:text-dark-text_secondary text-lg">{tech}</span>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
-          </div>
-
-          <div className="flex flex-col pt-20 gap-2">
-            <div className="flex flex-row justify-between items-center ">
-              <div className="text-lg text-white font-bold">Date:</div>
-              <div className="text-lg text-gray-300 px-2">
-                {projectDetails.date}
-              </div>
-            </div>
-            <div className="flex flex-row justify-between items-center">
-              <div className="text-lg text-white font-bold">Docu:</div>
-              <div
-                className="text-lg text-gray-300 flex flex-row items-center justify-center space-x-2 cursor-pointer px-2"
-                onClick={() => navigate(`/projects/${projectDetails.slug}`)}
-              >
-                <span>Go</span>
-                <FiExternalLink />
-              </div>
-            </div>
-            <div className="flex flex-row justify-between items-center">
-              <div className="text-lg text-white font-bold">Code:</div>
-              <div
-                className="text-lg text-gray-300 flex flex-row items-center justify-center space-x-2 cursor-pointer px-2"
-                onClick={() => window.open(projectDetails.link, "_blank")}
-              >
-                <span>Visit</span>
-                <FiExternalLink />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          className="w-full flex flex-[4] overflow-x-hidden hover:overflow-x-auto"
-          style={{ scrollbarGutter: "stable" }}
-        >
-          <div className="flex flex-nowrap space-x-4 cursor-pointer" onClick={() => setShowGallery(true)}>
-            {projectDetails.storage.map((link, index) => {
-              const isVideo =
-                link.includes(".mp4") ||
-                link.includes(".webm") ||
-                link.includes(".ogg");
-
-              return (
-                <div
-                  key={index}
-                  className="h-full aspect-video flex-shrink-0 rounded-[20px] overflow-hidden bg-background dark:bg-dark-background"
-                >
-                  {isVideo ? (
-                    <video
-                      src={link}
-                      className="w-full h-full object-cover"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                    />
-                  ) : (
-                    <div
-                      className="w-full h-full bg-cover bg-center"
-                      style={{ backgroundImage: `url(${link})` }}
-                    />
-                  )}
-                </div>
-              );
-            })}
           </div>
         </div>
       </div>
@@ -215,11 +238,11 @@ const MainComponentProjectDetail = ({
       {showGallery && (
         <Gallery
           items={projectDetails.storage.map((link) => ({
-          src: link,
-          type: link.includes(".mp4") ? "video" : "image",
-        }))}
-        onClose={() => setShowGallery(false)}
-      />
+            src: link,
+            type: link.includes(".mp4") ? "video" : "image",
+          }))}
+          onClose={() => setShowGallery(false)}
+        />
       )}
     </div>
   );

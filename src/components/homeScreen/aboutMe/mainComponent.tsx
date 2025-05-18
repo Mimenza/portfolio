@@ -59,11 +59,11 @@ const MainComponentAboutMe = () => {
             animateBy="letters"
             direction="bottom"
             onAnimationComplete={handleAnimationComplete}
-            className="[font-size:clamp(3rem,8vw,6rem)] font-bold mb-6 z-10 text-text_primary dark:text-dark-text_primary"
+            className="text-6xl-custom font-bold mb-6 z-10 text-text_primary dark:text-dark-text_primary"
             threshold={1}
           />
 
-          <p className="[font-size:clamp(1rem,2.5vw,1.125rem)] leading-relaxed mb-6 text-text_secondary dark:text-dark-text_secondary z-10 text-justify">
+          <p className="text-lg-custom leading-relaxed mb-6 text-text_secondary dark:text-dark-text_secondary z-10 text-justify">
             I'm{" "}
             <span className="font-bold text-text_primary dark:text-dark-text_primary">
               Endika Mimenza
@@ -80,7 +80,7 @@ const MainComponentAboutMe = () => {
             </a>
             . Passionate about technology and continuous learning.
           </p>
-          <p className="[font-size:clamp(1rem,2.5vw,1.125rem)] leading-relaxed mb-6 text-text_secondary dark:text-dark-text_secondary z-10 text-justify">
+          <p className="text-lg-custom leading-relaxed mb-6 text-text_secondary dark:text-dark-text_secondary z-10 text-justify">
             I'm passionate about the world of vintage technology and mechanical
             keyboards. In my free time, I'm working on a mobile app called{" "}
             <a
@@ -108,7 +108,7 @@ const MainComponentAboutMe = () => {
           </p>
           <div className="flex space-x-4 z-10">
             <button
-              className="bg-white text-black px-6 py-2 rounded-full font-bold hover:bg-opacity-90 flex flex-row items-center space-x-2"
+              className="bg-white text-black px-6 py-2 rounded-full font-bold hover:bg-opacity-90 flex flex-row items-center space-x-2 xs:text-xs-custom md:text-md-custom"
               onClick={() =>
                 window.open("https://github.com/Mimenza", "_blank")
               }

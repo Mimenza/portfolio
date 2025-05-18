@@ -33,7 +33,7 @@ const Experience: React.FC = () => {
 
   return (
     <div className="w-full flex flex-col h-auto gap-5">
-      <p className="text-text_primary dark:text-dark-text_primary text-bold flex flex-row items-center gap-2 font-bold text-xl">
+      <p className="text-text_primary dark:text-dark-text_primary text-bold flex flex-row items-center gap-2 font-bold text-xl-custom">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 16 16"

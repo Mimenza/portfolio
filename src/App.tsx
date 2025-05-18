@@ -18,6 +18,8 @@ import Test from "./screens/test";
 import { useVariablesContext } from "./context/variablesContext";
 
 const useBreakpointLogger = () => {
+  const { setCustomScroll, phoneView, setPhoneView } = useVariablesContext();
+
   useEffect(() => {
     const breakpoints = {
       sm: window.matchMedia("(min-width: 640px)"),
@@ -42,10 +44,12 @@ const useBreakpointLogger = () => {
       } else if (breakpoints.sm.matches) {
         console.log("Breakpoint: sm");
       } else {
+        setCustomScroll(false);
+        setPhoneView(true);
+        
         console.log("Breakpoint: default (xs)");
       }
     };
-
     // Log the initial breakpoint
     logBreakpoint();
 
@@ -62,7 +66,6 @@ const useBreakpointLogger = () => {
     };
   }, []);
 };
-
 function App() {
   useBreakpointLogger();
   const {
@@ -89,7 +92,7 @@ function App() {
   }, []); // Add darkMode as a dependency
 
   return (
-    <div className="h-auto w-screen sm:px-[100px] 2xl:px-[20%] dark:bg-dark-background bg-background transition-colors duration-700 scrollbar-custom">
+    <div className="h-auto w-screen px-[30px] sm:px-[100px] 2xl:px-[20%] dark:bg-dark-background bg-background transition-colors duration-700 scrollbar-custom">
       <Routes>
         <Route path="/home" element={<HomeScreen />} />
         <Route path="/projects" element={<ProjectsScreen />} />

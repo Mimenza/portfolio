@@ -20,6 +20,8 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
     setDarkMode,
     customScroll,
     setCustomScroll,
+    phoneView,
+    setPhoneView
   } = useVariablesContext();
   const navigate = useNavigate();
   const [activeIcon, setActiveIcon] = useState<number | null>(null); // Track the active icon
@@ -36,6 +38,8 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
 
   useEffect(() => {
     setTimeout(() => setActiveIcon(selectedSection), 100); // Animate to size 100 on load
+    if (selectedSection === 0) setPhoneView(true);
+    else setPhoneView(false);
   }, [selectedSection]);
 
   useEffect(() => {
@@ -82,11 +86,11 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
   const width =
     normalizedScroll < 1
       ? `calc(100% - ${normalizedScroll * (window.innerWidth - 950)}px)`
-      : "440px"; // Gradual width reduction from 100% to 400px
-  const gap = `${80 - normalizedScroll * 60}px`; // Gradual gap reduction from 80px to 20px
+      : "400px"; // Gradual width reduction from 100% to 400px
   const border = `1px solid rgba(11, 11, 13, ${normalizedScroll})`; // Border with dynamic opacity
   const isDark = document.documentElement.classList.contains("dark");
   const backgroundColor = isDark ? "#0b0b0d" : "#ababab";
+
   interface HexToRgbaParams {
     hex: string;
     opacity: number;
@@ -138,11 +142,11 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
     };
   }, [showCloud, selectedSection, customScroll]);
 
-  // py-5 fixed inset-0 mx-[250px] bg-blue-200 z-20 justify-center items-center
+  // py-5 fixed inset-0 mx-[250px]  z-20 justify-center items-center
   return (
-    <div className="fixed h-20 inset-0 sm:mx-[100px] 2xl:mx-[400px] z-20 justify-center items-center flex">
+    <div className="fixed h-20 inset-0 mx-[20px] sm:mx-[100px] 2xl:mx-[400px] z-20 justify-center items-center flex">
       {/* Nube tipo tooltip apuntando al botón del ratón */}
-      {showCloud && selectedSection === 0 && (
+      {/* { phoneView && showCloud && selectedSection === 0 && (
         <div
           style={{
             position: "fixed",
@@ -162,14 +166,13 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
         >
           <span className="text-black flex-1">{cloudText}</span>
           <button
-            aria-label="Cerrar"
-            className="ml-2 text-gray-500 hover:text-gray-800 font-bold text-lg px-2 py-0 rounded transition"
+            aria-label="Close"
+            className="ml-2 text-gray-500 hover:text-gray-800 font-bold text-lg-custom px-2 py-0 rounded transition"
             style={{ background: "none", border: "none", cursor: "pointer" }}
             onClick={() => setShowCloud(false)}
           >
             ×
           </button>
-          {/* Flecha apuntando al botón */}
           <span
             style={{
               position: "absolute",
@@ -184,20 +187,19 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
             }}
           />
         </div>
-      )}
+      )} */}
       <div
         className="p-2 rounded-full flex flex-row items-center justify-between transition-all duration-300"
         style={{
           width: width,
-          gap: gap,
           border: border,
           backgroundColor: hexToRgba(backgroundColor, bgOpacity), // 👈 Solo afecta el fondo
         }}
       >
-        <p className="text-text_primary dark:text-dark-text_primary text-2xl">
+        <p className="text-text_primary dark:text-dark-text_primary text-2xl-custom ">
           EM
         </p>
-        <div className="flex flex-row gap-4">
+        <div className="flex flex-row gap-1 lg:gap-4 xs:text-xs-custom md:text-lg-custom">
           <p
             className={`flex flex-row items-center gap-1 cursor-pointer ${
               selectedSection === 0
@@ -256,9 +258,9 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
             Projects
           </p>
         </div>
-        <div className="flex flex-row gap-2">
+        <div className="flex flex-row gap-2 0">
           <p
-            className="text-text_primary dark:text-dark-text_primary text-2xl cursor-pointer transition-all duration-300 ease-in-out transform"
+            className="text-text_primary dark:text-dark-text_primary text-2xl-custom cursor-pointer transition-all duration-300 ease-in-out transform"
             onClick={handleDarkModeToggle}
           >
             <span
@@ -269,10 +271,10 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
             </span>
           </p>
 
-          {selectedSection === 0 && (
+          {selectedSection === 0 && phoneView === false && (
             <p
               ref={mouseBtnRef}
-              className="text-text_primary dark:text-dark-text_primary text-2xl cursor-pointer transition-all duration-300 ease-in-out transform"
+              className="text-text_primary dark:text-dark-text_primary text-2xl-custom cursor-pointer transition-all duration-300 ease-in-out transform"
               onClick={() => {
                 setCustomScroll((prev) => !prev);
                 if (showCloud) setShowCloud(false);
