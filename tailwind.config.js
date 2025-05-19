@@ -52,8 +52,13 @@ module.exports = {
         fadeOutScale: "fadeOutScale 0.5s ease-in-out",
         float: "float 3s ease-in-out infinite",
         fadeInDownScroll: "fadeInDownScroll 2s ease-in-out infinite",
+        shine: 'shine 5s linear infinite',
       },
       keyframes: {
+         shine: {
+          '0%': { 'background-position': '100%' },
+          '100%': { 'background-position': '-100%' },
+        },
         fadeInUp: {
           "0%": { opacity: 0, transform: "translateY(20px)" },
           "100%": { opacity: 1, transform: "translateY(0)" },

@@ -115,83 +115,15 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
     return `rgba(${r}, ${g}, ${b}, ${opacity})`;
   };
 
-  useEffect(() => {
-    const updateCloudPosition = () => {
-      if (showCloud && mouseBtnRef.current) {
-        const rect = mouseBtnRef.current.getBoundingClientRect();
-        setCloudPosition({
-          top: rect.bottom + 12,
-          left: rect.left - 40,
-        });
-      }
-    };
-
-    // Actualiza la posición al montar y cada vez que cambian las dependencias
-    updateCloudPosition();
-
-    // Escuchar scroll y resize para actualizar la posición en tiempo real
-    window.addEventListener("scroll", updateCloudPosition);
-    window.addEventListener("resize", updateCloudPosition);
-
-    // Cleanup para evitar fugas de memoria
-    return () => {
-      window.removeEventListener("scroll", updateCloudPosition);
-      window.removeEventListener("resize", updateCloudPosition);
-    };
-  }, [showCloud, selectedSection, customScroll]);
-
   // py-5 fixed inset-0 mx-[250px]  z-20 justify-center items-center
   return (
     <div className="fixed h-20 inset-0 mx-[20px] sm:mx-[100px] 2xl:mx-[400px] z-20 justify-center items-center flex">
-      {/* Nube tipo tooltip apuntando al botón del ratón */}
-      {/* { phoneView && showCloud && selectedSection === 0 && (
-        <div
-          style={{
-            position: "fixed",
-            top: cloudPosition.top,
-            left: cloudPosition.left,
-            zIndex: 50,
-            background: "white",
-            border: "1px solid #ccc",
-            borderRadius: "12px",
-            padding: "14px 20px 14px 16px",
-            boxShadow: "0 2px 12px rgba(0,0,0,0.13)",
-            width: "220px",
-            display: "flex",
-            alignItems: "center",
-            gap: "12px",
-          }}
-        >
-          <span className="text-black flex-1">{cloudText}</span>
-          <button
-            aria-label="Close"
-            className="ml-2 text-gray-500 hover:text-gray-800 font-bold text-lg-custom px-2 py-0 rounded transition"
-            style={{ background: "none", border: "none", cursor: "pointer" }}
-            onClick={() => setShowCloud(false)}
-          >
-            ×
-          </button>
-          <span
-            style={{
-              position: "absolute",
-              top: -10,
-              left: 50,
-              width: 0,
-              height: 0,
-              borderLeft: "10px solid transparent",
-              borderRight: "10px solid transparent",
-              borderBottom: "10px solid white",
-              filter: "drop-shadow(0px -1px 1px #ccc)",
-            }}
-          />
-        </div>
-      )} */}
       <div
         className="p-2 rounded-full flex flex-row items-center justify-between transition-all duration-300"
         style={{
           width: width,
           border: border,
-          backgroundColor: hexToRgba(backgroundColor, bgOpacity), // 👈 Solo afecta el fondo
+          backgroundColor: hexToRgba(backgroundColor, bgOpacity),
         }}
       >
         <p className="text-text_primary dark:text-dark-text_primary text-2xl-custom ">
@@ -268,24 +200,6 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
               {darkMode ? <IoIosSunny /> : <IoMoon />}
             </span>
           </p>
-
-          {selectedSection === 0 && phoneView === false && (
-            <p
-              ref={mouseBtnRef}
-              className="text-text_primary dark:text-dark-text_primary text-2xl-custom cursor-pointer transition-all duration-300 ease-in-out transform"
-              onClick={() => {
-                setCustomScroll((prev) => !prev);
-                if (showCloud) setShowCloud(false);
-              }}
-            >
-              <span
-                key={customScroll ? "scroll" : "scroll-fill"}
-                className="transition-opacity duration-300 ease-in-out opacity-100"
-              >
-                {customScroll ? <PiMouseScroll /> : <PiMouseScrollFill />}
-              </span>
-            </p>
-          )}
         </div>
       </div>
     </div>

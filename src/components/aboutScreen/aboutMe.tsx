@@ -3,6 +3,7 @@ import React from "react";
 const AboutMe: React.FC = () => {
   return (
     <div className="w-full flex flex-col h-auto gap-5">
+      
       <p className="text-text_primary dark:text-dark-text_primary text-bold flex flex-row items-center gap-2 font-bold font-clash text-xl-custom">
         {" "}
        <svg
@@ -24,14 +25,14 @@ const AboutMe: React.FC = () => {
       <div>
         <p className="text-lg-custom leading-relaxed mb-6 text-text_secondary dark:text-dark-text_secondary z-10">
           I'm{" "}
-          <span className="font-bold text-text_primary dark:text-dark-text_primary">Endika Mimenza</span>,
+          <span className="font-bold font-clash text-text_primary dark:text-dark-text_primary">Endika Mimenza</span>,
           25-year-old web and mobile developer, with experience in application
           development. Currently learning React and React Native, while
           expanding my knowledge in backend development and languages like C and
           C++ at{" "}
           <a
             href="https://42urduliz.com"
-            className="text-text_primary dark:text-dark-text_primary no-underline"
+            className="text-text_primary dark:text-dark-text_primary no-underline font-clash"
           >
             42 Urduliz
           </a>
@@ -42,19 +43,19 @@ const AboutMe: React.FC = () => {
           keyboards. In my free time, I'm working on a mobile app called{" "}
           <a
             href="https://emimenza/projects/TravelLens.vercel.app"
-            className="text-text_primary dark:text-dark-text_primary no-underline"
+            className="text-text_primary dark:text-dark-text_primary no-underline font-clash"
           >
             TravelLens
           </a>
           , built with React Native. I've also created other mobile apps like{" "}
           <a
             href="https://emimenza/projects/SagarraJo.vercel.app"
-            className="text-text_primary dark:text-dark-text_primary no-underline"
+            className="text-text_primary dark:text-dark-text_primary no-underline font-clash"
           >
             Sagarra Jo
           </a>{" "}
           and{" "}
-          <a href="https://emimenza/projects/Zap.vercel.app" className="text-text_primary dark:text-dark-text_primary no-underline">
+          <a href="https://emimenza/projects/Zap.vercel.app" className="text-text_primary dark:text-dark-text_primary no-underline font-clash">
             Zap
           </a>
           . These are personal projects that let me explore and enjoy the

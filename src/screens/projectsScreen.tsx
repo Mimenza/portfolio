@@ -11,6 +11,7 @@ import Footer from "../components/shared/footer/footer";
 import HorizontalCard from "../components/projectScreen/horizontalCard";
 import MainComponentProjectDetail from "../components/shared/projectDetail/mainComponent";
 
+import ShinyText from "../blocks/TextAnimations/ShinyText/ShinyText";
 const ProjectsScreen = () => {
   const navigate = useNavigate();
   const { logedUser } = useLogedUser();
@@ -120,17 +121,20 @@ const ProjectsScreen = () => {
               >
                 <path d="m12 3-1.9 5.8a2 2 0 0 1-1.287 1.288L3 12l5.8 1.9a2 2 0 0 1 1.288 1.287L12 21l1.9-5.8a2 2 0 0 1 1.287-1.288L21 12l-5.8-1.9a2 2 0 0 1-1.288-1.287Z"></path>
               </svg>
-          <span className="text-lg-custom text-secondary dark:text-dark-secondary">
-              Most of my work
-            </span>
+          <ShinyText
+              text="Most of my work"
+              disabled={false}
+              speed={2}
+              className="text-lg-custom text-secondary dark:text-dark-secondary"
+            />
         </div>
-        <p className="text-6xl-custom font-bold mt-1 text-white">Projects</p>
+        <p className="text-6xl-custom font-bold font-clash mt-1 text-white">Projects</p>
         <p className="m-4 text-lg-custom text-gray-300">
           Here you can find most of my projects.
         </p>
-        <div className="grid lg:grid-cols-2 md:grid-cols-2 xl:grid-cols-2 grid-cols-2 gap-5 h-auto w-auto">
+        <div className="grid lg:grid-cols-2 md:grid-cols-2 xl:grid-cols-2 grid-cols-2 gap-10 h-auto w-auto">
           {projects.map((project, index) => (
-            <div key={index} className="w-full">
+            <div key={index} className={index % 2 === 1 ? "mt-20" : ""}>
               <HorizontalCard
                 onClickProject={() => {
                   handleProjectCardClick(project);

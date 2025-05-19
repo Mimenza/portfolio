@@ -40,7 +40,7 @@ const AboutScreen: React.FC = () => {
                 alt="profilePic"
               />
               <div className="flex-[3] flex flex-col h-auto justify-center">
-                <p className="text-text_primary dark:text-dark-text_primary">Endika Mimenza</p>
+                <p className="text-text_primary dark:text-dark-text_primary font-clash">Endika Mimenza</p>
                 <p className="text-text_secondary dark:text-dark-text_secondary">Developer</p>
                 <p className="text-text_secondary dark:text-dark-text_secondary">
                   <a

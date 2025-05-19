@@ -2,7 +2,7 @@
 
 import { useNavigate } from "react-router-dom";
 
-// import VariableProximity from "../../blocks/TextAnimations/VariableProximity/VariableProximity";
+import ShinyText from "../../../blocks/TextAnimations/ShinyText/ShinyText";
 
 const MainComponentAboutMe = () => {
   const navigate = useNavigate();
@@ -30,9 +30,7 @@ const MainComponentAboutMe = () => {
                 <path d="m12 3-1.9 5.8a2 2 0 0 1-1.287 1.288L3 12l5.8 1.9a2 2 0 0 1 1.288 1.287L12 21l1.9-5.8a2 2 0 0 1 1.287-1.288L21 12l-5.8-1.9a2 2 0 0 1-1.288-1.287Z"></path>
               </svg>
         </span>
-        <span className="text-lg-custom text-text_secondary dark:text-dark-text_secondary">
-          Hey! It's me Endika,
-        </span>
+        <ShinyText text="Hey! It's me Endika," disabled={false} speed={2} className='text-lg-custom text-text_secondary dark:text-dark-text_secondary' />
       </div>
 
       {/* Título principal */}

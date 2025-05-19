@@ -69,7 +69,7 @@ const LoginScreen = () => {
       </div>
 
       {/* Login Form */}
-      <div className="relative z-10 p-8 rounded-lg shadow-lg w-96">
+      <div className="relative z-10 p-8 rounded-lg shadow-lg w-96 bg-background dark:bg-dark-background">
         <h2 className="text-4xl-custom font-bold font-clash mb-4 text-center text-white">
           Login
         </h2>

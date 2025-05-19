@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import ProjectCard from "./projectCard";
 import { useNavigate } from "react-router-dom";
 
+import ShinyText from "../../../blocks/TextAnimations/ShinyText/ShinyText";
 import MainComponentProjectDetail from "../../shared/projectDetail/mainComponent";
 import supabase from "../../../supabase/client";
 import { Project } from "../../../interface/Project";
@@ -94,23 +95,26 @@ const MainComponentProyects = () => {
       <div ref={sectionRef} className="w-full h-full flex flex-col gap-5">
         <div className="">
           <div className="flex flex-row items-center gap-2 mb-2">
-           <svg
-                className="size-4 text-secondary fill-background dark:fill-dark-background"
-                xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="m12 3-1.9 5.8a2 2 0 0 1-1.287 1.288L3 12l5.8 1.9a2 2 0 0 1 1.288 1.287L12 21l1.9-5.8a2 2 0 0 1 1.287-1.288L21 12l-5.8-1.9a2 2 0 0 1-1.288-1.287Z"></path>
-              </svg>
-            <span className="text-lg-custom text-secondary dark:text-dark-secondary">
-              Some of my work
-            </span>
+            <svg
+              className="size-4 text-secondary fill-background dark:fill-dark-background"
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="m12 3-1.9 5.8a2 2 0 0 1-1.287 1.288L3 12l5.8 1.9a2 2 0 0 1 1.288 1.287L12 21l1.9-5.8a2 2 0 0 1 1.287-1.288L21 12l-5.8-1.9a2 2 0 0 1-1.288-1.287Z"></path>
+            </svg>
+            <ShinyText
+              text="Some of my work"
+              disabled={false}
+              speed={2}
+              className="text-lg-custom text-secondary dark:text-dark-secondary"
+            />
           </div>
           <h1 className="text-6xl-custom font-bold font-clash mt-1 text-text_primary dark:text-dark-text_primary">
             Projects
@@ -137,7 +141,7 @@ const MainComponentProyects = () => {
         <div className="h-full w-full flex justify-center items-center">
           <div className="w-full grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-10">
             {projects.slice(0, itemsToShow).map((project, index) => (
-              <div key={index} className={index % 2 === 1 ? "mt-10" : ""}>
+              <div key={index} className={index % 2 === 1 ? "mt-20" : ""}>
                 <ProjectCard
                   onClickProject={() => handleProjectCardClick(project)}
                   id={project.id}
