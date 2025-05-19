@@ -2,10 +2,13 @@ import React, { useEffect } from "react";
 import { Certification as CertificationInterface } from "../../interface/Certification";
 import supabase from "../../supabase/client";
 
+import { useVariablesContext } from "../../context/variablesContext";
+
 const Certification: React.FC = () => {
   const [certification, setCertification] = React.useState<
     CertificationInterface[]
   >([]);
+  const { phoneView } = useVariablesContext();
 
   useEffect(() => {
     const getCertification = async () => {
@@ -35,37 +38,61 @@ const Certification: React.FC = () => {
 
   return (
     <div className="w-full flex flex-col h-auto gap-5">
-      <p className="text-text_primary dark:text-dark-text_primary text-bold flex flex-row items-center gap-2 font-bold text-xl-custom">
+      <p className="text-text_primary dark:text-dark-text_primary text-bold flex flex-row items-center gap-2 font-bold font-clash text-xl-custom">
         {" "}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 16 16"
-          className="size-4 dark:fill-dark-secondary fill-secondary"
-        >
-          <path
-            fillRule="evenodd"
-            d="M5 4a.75.75 0 0 1 .738.616l.252 1.388A1.25 1.25 0 0 0 6.996 7.01l1.388.252a.75.75 0 0 1 0 1.476l-1.388.252A1.25 1.25 0 0 0 5.99 9.996l-.252 1.388a.75.75 0 0 1-1.476 0L4.01 9.996A1.25 1.25 0 0 0 3.004 8.99l-1.388-.252a.75.75 0 0 1 0-1.476l1.388-.252A1.25 1.25 0 0 0 4.01 6.004l.252-1.388A.75.75 0 0 1 5 4ZM12 1a.75.75 0 0 1 .721.544l.195.682c.118.415.443.74.858.858l.682.195a.75.75 0 0 1 0 1.442l-.682.195a1.25 1.25 0 0 0-.858.858l-.195.682a.75.75 0 0 1-1.442 0l-.195-.682a1.25 1.25 0 0 0-.858-.858l-.682-.195a.75.75 0 0 1 0-1.442l.682-.195a1.25 1.25 0 0 0 .858-.858l.195-.682A.75.75 0 0 1 12 1ZM10 11a.75.75 0 0 1 .728.568.968.968 0 0 0 .704.704.75.75 0 0 1 0 1.456.968.968 0 0 0-.704.704.75.75 0 0 1-1.456 0 .968.968 0 0 0-.704-.704.75.75 0 0 1 0-1.456.968.968 0 0 0 .704-.704A.75.75 0 0 1 10 11Z"
-            clipRule="evenodd"
-          />
-        </svg>
+       <svg
+                className="size-4 text-secondary fill-background dark:fill-dark-background"
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="m12 3-1.9 5.8a2 2 0 0 1-1.287 1.288L3 12l5.8 1.9a2 2 0 0 1 1.288 1.287L12 21l1.9-5.8a2 2 0 0 1 1.287-1.288L21 12l-5.8-1.9a2 2 0 0 1-1.288-1.287Z"></path>
+              </svg>
         Certifications
       </p>
 
       {certification.map((cer, index) => (
         <div key={index} className="h-auto w-full flex flex-row">
-          <div className="flex-[1]">
-            <p className="text-text_primary dark:text-dark-text_primary">{cer.date}</p>
-          </div>
+          {!phoneView ? (
+            <div className="flex-[1]">
+              <p className="text-text_primary dark:text-dark-text_primary">
+                {cer.date}
+              </p>
+            </div>
+          ) : null}
           <div className="flex flex-[2] flex-col gap-5">
             <div className="flex flex-row justify-between items-center h-10">
-              <div className="font-bold text-text_primary dark:text-dark-text_primary">{cer.name}</div>
-              <img
-                src={cer.logo}
-                alt="logo"
-                className="h-full aspect-square rounded-[10px]"
-              />
+              <div className="font-bold text-text_primary dark:text-dark-text_primary h-10 flex flex-row items-center gap-2">
+                {phoneView ? (
+                  <img
+                    src={cer.logo}
+                    alt="logo"
+                    className="h-full aspect-square rounded-[10px]"
+                  />
+                ) : null}
+                {cer.name}
+              </div>
+              {phoneView ? (
+                <div className="font-bold text-text_primary dark:text-dark-text_primary">
+                  {cer.date}
+                </div>
+              ) : (
+                <img
+                  src={cer.logo}
+                  alt="logo"
+                  className="h-full aspect-square rounded-[10px]"
+                />
+              )}
             </div>
-            <div className="text-text_secondary dark:text-dark-text_secondary">{cer.description}</div>
+            <div className="text-text_secondary dark:text-dark-text_secondary">
+              {cer.description}
+            </div>
           </div>
         </div>
       ))}

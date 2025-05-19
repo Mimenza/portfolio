@@ -27,7 +27,7 @@ const SlugScreen = () => {
 
       if (error) {
         console.error("Error fetching project:", error);
-        setHtmlContent("<h1>Proyect not found</h1>");
+        setHtmlContent("<h1>Project not found</h1>");
         navigate("/home");
       } else {
         // Verifica si data.html es un enlace

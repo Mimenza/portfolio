@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import ProjectCard from "./projectCard";
-import GradientText from "../../../blocks/TextAnimations/GradientText/GradientText";
 import { useNavigate } from "react-router-dom";
 
 import MainComponentProjectDetail from "../../shared/projectDetail/mainComponent";
@@ -92,38 +91,29 @@ const MainComponentProyects = () => {
 
   return (
     <>
-      <div ref={sectionRef} className="w-full h-full flex flex-col">
-        <div className="mt-20">
+      <div ref={sectionRef} className="w-full h-full flex flex-col gap-5">
+        <div className="">
           <div className="flex flex-row items-center gap-2 mb-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 16 16"
-              className="size-4 dark:fill-dark-secondary fill-secondary"
-            >
-              <path
-                fillRule="evenodd"
-                d="M5 4a.75.75 0 0 1 .738.616l.252 1.388A1.25 1.25 0 0 0 6.996 7.01l1.388.252a.75.75 0 0 1 0 1.476l-1.388.252A1.25 1.25 0 0 0 5.99 9.996l-.252 1.388a.75.75 0 0 1-1.476 0L4.01 9.996A1.25 1.25 0 0 0 3.004 8.99l-1.388-.252a.75.75 0 0 1 0-1.476l1.388-.252A1.25 1.25 0 0 0 4.01 6.004l.252-1.388A.75.75 0 0 1 5 4ZM12 1a.75.75 0 0 1 .721.544l.195.682c.118.415.443.74.858.858l.682.195a.75.75 0 0 1 0 1.442l-.682.195a1.25 1.25 0 0 0-.858.858l-.195.682a.75.75 0 0 1-1.442 0l-.195-.682a1.25 1.25 0 0 0-.858-.858l-.682-.195a.75.75 0 0 1 0-1.442l.682-.195a1.25 1.25 0 0 0 .858-.858l.195-.682A.75.75 0 0 1 12 1ZM10 11a.75.75 0 0 1 .728.568.968.968 0 0 0 .704.704.75.75 0 0 1 0 1.456.968.968 0 0 0-.704.704.75.75 0 0 1-1.456 0 .968.968 0 0 0-.704-.704.75.75 0 0 1 0-1.456.968.968 0 0 0 .704-.704A.75.75 0 0 1 10 11Z"
-                clipRule="evenodd"
-              />
-            </svg>
-            <GradientText
-              colors={[
-                "#e303fc",
-                "#5a03fc",
-                "#038cfc",
-                "#e303fc",
-                "#5a03fc",
-                "#038cfc",
-              ]}
-              animationSpeed={2}
-              showBorder={false}
-              className=""
-            >
-              SOME OF MY WORK
-            </GradientText>
+           <svg
+                className="size-4 text-secondary fill-background dark:fill-dark-background"
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="m12 3-1.9 5.8a2 2 0 0 1-1.287 1.288L3 12l5.8 1.9a2 2 0 0 1 1.288 1.287L12 21l1.9-5.8a2 2 0 0 1 1.287-1.288L21 12l-5.8-1.9a2 2 0 0 1-1.288-1.287Z"></path>
+              </svg>
+            <span className="text-lg-custom text-secondary dark:text-dark-secondary">
+              Some of my work
+            </span>
           </div>
-          <h1 className="text-6xl-custom font-bold mt-1 text-text_primary dark:text-dark-text_primary">
-            Proyects
+          <h1 className="text-6xl-custom font-bold font-clash mt-1 text-text_primary dark:text-dark-text_primary">
+            Projects
           </h1>
           <div className="flex flex-row justify-between">
             <p className="mt-4 text-lg-custom text-text_secondary dark:text-dark-text_secondary">
@@ -132,7 +122,7 @@ const MainComponentProyects = () => {
             </p>
             <div>
               <button
-                className="bg-white text-black text-sm px-6 py-2 rounded-full hover:bg-opacity-90 flex flex-row items-center space-x-2"
+                className="bg-white text-black font-bold text-sm px-6 py-2 rounded-full hover:bg-opacity-90 flex flex-row items-center"
                 onClick={() => {
                   navigate("/projects");
                 }}
@@ -145,9 +135,9 @@ const MainComponentProyects = () => {
 
         {/* Container for Projects */}
         <div className="h-full w-full flex justify-center items-center">
-          <div className="w-full grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-5">
+          <div className="w-full grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-10">
             {projects.slice(0, itemsToShow).map((project, index) => (
-              <div key={index}>
+              <div key={index} className={index % 2 === 1 ? "mt-10" : ""}>
                 <ProjectCard
                   onClickProject={() => handleProjectCardClick(project)}
                   id={project.id}

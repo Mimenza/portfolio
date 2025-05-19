@@ -2,30 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Clash Display';
+  src: url('./assets/fonts/ClashDisplay/ClashDisplay-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('./assets/fonts/Satoshi/Satoshi-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+:root {
+  --font-clash: 'Clash Display';
+  --font-satoshi: 'Satoshi';
+}
+
 body {
-  font-family: 'Montserrat', -apple-system, system-ui, sans-serif;
+  font-family: var(--font-satoshi), sans-serif;
 }
 
-.scrollbar-custom {
-  scrollbar-width: thin;
-  scrollbar-color: #a0aec0 transparent; /* Firefox light mode */
-}
-
-/* Firefox dark mode */
-:root.dark .scrollbar-custom {
-  scrollbar-color: #4a5568 transparent;
-}
-
-/* Chrome, Safari, Edge (WebKit) */
-.scrollbar-custom::-webkit-scrollbar {
-  width: 8px;
-}
-
-.scrollbar-custom::-webkit-scrollbar-thumb {
-  background-color: #a0aec0;
-  border-radius: 4px;
-}
-
-:root.dark .scrollbar-custom::-webkit-scrollbar-thumb {
-  background-color: #4a5568;
+@layer base {
+  ::selection {
+    background-color: #7e22ce;
+    color: #ffff;
+  }
 }

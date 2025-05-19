@@ -29,7 +29,7 @@ import { IoLogoVercel } from "react-icons/io5"; //Vercel
 import { SiExpo } from "react-icons/si"; //Expo
 import { FaGithub } from "react-icons/fa"; //Github
 
-import { env } from "process";
+import { useVariablesContext } from "../../context/variablesContext";
 const Default = process.env.REACT_APP_PROJECT_DEFAULT_IMG;
 
 const HorizontalCard = ({
@@ -81,12 +81,18 @@ const HorizontalCard = ({
     Expo: <SiExpo className="h-full w-full" />,
     Github: <FaGithub className="h-full w-full" />,
   };
-
+  const { phoneView } = useVariablesContext();
   return (
-    <div className="flex flex-col z-10 w-full sm:w-full md:w-full lg:w-full dark:bg-dark-muted bg-muted bg-opacity-25 p-5 rounded-[25px] group transition-transform duration-300 ease-in-out">
+    <div
+      className={`flex flex-col z-10 w-full sm:w-full md:w-full lg:w-full dark:bg-dark-muted bg-muted bg-opacity-25 group transition-transform duration-300 ease-in-out gap-2 ${
+        phoneView ? "rounded-[12px] p-2" : "rounded-[25px] p-5"
+      }`}
+    >
       {/* Contenedor de la imagen */}
       <div
-        className="aspect-[16/9] overflow-hidden cursor-pointer rounded-[25px]"
+        className={`aspect-[16/9] overflow-hidden cursor-pointer ${
+          phoneView ? "rounded-[12px]" : "rounded-[25px]"
+        }`}
         onClick={() => onClickProject && onClickProject(id)}
       >
         <video
@@ -94,7 +100,9 @@ const HorizontalCard = ({
           autoPlay
           muted
           loop
-          className="h-full w-full object-cover rounded-[25px] transition-transform duration-300 ease-in-out group-hover:scale-105"
+          className={`h-full w-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105 ${
+            phoneView ? "rounded-[12px]" : "rounded-[25px]"
+          }`}
           onError={(e) => {
             const videoElement = e.target as HTMLVideoElement;
             videoElement.style.display = "none";
@@ -105,7 +113,9 @@ const HorizontalCard = ({
         />
         <img
           src={cover}
-          className="h-full w-full object-cover rounded-[25px] transition-transform duration-300 ease-in-out group-hover:scale-105 hidden"
+          className={`h-full w-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105 hidden ${
+            phoneView ? "rounded-[12px]" : "rounded-[25px]"
+          }`}
           onError={(e) => {
             const imgElement = e.target as HTMLImageElement;
             imgElement.src = Default || "";
@@ -114,35 +124,45 @@ const HorizontalCard = ({
       </div>
 
       {/* Contenedor de texto */}
-      <div className="justify-between flex flex-row h-[60px] m-2">
-        <div className="h-full w-auto flex flex-col flex-[1]">
-          <h3 className="text-lg-custom text-text_primary dark:text-dark-text_primary font-bold mb-2">
+      <div
+        className={` flex flex-row   ${
+          phoneView ? "my-1 h-auto items-center" : "my-2 h-[60px]"
+        }`}
+      >
+        <div className="h-full w-auto flex flex-col flex-[1] justify-center">
+          <h3 className={` ${phoneView ? "text-sm-custom" : "text-lg-custom"} text-text_primary dark:text-dark-text_primary font-bold`}>
             {name}
           </h3>
-          <p className="text-lg-custom text-text_secondary dark:text-dark-text_secondary dark:text-dark-text_primary whitespace-nowrap">
-            {status}
-          </p>
+          {!phoneView ? (
+            <p className="text-sm-custom text-text_secondary dark:text-dark-text_secondary dark:text-dark-text_primary whitespace-nowrap">
+              {status}
+            </p>
+          ) : null}
         </div>
-        <div className="flex flex-wrap gap-2 items-center justify-end flex-[1] overflow-hidden">
-          {technologies.slice(0, 4).map((tech, index) => (
-            <div
-              key={index}
-              className="h-full w-full flex items-center justify-center aspect-square max-w-[60px] max-h-[60px] flex-shrink-0 border border-gray-600 border-opacity-25 rounded-[15px] p-1 hover:bg-neutral-900 transition duration-300 ease-in-out text-gray-300"
-            >
-              <div className="w-full h-full">
-                {technologyIcons[tech] || (
-                  <FaPlus className="w-full h-full object-contain" />
-                )}
+        {!phoneView ? (
+          <div className="flex flex-wrap gap-2 items-center justify-end flex-[1] overflow-hidden">
+            {technologies.slice(0, 4).map((tech, index) => (
+              <div
+                key={index}
+                className="h-full w-full flex items-center justify-center aspect-square max-w-[60px] max-h-[60px] flex-shrink-0 border border-gray-600 border-opacity-25 rounded-[15px] p-1 hover:bg-neutral-900 transition duration-300 ease-in-out text-gray-300"
+              >
+                <div className="w-full h-full">
+                  {technologyIcons[tech] || (
+                    <FaPlus className="w-full h-full object-contain" />
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+        ) : null}
+      </div>
+      {!phoneView ? (
+        <div className="text-md-custom text-text_third dark:text-dark-text_third w-full text-justify">
+          {description.length > ( 200)
+            ? `${description.substring(0,  200)}...`
+            : description}
         </div>
-      </div>
-      <div className="text-md-custom text-text_third dark:text-dark-text_third mt-4 w-full text-justify">
-        {description.length > 200
-          ? `${description.substring(0, 200)}...`
-          : description}
-      </div>
+      ) : null}
     </div>
   );
 };

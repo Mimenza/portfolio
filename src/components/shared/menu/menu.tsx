@@ -38,8 +38,6 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
 
   useEffect(() => {
     setTimeout(() => setActiveIcon(selectedSection), 100); // Animate to size 100 on load
-    if (selectedSection === 0) setPhoneView(true);
-    else setPhoneView(false);
   }, [selectedSection]);
 
   useEffect(() => {

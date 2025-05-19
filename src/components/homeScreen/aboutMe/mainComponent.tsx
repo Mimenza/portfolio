@@ -1,11 +1,5 @@
 // import { useRef } from "react";
 
-import { FaGithub } from "react-icons/fa";
-
-import LightButton from "../../ui/lightButton";
-import BlurText from "../../../blocks/TextAnimations/BlurText/BlurText";
-import GradientText from "../../../blocks/TextAnimations/GradientText/GradientText";
-import { ImgSpotlightBorder } from "../../ui/imgSpotlightBorder";
 import { useNavigate } from "react-router-dom";
 
 // import VariableProximity from "../../blocks/TextAnimations/VariableProximity/VariableProximity";
@@ -17,120 +11,96 @@ const MainComponentAboutMe = () => {
   };
 
   return (
-    <div className="relative h-full w-full flex flex-col items-center justify-center">
-      {/* Contenido existente */}
-      <div className="w-full flex flex-col md:flex-row items-center animate-fadeInUp justify-between gap-6 md:gap-12">
-
-        {/* Left Text Div */}
-        {/* Left Text Div */}
-        <div className="flex flex-col justify-center animate-float w-full max-w-[700px] relative">
-          <div className="flex flex-row items-center gap-2 mb-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 16 16"
-              className="size-4 dark:fill-dark-secondary fill-secondary"
-            >
-              <path
-                fillRule="evenodd"
-                d="M5 4a.75.75 0 0 1 .738.616l.252 1.388A1.25 1.25 0 0 0 6.996 7.01l1.388.252a.75.75 0 0 1 0 1.476l-1.388.252A1.25 1.25 0 0 0 5.99 9.996l-.252 1.388a.75.75 0 0 1-1.476 0L4.01 9.996A1.25 1.25 0 0 0 3.004 8.99l-1.388-.252a.75.75 0 0 1 0-1.476l1.388-.252A1.25 1.25 0 0 0 4.01 6.004l.252-1.388A.75.75 0 0 1 5 4ZM12 1a.75.75 0 0 1 .721.544l.195.682c.118.415.443.74.858.858l.682.195a.75.75 0 0 1 0 1.442l-.682.195a1.25 1.25 0 0 0-.858.858l-.195.682a.75.75 0 0 1-1.442 0l-.195-.682a1.25 1.25 0 0 0-.858-.858l-.682-.195a.75.75 0 0 1 0-1.442l.682-.195a1.25 1.25 0 0 0 .858-.858l.195-.682A.75.75 0 0 1 12 1ZM10 11a.75.75 0 0 1 .728.568.968.968 0 0 0 .704.704.75.75 0 0 1 0 1.456.968.968 0 0 0-.704.704.75.75 0 0 1-1.456 0 .968.968 0 0 0-.704-.704.75.75 0 0 1 0-1.456.968.968 0 0 0 .704-.704A.75.75 0 0 1 10 11Z"
-                clipRule="evenodd"
-              />
-            </svg>
-            <GradientText
-              colors={[
-                "#e303fc",
-                "#5a03fc",
-                "#038cfc",
-                "#e303fc",
-                "#5a03fc",
-                "#038cfc",
-              ]}
-              animationSpeed={2}
-              showBorder={false}
-              className=""
-            >
-              KNOW ME BETTER
-            </GradientText>
-          </div>
-
-          <BlurText
-            text="Hi there!"
-            delay={150}
-            animateBy="letters"
-            direction="bottom"
-            onAnimationComplete={handleAnimationComplete}
-            className="text-6xl-custom font-bold mb-6 z-10 text-text_primary dark:text-dark-text_primary"
-            threshold={1}
-          />
-
-          <p className="text-lg-custom leading-relaxed mb-6 text-text_secondary dark:text-dark-text_secondary z-10 text-justify">
-            I'm{" "}
-            <span className="font-bold text-text_primary dark:text-dark-text_primary">
-              Endika Mimenza
-            </span>
-            , 25-year-old web and mobile developer, with experience in
-            application development. Currently learning React and React Native,
-            while expanding my knowledge in backend development and languages
-            like C and C++ at{" "}
-            <a
-              href="https://42urduliz.com"
-              className="text-text_primary dark:text-dark-text_primary no-underline"
-            >
-              42 Urduliz
-            </a>
-            . Passionate about technology and continuous learning.
-          </p>
-          <p className="text-lg-custom leading-relaxed mb-6 text-text_secondary dark:text-dark-text_secondary z-10 text-justify">
-            I'm passionate about the world of vintage technology and mechanical
-            keyboards. In my free time, I'm working on a mobile app called{" "}
-            <a
-              href="https://travellens.com"
-              className="text-text_primary dark:text-dark-text_primary no-underline"
-            >
-              TravelLens
-            </a>
-            , built with React Native. I've also created other mobile apps like{" "}
-            <a
-              href="https://sagarrajo.com"
-              className="text-text_primary dark:text-dark-text_primary no-underline"
-            >
-              Sagarra Jo
-            </a>{" "}
-            and{" "}
-            <a
-              href="https://zap.com"
-              className="text-text_primary dark:text-dark-text_primary no-underline"
-            >
-              Zap
-            </a>
-            . These are personal projects that let me explore and enjoy the
-            intersection of creativity, code, and tech.
-          </p>
-          <div className="flex space-x-4 z-10">
-            <button
-              className="bg-white text-black px-6 py-2 rounded-full font-bold hover:bg-opacity-90 flex flex-row items-center space-x-2 xs:text-xs-custom md:text-md-custom"
-              onClick={() =>
-                window.open("https://github.com/Mimenza", "_blank")
-              }
-            >
-              <span>Github</span>
-              <FaGithub />
-            </button>
-            <LightButton
-              onClick={() => {
-                navigate("/about");
-              }}
-            >
-              {" "}
-              Read about me!
-            </LightButton>
-          </div>
-        </div>
-
-        <ImgSpotlightBorder />
+    <section className="w-full min-h-[70vh] flex flex-col justify-center items-start pt-16 pb-8 px-2 md:px-0">
+      {/* Presentación */}
+      <div className="mb-6 flex items-center gap-3">
+        <span className="inline-block">
+        <svg
+                className="size-4 text-secondary fill-background dark:fill-dark-background"
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="m12 3-1.9 5.8a2 2 0 0 1-1.287 1.288L3 12l5.8 1.9a2 2 0 0 1 1.288 1.287L12 21l1.9-5.8a2 2 0 0 1 1.287-1.288L21 12l-5.8-1.9a2 2 0 0 1-1.288-1.287Z"></path>
+              </svg>
+        </span>
+        <span className="text-lg-custom text-text_secondary dark:text-dark-text_secondary">
+          Hey! It's me Endika,
+        </span>
       </div>
-      
-    </div>
+
+      {/* Título principal */}
+      <h1 className="text-[2.5rem] sm:text-[3.5rem] md:text-[4.5rem] font-clash font-bold leading-tight text-white max-w-5xl mb-4">
+        <span className="text-secondary">Purpose-driven</span> development,
+        meaningful digital solutions from{" "}
+        <span className="text-secondary">front</span> to{" "}
+        <span className="text-secondary">back</span>
+      </h1>
+
+      {/* Subtítulo / descripción */}
+      <div className="flex flex-col md:flex-row md:justify-between w-full mb-8">
+        <div className="flex flex-row gap-5">
+          <div className="flex flex-1 items-center justify-center">
+            <div className="border-b dark:border-dark-text_secondary border-text_secondary w-full" />
+          </div>
+          <p className=" flex-[1] text-lg-custom text-gray-300">
+            I build meaningful digital solutions from front to back. Passionate
+            about technology, vintage hardware, and continuous learning.
+            Currently focused on React, React Native, and backend development.
+          </p>
+        </div>
+      </div>
+
+      {/* Redes sociales */}
+      <div className="flex flex-col md:flex-row justify-between w-full">
+        <div className="flex flex-row gap-6 mt-4 text-sm-custom text-gray-400">
+          <a
+            href="https://www.linkedin.com/in/endikamimenza/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-secondary transition"
+          >
+            LINKEDIN ↗
+          </a>
+          <a
+            href="https://github.com/Mimenza"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-secondary transition"
+          >
+            GITHUB ↗
+          </a>
+          <a
+            href="https://www.instagram.com/endikamimenza/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-secondary transition"
+          >
+            LETTERBOX ↗
+          </a>
+          <a
+            href="mailto:endikamimenza@gmail.com"
+            className="hover:text-secondary transition"
+          >
+            GMAIL ↗
+          </a>
+        </div>
+        <div className="mt-6 md:mt-0 flex items-center">
+          <button
+            className="bg-white text-black px-7 py-3 rounded-full font-bold hover:bg-opacity-90 flex flex-row items-center space-x-2 text-lg-custom shadow"
+            onClick={() => navigate("/about")}
+          >
+            Know me better
+          </button>
+        </div>
+      </div>
+    </section>
   );
 };
 

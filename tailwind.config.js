@@ -4,7 +4,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Montserrat", "-apple-system", "system-ui", "sans-serif"],
+        clash: ["var(--font-clash)", "sans-serif"],
+        satoshi: ["var(--font-satoshi)", "sans-serif"],
       },
       fontSize: {
         "xs-custom": "clamp(0.6rem, 1vw, 0.75rem)", // min 9.6px, max 12px
@@ -17,6 +18,9 @@ module.exports = {
         "4xl-custom": "clamp(1.8rem, 3.5vw, 2.25rem)", // min 28.8px, max 36px
         "5xl-custom": "clamp(2.4rem, 4.5vw, 3rem)", // min 38.4px, max 48px
         "6xl-custom": "clamp(3rem, 6vw, 4rem)", // min 48px, max 64px
+        "7xl-custom": "clamp(4rem, 8vw, 5rem)", // min 64px, max 80px
+        "8xl-custom": "clamp(5rem, 10vw, 6rem)", // min 80px, max 96px
+        "9xl-custom": "clamp(6rem, 12vw, 7rem)", // min 96px, max 112px
       },
       colors: {
         // 💡 Modo claro (por defecto)

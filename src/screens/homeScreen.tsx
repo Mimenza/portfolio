@@ -18,6 +18,7 @@ import MainComponentContact from "../components/homeScreen/contactMe/mainCompone
 import FooterSlider from "../components/shared/footer/aboutFooterSlider";
 
 import Menu from "../components/shared/menu/menu";
+import Carousell from "../components/shared/carousell";
 
 const HomeScreen = () => {
   const aboutMeRef = useRef<HTMLDivElement>(null);
@@ -172,7 +173,10 @@ const HomeScreen = () => {
       >
         <MainComponentAboutMe />
         <FooterSlider />
+        
       </div>
+      <Carousell words={["Team collaboration", "Adaptability", "Communication skills", "Time management", "Attention to detail", "Curiosity"]} />
+      {/* <Carousell words={["word1","word2","word3", "word4", "word5", "word6"]} /> */}
       <div
         ref={projectsRef}
         className={`w-full py-10 justify-center items-center flex md:${heightClass} h-auto`}

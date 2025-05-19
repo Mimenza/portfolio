@@ -32,7 +32,7 @@ const AboutScreen: React.FC = () => {
 
       <div className="w-full flex flex-col min-h-screen pt-20 pb-10">
         <div className="flex-grow min-h-screen h-auto flex justify-center my-10 mb-40">
-          <div className="h-full w-full sm:mx-[100px] 2xl:mx-[200px] 3xl:mx-[300px] flex flex-col gap-20">
+          <div className="h-full w-full sm:mx-[30px] 2xl:mx-[200px] 3xl:mx-[300px] flex flex-col gap-20">
             <div className="flex flex-row gap-5">
               <img
                 className="flex-[1] rounded-full w-24 aspect-square object-cover"

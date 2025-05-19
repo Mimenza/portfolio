@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+
 import { FaJava } from "react-icons/fa"; //Java
 import { FaAngular } from "react-icons/fa"; //Angular
 import { FaPhp } from "react-icons/fa"; //Php
@@ -26,6 +28,8 @@ import { IoLogoVercel } from "react-icons/io5"; //Vercel
 import { SiExpo } from "react-icons/si"; //Expo
 import { FaGithub } from "react-icons/fa"; //Github
 
+import  Gallery  from "../shared/projectDetail/gallery";
+import { useVariablesContext } from "../../context/variablesContext";
 const ProjectCard = ({
   id,
   name,
@@ -78,59 +82,87 @@ const ProjectCard = ({
     Github: <FaGithub className="h-full w-full" />,
   };
 
+  const { phoneView } = useVariablesContext();
+  const [showGallery, setShowGallery] = useState(false);
   return (
     <div className="h-auto w-full flex flex-row">
-      <div className="flex-[1]">
-        <p className="text-text_primary dark:text-dark-text_primary">{date}</p>
-      </div>
+      {!phoneView ? (
+        <div className="flex-[1]">
+          <p className="text-text_primary dark:text-dark-text_primary">
+            {date}
+          </p>
+        </div>
+      ) : null}
+
       <div className="flex flex-[2] flex-col gap-5">
         <div className="flex flex-row justify-between items-center">
-          <div className="font-bold text-text_primary dark:text-dark-text_primary">{name}</div>
-          <div className="flex flex-row h-full space-x-2 items-center ">
-            {technologies.slice(0, 4).map((tech, index) => (
-              <div
-                key={index}
-                className="h-full w-full aspect-square border border-gray-600 border-opacity-25 rounded-[15px] p-2 hover:bg-neutral-900 transition duration-300 ease-in-out text-gray-300"
-              >
-                {technologyIcons[tech] || <FaPlus className="h-full w-full" />}
-              </div>
-            ))}
+          <div className="font-bold text-text_primary dark:text-dark-text_primary">
+            {name}
           </div>
-        </div>
-
-        <div className="text-text_secondary dark:text-dark-text_secondary">{description}</div>
-        <div className="h-20 flex flex-nowrap space-x-4">
-            {storage.map((link, index) => {
-              const isVideo =
-                link.includes(".mp4") ||
-                link.includes(".webm") ||
-                link.includes(".ogg");
-
-              return (
+          {!phoneView ? (
+            <div className="flex flex-row h-full space-x-2 items-center ">
+              {technologies.slice(0, 4).map((tech, index) => (
                 <div
                   key={index}
-                  className="h-full aspect-video flex-shrink-0 rounded-[10px] overflow-hidden bg-background dark:bg-dark-background"
+                  className="h-full w-full aspect-square border border-gray-600 border-opacity-25 rounded-[15px] p-2 hover:bg-neutral-900 transition duration-300 ease-in-out text-gray-300"
                 >
-                  {isVideo ? (
-                    <video
-                      src={link}
-                      className="w-full h-full object-cover"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                    />
-                  ) : (
-                    <div
-                      className="w-full h-full bg-cover bg-center"
-                      style={{ backgroundImage: `url(${link})` }}
-                    />
+                  {technologyIcons[tech] || (
+                    <FaPlus className="h-full w-full" />
                   )}
                 </div>
-              );
-            })}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <div className="font-bold text-text_primary dark:text-dark-text_primary">
+              {date}
+            </div>
+          )}
+        </div>
+
+        <div className="text-text_secondary dark:text-dark-text_secondary">
+          {description}
+        </div>
+        <div className="h-20 flex flex-nowrap space-x-4" onClickCapture={() => setShowGallery(true)}>
+          {storage.map((link, index) => {
+            const isVideo =
+              link.includes(".mp4") ||
+              link.includes(".webm") ||
+              link.includes(".ogg");
+
+            return (
+              <div
+                key={index}
+                className="h-full aspect-video flex-shrink-0 rounded-[10px] overflow-hidden bg-background dark:bg-dark-background cursor-pointer"
+              >
+                {isVideo ? (
+                  <video
+                    src={link}
+                    className="w-full h-full object-cover"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                  />
+                ) : (
+                  <div
+                    className="w-full h-full bg-cover bg-center"
+                    style={{ backgroundImage: `url(${link})` }}
+                  />
+                )}
+              </div>
+            );
+          })}
+        </div>
       </div>
+      {showGallery && (
+        <Gallery
+          items={storage.map((link) => ({
+            src: link,
+            type: link.includes(".mp4") ? "video" : "image",
+          }))}
+          onClose={() => setShowGallery(false)}
+        />
+      )}
     </div>
   );
 };

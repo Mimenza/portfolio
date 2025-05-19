@@ -21,8 +21,13 @@ const useBreakpointLogger = () => {
   const { setCustomScroll, phoneView, setPhoneView } = useVariablesContext();
 
   useEffect(() => {
+    console.log("Phone view:", phoneView);
+  }, [phoneView]);
+
+  useEffect(() => {
     const breakpoints = {
       sm: window.matchMedia("(min-width: 640px)"),
+      "smPlus": window.matchMedia("(min-width: 700px)"),
       md: window.matchMedia("(min-width: 768px)"),
       lg: window.matchMedia("(min-width: 1024px)"),
       xl: window.matchMedia("(min-width: 1280px)"),
@@ -31,22 +36,26 @@ const useBreakpointLogger = () => {
     };
 
     const logBreakpoint = () => {
-      if (breakpoints["2xl"].matches) {
+      setPhoneView(false);
+      if (breakpoints["3xl"].matches) {
+        console.log("Breakpoint: 3xl");
+      } else if (breakpoints["2xl"].matches) {
         console.log("Breakpoint: 2xl");
-      } else if (breakpoints["3xl"].matches) {
-        console.log("Breakpoint: xl-plus");
       } else if (breakpoints.xl.matches) {
         console.log("Breakpoint: xl");
       } else if (breakpoints.lg.matches) {
         console.log("Breakpoint: lg");
       } else if (breakpoints.md.matches) {
         console.log("Breakpoint: md");
+      } else if (breakpoints.smPlus.matches) {
+        console.log("Breakpoint: sm-plus");
       } else if (breakpoints.sm.matches) {
         console.log("Breakpoint: sm");
+        setCustomScroll(false);
+        setPhoneView(true);
       } else {
         setCustomScroll(false);
         setPhoneView(true);
-        
         console.log("Breakpoint: default (xs)");
       }
     };
