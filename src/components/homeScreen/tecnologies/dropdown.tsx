@@ -70,13 +70,13 @@ export default function Dropdown({ category }: DropdownProps) {
   const Icon = icons[category];
 
   return (
-    <div className="w-full mx-auto dark:bg-dark-muted bg-muted bg-opacity-25 text-white rounded-2xl shadow cursor-pointer">
+    <div className="w-full mx-auto dark:bg-dark-muted bg-muted bg-opacity-25 text-white rounded-2xl shadow cursor-pointer" onClick={() => setCurrentDropDown(isOpen ? -1 : category)}>
       <div className="p-5 text-left font-medium flex items-center justify-between cursor-pointer text-text_primary dark:text-dark-text_primary">
         <span className="flex items-center gap-2">
           {Icon && <Icon className="mr-2" />}
           {title[category]}
         </span>
-        <button onClick={() => setCurrentDropDown(isOpen ? -1 : category)}>
+        <button>
           {isOpen ? (
             <IoMdArrowDropup className="h-6 w-6 text-text_secondary dark:text-dark-text_secondary" />
           ) : (
