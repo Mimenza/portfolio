@@ -134,7 +134,7 @@ const ProjectsScreen = () => {
         </p>
         <div className="grid lg:grid-cols-2 md:grid-cols-2 xl:grid-cols-2 grid-cols-2 gap-10 h-auto w-auto">
           {projects.map((project, index) => (
-            <div key={index} className={index % 2 === 1 ? "mt-20" : ""}>
+            <div key={index} className={index % 2 === 1 ? "mt-10" : ""}>
               <HorizontalCard
                 onClickProject={() => {
                   handleProjectCardClick(project);

@@ -139,9 +139,9 @@ const MainComponentProyects = () => {
 
         {/* Container for Projects */}
         <div className="h-full w-full flex justify-center items-center">
-          <div className="w-full grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-10">
+          <div className="w-full grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-x-10">
             {projects.slice(0, itemsToShow).map((project, index) => (
-              <div key={index} className={index % 2 === 1 ? "mt-20" : ""}>
+              <div key={index} className={index % 2 === 1 ? "mt-10" : ""}>
                 <ProjectCard
                   onClickProject={() => handleProjectCardClick(project)}
                   id={project.id}

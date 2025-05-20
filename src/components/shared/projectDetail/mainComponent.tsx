@@ -108,7 +108,7 @@ const MainComponentProjectDetail = ({
         <div className="flex flex-col w-full h-full flex-1 min-h-0">
           {/* Titulo y boton */}
           <div className="flex flex-row items-center justify-between">
-            <span className="font-clash text-text_primary dark:text-dark-text_primary text-7xl-custom text-3xl-custom">
+            <span className="font-clash text-text_primary dark:text-dark-text_primary md:text-7xl-custom text-3xl-custom">
               {projectDetails.name}
             </span>
             <div className="h-full">

@@ -1,7 +1,3 @@
-/*
-	Installed from https://reactbits.dev/ts/tailwind/
-*/
-
 import React, {
   forwardRef,
   useCallback,
@@ -219,53 +215,56 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>(
           mode={animatePresenceMode}
           initial={animatePresenceInitial}
         >
-          <motion.div
-            key={currentTextIndex}
-            className={cn(
-              splitBy === "lines"
-                ? "flex flex-col w-full"
-                : "flex flex-wrap whitespace-pre-wrap relative",
-            )}
-            layout
-            aria-hidden="true"
-          >
-            {elements.map((wordObj, wordIndex, array) => {
-              const previousCharsCount = array
-                .slice(0, wordIndex)
-                .reduce((sum, word) => sum + word.characters.length, 0);
-              return (
-                <span
-                  key={wordIndex}
-                  className={cn("inline-flex", splitLevelClassName)}
-                >
-                  {wordObj.characters.map((char, charIndex) => (
-                    <motion.span
-                      key={charIndex}
-                      initial={initial}
-                      animate={animate}
-                      exit={exit}
-                      transition={{
-                        ...transition,
-                        delay: getStaggerDelay(
-                          previousCharsCount + charIndex,
-                          array.reduce(
-                            (sum, word) => sum + word.characters.length,
-                            0,
+          <div className="overflow-hidden w-full">
+            <motion.div
+              key={currentTextIndex}
+              className={cn(
+                splitBy === "lines"
+                  ? "flex flex-col w-full"
+                  : "flex flex-wrap whitespace-pre-wrap relative",
+              )}
+              layout="size"
+              transition={{ layout: transition }}
+              aria-hidden="true"
+            >
+              {elements.map((wordObj, wordIndex, array) => {
+                const previousCharsCount = array
+                  .slice(0, wordIndex)
+                  .reduce((sum, word) => sum + word.characters.length, 0);
+                return (
+                  <span
+                    key={wordIndex}
+                    className={cn("inline-flex", splitLevelClassName)}
+                  >
+                    {wordObj.characters.map((char, charIndex) => (
+                      <motion.span
+                        key={charIndex}
+                        initial={initial}
+                        animate={animate}
+                        exit={exit}
+                        transition={{
+                          ...transition,
+                          delay: getStaggerDelay(
+                            previousCharsCount + charIndex,
+                            array.reduce(
+                              (sum, word) => sum + word.characters.length,
+                              0,
+                            ),
                           ),
-                        ),
-                      }}
-                      className={cn("inline-block", elementLevelClassName)}
-                    >
-                      {char}
-                    </motion.span>
-                  ))}
-                  {wordObj.needsSpace && (
-                    <span className="whitespace-pre"> </span>
-                  )}
-                </span>
-              );
-            })}
-          </motion.div>
+                        }}
+                        className={cn("inline-block", elementLevelClassName)}
+                      >
+                        {char}
+                      </motion.span>
+                    ))}
+                    {wordObj.needsSpace && (
+                      <span className="whitespace-pre"> </span>
+                    )}
+                  </span>
+                );
+              })}
+            </motion.div>
+          </div>
         </AnimatePresence>
       </motion.span>
     );

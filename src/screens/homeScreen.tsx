@@ -19,6 +19,7 @@ import FooterSlider from "../components/shared/footer/aboutFooterSlider";
 
 import Menu from "../components/shared/menu/menu";
 import Carousell from "../components/shared/carousell";
+import TechCarousell from "../components/shared/techCarousell";
 
 const HomeScreen = () => {
   const aboutMeRef = useRef<HTMLDivElement>(null);
@@ -35,7 +36,7 @@ const HomeScreen = () => {
       navigate("/login");
     }
     document.title = "🔧 Emimenza | Home";
-    document.body.style.overflow = "hidden";
+    // document.body.style.overflow = "hidden";
   }, []);
 
   // Section references
@@ -54,69 +55,69 @@ const HomeScreen = () => {
     [sections]
   );
 
-  useEffect(() => {
-    let scrollDelta = 0;
-    let isScrolling = false;
+  // useEffect(() => {
+  //   let scrollDelta = 0;
+  //   let isScrolling = false;
 
-    const handleScroll = (event: WheelEvent) => {
-      if (isScrolling || customScroll) {
-        return;
-      }
+  //   const handleScroll = (event: WheelEvent) => {
+  //     if (isScrolling || customScroll) {
+  //       return;
+  //     }
 
-      scrollDelta += event.deltaY;
+  //     scrollDelta += event.deltaY;
 
-      const threshold = 100;
+  //     const threshold = 100;
 
-      if (
-        scrollDelta > threshold &&
-        currentSectionIndex < sections.length - 1
-      ) {
-        // Scroll down
-        isScrolling = true;
-        sections[currentSectionIndex + 1]?.current?.scrollIntoView({
-          behavior: "smooth",
-        });
-        setSection(currentSectionIndex + 1);
-        setTimeout(() => {
-          setCurrentSectionIndex((prevIndex) => prevIndex + 1);
+  //     if (
+  //       scrollDelta > threshold &&
+  //       currentSectionIndex < sections.length - 1
+  //     ) {
+  //       // Scroll down
+  //       isScrolling = true;
+  //       sections[currentSectionIndex + 1]?.current?.scrollIntoView({
+  //         behavior: "smooth",
+  //       });
+  //       setSection(currentSectionIndex + 1);
+  //       setTimeout(() => {
+  //         setCurrentSectionIndex((prevIndex) => prevIndex + 1);
 
-          scrollDelta = 0;
-          isScrolling = false;
-        }, 500);
-      } else if (scrollDelta < -threshold && currentSectionIndex > 0) {
-        // Scroll up
-        isScrolling = true;
-        sections[currentSectionIndex - 1]?.current?.scrollIntoView({
-          behavior: "smooth",
-        });
-        setSection(currentSectionIndex - 1);
-        setTimeout(() => {
-          setCurrentSectionIndex((prevIndex) => prevIndex - 1);
-          scrollDelta = 0;
-          isScrolling = false;
-        }, 500);
-      }
-    };
+  //         scrollDelta = 0;
+  //         isScrolling = false;
+  //       }, 500);
+  //     } else if (scrollDelta < -threshold && currentSectionIndex > 0) {
+  //       // Scroll up
+  //       isScrolling = true;
+  //       sections[currentSectionIndex - 1]?.current?.scrollIntoView({
+  //         behavior: "smooth",
+  //       });
+  //       setSection(currentSectionIndex - 1);
+  //       setTimeout(() => {
+  //         setCurrentSectionIndex((prevIndex) => prevIndex - 1);
+  //         scrollDelta = 0;
+  //         isScrolling = false;
+  //       }, 500);
+  //     }
+  //   };
 
-    window.addEventListener("wheel", handleScroll);
+  //   window.addEventListener("wheel", handleScroll);
 
-    return () => {
-      // document.body.style.overflow = "auto";
-      window.removeEventListener("wheel", handleScroll);
-    };
-  }, [currentSectionIndex, sections]);
+  //   return () => {
+  //     // document.body.style.overflow = "auto";
+  //     window.removeEventListener("wheel", handleScroll);
+  //   };
+  // }, [currentSectionIndex, sections]);
 
-  useEffect(() => {
-    if (customScroll) {
-      document.body.style.overflow = "auto";
-      document.body.style.overflowX = "hidden";
-    } else {
-      document.body.style.overflow = "hidden";
-      setCurrentSectionIndex(0);
-      setSection(0);
-      window.scrollTo(0, 0);
-    }
-  }, [customScroll]);
+  // useEffect(() => {
+  //   if (customScroll) {
+  //     document.body.style.overflow = "auto";
+  //     document.body.style.overflowX = "hidden";
+  //   } else {
+  //     document.body.style.overflow = "hidden";
+  //     setCurrentSectionIndex(0);
+  //     setSection(0);
+  //     window.scrollTo(0, 0);
+  //   }
+  // }, [customScroll]);
   useEffect(() => {
     handleIndicatorClick(0);
   }, [handleIndicatorClick]);
@@ -126,7 +127,7 @@ const HomeScreen = () => {
   return (
     <div className="flex flex-col w-full overflow-hidden relative scrollbar-thin scrollbar-webkit">
       {/* Section Indicator */}
-      <div
+      {/* <div
         className={`fixed top-1/2 ${
           customScroll ? "right-[-200px]" : "right-[-142px]"
         } transform -translate-y-1/2 z-20 group transition-all duration-[600ms] hover:translate-x-[-130px]`}
@@ -138,7 +139,7 @@ const HomeScreen = () => {
               index === 0 ? "rounded-tl-xl" : ""
             } ${index === sections.length - 1 ? "rounded-bl-xl" : ""}`}
           >
-            {/* Columna de los círculos */}
+            
             <div className="flex items-center justify-center w-10 h-10 mr-4">
               <div
                 className={`w-3 h-3 rounded-full cursor-pointer transition-transform duration-300 ${
@@ -150,7 +151,7 @@ const HomeScreen = () => {
               />
             </div>
 
-            {/* Columna de los nombres */}
+            
             <div className="flex items-center justify-start mr-5">
               <h1
                 className={`cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
@@ -163,7 +164,7 @@ const HomeScreen = () => {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
 
       <Menu selectedSection={0} />
       {/* Sections */}
@@ -189,6 +190,7 @@ const HomeScreen = () => {
       >
         <MainComponentTecnologies />
       </div>
+      <TechCarousell />
       <div
         ref={contactRef}
         className={`w-full py-10 justify-center items-center flex md:${heightClass} h-auto`}

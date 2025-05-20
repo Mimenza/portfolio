@@ -1,5 +1,6 @@
 import Footer from "../../shared/footer/footer";
 import ShinyText from "../../../blocks/TextAnimations/ShinyText/ShinyText";
+import RotatingText from "../../../blocks/TextAnimations/RotatingText/RotatingText";
 import { useVariablesContext } from "../../../context/variablesContext";
 import { SiGmail } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa6";
@@ -9,7 +10,7 @@ const MainComponentContact = () => {
   const { phoneView } = useVariablesContext();
   return (
     <div className="h-full w-full flex flex-col">
-      <div className="flex flex-col mt-20">
+      <div className="flex flex-col">
         <div className="flex flex-col w-full h-auto">
           <div className="flex flex-row items-center gap-2 mb-2">
             <svg
@@ -44,6 +45,21 @@ const MainComponentContact = () => {
       </div>
       <div className="flex-[1] flex flex-col md:flex-row mb-20">
         <div className="flex-[1] flex flex-col gap-4 items-center">
+           <div className="flex flex-row text-xl-custom font-bold text-text_secondary w-full h-auto mt-10 items-center justify-center gap-2">
+            Let's talk about
+            <RotatingText
+              texts={["Vintage hardware", "Films", "code", "desing", "coffee"]}
+              mainClassName="px-2 sm:px-2 md:px-3 bg-secondary text-white text-xl-custom font-bold overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
+              staggerFrom={"last"}
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "-120%" }}
+              staggerDuration={0.025}
+              splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+              transition={{ type: "spring", damping: 30, stiffness: 400 }}
+            />
+          </div>
+          
           <div className="flex flex-row gap-5 mt-10 ">
             <div
               className="group flex flex-row text-text_secondary dark:text-dark-text_secondary hover:text-text_primary hover:dark:text-dark-text_primary items-center gap-2 cursor-pointer"
@@ -74,7 +90,9 @@ const MainComponentContact = () => {
               mimenzae@gmail.com
             </span>
           </div>
+         
         </div>
+
         <div className="flex-[1] flex p-2">
           <div className="flex-[1] p-4">
             <form className="flex flex-col gap-4 h-full">

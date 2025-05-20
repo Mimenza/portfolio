@@ -59,7 +59,7 @@ const MainComponentAboutMe = () => {
       <div className="flex flex-col md:flex-row justify-between w-full">
         <div className="flex flex-row gap-6 mt-4 text-sm-custom text-gray-400">
           <a
-            href="https://www.linkedin.com/in/endikamimenza/"
+            href="https://www.linkedin.com/in/endika-m-99aa26252/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-secondary transition"
@@ -75,7 +75,7 @@ const MainComponentAboutMe = () => {
             GITHUB ↗
           </a>
           <a
-            href="https://www.instagram.com/endikamimenza/"
+            href="https://letterboxd.com/mimenza/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-secondary transition"
@@ -83,7 +83,7 @@ const MainComponentAboutMe = () => {
             LETTERBOX ↗
           </a>
           <a
-            href="mailto:endikamimenza@gmail.com"
+            href="mailto:emimenza@gmail.com"
             className="hover:text-secondary transition"
           >
             GMAIL ↗

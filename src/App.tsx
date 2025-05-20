@@ -51,10 +51,8 @@ const useBreakpointLogger = () => {
         console.log("Breakpoint: sm-plus");
       } else if (breakpoints.sm.matches) {
         console.log("Breakpoint: sm");
-        setCustomScroll(false);
         setPhoneView(true);
       } else {
-        setCustomScroll(false);
         setPhoneView(true);
         console.log("Breakpoint: default (xs)");
       }
@@ -88,7 +86,6 @@ function App() {
   useEffect(() => {
     setDarkMode(true); // Set dark mode to true by default
     document.documentElement.classList.add("dark"); // Activar modo oscuro
-    setCustomScroll(true); // Disable custom scroll by default
 
     const handleScroll = () => {
       setScrollPosition(window.scrollY);
