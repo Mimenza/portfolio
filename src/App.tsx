@@ -99,6 +99,7 @@ function App() {
 
   return (
     <div className="h-auto w-screen px-[30px] sm:px-[100px] 2xl:px-[20%] dark:bg-dark-background bg-background transition-colors duration-700 scrollbar-custom">
+      
       <Routes>
         <Route path="/home" element={<HomeScreen />} />
         <Route path="/projects" element={<ProjectsScreen />} />

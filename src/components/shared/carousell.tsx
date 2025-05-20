@@ -53,7 +53,7 @@ const Carousell: React.FC<CarousellProps> = ({ words, className }) => {
           100% { transform: translateX(-${100 / repeatCount}%); }
         }
         .animate-carousel {
-          min-width: ${repeatCount * 300}%;
+          min-width: ${repeatCount * 200}%;
         }
         `}
       </style>

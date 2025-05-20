@@ -7,6 +7,8 @@ import Experience from "../components/aboutScreen/experience";
 import Certification from "../components/aboutScreen/certifications";
 import Education from "../components/aboutScreen/education";
 
+import Particles from "../blocks/Backgrounds/Particles/Particles";
+
 import { useLogedUser } from "../context/logedUserContext";
 import { useNavigate } from "react-router-dom";
 
@@ -29,7 +31,6 @@ const AboutScreen: React.FC = () => {
   return (
     <div className="w-full h-auto">
       <Menu selectedSection={1} />
-
       <div className="w-full flex flex-col min-h-screen pt-20 pb-10">
         <div className="flex-grow min-h-screen h-auto flex justify-center my-10 mb-40">
           <div className="h-full w-full sm:mx-[30px] 2xl:mx-[200px] 3xl:mx-[300px] flex flex-col gap-20">
@@ -40,8 +41,12 @@ const AboutScreen: React.FC = () => {
                 alt="profilePic"
               />
               <div className="flex-[3] flex flex-col h-auto justify-center">
-                <p className="text-text_primary dark:text-dark-text_primary font-clash">Endika Mimenza</p>
-                <p className="text-text_secondary dark:text-dark-text_secondary">Developer</p>
+                <p className="text-text_primary dark:text-dark-text_primary font-clash">
+                  Endika Mimenza
+                </p>
+                <p className="text-text_secondary dark:text-dark-text_secondary">
+                  Developer
+                </p>
                 <p className="text-text_secondary dark:text-dark-text_secondary">
                   <a
                     href="https://emimenza.vercel.app"

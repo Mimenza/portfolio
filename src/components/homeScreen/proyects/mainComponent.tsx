@@ -126,7 +126,7 @@ const MainComponentProyects = () => {
             </p>
             <div>
               <button
-                className="bg-white text-black font-bold text-sm px-6 py-2 rounded-full hover:bg-opacity-90 flex flex-row items-center"
+                className="bg-white text-black px-7 py-3 rounded-full font-bold hover:bg-opacity-90 flex flex-row items-center space-x-2 text-lg-custom shadow hover:scale-105 transition-all duration-300"
                 onClick={() => {
                   navigate("/projects");
                 }}

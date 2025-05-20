@@ -28,7 +28,6 @@ const LoginScreen = () => {
         .eq("name", username)
         .eq("password", password);
 
-        console.log("Data:", data);
       if (data?.length === 0) {
         setError("Usuario no encontrado.");
         console.error("Error al buscar usuario");

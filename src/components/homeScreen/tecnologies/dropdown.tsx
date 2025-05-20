@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 
 import supabase from "../../../supabase/client";
 import { FaCode } from "react-icons/fa6";
@@ -9,6 +9,7 @@ import { DiStackoverflow } from "react-icons/di";
 import { BsGear } from "react-icons/bs";
 
 import { useVariablesContext } from "../../../context/variablesContext";
+
 type DropdownProps = {
   category: number;
 };
@@ -23,15 +24,18 @@ const icons = [
 
 export default function Dropdown({ category }: DropdownProps) {
   const [skills, setSkills] = useState<any[]>([]);
-  const [title, setTitle] = useState([
+  const [title] = useState([
     "Programming Languages",
     "Web Development",
     "Frontend Frameworks & Libraries",
     "Backend & Full Stack Platforms",
     "Tools & Services",
   ]);
+  const [winHeight, setWinHeight] = useState(window.innerHeight);
+  const [maxHeight, setMaxHeight] = useState(winHeight - 480);
 
   const { currentDropDown, setCurrentDropDown } = useVariablesContext();
+  const isOpen = currentDropDown === category;
 
   useEffect(() => {
     const getSkills = async () => {
@@ -46,78 +50,72 @@ export default function Dropdown({ category }: DropdownProps) {
           return;
         }
 
-        if (skills) {
-          setSkills(skills);
-        } else {
-          console.error("No skills found");
-        }
+        setSkills(skills || []);
       } catch (err) {
         console.error("Error:", err);
       }
     };
 
     getSkills();
-  }, []);
-  const isOpen = currentDropDown === category;
+
+    const handleResize = () => {
+      setWinHeight(window.innerHeight);
+      setMaxHeight(window.innerHeight - 680);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [category]);
+
+  const Icon = icons[category];
 
   return (
-    <motion.div
-      layout
-      className="w-full mx-auto dark:bg-dark-muted bg-muted bg-opacity-25 text-white rounded-2xl shadow cursor-pointer"
-      onClick={() =>
-        setCurrentDropDown(isOpen ? -1 : category)
-      }
-    >
-      <div className="p-5 text-left font-medium flex items-center justify-between text-text_primary dark:text-dark-text_primary">
+    <div className="w-full mx-auto dark:bg-dark-muted bg-muted bg-opacity-25 text-white rounded-2xl shadow cursor-pointer">
+      <div className="p-5 text-left font-medium flex items-center justify-between cursor-pointer text-text_primary dark:text-dark-text_primary">
         <span className="flex items-center gap-2">
-          {icons[category] &&
-            (() => {
-              const Icon = icons[category];
-              return <Icon className="mr-2" />;
-            })()}
+          {Icon && <Icon className="mr-2" />}
           {title[category]}
         </span>
-        <span className="text-text_secondary dark:text-dark-text_secondary">
-          {isOpen ? "▲" : "▼"}
-        </span>
+        <button onClick={() => setCurrentDropDown(isOpen ? -1 : category)}>
+          {isOpen ? (
+            <IoMdArrowDropup className="h-6 w-6 text-text_secondary dark:text-dark-text_secondary" />
+          ) : (
+            <IoMdArrowDropdown className="h-6 w-6 text-text_secondary dark:text-dark-text_secondary" />
+          )}
+        </button>
       </div>
 
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            key="content"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="overflow-hidden px-4 pb-4"
-          >
-            <div className="flex flex-row flex-wrap items-center gap-2 text-white/90">
-              {skills.map((skill, idx) => (
-                <span key={skill.id} className="flex items-center">
-                  {skill.name}
-                  {idx < skills.length - 1 && (
-                    <svg
-                      className="size-4 mx-2 text-secondary fill-background dark:fill-dark-background"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="m12 3-1.9 5.8a2 2 0 0 1-1.287 1.288L3 12l5.8 1.9a2 2 0 0 1 1.288 1.287L12 21l1.9-5.8a2 2 0 0 1 1.287-1.288L21 12l-5.8-1.9a2 2 0 0 1-1.288-1.287Z"></path>
-                    </svg>
-                  )}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
+      <div
+  className="transition-[max-height] duration-500 overflow-hidden px-4"
+  style={{ maxHeight: isOpen ? `${maxHeight}px` : "0px" }}
+>
+  <div
+    className={`flex flex-wrap gap-2 text-white/90 ${
+      isOpen ? "overflow-y-auto pb-4" : "overflow-hidden pb-0"
+    } scrollbar-hide transition-all duration-500`}
+    style={{ maxHeight: `${maxHeight}px` }}
+  >
+          {skills.map((skill, idx) => (
+            <span key={skill.id} className="flex items-center">
+              {skill.name}
+              {idx < skills.length - 1 && (
+                <svg
+                  className="size-4 ml-2 text-secondary fill-background dark:fill-dark-background"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="m12 3-1.9 5.8a2 2 0 0 1-1.287 1.288L3 12l5.8 1.9a2 2 0 0 1 1.288 1.287L12 21l1.9-5.8a2 2 0 0 1 1.287-1.288L21 12l-5.8-1.9a2 2 0 0 1-1.288-1.287Z" />
+                </svg>
+              )}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }

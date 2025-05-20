@@ -101,6 +101,7 @@ const ProjectsScreen = () => {
   return (
     <div className="min-h-screen overflow-x-hidden relative py-10  items-center flex flex-col">
       <Menu selectedSection={2} />
+      
       {/* Gradientes */}
       <div className="fixed top-0 left-0 w-screen h-10 z-20 bg-gradient-to-b from-background dark:from-dark-background to-transparent"></div>
       <div className="fixed bottom-0 left-0 w-screen h-10 z-20 bg-gradient-to-b from-transparent dark:to-dark-background to-background"></div>
