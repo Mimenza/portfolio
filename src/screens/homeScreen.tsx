@@ -36,7 +36,8 @@ const HomeScreen = () => {
       navigate("/login");
     }
     document.title = "🔧 Emimenza | Home";
-    // document.body.style.overflow = "hidden";
+    document.body.style.overflow = "auto";
+    document.body.style.overflowX = "hidden";
   }, []);
 
   // Section references
@@ -174,9 +175,17 @@ const HomeScreen = () => {
       >
         <MainComponentAboutMe />
         <FooterSlider />
-        
       </div>
-      <Carousell words={["Team collaboration", "Adaptability", "Communication skills", "Time management", "Attention to detail", "Curiosity"]} />
+      <Carousell
+        words={[
+          "Team collaboration",
+          "Adaptability",
+          "Communication skills",
+          "Time management",
+          "Attention to detail",
+          "Curiosity",
+        ]}
+      />
       {/* <Carousell words={["word1","word2","word3", "word4", "word5", "word6"]} /> */}
       <div
         ref={projectsRef}

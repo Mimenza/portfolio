@@ -25,7 +25,7 @@ const ProjectsScreen = () => {
       navigate("/login");
     }
     // Disable global scrolling X
-       document.body.style.overflow = "auto";
+    document.body.style.overflow = "auto";
     document.body.style.overflowX = "hidden";
     document.title = "🔧 Emimenza | Projects";
     // Scroll to top on page load
@@ -107,28 +107,30 @@ const ProjectsScreen = () => {
       {/* Contenido principal */}
       <div className="min-h-screen h-full w-full z-10 relative my-20">
         <div className="flex flex-row items-center gap-2 mb-2">
-         <svg
-                className="size-4 text-secondary fill-background dark:fill-dark-background"
-                xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="m12 3-1.9 5.8a2 2 0 0 1-1.287 1.288L3 12l5.8 1.9a2 2 0 0 1 1.288 1.287L12 21l1.9-5.8a2 2 0 0 1 1.287-1.288L21 12l-5.8-1.9a2 2 0 0 1-1.288-1.287Z"></path>
-              </svg>
+          <svg
+            className="size-4 text-secondary fill-background dark:fill-dark-background"
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m12 3-1.9 5.8a2 2 0 0 1-1.287 1.288L3 12l5.8 1.9a2 2 0 0 1 1.288 1.287L12 21l1.9-5.8a2 2 0 0 1 1.287-1.288L21 12l-5.8-1.9a2 2 0 0 1-1.288-1.287Z"></path>
+          </svg>
           <ShinyText
-              text="Most of my work"
-              disabled={false}
-              speed={2}
-              className="text-lg-custom text-secondary dark:text-dark-secondary"
-            />
+            text="Most of my work"
+            disabled={false}
+            speed={2}
+            className="text-lg-custom text-secondary dark:text-dark-secondary"
+          />
         </div>
-        <p className="text-6xl-custom font-bold font-clash mt-1 text-white">Projects</p>
+        <p className="text-6xl-custom font-bold font-clash mt-1 text-white">
+          Projects
+        </p>
         <p className="m-4 text-lg-custom text-gray-300">
           Here you can find most of my projects.
         </p>
