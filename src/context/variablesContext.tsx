@@ -15,6 +15,8 @@ interface VariablesContextProps {
   setPhoneView: React.Dispatch<React.SetStateAction<boolean>>;
   currentDropDown: number;
   setCurrentDropDown: React.Dispatch<React.SetStateAction<number>>;
+  animateLogo: boolean;
+  setAnimateLogo: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const VariablesContext = createContext<VariablesContextProps | undefined>(
@@ -31,6 +33,7 @@ export const VariablesProvider: React.FC<{ children: React.ReactNode }> = ({
   const [showGallery, setShowGallery] = useState(false);
   const [phoneView, setPhoneView] = useState(false);
   const [currentDropDown, setCurrentDropDown] = useState(-1);
+  const [animateLogo, setAnimateLogo] = useState(true);
   return (
     <VariablesContext.Provider
       value={{
@@ -48,6 +51,8 @@ export const VariablesProvider: React.FC<{ children: React.ReactNode }> = ({
         setPhoneView,
         currentDropDown,
         setCurrentDropDown,
+        animateLogo,
+        setAnimateLogo,
       }}
     >
       {children}

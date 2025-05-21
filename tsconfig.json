@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+     "jsx": "react-jsx",
     "target": "es6",  // Cambia de es5 a es6
     "lib": [
       "dom",
@@ -18,7 +19,6 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
   },
   "include": [
     "src"

@@ -4,8 +4,7 @@ import { FaCircle } from "react-icons/fa";
 import { IoIosSunny } from "react-icons/io";
 import { IoMoon } from "react-icons/io5";
 
-import { PiMouseScroll } from "react-icons/pi";
-import { PiMouseScrollFill } from "react-icons/pi";
+import EmSvg from "../../ui/emSvg";
 
 import { useNavigate } from "react-router-dom";
 import { useVariablesContext } from "../../../context/variablesContext";
@@ -56,7 +55,7 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
       if (index === 0) navigate("/home");
       else if (index === 1) navigate("/about");
       else if (index === 2) navigate("/projects");
-    }, 500); // Delay for animation
+    }, 250); // Delay for animation
   };
 
   const handleIconClick = (index: number) => {
@@ -126,9 +125,10 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
           backgroundColor: hexToRgba(backgroundColor, bgOpacity),
         }}
       >
-        <p className="text-text_primary dark:text-dark-text_primary text-2xl-custom ">
+        {/* <p className="text-text_primary dark:text-dark-text_primary text-2xl-custom ">
           EM
-        </p>
+        </p> */}
+        <EmSvg/>
         <div className="flex flex-row gap-1 lg:gap-4 xs:text-xs-custom md:text-lg-custom">
           <p
             className={`flex flex-row items-center gap-1 cursor-pointer ${
