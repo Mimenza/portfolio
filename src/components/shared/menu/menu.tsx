@@ -188,9 +188,8 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
             Projects
           </p>
         </div>
-        <div className="flex flex-row gap-2 0">
-          <p
-            className="text-text_primary dark:text-dark-text_primary text-2xl-custom cursor-pointer transition-all duration-300 ease-in-out transform"
+          <div
+            className="text-text_primary dark:text-dark-text_primary text-2xl-custom cursor-pointer transition-all duration-300 ease-in-out transform ml-8"
             onClick={handleDarkModeToggle}
           >
             <span
@@ -199,8 +198,7 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
             >
               {darkMode ? <IoIosSunny /> : <IoMoon />}
             </span>
-          </p>
-        </div>
+          </div>
       </div>
     </div>
   );
