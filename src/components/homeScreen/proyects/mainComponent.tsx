@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import ProjectCard from "./projectCard";
 import { useNavigate } from "react-router-dom";
+import { useVariablesContext } from "../../../context/variablesContext";
 
 import ShinyText from "../../../blocks/TextAnimations/ShinyText/ShinyText";
 import MainComponentProjectDetail from "../../shared/projectDetail/mainComponent";
@@ -14,6 +15,7 @@ const MainComponentProyects = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [width, setWidth] = useState(window.innerWidth);
+  const { phoneView } = useVariablesContext();
 
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
@@ -125,23 +127,28 @@ const MainComponentProyects = () => {
               results
             </p>
             <div>
-              <button
-                className="bg-white text-black px-7 py-3 rounded-full font-bold hover:bg-opacity-90 flex flex-row items-center space-x-2 text-lg-custom shadow hover:scale-105 transition-all duration-300"
-                onClick={() => {
-                  navigate("/projects");
-                }}
-              >
-                <span>View all projects</span>
-              </button>
+              {!phoneView ? (
+                <button
+                  className="bg-white text-black px-7 py-3 rounded-full font-bold hover:bg-opacity-90 flex flex-row items-center space-x-2 text-lg-custom shadow hover:scale-105 transition-all duration-300"
+                  onClick={() => {
+                    navigate("/projects");
+                  }}
+                >
+                  <span>View all projects</span>
+                </button>
+              ) : null}
             </div>
           </div>
         </div>
 
         {/* Container for Projects */}
         <div className="h-full w-full flex justify-center items-center">
-          <div className="w-full grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-x-10">
+          <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-x-10">
             {projects.slice(0, itemsToShow).map((project, index) => (
-              <div key={index} className={index % 2 === 1 ? "mt-10" : ""}>
+              <div
+                key={index}
+                className={index % 2 === 1 ? "md:mt-10 mt-5" : "mt-5"}
+              >
                 <ProjectCard
                   onClickProject={() => handleProjectCardClick(project)}
                   id={project.id}
@@ -158,6 +165,18 @@ const MainComponentProyects = () => {
           </div>
         </div>
 
+        <div className="w-full h-auto flex justify-center items-center">
+          {phoneView ? (
+            <button
+              className="w-auto bg-white text-black px-7 py-3 rounded-full font-bold hover:bg-opacity-90 flex flex-row items-center space-x-2 text-lg-custom shadow hover:scale-105 transition-all duration-300"
+              onClick={() => {
+                navigate("/projects");
+              }}
+            >
+              <span>View all projects</span>
+            </button>
+          ) : null}
+        </div>
         {showProjectDetail && selectedProject && (
           <MainComponentProjectDetail
             projectDetails={selectedProject} // Pasar el proyecto seleccionado

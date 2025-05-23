@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import Menu from "../components/shared/menu/menu";
+import PhoneMenu from "../components/shared/menu/phoneMenu";
 import Footer from "../components/shared/footer/footer";
 import AboutMe from "../components/aboutScreen/aboutMe";
 import Projects from "../components/aboutScreen/projects";
@@ -7,15 +8,14 @@ import Experience from "../components/aboutScreen/experience";
 import Certification from "../components/aboutScreen/certifications";
 import Education from "../components/aboutScreen/education";
 
-import Particles from "../blocks/Backgrounds/Particles/Particles";
-
+import { useVariablesContext } from "../context/variablesContext";
 import { useLogedUser } from "../context/logedUserContext";
 import { useNavigate } from "react-router-dom";
 
 const AboutScreen: React.FC = () => {
   const { logedUser } = useLogedUser();
   const navigate = useNavigate();
-
+  const { phoneView } = useVariablesContext();
   useEffect(() => {
     if (!logedUser) {
       navigate("/login");
@@ -30,8 +30,8 @@ const AboutScreen: React.FC = () => {
 
   return (
     <div className="w-full h-auto">
-      <Menu selectedSection={1} />
-      <div className="w-full flex flex-col min-h-screen pt-20 pb-10">
+      {phoneView ? (<PhoneMenu selectedSection={1} />): (<Menu selectedSection={1} />)}
+      <div className="w-full flex flex-col min-h-screen pt-10 md:pt-20 pb-10">
         <div className="flex-grow min-h-screen h-auto flex justify-center my-10 mb-40">
           <div className="h-full w-full sm:mx-[30px] 2xl:mx-[200px] 3xl:mx-[300px] flex flex-col gap-20">
             <div className="flex flex-row gap-5">

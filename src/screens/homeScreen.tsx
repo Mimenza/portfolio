@@ -9,7 +9,7 @@ import React, {
 import { useNavigate } from "react-router-dom";
 
 import { useLogedUser } from "../context/logedUserContext";
-
+import { useVariablesContext } from "../context/variablesContext";
 import MainComponentAboutMe from "../components/homeScreen/aboutMe/mainComponent";
 import MainComponentProyects from "../components/homeScreen/proyects/mainComponent";
 import MainComponentTecnologies from "../components/homeScreen/tecnologies/mainComponent";
@@ -17,6 +17,7 @@ import MainComponentContact from "../components/homeScreen/contactMe/mainCompone
 import FooterSlider from "../components/shared/footer/aboutFooterSlider";
 
 import Menu from "../components/shared/menu/menu";
+import PhoneMenu from "../components/shared/menu/phoneMenu";
 import Carousell from "../components/shared/carousell";
 import TechCarousell from "../components/shared/techCarousell";
 
@@ -27,6 +28,7 @@ const HomeScreen = () => {
   const contactRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const { logedUser } = useLogedUser();
+  const { phoneView } = useVariablesContext();
 
   // Check if the user is logged in
   useEffect(() => {
@@ -40,7 +42,8 @@ const HomeScreen = () => {
 
   return (
     <div className="flex flex-col w-full overflow-hidden relative scrollbar-thin scrollbar-webkit">
-      <Menu selectedSection={0} />
+      {phoneView ? (<PhoneMenu selectedSection={0} />): (<Menu selectedSection={0} />)}
+
       {/* Sections */}
       <div
         ref={aboutMeRef}

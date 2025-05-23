@@ -130,8 +130,13 @@ const HorizontalCard = ({
         }`}
       >
         <div className="h-full w-auto flex flex-col flex-[1] justify-center">
-          <h3 className={` ${phoneView ? "text-sm-custom" : "text-lg-custom"} text-text_primary dark:text-dark-text_primary font-bold`}>
+          <h3
+            className={` ${
+              phoneView ? "text-sm-custom" : "text-lg-custom"
+            } text-text_primary dark:text-dark-text_primary font-bold justify-between flex flex-row items-center`}
+          >
             {name}
+            {phoneView ? <span>{status}</span> : null}
           </h3>
           {!phoneView ? (
             <p className="text-sm-custom text-text_secondary dark:text-dark-text_secondary dark:text-dark-text_primary whitespace-nowrap">
@@ -158,8 +163,8 @@ const HorizontalCard = ({
       </div>
       {!phoneView ? (
         <div className="text-md-custom text-text_third dark:text-dark-text_third w-full text-justify">
-          {description.length > ( 200)
-            ? `${description.substring(0,  200)}...`
+          {description.length > 200
+            ? `${description.substring(0, 200)}...`
             : description}
         </div>
       ) : null}

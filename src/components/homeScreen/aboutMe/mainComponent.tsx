@@ -13,7 +13,7 @@ const MainComponentAboutMe = () => {
   };
 
   return (
-    <section className="w-full min-h-[70vh] flex flex-col justify-center items-start pt-16 pb-8 px-2 md:px-0">
+    <section className="w-full min-h-[70vh] flex flex-col justify-center items-start md:pt-16 md:pb-8 px-2 md:px-0">
       {/* Presentación */}
       <div
         className="absolute top-0 left-0 bottom-0 w-full h-full z-0"

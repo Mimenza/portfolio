@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { useLogedUser } from "../context/logedUserContext";
-
+import { useVariablesContext } from "../context/variablesContext";
 import supabase from "../supabase/client";
 
 import Menu from "../components/shared/menu/menu";
+import PhoneMenu from "../components/shared/menu/phoneMenu";
 
 import Footer from "../components/shared/footer/footer";
 import HorizontalCard from "../components/projectScreen/horizontalCard";
@@ -19,6 +20,7 @@ const ProjectsScreen = () => {
   const [showProjectDetail, setShowProjectDetail] = React.useState(false);
   const [projects, setProjects] = useState<any[]>([]);
   const [selectedProject, setSelectedProject] = useState<any | null>(null);
+  const { phoneView } = useVariablesContext();
 
   useEffect(() => {
     if (!logedUser) {
@@ -99,9 +101,13 @@ const ProjectsScreen = () => {
   // sm:px-[100px] 2xl:px-[200px] px-5
   // 2xl:w-[1500px]
   return (
-    <div className="min-h-screen overflow-x-hidden relative py-10  items-center flex flex-col">
-      <Menu selectedSection={2} />
-      
+    <div className="min-h-screen overflow-x-hidden relative md:pt-10 pb-10 items-center flex flex-col">
+      {phoneView ? (
+        <PhoneMenu selectedSection={2} />
+      ) : (
+        <Menu selectedSection={2} />
+      )}
+
       {/* Gradientes */}
       <div className="fixed top-0 left-0 w-screen h-10 z-20 bg-gradient-to-b from-background dark:from-dark-background to-transparent"></div>
       <div className="fixed bottom-0 left-0 w-screen h-10 z-20 bg-gradient-to-b from-transparent dark:to-dark-background to-background"></div>
@@ -135,9 +141,12 @@ const ProjectsScreen = () => {
         <p className="m-4 text-lg-custom text-gray-300">
           Here you can find most of my projects.
         </p>
-        <div className="grid lg:grid-cols-2 md:grid-cols-2 xl:grid-cols-2 grid-cols-2 gap-10 h-auto w-auto">
+        <div className="grid lg:grid-cols-2 md:grid-cols-2 xl:grid-cols-2 grid-cols-1 gap-10 h-auto w-auto">
           {projects.map((project, index) => (
-            <div key={index} className={index % 2 === 1 ? "mt-10" : ""}>
+            <div
+              key={index}
+              className={index % 2 === 1 ? "md:mt-10 mt-5" : "mt-5"}
+            >
               <HorizontalCard
                 onClickProject={() => {
                   handleProjectCardClick(project);

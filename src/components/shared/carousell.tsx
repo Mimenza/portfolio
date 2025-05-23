@@ -12,7 +12,7 @@ const Carousell: React.FC<CarousellProps> = ({ words, className }) => {
 
   return (
     <div
-      className={`overflow-hidden w-full py-6 my-20 border border-x border-text_secondary ${className || ""}`}
+      className={`overflow-hidden w-full py-6 mb-10 md:my-20 border border-x border-text_secondary ${className || ""}`}
       style={{
         maskImage:
           "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",

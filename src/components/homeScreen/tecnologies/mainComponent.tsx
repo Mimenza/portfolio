@@ -7,7 +7,7 @@ import Dropdown from "./dropdown";
 const MainComponentTecnologies = () => {
   return (
     <div className="h-full w-full">
-      <div className="flex flex-col mt-20 gap-5">
+      <div className="flex flex-col md:mt-20 gap-5">
         <div className="flex flex-col w-full h-auto">
           <div className="flex flex-row items-center gap-2 mb-2">
             <svg
