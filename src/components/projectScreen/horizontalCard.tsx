@@ -84,7 +84,7 @@ const HorizontalCard = ({
   const { phoneView } = useVariablesContext();
   return (
     <div
-      className={`flex flex-col z-10 w-full sm:w-full md:w-full lg:w-full dark:bg-dark-muted bg-muted bg-opacity-25 group transition-transform duration-300 ease-in-out gap-2 ${
+      className={`flex flex-col w-full sm:w-full md:w-full lg:w-full dark:bg-dark-muted bg-muted bg-opacity-25 group transition-transform duration-300 ease-in-out gap-2 ${
         phoneView ? "rounded-[12px] p-2" : "rounded-[25px] p-5"
       }`}
     >

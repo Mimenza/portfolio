@@ -99,7 +99,7 @@ const MainComponentProjectDetail = ({
 
   return (
     <div
-      className={`fixed inset-0 z-20 flex items-center justify-center ${
+      className={`fixed inset-0 z-[9999] flex items-center justify-center ${
         isClosing ? "animate-fadeOutScale" : "animate-fadeInScale"
       }`}
     >

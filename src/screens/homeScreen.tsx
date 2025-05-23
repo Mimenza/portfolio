@@ -64,20 +64,20 @@ const HomeScreen = () => {
       />
       <div
         ref={projectsRef}
-        className={`w-full py-10 justify-center items-center flex h-auto z-10`}
+        className={`w-full py-10 justify-center items-center flex h-auto`}
       >
         <MainComponentProyects />
       </div>
       <div
         ref={technologiesRef}
-        className={`w-full py-10 justify-center items-center flex h-auto z-10`}
+        className={`w-full py-10 justify-center items-center flex h-auto`}
       >
         <MainComponentTecnologies />
       </div>
       <TechCarousell />
       <div
         ref={contactRef}
-        className={`w-full py-10 justify-center items-center flex h-auto z-10`}
+        className={`w-full py-10 justify-center items-center flex h-auto`}
       >
         <MainComponentContact />
       </div>

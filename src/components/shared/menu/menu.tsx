@@ -114,7 +114,6 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
     return `rgba(${r}, ${g}, ${b}, ${opacity})`;
   };
 
-  // py-5 fixed inset-0 mx-[250px]  z-20 justify-center items-center
   return (
     <div className="fixed h-20 inset-0 mx-[20px] sm:mx-[100px] 2xl:mx-[400px] z-20 justify-center items-center flex">
       <div

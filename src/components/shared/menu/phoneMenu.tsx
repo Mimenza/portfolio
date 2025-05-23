@@ -34,41 +34,42 @@ const PhoneMenu: React.FC<PhoneMenuProps> = ({ selectedSection }) => {
   };
 
   return (
-    <>
-      <div className="fixed top-0 left-0 w-full flex justify-between items-center px-5 pt-4 z-30">
-        <EmSvg />
+   <div className="">
+  <div className="fixed top-0 left-0 w-full flex justify-between items-center px-5 pt-4 z-20">
+    <EmSvg />
+    <button
+      className="text-2xl text-text_primary dark:text-dark-text_primary bg-transparent rounded-full p-2"
+      onClick={handleDarkModeToggle}
+    >
+      {darkMode ? <IoIosSunny /> : <IoMoon />}
+    </button>
+  </div>
+  {/* Bottom nav */}
+  <nav className="fixed bottom-0 left-0 w-full flex justify-center items-center z-20">
+    <div className="flex flex-row w-full justify-between items-center bg-background dark:bg-dark-background bg-opacity-10 backdrop-blur-md rounded-t-2xl px-3 py-2 shadow-lg border border-[#232325]">
+      {navItems.map((item, idx) => (
         <button
-          className="text-2xl text-text_primary dark:text-dark-text_primary bg-transparent rounded-full p-2"
-          onClick={handleDarkModeToggle}
+          key={item.label}
+          className={`flex flex-col items-center justify-center flex-1 px-2 py-1 transition-all
+            ${selectedSection === idx
+              ? "text-secondary font-semibold"
+              : "text-text_secondary dark:text-dark-text_secondary"}
+          `}
+          onClick={() => handleNav(idx)}
         >
-          {darkMode ? <IoIosSunny /> : <IoMoon />}
+          <span className={`text-2xl mb-1 ${selectedSection === idx ? "scale-110" : "scale-100"} transition-transform`}>
+            {item.icon}
+          </span>
+          <span className="text-xs">{item.label}</span>
+          {selectedSection === idx && (
+            <span className="w-1.5 h-1.5 rounded-full bg-secondary mt-1 block"></span>
+          )}
         </button>
-      </div>
-      {/* Bottom nav */}
-      <nav className="fixed bottom-0 left-0 w-full z-30 flex justify-center items-center">
-        <div className="flex flex-row w-full justify-between items-center bg-background dark:bg-dark-background bg-opacity-10 backdrop-blur-md rounded-t-2xl px-3 py-2 shadow-lg border border-[#232325]">
-          {navItems.map((item, idx) => (
-            <button
-              key={item.label}
-              className={`flex flex-col items-center justify-center flex-1 px-2 py-1 transition-all
-                ${selectedSection === idx
-                  ? "text-secondary font-semibold"
-                  : "text-text_secondary dark:text-dark-text_secondary"}
-              `}
-              onClick={() => handleNav(idx)}
-            >
-              <span className={`text-2xl mb-1 ${selectedSection === idx ? "scale-110" : "scale-100"} transition-transform`}>
-                {item.icon}
-              </span>
-              <span className="text-xs">{item.label}</span>
-              {selectedSection === idx && (
-                <span className="w-1.5 h-1.5 rounded-full bg-secondary mt-1 block"></span>
-              )}
-            </button>
-          ))}
-        </div>
-      </nav>
-    </>
+      ))}
+    </div>
+  </nav>
+</div>
+
   );
 };
 

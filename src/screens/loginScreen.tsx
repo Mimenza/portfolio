@@ -49,7 +49,7 @@ const LoginScreen = () => {
   return (
     <div className="min-h-screen overflow-hidden flex items-center justify-center">
       {/* Aurora de fondo */}
-      <div className="absolute top-0 left-0 w-screen h-full z-0">
+      <div className="absolute top-0 left-0 w-screen h-full">
         <Aurora
           colorStops={["#e303fc", "#5a03fc", "#038cfc"]}
           blend={1}
@@ -59,7 +59,7 @@ const LoginScreen = () => {
       </div>
 
       {/* Aurora invertido */}
-      <div className="absolute bottom-0 left-0 w-screen h-full z-0 rotate-180">
+      <div className="absolute bottom-0 left-0 w-screen h-full rotate-180">
         <Aurora
           colorStops={["#e303fc", "#5a03fc", "#038cfc"]}
           blend={1}
@@ -69,7 +69,7 @@ const LoginScreen = () => {
       </div>
 
       {/* Login Form */}
-      <div className="relative z-10 p-8 rounded-lg shadow-lg w-96 bg-background dark:bg-dark-background">
+      <div className="relative p-8 rounded-lg shadow-lg w-96 bg-background dark:bg-dark-background">
         <h2 className="text-4xl-custom font-bold font-clash mb-4 text-center text-white">
           Login
         </h2>

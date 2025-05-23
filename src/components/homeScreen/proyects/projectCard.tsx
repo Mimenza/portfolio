@@ -29,7 +29,7 @@ const ProjectCard = ({
   const { phoneView } = useVariablesContext();
   return (
     <div
-      className={`flex flex-col z-10 w-full sm:w-full md:w-full lg:w-full dark:bg-dark-muted bg-muted bg-opacity-25 shadow-lg shadow-black/30 border dark:border-dark-muted border-muted border-opacity-25 cursor-pointer group gap-2 ${
+      className={`flex flex-col w-full sm:w-full md:w-full lg:w-full dark:bg-dark-muted bg-muted bg-opacity-25 shadow-lg shadow-black/30 border dark:border-dark-muted border-muted border-opacity-25 cursor-pointer group gap-2 ${
         phoneView ? "rounded-[12px] p-2" : "rounded-[25px] p-3"
       }`}
       onClick={() => onClickProject && onClickProject(id)}
