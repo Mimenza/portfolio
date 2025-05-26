@@ -118,14 +118,12 @@ const MainComponentAboutMe = () => {
           </a>
         </div>
         <div className="mt-6 md:mt-0 flex items-center">
-          <Magnet padding={250} disabled={false} magnetStrength={5}>
-            <button
+         <button
               className="bg-white text-black px-7 py-3 rounded-full font-bold hover:bg-opacity-90 flex flex-row items-center space-x-2 text-lg-custom shadow hover:scale-105 transition-all duration-300"
               onClick={() => navigate("/about")}
             >
               Know me better
             </button>
-          </Magnet>
         </div>
       </div>
     </section>

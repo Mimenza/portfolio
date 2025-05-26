@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
   const { phoneView } = useVariablesContext();
 
   return (
-    <div className="w-full min-h-[200px] flex flex-col items-center justify-center pb-10 md:pb-0">
+    <div className="w-full min-h-[200px] flex flex-col items-center justify-center pb-0">
       <div className="w-full border-t border-t-text_secondary dark:border-t-dark-text_secondary border-opacity-25 mx-[40px] my-5" />
       <div className="w-full flex items-center justify-between flex-col md:flex-row gap-5 px-[20px]">
         <div className="flex gap-5 justify-between w-full md:w-auto">

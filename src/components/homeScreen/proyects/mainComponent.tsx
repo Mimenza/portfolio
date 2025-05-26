@@ -24,9 +24,10 @@ const MainComponentProyects = () => {
   }, []);
 
   const handleProjectCardClick = (project: any) => {
-    setSelectedProject(project);
-    setShowProjectDetail(true);
-    setIsClosing(false);
+    // setSelectedProject(project);
+    // setShowProjectDetail(true);
+    // setIsClosing(false);
+    navigate(`/projects/${project.slug}`);
   };
 
   const handleClose = () => {

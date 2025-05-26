@@ -174,8 +174,8 @@ const SlugScreen = () => {
 
   if (loading)
     return (
-      <div className="bg-background dark:bg-dark-background min-h-screen w-full flex items-center justify-center">
-        Cargando...
+      <div className="bg-background dark:bg-dark-background min-h-screen w-full flex items-center justify-center text-text_primary dark:text-dark-text_primary">
+        Loading content...
       </div>
     );
 
@@ -201,7 +201,7 @@ const SlugScreen = () => {
               <h1 className="text-4xl-custom md:text-5xl-custom text-text_primary dark:text-dark-text_primary font-bold mb-3 font-clash">
                 {project.name}
               </h1>
-              <p className="text-base md:text-lg-custom text-text_primary dark:text-dark-text_primary mb-6 max-w-2xl">
+              <p className="text-base text-justify md:text-lg-custom md:text-left text-text_primary dark:text-dark-text_primary mb-6 max-w-3xl">
                 {project.description}
               </p>
               {/* Tags/Technologies */}
@@ -243,14 +243,14 @@ const SlugScreen = () => {
           </div>
           {/* Gallery */}
           <div className="w-full bg-black rounded-xl overflow-hidden flex items-center justify-center">
-            <div className="w-full aspect-w-16 aspect-h-9 relative">
+            <div className="w-full aspect-w-16 aspect-h-9 relative group">
               {project.cover ||
               (project.storage && project.storage.length > 0) ? (
                 <>
                   {/* Flecha izquierda */}
                   {galleryItems.length > 1 && (
                     <button
-                      className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-black/50 text-white rounded-full p-2 hover:bg-black/80 transition"
+                      className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-black/50 text-white rounded-full p-2 hover:bg-black/80 transition opacity-0 group-hover:opacity-100"
                       onClick={(e) => {
                         e.stopPropagation();
                         setGalleryIndex((prev) =>
@@ -290,7 +290,7 @@ const SlugScreen = () => {
                   {/* Flecha derecha */}
                   {galleryItems.length > 1 && (
                     <button
-                      className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-black/50 text-white rounded-full p-2 hover:bg-black/80 transition"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-black/50 text-white rounded-full p-2 hover:bg-black/80 transition opacity-0 group-hover:opacity-100"
                       onClick={(e) => {
                         e.stopPropagation();
                         setGalleryIndex((prev) =>
@@ -305,7 +305,7 @@ const SlugScreen = () => {
                   )}
                   {/* Indicador */}
                   {galleryItems.length > 1 && (
-                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-black/60 text-white rounded px-3 py-1 text-xs">
+                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-black/60 text-white rounded px-3 py-1 text-xs opacity-0 group-hover:opacity-100">
                       {galleryIndex + 1} / {galleryItems.length}
                     </div>
                   )}
