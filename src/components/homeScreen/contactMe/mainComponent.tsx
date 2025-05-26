@@ -5,9 +5,38 @@ import { useVariablesContext } from "../../../context/variablesContext";
 import { SiGmail } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
+import { useState } from "react";
+import emailjs from "emailjs-com";
 
 const MainComponentContact = () => {
   const { phoneView } = useVariablesContext();
+  const [form, setForm] = useState({ subject: "", message: "" });
+  const [status, setStatus] = useState<null | "success" | "error">(null);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus(null);
+    try {
+      await emailjs.send(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID!, // tu Service ID
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID!, // tu Template ID real de EmailJS
+        {
+          subject: form.subject,
+          message: form.message,
+        },
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY! // tu User ID (public key)
+      );
+      setStatus("success");
+      setForm({ subject: "", message: "" });
+    } catch (err) {
+      setStatus("error");
+    }
+  };
+
   return (
     <div className="h-full w-full flex flex-col">
       <div className="flex flex-col">
@@ -95,20 +124,29 @@ const MainComponentContact = () => {
 
         <div className="flex-[1] flex p-2">
           <div className="flex-[1] p-4">
-            <form className="flex flex-col gap-4 h-full">
+            <form className="flex flex-col gap-4 h-full" onSubmit={handleSubmit}>
               <input
                 type="text"
+                name="subject"
                 placeholder="Subject"
+                value={form.subject}
+                onChange={handleChange}
                 className="p-2 rounded-md bg-background_light dark:bg-dark-muted_light text-text_primary dark:text-dark-text_primary placeholder:text-left focus:outline focus:outline-secondary"
               />
-              <input
+              {/* <input
                 type="email"
+                name="email"
                 placeholder="Email"
+                value={form.email}
+                onChange={handleChange}
                 className="p-2 rounded-md bg-background_light dark:bg-dark-muted_light text-text_primary dark:text-dark-text_primary placeholder:text-left focus:outline focus:outline-secondary"
-              />
+              /> */}
               <textarea
+                name="message"
                 placeholder="Message"
                 rows={4}
+                value={form.message}
+                onChange={handleChange}
                 className="p-2 rounded-md bg-background_light dark:bg-dark-muted_light text-text_primary dark:text-dark-text_primary flex-grow placeholder:text-left resize-none overflow-auto focus:outline focus:outline-secondary"
               ></textarea>
               <button
@@ -117,6 +155,12 @@ const MainComponentContact = () => {
               >
                 Send
               </button>
+              {status === "success" && (
+                <span className="text-green-600">Message sent successfully!</span>
+              )}
+              {status === "error" && (
+                <span className="text-red-600">Error sending message. Please try again.</span>
+              )}
             </form>
           </div>
         </div>
