@@ -98,16 +98,17 @@ function App() {
   }, []); // Add darkMode as a dependency
 
   return (
-    <div className="h-auto w-screen px-[30px] sm:px-[100px] 2xl:px-[20%] dark:bg-dark-background bg-background transition-colors duration-700 scrollbar-custom">
+    <div className="h-auto w-screen px-[30px] sm:px-[100px] 2xl:px-[20%] dark:bg-dark-background bg-background transition-colors duration-700 scrollbar-custom scroll-smooth">
       
       <Routes>
         <Route path="/home" element={<HomeScreen />} />
         <Route path="/projects" element={<ProjectsScreen />} />
         <Route path="/login" element={<LoginScreen />} />
         <Route path="/about" element={<AboutScreen />} />
+        <Route path="projects/:slug" element={<SlugScreen />} />
+        
         <Route path="/" element={<Navigate to="/login" />} />{" "}
         <Route path="*" element={<Navigate to="/login" />} />{" "}
-        <Route path="projects/:slug" element={<SlugScreen />} />
         <Route path="/test" element={<Test />} />
       </Routes>
     </div>

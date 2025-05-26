@@ -32,6 +32,7 @@ module.exports = {
         text_primary: "#111827", // gris oscuro casi negro
         text_secondary: "#6b7280", // gris medio
         text_third: "#9ca3af", // gris claro
+        
 
         // 🌑 Modo oscuro (usando clases `dark:`)
         dark: {

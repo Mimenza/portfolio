@@ -1,15 +1,31 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import supabase from "../supabase/client";
+import Footer from "../components/shared/footer/footer";
 import { useNavigate } from "react-router-dom";
 import { useLogedUser } from "../context/logedUserContext";
+import Menu from "../components/shared/menu/menu";
+import PhoneMenu from "../components/shared/menu/phoneMenu";
+import { useVariablesContext } from "../context/variablesContext";
+import Gallery from "../components/shared/projectDetail/gallery";
+import { FiExternalLink } from "react-icons/fi";
 
 const SlugScreen = () => {
   const { slug } = useParams<{ slug: string }>();
-  const [htmlContent, setHtmlContent] = useState<string | null>(null);
+  const [project, setProject] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [galleryIndex, setGalleryIndex] = useState(0);
+  const [allSlugs, setAllSlugs] = useState<string[]>([]);
+  const [currentIndex, setCurrentIndex] = useState<number>(-1);
+  const [htmlContent, setHtmlContent] = useState<string>("");
   const navigate = useNavigate();
   const { logedUser } = useLogedUser();
+  const { phoneView } = useVariablesContext();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
 
   useEffect(() => {
     if (!logedUser) {
@@ -17,51 +33,338 @@ const SlugScreen = () => {
     }
   }, []);
 
+  // Modificado: fetch de todos los slugs y del proyecto actual
   useEffect(() => {
-    const fetchProject = async () => {
-      const { data, error } = await supabase
-        .from("Projects")
-        .select("*")
-        .eq("slug", slug)
-        .single();
+    const fetchData = async () => {
+      try {
+        // Fetch all slugs
+        const { data: slugsData, error: slugsError } = await supabase
+          .from("Projects")
+          .select("slug")
+          .order("date", { ascending: false });
 
-      if (error) {
-        console.error("Error fetching project:", error);
-        setHtmlContent("<h1>Project not found</h1>");
-        navigate("/home");
-      } else {
-        // Verifica si data.html es un enlace
-        if (data.htmlLink && data.htmlLink.startsWith("http")) {
-          try {
-            const response = await fetch(data.htmlLink);
-            if (!response.ok) {
-              throw new Error("Error fetching HTML file");
+        if (slugsError) {
+          console.error("Error fetching slugs:", slugsError);
+          setAllSlugs([]);
+        } else if (Array.isArray(slugsData)) {
+          const slugs = slugsData.map((item: any) => item.slug);
+          setAllSlugs(slugs);
+          setCurrentIndex(slugs.indexOf(slug || ""));
+        }
+
+        // Fetch project by slug (incluye html y htmlLink)
+        type ProjectType = {
+          id: number;
+          name: string;
+          slug: string;
+          description: string;
+          date?: string;
+          link?: string;
+          status?: string;
+          html?: string;
+          htmlLink?: string;
+          ["Projects-Tecnologies"]?: { Tecnologies?: { name: string } }[];
+          ["Projects-Storage"]?: {
+            Storage?: { link: string; cover?: boolean };
+          }[];
+        };
+
+        const { data, error } = await supabase
+          .from("Projects")
+          .select(
+            `
+            *,
+            Projects-Tecnologies (
+              Tecnologies ( name )
+            ),
+            Projects-Storage (
+              Storage ( link, cover )
+            )
+          `
+          )
+          .eq("slug", slug)
+          .single<ProjectType>();
+
+        if (error) {
+          console.error("Error fetching project:", error);
+          setProject(null);
+          setHtmlContent("<h1>Project not found</h1>");
+          setLoading(false);
+          navigate("/home");
+          return;
+        }
+
+        if (data && typeof data === "object" && !Array.isArray(data)) {
+          const formattedProject = {
+            ...(typeof data === "object" && data !== null ? data : {}),
+            technologies: Array.isArray(data["Projects-Tecnologies"])
+              ? (data["Projects-Tecnologies"] as any[])
+                  .map((tech: any) => tech.Tecnologies?.name)
+                  .filter((name: string | undefined) => name !== undefined)
+              : [],
+            storage: Array.isArray(data["Projects-Storage"])
+              ? (data["Projects-Storage"] as any[])
+                  .filter((store: any) => store.Storage)
+                  .map((store: any) => store.Storage.link)
+              : [],
+            cover: Array.isArray(data["Projects-Storage"])
+              ? (data["Projects-Storage"] as any[])
+                  .filter((store: any) => store.Storage?.cover)
+                  .map((store: any) => store.Storage.link)[0] || null
+              : null,
+          };
+          setProject(formattedProject);
+
+          // Obtener el HTML
+          if (
+            data.htmlLink &&
+            typeof data.htmlLink === "string" &&
+            data.htmlLink.startsWith("http")
+          ) {
+            try {
+              const response = await fetch(data.htmlLink);
+              if (!response.ok) {
+                throw new Error("Error fetching HTML file");
+              }
+              const html = await response.text();
+              setHtmlContent(html);
+              document.title = `🔧 Emimenza | ${data.slug}`;
+            } catch (fetchError) {
+              console.error("Error fetching HTML file:", fetchError);
+              setHtmlContent("<h1>Error loading project content</h1>");
             }
-            const html = await response.text();
-            setHtmlContent(html);
-            document.title = `🔧 Emimenza | ${data.slug}`;
-          } catch (fetchError) {
-            console.error("Error fetching HTML file:", fetchError);
-            setHtmlContent("<h1>Error loading project content</h1>");
+          } else {
+            setHtmlContent(data.html || "");
           }
         } else {
-          setHtmlContent(data.html);
+          setProject(null);
+          setHtmlContent("<h1>Project not found</h1>");
         }
+        setLoading(false);
+      } catch (err) {
+        console.error("Error:", err);
+        setProject(null);
+        setHtmlContent("<h1>Error loading project content</h1>");
+        setLoading(false);
       }
-
-      setLoading(false);
     };
 
-    fetchProject();
+    fetchData();
   }, [slug]);
 
-  if (loading) return <div>Cargando...</div>;
+  // Calcula el slug anterior y siguiente
+  const prevSlug =
+    allSlugs.length > 0 && currentIndex > 0 ? allSlugs[currentIndex - 1] : null;
+  const nextSlug =
+    allSlugs.length > 0 && currentIndex < allSlugs.length - 1
+      ? allSlugs[currentIndex + 1]
+      : null;
+
+  // Prepara los items para la galería
+  const galleryItems =
+    project && project.storage
+      ? project.storage.map((src: string) => {
+          const isVideo = src.match(/\.(mp4|webm|ogg)$/i);
+          return {
+            type: isVideo ? "video" : "image",
+            src,
+          };
+        })
+      : [];
+
+  if (loading)
+    return (
+      <div className="bg-background dark:bg-dark-background min-h-screen w-full flex items-center justify-center">
+        Cargando...
+      </div>
+    );
 
   return (
-    <div
-      dangerouslySetInnerHTML={{ __html: htmlContent || "" }}
-      className="project-html-content"
-    />
+    <div className=" bg-background dark:bg-dark-background min-h-screen w-full px-4 md:px-12 py-10 flex flex-col gap-8 pt-20 md:pt-40">
+      {phoneView ? (
+        <PhoneMenu selectedSection={-1} />
+      ) : (
+        <Menu selectedSection={-1} />
+      )}
+
+      {project ? (
+        <>
+          {/* Header */}
+          <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-8">
+            <div className="flex-1">
+              <button
+                className="mb-6 text-sm text-text_secondary dark:text-dark-text_secondary hover:underline flex items-center gap-1"
+                onClick={() => navigate(-1)}
+              >
+                &larr; Go back
+              </button>
+              <h1 className="text-4xl-custom md:text-5xl-custom text-text_primary dark:text-dark-text_primary font-bold mb-3 font-clash">
+                {project.name}
+              </h1>
+              <p className="text-base md:text-lg-custom text-text_primary dark:text-dark-text_primary mb-6 max-w-2xl">
+                {project.description}
+              </p>
+              {/* Tags/Technologies */}
+              <div className="flex flex-wrap gap-2 mb-8">
+                {project.technologies?.map((tech: string, idx: number) => (
+                  <span
+                    key={idx}
+                    className="bg-background-muted dark:bg-dark-muted text-text_secondary dark:text-dark-text_secondary px-3 py-1 rounded-full text-xs font-medium"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+            {/* Right info */}
+            <div className="flex flex-col items-end gap-4 min-w-[220px]">
+              <div className="flex flex-row gap-2 items-center">
+                <div className="bg-background-muted dark:bg-dark-muted text-text_secondary dark:text-dark-text_secondary px-3 py-1 rounded text-xs">
+                  {project.date || "----"}
+                </div>
+              </div>
+              {project.link && (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white text-black px-6 py-2 rounded-full font-semibold hover:bg-gray-200 transition flex items-center gap-2 shadow"
+                >
+                  Code <FiExternalLink />
+                </a>
+              )}
+              <div className="flex flex-col gap-1 text-sm w-full mt-2">
+                <div className="flex flex-row justify-between items-center">
+                  <span className="font-semibold text-text_primary dark:text-dark-text_primary w-16">Status:</span>
+                  <span className="text-text_secondary dark:text-dark-text_secondary">{project.status || "N/A"}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* Gallery */}
+          <div className="w-full bg-black rounded-xl overflow-hidden flex items-center justify-center">
+            <div className="w-full aspect-w-16 aspect-h-9 relative">
+              {project.cover ||
+              (project.storage && project.storage.length > 0) ? (
+                <>
+                  {/* Flecha izquierda */}
+                  {galleryItems.length > 1 && (
+                    <button
+                      className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-black/50 text-white rounded-full p-2 hover:bg-black/80 transition"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setGalleryIndex((prev) =>
+                          prev === 0 ? galleryItems.length - 1 : prev - 1
+                        );
+                      }}
+                      style={{ fontSize: 32 }}
+                      aria-label="Anterior"
+                    >
+                      ‹
+                    </button>
+                  )}
+                  {/* Imagen/video principal */}
+                  {(() => {
+                    const idx = galleryIndex;
+                    const item = galleryItems[idx];
+                    if (!item) return null;
+                    if (item.type === "image") {
+                      return (
+                        <img
+                          src={item.src}
+                          alt={project.name}
+                          className="object-cover w-full h-full cursor-pointer"
+                          onClick={() => setGalleryOpen(true)}
+                        />
+                      );
+                    }
+                    return (
+                      <video
+                        src={item.src}
+                        controls
+                        className="object-cover w-full h-full cursor-pointer"
+                        onClick={() => setGalleryOpen(true)}
+                      />
+                    );
+                  })()}
+                  {/* Flecha derecha */}
+                  {galleryItems.length > 1 && (
+                    <button
+                      className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-black/50 text-white rounded-full p-2 hover:bg-black/80 transition"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setGalleryIndex((prev) =>
+                          prev === galleryItems.length - 1 ? 0 : prev + 1
+                        );
+                      }}
+                      style={{ fontSize: 32 }}
+                      aria-label="Siguiente"
+                    >
+                      ›
+                    </button>
+                  )}
+                  {/* Indicador */}
+                  {galleryItems.length > 1 && (
+                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-black/60 text-white rounded px-3 py-1 text-xs">
+                      {galleryIndex + 1} / {galleryItems.length}
+                    </div>
+                  )}
+                </>
+              ) : (
+                <div className="text-gray-600 py-32 flex items-center justify-center w-full h-full">
+                  No image available
+                </div>
+              )}
+            </div>
+          </div>
+          {/* Gallery modal */}
+          {galleryOpen && (
+            <Gallery
+              items={galleryItems}
+              initialIndex={galleryIndex}
+              onClose={() => setGalleryOpen(false)}
+            />
+          )}
+          {/* HTML content */}
+          {htmlContent && (
+            <div className="flex flex-col gap-4 mt-8">
+              <div className="font-bold text-2xl-custom text-text_primary dark:text-dark-text_primary font-clash">Documentation:</div>
+              <div className="bg-muted dark:bg-dark-muted rounded-lg shadow-lg" dangerouslySetInnerHTML={{ __html: htmlContent }} />
+            </div>
+          )}
+          {/* Navigation */}
+          <div className="flex justify-between w-full mt-8">
+            <button
+              className="flex items-center gap-2 bg-background-muted dark:bg-dark-muted text-text_secondary dark:text-dark-text_secondary transition border border-[#232329] rounded-lg px-6 py-3 shadow"
+              disabled={!prevSlug}
+              onClick={() => {
+                if (prevSlug) navigate(`/projects/${prevSlug}`);
+              }}
+            >
+              &larr;{" "}
+              <span className="hidden md:inline text-xs font-semibold">
+                Prev
+              </span>
+            </button>
+            <button
+              className="flex items-center gap-2 bg-background-muted dark:bg-dark-muted text-text_secondary dark:text-dark-text_secondary transition border border-[#232329] rounded-lg px-6 py-3 shadow"
+              disabled={!nextSlug}
+              onClick={() => {
+                if (nextSlug) navigate(`/projects/${nextSlug}`);
+              }}
+            >
+              <span className="hidden md:inline text-xs font-semibold">
+                Next
+              </span>
+              &rarr;
+            </button>
+          </div>
+        </>
+      ) : (
+        <div>No se encontró el proyecto.</div>
+      )}
+      <Footer />
+    </div>
   );
 };
 

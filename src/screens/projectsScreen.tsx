@@ -35,9 +35,10 @@ const ProjectsScreen = () => {
   }, []);
 
   const handleProjectCardClick = (project: any) => {
-    setSelectedProject(project);
-    setShowProjectDetail(true);
-    setIsClosing(false);
+    navigate(`/projects/${project.slug}`);
+    // setSelectedProject(project);
+    // setShowProjectDetail(true);
+    // setIsClosing(false);
   };
 
   const handleClose = () => {
