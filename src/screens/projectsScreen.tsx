@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 import { useNavigate } from "react-router-dom";
 import { useLogedUser } from "../context/logedUserContext";
@@ -12,6 +13,8 @@ import Footer from "../components/shared/footer/footer";
 import HorizontalCard from "../components/projectScreen/horizontalCard";
 import MainComponentProjectDetail from "../components/shared/projectDetail/mainComponent";
 
+import { IoMdArrowDropdown } from "react-icons/io";
+
 import ShinyText from "../blocks/TextAnimations/ShinyText/ShinyText";
 const ProjectsScreen = () => {
   const navigate = useNavigate();
@@ -19,8 +22,13 @@ const ProjectsScreen = () => {
 
   const [showProjectDetail, setShowProjectDetail] = React.useState(false);
   const [projects, setProjects] = useState<any[]>([]);
+  const [filteredProjects, setFilteredProjects] = useState<any[]>([]);
   const [selectedProject, setSelectedProject] = useState<any | null>(null);
   const { phoneView } = useVariablesContext();
+
+  // Dropdown state
+  const [statusFilter, setStatusFilter] = useState<string>("All");
+  const [orderBy, setOrderBy] = useState<string>("Newest");
 
   useEffect(() => {
     if (!logedUser) {
@@ -86,6 +94,7 @@ const ProjectsScreen = () => {
                 .map((store: any) => store.Storage.link)[0] || null, // Use the first match or null
           }));
           setProjects(formattedProjects);
+          setFilteredProjects(formattedProjects); // Inicializar filtrados
           // console.log("Projects:", formattedProjects);
         } else {
           console.error("No projects found");
@@ -97,6 +106,24 @@ const ProjectsScreen = () => {
 
     getProjects();
   }, []);
+
+  // Filtrar y ordenar proyectos cuando cambian los filtros
+  useEffect(() => {
+    let filtered = [...projects];
+    if (statusFilter !== "All") {
+      filtered = filtered.filter((p) => p.status === statusFilter);
+    }
+    if (orderBy === "Newest") {
+      filtered = filtered.sort((a, b) => a.id - b.id);
+    } else if (orderBy === "Oldest") {
+      filtered = filtered.sort((a, b) => b.id - a.id);
+    } else if (orderBy === "A-Z") {
+      filtered = filtered.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (orderBy === "Z-A") {
+      filtered = filtered.sort((a, b) => b.name.localeCompare(a.name));
+    }
+    setFilteredProjects(filtered);
+  }, [projects, statusFilter, orderBy]);
 
   const [isClosing, setIsClosing] = React.useState(false);
   // sm:px-[100px] 2xl:px-[200px] px-5
@@ -139,30 +166,72 @@ const ProjectsScreen = () => {
         <p className="text-6xl-custom font-bold font-clash mt-1 text-white">
           Projects
         </p>
-        <p className="m-4 text-lg-custom text-gray-300">
+        <p className="m-4 text-lg-custom text-gray-300 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           Here you can find most of my projects.
-        </p>
-        <div className="grid lg:grid-cols-2 md:grid-cols-2 xl:grid-cols-2 grid-cols-1 gap-10 h-auto w-auto">
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className={index % 2 === 1 ? "md:mt-10 mt-5" : "mt-5"}
-            >
-              <HorizontalCard
-                onClickProject={() => {
-                  handleProjectCardClick(project);
-                }} // Pasar el proyecto completo
-                id={project.id}
-                name={project.name}
-                link={project.link}
-                status={project.status}
-                description={project.description}
-                img={project.storage}
-                technologies={project.technologies}
-                cover={project.cover}
-              />
+          <div className="grid grid-cols-2 sm:flex sm:flex-row gap-3 sm:gap-4 mb-6 mt-6 w-full sm:w-auto">
+            {/* Estado */}
+            <div className="relative w-full">
+              <select
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+                className="w-full appearance-none bg-muted dark:bg-dark-muted text-text_primary dark:text-dark-text_primary px-6 py-2 pr-10 rounded-full hover:bg-opacity-90 focus:outline-none"
+              >
+                <option value="All">All Status</option>
+                <option value="On Development">On Development</option>
+                <option value="Finished">Finished</option>
+                <option value="Getting Updates">Getting Updates</option>
+              </select>
+              <div className="pointer-events-none absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500">
+                <IoMdArrowDropdown />
+              </div>
             </div>
-          ))}
+            {/* Ordenar */}
+            <div className="relative w-full">
+              <select
+                value={orderBy}
+                onChange={(e) => setOrderBy(e.target.value)}
+                className="w-full appearance-none bg-muted dark:bg-dark-muted text-text_primary dark:text-dark-text_primary px-6 py-2 pr-10 rounded-full hover:bg-opacity-90 focus:outline-none"
+              >
+                <option value="Newest">Newest</option>
+                <option value="Oldest">Oldest</option>
+                <option value="A-Z">A-Z</option>
+                <option value="Z-A">Z-A</option>
+              </select>
+              <div className="pointer-events-none absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500">
+                <IoMdArrowDropdown />
+              </div>
+            </div>
+          </div>
+        </p>
+
+        <div className="grid lg:grid-cols-2 md:grid-cols-2 xl:grid-cols-2 grid-cols-1 gap-10 h-auto w-auto">
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                layout
+                initial={{ opacity: 0, scale: 0.97, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.97, y: 20 }}
+                transition={{ duration: 0.18, ease: "easeInOut" }}
+                className={index % 2 === 1 ? "md:mt-10 mt-5" : "mt-5"}
+              >
+                <HorizontalCard
+                  onClickProject={() => {
+                    handleProjectCardClick(project);
+                  }}
+                  id={project.id}
+                  name={project.name}
+                  link={project.link}
+                  status={project.status}
+                  description={project.description}
+                  img={project.storage}
+                  technologies={project.technologies}
+                  cover={project.cover}
+                />
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
       </div>
 
