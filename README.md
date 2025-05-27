@@ -110,6 +110,4 @@ This project is licensed under the MIT License.
 
 ---
 
-**Author:** [Your Name](https://yourwebsite.com)
-
-Feel free to fork and adapt this project for your own portfolio!
+**Author:** [Endika Mimenza](emimenza.vercel.app)
