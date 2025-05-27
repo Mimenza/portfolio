@@ -35,13 +35,11 @@ const HomeScreen = () => {
     if (!logedUser) {
       navigate("/login");
     }
-    document.title = "🔧 Emimenza | Home";
-    document.body.style.overflow = "auto";
-    document.body.style.overflowX = "hidden";
+    document.title = "🔧 Emimenza | Home";    
   }, []);
 
   return (
-    <div className="flex flex-col w-full overflow-hidden relative scrollbar-thin scrollbar-webkit">
+    <div className="flex flex-col h-auto w-full">
       {phoneView ? (<PhoneMenu selectedSection={0} />): (<Menu selectedSection={0} />)}
 
       {/* Sections */}

@@ -34,9 +34,7 @@ const ProjectsScreen = () => {
     if (!logedUser) {
       navigate("/login");
     }
-    // Disable global scrolling X
-    document.body.style.overflow = "auto";
-    document.body.style.overflowX = "hidden";
+
     document.title = "🔧 Emimenza | Projects";
     // Scroll to top on page load
     window.scrollTo(0, 0);
@@ -129,7 +127,7 @@ const ProjectsScreen = () => {
   // sm:px-[100px] 2xl:px-[200px] px-5
   // 2xl:w-[1500px]
   return (
-    <div className="min-h-screen overflow-x-hidden relative md:pt-10 pb-10 items-center flex flex-col">
+    <div className="min-h-screen overflow-hidden relative md:pt-10 pb-10 items-center flex flex-col">
       {phoneView ? (
         <PhoneMenu selectedSection={2} />
       ) : (
@@ -206,31 +204,35 @@ const ProjectsScreen = () => {
 
         <div className="grid lg:grid-cols-2 md:grid-cols-2 xl:grid-cols-2 grid-cols-1 gap-10 h-auto w-auto">
           <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                layout
-                initial={{ opacity: 0, scale: 0.97, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.97, y: 20 }}
-                transition={{ duration: 0.18, ease: "easeInOut" }}
-                className={index % 2 === 1 ? "md:mt-10 mt-5" : "mt-5"}
-              >
-                <HorizontalCard
-                  onClickProject={() => {
-                    handleProjectCardClick(project);
-                  }}
-                  id={project.id}
-                  name={project.name}
-                  link={project.link}
-                  status={project.status}
-                  description={project.description}
-                  img={project.storage}
-                  technologies={project.technologies}
-                  cover={project.cover}
-                />
-              </motion.div>
-            ))}
+            {filteredProjects.map((project, index) => {
+              // Calcula el índice dentro de la fila de 2 columnas
+              const colIndex = index % 2;
+              return (
+                <motion.div
+                  key={project.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.97, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.97, y: 20 }}
+                  transition={{ duration: 0.18, ease: "easeInOut" }}
+                  className={colIndex === 1 ? "md:mt-10 mt-5" : "mt-5"}
+                >
+                  <HorizontalCard
+                    onClickProject={() => {
+                      handleProjectCardClick(project);
+                    }}
+                    id={project.id}
+                    name={project.name}
+                    link={project.link}
+                    status={project.status}
+                    description={project.description}
+                    img={project.storage}
+                    technologies={project.technologies}
+                    cover={project.cover}
+                  />
+                </motion.div>
+              );
+            })}
           </AnimatePresence>
         </div>
       </div>

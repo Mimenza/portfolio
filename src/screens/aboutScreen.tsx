@@ -20,9 +20,6 @@ const AboutScreen: React.FC = () => {
     if (!logedUser) {
       navigate("/login");
     }
-    // Disable global scrolling X
-    document.body.style.overflow = "auto";
-    document.body.style.overflowX = "hidden";
     document.title = "🔧 Emimenza | About";
     // Scroll to top on page load
     window.scrollTo(0, 0);

@@ -32,3 +32,41 @@ body {
     color: #ffff;
   }
 }
+
+/* Scrollbar para modo claro */
+.scrollbar-light {
+  scrollbar-color: #111827 #FFFFFF; /* thumb: secondary, track: muted_light */
+  scrollbar-width: thin;
+}
+
+.scrollbar-light::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollbar-light::-webkit-scrollbar-thumb {
+  background-color: #7C3AED; /* secondary */
+  border-radius: 4px;
+}
+
+.scrollbar-light::-webkit-scrollbar-track {
+  background-color: #E5E7EB; /* muted_light */
+}
+
+/* Scrollbar para modo oscuro */
+.scrollbar-dark {
+  scrollbar-color: #c1c3c7 #0b0b0d; /* thumb: dark.secondary, track: dark.muted_light */
+  scrollbar-width: thin;
+}
+
+.scrollbar-dark::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollbar-dark::-webkit-scrollbar-thumb {
+  background-color: #c1c3c7; /* dark.secondary */
+  border-radius: 4px;
+}
+
+.scrollbar-dark::-webkit-scrollbar-track {
+  background-color: #212226; /* dark.muted_light */
+}

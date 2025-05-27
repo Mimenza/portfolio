@@ -164,7 +164,12 @@ const SlugScreen = () => {
   const galleryItems =
     project && project.storage
       ? project.storage.map((src: string) => {
-          const isVideo = src.match(/\.(mp4|webm|ogg)$/i);
+          // Detecta si es video o imagen por la extensión
+          const isVideo =
+            typeof src === "string" &&
+            (src.includes(".mp4") ||
+              src.includes(".webm") ||
+              src.includes(".ogg"));
           return {
             type: isVideo ? "video" : "image",
             src,
@@ -235,8 +240,12 @@ const SlugScreen = () => {
               )}
               <div className="flex flex-col gap-1 text-sm w-full mt-2">
                 <div className="flex flex-row justify-between items-center">
-                  <span className="font-semibold text-text_primary dark:text-dark-text_primary w-16">Status:</span>
-                  <span className="text-text_secondary dark:text-dark-text_secondary">{project.status || "N/A"}</span>
+                  <span className="font-semibold text-text_primary dark:text-dark-text_primary w-16">
+                    Status:
+                  </span>
+                  <span className="text-text_secondary dark:text-dark-text_secondary">
+                    {project.status || "N/A"}
+                  </span>
                 </div>
               </div>
             </div>
@@ -268,6 +277,41 @@ const SlugScreen = () => {
                     const idx = galleryIndex;
                     const item = galleryItems[idx];
                     if (!item) return null;
+                    if (item.type === "video") {
+                      return (
+                        <div
+                          className={`aspect-[16/9] overflow-hidden cursor-pointer ${
+                            phoneView ? "rounded-[12px]" : "rounded-[25px]"
+                          }`}
+                          onClick={() => setGalleryOpen(true)}
+                        >
+                          <video
+                            src={item.src}
+                            autoPlay
+                            muted
+                            loop
+                            className={`h-full w-full object-cover transition-transform duration-300 ease-in-out ${
+                              phoneView ? "rounded-[12px]" : "rounded-[25px]"
+                            }`}
+                            onError={(e) => {
+                              const videoElement = e.target as HTMLVideoElement;
+                              videoElement.style.display = "none";
+                              const imgElement =
+                                videoElement.nextElementSibling as HTMLImageElement;
+                              if (imgElement)
+                                imgElement.style.display = "block";
+                            }}
+                          />
+                          <img
+                            src={item.src}
+                            className={`h-full w-full object-cover transition-transform duration-300 ease-in-out hidden ${
+                              phoneView ? "rounded-[12px]" : "rounded-[25px]"
+                            }`}
+                            alt={project.name}
+                          />
+                        </div>
+                      );
+                    }
                     if (item.type === "image") {
                       return (
                         <img
@@ -278,14 +322,7 @@ const SlugScreen = () => {
                         />
                       );
                     }
-                    return (
-                      <video
-                        src={item.src}
-                        controls
-                        className="object-cover w-full h-full cursor-pointer"
-                        onClick={() => setGalleryOpen(true)}
-                      />
-                    );
+                    return null;
                   })()}
                   {/* Flecha derecha */}
                   {galleryItems.length > 1 && (
@@ -328,8 +365,13 @@ const SlugScreen = () => {
           {/* HTML content */}
           {htmlContent && (
             <div className="flex flex-col gap-4 mt-8">
-              <div className="font-bold text-2xl-custom text-text_primary dark:text-dark-text_primary font-clash">Documentation:</div>
-              <div className="bg-muted dark:bg-dark-muted rounded-lg shadow-lg" dangerouslySetInnerHTML={{ __html: htmlContent }} />
+              <div className="font-bold text-2xl-custom text-text_primary dark:text-dark-text_primary font-clash">
+                Documentation:
+              </div>
+              <div
+                className="bg-muted dark:bg-dark-muted rounded-lg shadow-lg"
+                dangerouslySetInnerHTML={{ __html: htmlContent }}
+              />
             </div>
           )}
           {/* Navigation */}

@@ -162,10 +162,17 @@ const HorizontalCard = ({
         ) : null}
       </div>
       {!phoneView ? (
-        <div className="text-md-custom text-text_third dark:text-dark-text_third w-full text-justify">
-          {description.length > 200
-            ? `${description.substring(0, 200)}...`
-            : description}
+        <div
+          className="text-md-custom text-text_third dark:text-dark-text_third w-full text-justify overflow-hidden"
+          style={{
+            display: "-webkit-box",
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: "vertical",
+            lineClamp: 2,
+            maxHeight: "3em", // Aproximadamente 2 líneas
+          }}
+        >
+          {description}
         </div>
       ) : null}
     </div>

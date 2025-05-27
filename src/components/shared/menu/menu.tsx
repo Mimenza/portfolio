@@ -8,6 +8,7 @@ import EmSvg from "../../ui/emSvg";
 
 import { useNavigate } from "react-router-dom";
 import { useVariablesContext } from "../../../context/variablesContext";
+
 interface MenuProps {
   selectedSection: number; // 0 for Home, 1 for About, 2 for Projects
 }
@@ -72,8 +73,13 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
     setDarkMode((prev) => !prev);
     if (darkMode) {
       document.documentElement.classList.remove("dark"); // Desactivar modo oscuro
+      document.documentElement.classList.remove("scrollbar-dark");
+      document.documentElement.classList.add("scrollbar-light");
     } else {
+      document.documentElement.classList.remove("scrollbar-light");
       document.documentElement.classList.add("dark"); // Activar modo oscuro
+      document.documentElement.classList.add("scrollbar-dark");
+      
     }
   };
 
@@ -133,7 +139,7 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
             className={`flex flex-row items-center gap-1 cursor-pointer ${
               selectedSection === 0
                 ? "text-text_primary dark:text-dark-text_primary"
-                : "text-text_secondary dark:text-dark-text_secondary"
+                : "text-text_secondary dark:text-dark-text_secondary hover:text-text_primary dark:hover:text-dark-text_primary"
             }`}
             onClick={() => handleIconClick(0)}
           >
@@ -152,7 +158,7 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
             className={`flex flex-row items-center gap-1 cursor-pointer ${
               selectedSection === 1
                 ? "text-text_primary dark:text-dark-text_primary"
-                : "text-text_secondary dark:text-dark-text_secondary"
+                : "text-text_secondary dark:text-dark-text_secondary hover:text-text_primary dark:hover:text-dark-text_primary"
             }`}
             onClick={() => handleIconClick(1)}
           >
@@ -171,7 +177,7 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
             className={`flex flex-row items-center gap-1 cursor-pointer ${
               selectedSection === 2
                 ? "text-text_primary dark:text-dark-text_primary"
-                : "text-text_secondary dark:text-dark-text_secondary"
+               : "text-text_secondary dark:text-dark-text_secondary hover:text-text_primary dark:hover:text-dark-text_primary"
             }`}
             onClick={() => handleIconClick(2)}
           >
