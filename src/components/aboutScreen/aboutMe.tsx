@@ -42,20 +42,20 @@ const AboutMe: React.FC = () => {
           I'm passionate about the world of vintage technology and mechanical
           keyboards. In my free time, I'm working on a mobile app called{" "}
           <a
-            href="https://emimenza/projects/TravelLens.vercel.app"
+            href="https://emimenza.vercel.app/projects/TravelLens"
             className="text-text_primary dark:text-dark-text_primary no-underline font-clash"
           >
             TravelLens
           </a>
           , built with React Native. I've also created other mobile apps like{" "}
           <a
-            href="https://emimenza/projects/SagarraJo.vercel.app"
+            href="https://emimenza.vercel.app/projects/SagarraJo"
             className="text-text_primary dark:text-dark-text_primary no-underline font-clash"
           >
             Sagarra Jo
           </a>{" "}
           and{" "}
-          <a href="https://emimenza/projects/Zap.vercel.app" className="text-text_primary dark:text-dark-text_primary no-underline font-clash">
+          <a href="https://emimenza.vercel.app/projects/Zap" className="text-text_primary dark:text-dark-text_primary no-underline font-clash">
             Zap
           </a>
           . These are personal projects that let me explore and enjoy the

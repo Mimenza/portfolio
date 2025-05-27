@@ -62,7 +62,7 @@ const MainComponentAboutMe = () => {
       </div>
 
       {/* Título principal */}
-      <h1 className="text-[2.5rem] sm:text-[3.5rem] md:text-[4.5rem] font-clash font-bold leading-tight text-white max-w-5xl mb-4">
+      <h1 className="text-[2.5rem] sm:text-[3.5rem] md:text-[4.5rem] font-clash font-bold leading-tight text-text_primary dark:text-dark-text_primary max-w-5xl mb-4">
         <span className="text-secondary">Purpose-driven</span> development,
         meaningful digital solutions from{" "}
         <span className="text-secondary">front</span> to{" "}
@@ -75,7 +75,7 @@ const MainComponentAboutMe = () => {
           <div className="flex flex-1 items-center justify-center">
             <div className="border-b dark:border-dark-text_secondary border-text_secondary w-full" />
           </div>
-          <p className=" flex-[1] text-lg-custom text-gray-300">
+          <p className=" flex-[1] text-lg-custom text-text_secondary dark:text-dark-text_secondary">
             I build meaningful digital solutions from front to back. Passionate
             about technology, vintage hardware, and continuous learning.
             Currently focused on React, React Native, and backend development.
@@ -85,7 +85,7 @@ const MainComponentAboutMe = () => {
 
       {/* Redes sociales */}
       <div className="flex flex-col md:flex-row justify-between w-full z-10">
-        <div className="flex flex-row gap-6 mt-4 text-sm-custom text-gray-400">
+        <div className="flex flex-row gap-6 mt-4 text-sm-custom text-text_secondary dark:text-dark-text_secondary">
           <a
             href="https://www.linkedin.com/in/endika-m-99aa26252/"
             target="_blank"
@@ -119,7 +119,7 @@ const MainComponentAboutMe = () => {
         </div>
         <div className="mt-6 md:mt-0 flex items-center">
          <button
-              className="bg-white text-black px-7 py-3 rounded-full font-bold hover:bg-opacity-90 flex flex-row items-center space-x-2 text-lg-custom shadow hover:scale-105 transition-all duration-300"
+              className="bg-text_primary dark:bg-dark-text_primary text-background dark:text-dark-background px-7 py-3 rounded-full font-bold hover:bg-opacity-90 flex flex-row items-center space-x-2 text-lg-custom shadow hover:scale-105 transition-all duration-300"
               onClick={() => navigate("/about")}
             >
               Know me better

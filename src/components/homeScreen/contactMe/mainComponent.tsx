@@ -131,27 +131,19 @@ const MainComponentContact = () => {
                 placeholder="Subject"
                 value={form.subject}
                 onChange={handleChange}
-                className="p-2 rounded-md bg-background_light dark:bg-dark-muted_light text-text_primary dark:text-dark-text_primary placeholder:text-left focus:outline focus:outline-secondary"
+                className="p-2 rounded-md bg-muted dark:bg-dark-muted text-text_primary dark:text-dark-text_primary placeholder:text-left focus:outline focus:outline-secondary"
               />
-              {/* <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={form.email}
-                onChange={handleChange}
-                className="p-2 rounded-md bg-background_light dark:bg-dark-muted_light text-text_primary dark:text-dark-text_primary placeholder:text-left focus:outline focus:outline-secondary"
-              /> */}
               <textarea
                 name="message"
                 placeholder="Message"
                 rows={4}
                 value={form.message}
                 onChange={handleChange}
-                className="p-2 rounded-md bg-background_light dark:bg-dark-muted_light text-text_primary dark:text-dark-text_primary flex-grow placeholder:text-left resize-none overflow-auto focus:outline focus:outline-secondary"
+                className="p-2 rounded-md bg-muted dark:bg-dark-muted text-text_primary dark:text-dark-text_primary flex-grow placeholder:text-left resize-none overflow-auto focus:outline focus:outline-secondary"
               ></textarea>
               <button
                 type="submit"
-                className="p-2 bg-primary bg-background_light dark:bg-dark-muted_light text-text_primary dark:text-dark-text_primary rounded-md dark:hover:bg-dark-primary-dark"
+                className="p-2 bg-muted dark:bg-dark-muted text-text_primary dark:text-dark-text_primary rounded-md dark:hover:bg-dark-primary-dark"
               >
                 Send
               </button>

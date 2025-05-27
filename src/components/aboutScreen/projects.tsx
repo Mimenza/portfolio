@@ -81,7 +81,7 @@ const Projects: React.FC = () => {
               </svg>
           Side Projects
         </p>
-        <button className="bg-white text-black px-6 py-2 rounded-full hover:bg-opacity-90" onClick={() => navigate("/projects")}>
+        <button className="bg-text_primary dark:bg-dark-text_primary text-background dark:text-dark-background px-6 py-2 rounded-full hover:bg-opacity-90" onClick={() => navigate("/projects")}>
           <span>More projects</span>
         </button>
       </div>

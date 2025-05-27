@@ -137,8 +137,8 @@ const ProjectsScreen = () => {
       )}
 
       {/* Gradientes */}
-      <div className="fixed top-0 left-0 w-screen h-10 z-20 bg-gradient-to-b from-background dark:from-dark-background to-transparent"></div>
-      <div className="fixed bottom-0 left-0 w-screen h-10 z-20 bg-gradient-to-b from-transparent dark:to-dark-background to-background"></div>
+      <div className="fixed top-0 left-0 w-screen h-10 z-10 bg-gradient-to-b from-background dark:from-dark-background to-transparent"></div>
+      <div className="fixed bottom-0 left-0 w-screen h-10 z-10 bg-gradient-to-b from-transparent dark:to-dark-background to-background"></div>
       {/* Contenido principal */}
       <div className="min-h-screen h-full w-full relative my-20">
         <div className="flex flex-row items-center gap-2 mb-2">
@@ -163,10 +163,10 @@ const ProjectsScreen = () => {
             className="text-lg-custom text-secondary dark:text-dark-secondary"
           />
         </div>
-        <p className="text-6xl-custom font-bold font-clash mt-1 text-white">
+        <p className="text-6xl-custom font-bold font-clash mt-1 text-text_primary dark:text-dark-text_primary mb-4">
           Projects
         </p>
-        <p className="m-4 text-lg-custom text-gray-300 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <p className="m-4 text-lg-custom text-text_secondary dark:text-dark-text_secondary flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           Here you can find most of my projects.
           <div className="grid grid-cols-2 sm:flex sm:flex-row gap-3 sm:gap-4 mb-6 mt-6 w-full sm:w-auto">
             {/* Estado */}

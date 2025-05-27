@@ -14,7 +14,7 @@ import MainComponentAboutMe from "../components/homeScreen/aboutMe/mainComponent
 import MainComponentProyects from "../components/homeScreen/proyects/mainComponent";
 import MainComponentTecnologies from "../components/homeScreen/tecnologies/mainComponent";
 import MainComponentContact from "../components/homeScreen/contactMe/mainComponent";
-import FooterSlider from "../components/shared/footer/aboutFooterSlider";
+import FooterSlider from "../components/shared/footer/mouseSlider";
 
 import Menu from "../components/shared/menu/menu";
 import PhoneMenu from "../components/shared/menu/phoneMenu";

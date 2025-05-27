@@ -130,7 +130,7 @@ const MainComponentProyects = () => {
             <div>
               {!phoneView ? (
                 <button
-                  className="bg-white text-black px-7 py-3 rounded-full font-bold hover:bg-opacity-90 flex flex-row items-center space-x-2 text-lg-custom shadow hover:scale-105 transition-all duration-300"
+                  className="bg-text_primary dark:bg-dark-text_primary text-background dark:text-dark-background px-7 py-3 rounded-full font-bold hover:bg-opacity-90 flex flex-row items-center space-x-2 text-lg-custom shadow hover:scale-105 transition-all duration-300"
                   onClick={() => {
                     navigate("/projects");
                   }}
@@ -169,7 +169,7 @@ const MainComponentProyects = () => {
         <div className="w-full h-auto flex justify-center items-center">
           {phoneView ? (
             <button
-              className="w-auto bg-white text-black px-7 py-3 rounded-full font-bold hover:bg-opacity-90 flex flex-row items-center space-x-2 text-lg-custom shadow hover:scale-105 transition-all duration-300"
+              className="w-auto bg-text_primary dark:bg-dark-text_primary text-background dark:text-dark-background px-7 py-3 rounded-full font-bold hover:bg-opacity-90 flex flex-row items-center space-x-2 text-lg-custom shadow hover:scale-105 transition-all duration-300"
               onClick={() => {
                 navigate("/projects");
               }}

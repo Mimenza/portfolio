@@ -193,7 +193,7 @@ const SlugScreen = () => {
           <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-8">
             <div className="flex-1">
               <button
-                className="mb-6 text-sm text-text_secondary dark:text-dark-text_secondary hover:underline flex items-center gap-1"
+                className="mb-6 text-md-custom text-text_secondary dark:text-dark-text_secondary hover:underline flex items-center gap-1"
                 onClick={() => navigate(-1)}
               >
                 &larr; Go back
@@ -228,7 +228,7 @@ const SlugScreen = () => {
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-white text-black px-6 py-2 rounded-full font-semibold hover:bg-gray-200 transition flex items-center gap-2 shadow"
+                  className="bg-text_primary dark:bg-dark-text_primary text-background dark:text-dark-background px-6 py-2 rounded-full font-semibold transition flex items-center gap-2 shadow"
                 >
                   Code <FiExternalLink />
                 </a>
@@ -311,7 +311,7 @@ const SlugScreen = () => {
                   )}
                 </>
               ) : (
-                <div className="text-gray-600 py-32 flex items-center justify-center w-full h-full">
+                <div className="text-text_secondary dark:text-dark-text_secondary py-32 flex items-center justify-center w-full h-full">
                   No image available
                 </div>
               )}

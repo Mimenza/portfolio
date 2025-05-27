@@ -23,16 +23,14 @@ module.exports = {
         "9xl-custom": "clamp(6rem, 12vw, 7rem)", // min 96px, max 112px
       },
       colors: {
-        // 💡 Modo claro (por defecto)
-        background: "#ababab", // blanco
-        background_light: "#111827",
-        secondary: "#7e22ce", // púrpura
-        muted: "#f3f4f6", // gris claro
-        muted_light: "#f9fafb", // gris más claro
-        text_primary: "#111827", // gris oscuro casi negro
-        text_secondary: "#6b7280", // gris medio
-        text_third: "#9ca3af", // gris claro
-        
+        background: "#FFFFFF", // fondo principal blanco
+        background_light: "#F9FAFB", // fondo sutil gris claro
+        secondary: "#7C3AED", // mismo tono púrpura (ligeramente ajustado para claridad)
+        muted: "#c1c3c7", // gris muy claro (gray-100)
+        muted_light: "#E5E7EB", // gris claro (gray-200)
+        text_primary: "#111827", // gris oscuro casi negro (gray-900)
+        text_secondary: "#4B5563", // gris medio (gray-600)
+        text_third: "#6B7280", // gris suave (gray-500)
 
         // 🌑 Modo oscuro (usando clases `dark:`)
         dark: {
@@ -53,12 +51,12 @@ module.exports = {
         fadeOutScale: "fadeOutScale 0.5s ease-in-out",
         float: "float 3s ease-in-out infinite",
         fadeInDownScroll: "fadeInDownScroll 2s ease-in-out infinite",
-        shine: 'shine 5s linear infinite',
+        shine: "shine 5s linear infinite",
       },
       keyframes: {
-         shine: {
-          '0%': { 'background-position': '100%' },
-          '100%': { 'background-position': '-100%' },
+        shine: {
+          "0%": { "background-position": "100%" },
+          "100%": { "background-position": "-100%" },
         },
         fadeInUp: {
           "0%": { opacity: 0, transform: "translateY(20px)" },
