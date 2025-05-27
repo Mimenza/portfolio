@@ -109,5 +109,3 @@ You can deploy the production build to any static hosting service (Vercel, Netli
 This project is licensed under the MIT License.
 
 ---
-
-**Author:** [Endika Mimenza](emimenza.vercel.app)
