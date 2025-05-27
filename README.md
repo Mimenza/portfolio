@@ -107,5 +107,3 @@ You can deploy the production build to any static hosting service (Vercel, Netli
 ## License
 
 This project is licensed under the MIT License.
-
----
