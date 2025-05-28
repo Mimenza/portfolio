@@ -365,11 +365,8 @@ const SlugScreen = () => {
           {/* HTML content */}
           {htmlContent && (
             <div className="flex flex-col gap-4 mt-8">
-              <div className="font-bold text-2xl-custom text-text_primary dark:text-dark-text_primary font-clash">
-                Documentation:
-              </div>
               <div
-                className="bg-muted dark:bg-dark-muted rounded-lg shadow-lg"
+                className=""
                 dangerouslySetInnerHTML={{ __html: htmlContent }}
               />
             </div>

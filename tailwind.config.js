@@ -1,6 +1,10 @@
 module.exports = {
   darkMode: "class", // Usar clase para activar el modo oscuro
-  content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+    "./public/index.html",
+    "./public/html/**/*.html", // <-- Agrega esta línea para incluir tus HTMLs
+  ],
   theme: {
     extend: {
       fontFamily: {
