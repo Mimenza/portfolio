@@ -17,9 +17,9 @@ const AboutScreen: React.FC = () => {
   const navigate = useNavigate();
   const { phoneView } = useVariablesContext();
   useEffect(() => {
-    if (!logedUser) {
-      navigate("/login");
-    }
+    // if (!logedUser) {
+    //   navigate("/login");
+    // }
     document.title = "🔧 Emimenza | About";
     // Scroll to top on page load
     window.scrollTo(0, 0);

@@ -58,7 +58,7 @@ const MainComponentProyects = () => {
           .order("date", { ascending: false });
 
         if (error) {
-          console.error("Error fetching projects:", error);
+          //console.error("Error fetching projects:", error);
           return;
         }
 
@@ -78,10 +78,10 @@ const MainComponentProyects = () => {
           }));
           setProjects(formattedProjects);
         } else {
-          console.error("No projects found");
+          //console.error("No projects found");
         }
       } catch (err) {
-        console.error("Error:", err);
+        //console.error("Error:", err);
       }
     };
 

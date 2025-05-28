@@ -19,17 +19,17 @@ const Certification: React.FC = () => {
           .order("date", { ascending: false });
 
         if (error) {
-          console.error("Error fetching Certification:", error);
+          //console.error("Error fetching Certification:", error);
           return;
         }
 
         if (Certification) {
           setCertification(Certification);
         } else {
-          console.error("No Certification found");
+          //console.error("No Certification found");
         }
       } catch (err) {
-        console.error("Error:", err);
+        //console.error("Error:", err);
       }
     };
 

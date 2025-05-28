@@ -17,17 +17,17 @@ const Education: React.FC = () => {
           .order("date", { ascending: false });
 
         if (error) {
-          console.error("Error fetching education:", error);
+          //console.error("Error fetching education:", error);
           return;
         }
 
         if (education) {
           setEducation(education);
         } else {
-          console.error("No Education found");
+          //console.error("No Education found");
         }
       } catch (err) {
-        console.error("Error:", err);
+        //console.error("Error:", err);
       }
     };
 

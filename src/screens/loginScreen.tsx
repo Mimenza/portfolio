@@ -30,7 +30,7 @@ const LoginScreen = () => {
 
       if (data?.length === 0) {
         setError("Usuario no encontrado.");
-        console.error("Error al buscar usuario");
+        //console.error("Error al buscar usuario");
         return;
       }
 
@@ -41,7 +41,7 @@ const LoginScreen = () => {
         setError("Usuario no encontrado.");
       }
     } catch (err) {
-      console.error("Error al iniciar sesión:", err);
+      //console.error("Error al iniciar sesión:", err);
       setError("Ocurrió un error inesperado.");
     }
   };

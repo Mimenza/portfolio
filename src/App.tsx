@@ -13,16 +13,15 @@ import ProjectsScreen from "./screens/projectsScreen";
 import LoginScreen from "./screens/loginScreen";
 import SlugScreen from "./screens/slugScreen";
 import AboutScreen from "./screens/aboutScreen";
-import Test from "./screens/test";
 
 import { useVariablesContext } from "./context/variablesContext";
 
 const useBreakpointLogger = () => {
   const { setCustomScroll, phoneView, setPhoneView } = useVariablesContext();
 
-  useEffect(() => {
-    console.log("Phone view:", phoneView);
-  }, [phoneView]);
+  // useEffect(() => {
+  //   console.log("Phone view:", phoneView);
+  // }, [phoneView]);
 
   useEffect(() => {
     const breakpoints = {
@@ -38,23 +37,23 @@ const useBreakpointLogger = () => {
     const logBreakpoint = () => {
       setPhoneView(false);
       if (breakpoints["3xl"].matches) {
-        console.log("Breakpoint: 3xl");
+        // console.log("Breakpoint: 3xl");
       } else if (breakpoints["2xl"].matches) {
-        console.log("Breakpoint: 2xl");
+        // console.log("Breakpoint: 2xl");
       } else if (breakpoints.xl.matches) {
-        console.log("Breakpoint: xl");
+        // console.log("Breakpoint: xl");
       } else if (breakpoints.lg.matches) {
-        console.log("Breakpoint: lg");
+        // console.log("Breakpoint: lg");
       } else if (breakpoints.md.matches) {
-        console.log("Breakpoint: md");
+        // console.log("Breakpoint: md");
       } else if (breakpoints.smPlus.matches) {
-        console.log("Breakpoint: sm-plus");
+        // console.log("Breakpoint: sm-plus");
       } else if (breakpoints.sm.matches) {
-        console.log("Breakpoint: sm");
+        // console.log("Breakpoint: sm");
         setPhoneView(true);
       } else {
         setPhoneView(true);
-        console.log("Breakpoint: default (xs)");
+        // console.log("Breakpoint: default (xs)");
       }
     };
     // Log the initial breakpoint
@@ -107,13 +106,12 @@ function App() {
       <Routes>
         <Route path="/home" element={<HomeScreen />} />
         <Route path="/projects" element={<ProjectsScreen />} />
-        <Route path="/login" element={<LoginScreen />} />
+        {/* <Route path="/login" element={<LoginScreen />} /> */}
         <Route path="/about" element={<AboutScreen />} />
         <Route path="projects/:slug" element={<SlugScreen />} />
         
-        <Route path="/" element={<Navigate to="/login" />} />{" "}
-        <Route path="*" element={<Navigate to="/login" />} />{" "}
-        <Route path="/test" element={<Test />} />
+        <Route path="/" element={<Navigate to="/home" />} />{" "}
+        <Route path="*" element={<Navigate to="/home" />} />{" "}
       </Routes>
     </div>
   );

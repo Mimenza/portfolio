@@ -32,9 +32,9 @@ const HomeScreen = () => {
 
   // Check if the user is logged in
   useEffect(() => {
-    if (!logedUser) {
-      navigate("/login");
-    }
+    // if (!logedUser) {
+    //   navigate("/login");
+    // }
     document.title = "🔧 Emimenza | Home";    
   }, []);
 

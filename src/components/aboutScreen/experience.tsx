@@ -16,17 +16,17 @@ const Experience: React.FC = () => {
           .order("date", { ascending: false });
 
         if (error) {
-          console.error("Error fetching experience:", error);
+          //console.error("Error fetching experience:", error);
           return;
         }
 
         if (experience) {
           setExperience(experience);
         } else {
-          console.error("No experience found");
+          //console.error("No experience found");
         }
       } catch (err) {
-        console.error("Error:", err);
+        //console.error("Error:", err);
       }
     };
 

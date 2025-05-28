@@ -46,13 +46,13 @@ export default function Dropdown({ category }: DropdownProps) {
           .eq("category", category);
 
         if (error) {
-          console.error("Error fetching technologies:", error);
+         // console.error("Error fetching technologies:", error);
           return;
         }
 
         setSkills(skills || []);
       } catch (err) {
-        console.error("Error:", err);
+        //console.error("Error:", err);
       }
     };
 

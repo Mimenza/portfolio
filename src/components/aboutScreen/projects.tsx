@@ -29,7 +29,7 @@ const Projects: React.FC = () => {
           .order("id", { ascending: true });
 
         if (error) {
-          console.error("Error fetching projects:", error);
+          //console.error("Error fetching projects:", error);
           return;
         }
 
@@ -50,10 +50,10 @@ const Projects: React.FC = () => {
           setProjects(formattedProjects);
           // console.log("Projects:", formattedProjects);
         } else {
-          console.error("No projects found");
+          //console.error("No projects found");
         }
       } catch (err) {
-        console.error("Error:", err);
+        //console.error("Error:", err);
       }
     };
 

@@ -43,9 +43,9 @@ const ProjectsScreen = () => {
   }, [projects]);
 
   useEffect(() => {
-    if (!logedUser) {
-      navigate("/login");
-    }
+    // if (!logedUser) {
+    //   navigate("/login");
+    // }
 
     document.title = "🔧 Emimenza | Projects";
     // Scroll to top on page load
@@ -85,7 +85,7 @@ const ProjectsScreen = () => {
           .order("id", { ascending: true });
 
         if (error) {
-          console.error("Error fetching projects:", error);
+          //console.error("Error fetching projects:", error);
           return;
         }
 
@@ -107,10 +107,10 @@ const ProjectsScreen = () => {
           setFilteredProjects(formattedProjects); // Inicializar filtrados
           // console.log("Projects:", formattedProjects);
         } else {
-          console.error("No projects found");
+         // console.error("No projects found");
         }
       } catch (err) {
-        console.error("Error:", err);
+        //console.error("Error:", err);
       }
     };
 

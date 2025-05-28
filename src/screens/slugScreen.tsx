@@ -29,9 +29,9 @@ const SlugScreen = () => {
   }, [slug]);
 
   useEffect(() => {
-    if (!logedUser) {
-      navigate("/login");
-    }
+    // if (!logedUser) {
+    //   navigate("/login");
+    // }
   }, []);
 
   // Modificado: fetch de todos los slugs y del proyecto actual
@@ -45,7 +45,7 @@ const SlugScreen = () => {
           .order("date", { ascending: false });
 
         if (slugsError) {
-          console.error("Error fetching slugs:", slugsError);
+          //console.error("Error fetching slugs:", slugsError);
           setAllSlugs([]);
         } else if (Array.isArray(slugsData)) {
           const slugs = slugsData.map((item: any) => item.slug);
@@ -87,7 +87,7 @@ const SlugScreen = () => {
           .single<ProjectType>();
 
         if (error) {
-          console.error("Error fetching project:", error);
+         // console.error("Error fetching project:", error);
           setProject(null);
           setHtmlContent("<h1>Project not found</h1>");
           setLoading(false);
@@ -116,25 +116,27 @@ const SlugScreen = () => {
           };
           setProject(formattedProject);
 
+          // Siempre actualiza el título aquí
+          document.title = `🔧 Emimenza | ${data.slug}`;
+
           // Obtener el HTML
           if (
             data.htmlLink &&
             typeof data.htmlLink === "string" &&
             data.htmlLink.startsWith("http")
           ) {
-          try {
-            // const response = await fetch(htmlPath);
-            const response = await fetch(data.htmlLink);
-            if (!response.ok) {
-              throw new Error("Error fetching HTML file");
+            try {
+              // const response = await fetch(htmlPath);
+              const response = await fetch(data.htmlLink);
+              if (!response.ok) {
+                throw new Error("Error fetching HTML file");
+              }
+              const html = await response.text();
+              setHtmlContent(html);
+            } catch (fetchError) {
+             // console.error("Error fetching HTML file:", fetchError);
+              setHtmlContent("<h1>Error loading project content</h1>");
             }
-            const html = await response.text();
-            setHtmlContent(html);
-            document.title = `🔧 Emimenza | ${data.slug}`;
-          } catch (fetchError) {
-            console.error("Error fetching HTML file:", fetchError);
-            setHtmlContent("<h1>Error loading project content</h1>");
-          }
           } else {
             setHtmlContent(data.html || "");
           }
@@ -144,7 +146,7 @@ const SlugScreen = () => {
         }
         setLoading(false);
       } catch (err) {
-        console.error("Error:", err);
+        //console.error("Error:", err);
         setProject(null);
         setHtmlContent("<h1>Error loading project content</h1>");
         setLoading(false);
