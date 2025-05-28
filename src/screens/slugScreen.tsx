@@ -10,6 +10,7 @@ import { useVariablesContext } from "../context/variablesContext";
 import Gallery from "../components/shared/projectDetail/gallery";
 import { FiExternalLink } from "react-icons/fi";
 
+const htmlPath = "/html/portfolio.html";
 const SlugScreen = () => {
   const { slug } = useParams<{ slug: string }>();
   const [project, setProject] = useState<any>(null);
@@ -121,18 +122,19 @@ const SlugScreen = () => {
             typeof data.htmlLink === "string" &&
             data.htmlLink.startsWith("http")
           ) {
-            try {
-              const response = await fetch(data.htmlLink);
-              if (!response.ok) {
-                throw new Error("Error fetching HTML file");
-              }
-              const html = await response.text();
-              setHtmlContent(html);
-              document.title = `🔧 Emimenza | ${data.slug}`;
-            } catch (fetchError) {
-              console.error("Error fetching HTML file:", fetchError);
-              setHtmlContent("<h1>Error loading project content</h1>");
+          try {
+            // const response = await fetch(htmlPath);
+            const response = await fetch(data.htmlLink);
+            if (!response.ok) {
+              throw new Error("Error fetching HTML file");
             }
+            const html = await response.text();
+            setHtmlContent(html);
+            document.title = `🔧 Emimenza | ${data.slug}`;
+          } catch (fetchError) {
+            console.error("Error fetching HTML file:", fetchError);
+            setHtmlContent("<h1>Error loading project content</h1>");
+          }
           } else {
             setHtmlContent(data.html || "");
           }
@@ -186,6 +188,11 @@ const SlugScreen = () => {
 
   return (
     <div className=" bg-background dark:bg-dark-background min-h-screen w-full px-4 md:px-12 py-10 flex flex-col gap-8 pt-20 md:pt-40">
+      {/* Bloque oculto para forzar a Tailwind a incluir las clases usadas en el HTML externo */}
+      <div className="hidden">
+        <div className="w-full h-auto flex flex-col gap-4 text-text_secondary dark:text-dark-text_secondary pl-2 ml-2 flex items-start gap-x-2 text-lg shrink-0 block bg-gray-100 dark:bg-[#17181d] rounded p-2 mt-1 text-xs overflow-x-auto font-mono whitespace-pre font-bold relative absolute top-2 right-2 bg-secondary text-white px-2 py-1 rounded text-xs hover:bg-secondary/80 transition"></div>
+      </div>
+
       {phoneView ? (
         <PhoneMenu selectedSection={-1} />
       ) : (
