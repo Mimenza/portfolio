@@ -111,7 +111,7 @@ const MainComponentAboutMe = () => {
             LETTERBOX ↗
           </a>
           <a
-            href="mailto:emimenza@gmail.com"
+            href="mailto:mimenzae@gmail.com"
             className="hover:text-secondary transition"
           >
             GMAIL ↗

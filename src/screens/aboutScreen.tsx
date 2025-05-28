@@ -49,12 +49,10 @@ const AboutScreen: React.FC = () => {
                 </p>
                 <p className="text-text_secondary dark:text-dark-text_secondary">
                   <a
-                    href="https://emimenza.vercel.app"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="mailto:mimenzae@gmail.com"
                     className="hover:text-text_primary hover:dark:text-dark-text_primary cursor-pointer"
                   >
-                    emimenza.vercel.app
+                    mimenzae@gmail.com
                   </a>
                 </p>
               </div>

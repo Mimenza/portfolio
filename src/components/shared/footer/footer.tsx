@@ -11,9 +11,11 @@ import { RiSupabaseLine } from "react-icons/ri";
 import { CiPlane } from "react-icons/ci";
 import { TbPingPong } from "react-icons/tb";
 import { MdOutlineContactPage } from "react-icons/md";
+import { Navigate, useNavigate } from "react-router-dom";
 
 import { useVariablesContext } from "../../../context/variablesContext";
 const Footer: React.FC = () => {
+  const navigate = useNavigate();
   const { phoneView } = useVariablesContext();
 
   return (
@@ -51,13 +53,13 @@ const Footer: React.FC = () => {
         {!phoneView ? (
           <div className=" w-full md:w-auto">
             <div className="flex flex-col gap-5  text-text_secondary dark:text-dark-text_secondary justify-between w-full md:w-auto">
-              <span className="flex flex-row items-center gap-5 justify-between hover:text-text_primary hover:dark:text-dark-text_primary  cursor-pointer">
+              <span className="flex flex-row items-center gap-5 justify-between hover:text-text_primary hover:dark:text-dark-text_primary  cursor-pointer" onClick={() => navigate("/projects/TravelLens")}>
                 TravelLens <CiPlane className="h-5 w-5" />
               </span>
-              <span className="flex flex-row items-center gap-5 justify-between hover:text-text_primary hover:dark:text-dark-text_primary  cursor-pointer">
+              <span className="flex flex-row items-center gap-5 justify-between hover:text-text_primary hover:dark:text-dark-text_primary  cursor-pointer" onClick={() => navigate("/projects/Transcendence")}>
                 Transcendence <TbPingPong className="h-5 w-5" />
               </span>
-              <span className="flex flex-row items-center gap-5 justify-between hover:text-text_primary hover:dark:text-dark-text_primary  cursor-pointer">
+              <span className="flex flex-row items-center gap-5 justify-between hover:text-text_primary hover:dark:text-dark-text_primary  cursor-pointer" onClick={() => navigate("/projects/Portfolio")}>
                 Portfolio <MdOutlineContactPage className="h-5 w-5" />
               </span>
             </div>
