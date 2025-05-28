@@ -35,11 +35,14 @@ const HomeScreen = () => {
     // if (!logedUser) {
     //   navigate("/login");
     // }
-    document.title = "🔧 Emimenza | Home";    
+    document.title = "Emimenza | Home";    
   }, []);
 
   return (
     <div className="flex flex-col h-auto w-full">
+       {/* Gradientes */}
+      <div className="fixed top-0 left-0 w-screen h-10 z-10 bg-gradient-to-b from-background dark:from-dark-background to-transparent"></div>
+      <div className="fixed bottom-0 left-0 w-screen h-10 z-10 bg-gradient-to-b from-transparent dark:to-dark-background to-background"></div>
       {phoneView ? (<PhoneMenu selectedSection={0} />): (<Menu selectedSection={0} />)}
 
       {/* Sections */}

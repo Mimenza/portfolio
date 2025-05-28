@@ -47,7 +47,7 @@ const ProjectsScreen = () => {
     //   navigate("/login");
     // }
 
-    document.title = "🔧 Emimenza | Projects";
+    document.title = "Emimenza | Projects";
     // Scroll to top on page load
     window.scrollTo(0, 0);
   }, []);

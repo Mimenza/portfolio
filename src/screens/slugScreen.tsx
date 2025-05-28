@@ -87,7 +87,7 @@ const SlugScreen = () => {
           .single<ProjectType>();
 
         if (error) {
-         // console.error("Error fetching project:", error);
+          // console.error("Error fetching project:", error);
           setProject(null);
           setHtmlContent("<h1>Project not found</h1>");
           setLoading(false);
@@ -117,7 +117,7 @@ const SlugScreen = () => {
           setProject(formattedProject);
 
           // Siempre actualiza el título aquí
-          document.title = `🔧 Emimenza | ${data.slug}`;
+          document.title = `Emimenza | ${data.slug}`;
 
           // Obtener el HTML
           if (
@@ -134,7 +134,7 @@ const SlugScreen = () => {
               const html = await response.text();
               setHtmlContent(html);
             } catch (fetchError) {
-             // console.error("Error fetching HTML file:", fetchError);
+              // console.error("Error fetching HTML file:", fetchError);
               setHtmlContent("<h1>Error loading project content</h1>");
             }
           } else {
@@ -194,6 +194,9 @@ const SlugScreen = () => {
       <div className="hidden">
         <div className="w-full h-auto flex flex-col gap-4 text-text_secondary dark:text-dark-text_secondary pl-2 ml-2 flex items-start gap-x-2 text-lg shrink-0 block bg-gray-100 dark:bg-[#17181d] rounded p-2 mt-1 text-xs overflow-x-auto font-mono whitespace-pre font-bold relative absolute top-2 right-2 bg-secondary text-white px-2 py-1 rounded text-xs hover:bg-secondary/80 transition"></div>
       </div>
+      {/* Gradientes */}
+      <div className="fixed top-0 left-0 w-screen h-10 z-10 bg-gradient-to-b from-background dark:from-dark-background to-transparent"></div>
+      <div className="fixed bottom-0 left-0 w-screen h-10 z-10 bg-gradient-to-b from-transparent dark:to-dark-background to-background"></div>
 
       {phoneView ? (
         <PhoneMenu selectedSection={-1} />

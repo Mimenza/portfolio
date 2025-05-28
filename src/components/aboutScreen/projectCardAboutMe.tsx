@@ -130,7 +130,7 @@ const ProjectCard = ({
           {description}
         </div>
         <div className="h-20 flex flex-nowrap space-x-4" onClickCapture={() => setShowGallery(true)}>
-          {storage.map((link, index) => {
+          {storage.slice(0, 1).map((link, index) => {
             const isVideo =
               link.includes(".mp4") ||
               link.includes(".webm") ||

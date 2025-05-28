@@ -89,11 +89,11 @@ const MainComponentProjectDetail = ({
   const { showGallery, setShowGallery, phoneView } = useVariablesContext();
 
   useEffect(() => {
-    document.title = `🔧 Emimenza | ${projectDetails.slug}`;
+    document.title = `Emimenza | ${projectDetails.slug}`;
   }, [showGallery]);
 
   const handleClose = () => {
-    document.title = `🔧 Emimenza | ${prevRoute}`;
+    document.title = `Emimenza | ${prevRoute}`;
     onClose();
   };
 
