@@ -29,6 +29,18 @@ const ProjectsScreen = () => {
   // Dropdown state
   const [statusFilter, setStatusFilter] = useState<string>("All");
   const [orderBy, setOrderBy] = useState<string>("Newest");
+  const [technologyFilter, setTechnologyFilter] = useState<string>("All");
+
+  // Obtener todas las tecnologías únicas para el filtro
+  const allTechnologies = React.useMemo(() => {
+    const techSet = new Set<string>();
+    projects.forEach((p) => {
+      if (Array.isArray(p.technologies)) {
+        p.technologies.forEach((t: string) => techSet.add(t));
+      }
+    });
+    return Array.from(techSet).sort();
+  }, [projects]);
 
   useEffect(() => {
     if (!logedUser) {
@@ -111,17 +123,24 @@ const ProjectsScreen = () => {
     if (statusFilter !== "All") {
       filtered = filtered.filter((p) => p.status === statusFilter);
     }
+    if (technologyFilter !== "All") {
+      filtered = filtered.filter(
+        (p) =>
+          Array.isArray(p.technologies) &&
+          p.technologies.includes(technologyFilter)
+      );
+    }
     if (orderBy === "Newest") {
-      filtered = filtered.sort((a, b) => a.id - b.id);
+      filtered = filtered.sort((a, b) => b.order - a.order);
     } else if (orderBy === "Oldest") {
-      filtered = filtered.sort((a, b) => b.id - a.id);
+      filtered = filtered.sort((a, b) => a.order - b.order);
     } else if (orderBy === "A-Z") {
       filtered = filtered.sort((a, b) => a.name.localeCompare(b.name));
     } else if (orderBy === "Z-A") {
       filtered = filtered.sort((a, b) => b.name.localeCompare(a.name));
     }
     setFilteredProjects(filtered);
-  }, [projects, statusFilter, orderBy]);
+  }, [projects, statusFilter, orderBy, technologyFilter]);
 
   const [isClosing, setIsClosing] = React.useState(false);
   // sm:px-[100px] 2xl:px-[200px] px-5
@@ -194,6 +213,24 @@ const ProjectsScreen = () => {
                 <option value="Oldest">Oldest</option>
                 <option value="A-Z">A-Z</option>
                 <option value="Z-A">Z-A</option>
+              </select>
+              <div className="pointer-events-none absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500">
+                <IoMdArrowDropdown />
+              </div>
+            </div>
+            {/* Filtrar por tecnología */}
+            <div className="relative w-full">
+              <select
+                value={technologyFilter}
+                onChange={(e) => setTechnologyFilter(e.target.value)}
+                className="w-full appearance-none bg-muted dark:bg-dark-muted text-text_primary dark:text-dark-text_primary px-6 py-2 pr-10 rounded-full hover:bg-opacity-90 focus:outline-none"
+              >
+                <option value="All">All Technologies</option>
+                {allTechnologies.map((tech) => (
+                  <option key={tech} value={tech}>
+                    {tech}
+                  </option>
+                ))}
               </select>
               <div className="pointer-events-none absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500">
                 <IoMdArrowDropdown />

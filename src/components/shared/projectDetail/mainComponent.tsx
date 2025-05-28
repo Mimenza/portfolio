@@ -20,7 +20,7 @@ import { FaHtml5 } from "react-icons/fa"; //html css
 import { FaDrupal } from "react-icons/fa6"; //Drupal
 import { TbBrandKotlin } from "react-icons/tb"; //kotlin
 import { PiFileCDuotone } from "react-icons/pi"; //C
-import { PiFileCSharpDuotone } from "react-icons/pi"; //C++
+import { PiFileCpp  } from "react-icons/pi"; //C++
 import { FaReact } from "react-icons/fa"; //React
 import { TbBrandReactNative } from "react-icons/tb"; //React Native
 import { RiTailwindCssFill } from "react-icons/ri"; //Tailwind
@@ -61,7 +61,7 @@ const technologyIcons: { [key: string]: React.ReactNode } = {
   Drupal: <FaDrupal className="h-full w-full" />,
   Kotlin: <TbBrandKotlin className="h-full w-full" />,
   C: <PiFileCDuotone className="h-full w-full" />,
-  "C++": <PiFileCSharpDuotone className="h-full w-full" />,
+  "C++": <PiFileCpp  className="h-full w-full" />,
   React: <FaReact className="h-full w-full" />,
   "React Native": <TbBrandReactNative className="h-full w-full" />,
   Tailwindcss: <RiTailwindCssFill className="h-full w-full" />,

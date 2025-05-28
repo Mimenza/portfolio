@@ -10,4 +10,5 @@ export interface Project {
     storage: string[];
     cover: string;
     slug: string;
+    order: number;
   }

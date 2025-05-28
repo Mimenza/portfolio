@@ -13,7 +13,7 @@ import { FaHtml5 } from "react-icons/fa";
 import { FaDrupal } from "react-icons/fa6";
 import { TbBrandKotlin } from "react-icons/tb";
 import { PiFileCDuotone } from "react-icons/pi";
-import { PiFileCSharpDuotone } from "react-icons/pi";
+import { PiFileCpp  } from "react-icons/pi";
 import { FaReact } from "react-icons/fa";
 import { TbBrandReactNative } from "react-icons/tb";
 import { RiTailwindCssFill } from "react-icons/ri";
@@ -24,6 +24,7 @@ import { RxFontStyle } from "react-icons/rx";
 import { IoLogoVercel } from "react-icons/io5";
 import { SiExpo } from "react-icons/si";
 import { FaGithub } from "react-icons/fa";
+import { FaDocker } from "react-icons/fa"; //Docker
 
 const techs = [
   { name: "Java", icon: FaJava },
@@ -40,7 +41,7 @@ const techs = [
   { name: "Drupal", icon: FaDrupal },
   { name: "Kotlin", icon: TbBrandKotlin },
   { name: "C", icon: PiFileCDuotone },
-  { name: "C++", icon: PiFileCSharpDuotone },
+  { name: "C++", icon: PiFileCpp  },
   { name: "React", icon: FaReact },
   { name: "React Native", icon: TbBrandReactNative },
   { name: "Tailwind", icon: RiTailwindCssFill },
@@ -51,6 +52,7 @@ const techs = [
   { name: "Vercel", icon: IoLogoVercel },
   { name: "Expo", icon: SiExpo },
   { name: "Github", icon: FaGithub },
+  { name: "Docker", icon: FaDocker },
 ];
 
 const TechCarousell = () => {

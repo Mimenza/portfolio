@@ -14,7 +14,7 @@ import { FaHtml5 } from "react-icons/fa"; //html css
 import { FaDrupal } from "react-icons/fa6"; //Drupal
 import { TbBrandKotlin } from "react-icons/tb"; //kotlin
 import { PiFileCDuotone } from "react-icons/pi"; //C
-import { PiFileCSharpDuotone } from "react-icons/pi"; //C++
+import { PiFileCpp  } from "react-icons/pi"; //C++
 import { FaReact } from "react-icons/fa"; //React
 import { TbBrandReactNative } from "react-icons/tb"; //React Native
 import { RiTailwindCssFill } from "react-icons/ri"; //Tailwind
@@ -23,7 +23,10 @@ import { SiAppwrite } from "react-icons/si"; //appwrite
 import { IoLogoFirebase } from "react-icons/io5"; //Firebase
 import { FaPlus } from "react-icons/fa"; //Plus
 import { RxFontStyle } from "react-icons/rx"; // StyleSheet
-
+import { FaDocker } from "react-icons/fa"; //Docker
+import { FaWordpress } from "react-icons/fa"; //Wordpress
+import { SiMariadb } from "react-icons/si";  //MariaDB
+import { SiNginx } from "react-icons/si"; //Nginx
 import { IoLogoVercel } from "react-icons/io5"; //Vercel
 import { SiExpo } from "react-icons/si"; //Expo
 import { FaGithub } from "react-icons/fa"; //Github
@@ -69,7 +72,7 @@ const ProjectCard = ({
     Drupal: <FaDrupal className="h-full w-full" />,
     Kotlin: <TbBrandKotlin className="h-full w-full" />,
     C: <PiFileCDuotone className="h-full w-full" />,
-    "C++": <PiFileCSharpDuotone className="h-full w-full" />,
+    "C++": <PiFileCpp  className="h-full w-full" />,
     React: <FaReact className="h-full w-full" />,
     "React Native": <TbBrandReactNative className="h-full w-full" />,
     Tailwindcss: <RiTailwindCssFill className="h-full w-full" />,
@@ -80,6 +83,10 @@ const ProjectCard = ({
     Vercel: <IoLogoVercel className="h-full w-full" />,
     Expo: <SiExpo className="h-full w-full" />,
     Github: <FaGithub className="h-full w-full" />,
+    Docker: <FaDocker className="h-full w-full" />,
+    Wordpress: <FaWordpress className="h-full w-full" />,
+    MariaDB: <SiMariadb className="h-full w-full" />,
+    Nginx: <SiNginx className="h-full w-full" />,
   };
 
   const { phoneView } = useVariablesContext();
