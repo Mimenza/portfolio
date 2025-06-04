@@ -8,7 +8,10 @@ import MainComponentProjectDetail from "../../shared/projectDetail/mainComponent
 import supabase from "../../../supabase/client";
 import { Project } from "../../../interface/Project";
 
+import { useTranslation } from "react-i18next";
+
 const MainComponentProyects = () => {
+  const { t } = useTranslation();
   const [showProjectDetail, setShowProjectDetail] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -17,6 +20,8 @@ const MainComponentProyects = () => {
   const [width, setWidth] = useState(window.innerWidth);
   const { phoneView } = useVariablesContext();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
@@ -24,9 +29,6 @@ const MainComponentProyects = () => {
   }, []);
 
   const handleProjectCardClick = (project: any) => {
-    // setSelectedProject(project);
-    // setShowProjectDetail(true);
-    // setIsClosing(false);
     navigate(`/projects/${project.slug}`);
   };
 
@@ -58,7 +60,6 @@ const MainComponentProyects = () => {
           .order("date", { ascending: false });
 
         if (error) {
-          //console.error("Error fetching projects:", error);
           return;
         }
 
@@ -77,18 +78,14 @@ const MainComponentProyects = () => {
                 .map((store: any) => store.Storage.link)[0] || null,
           }));
           setProjects(formattedProjects);
-        } else {
-          //console.error("No projects found");
         }
       } catch (err) {
-        //console.error("Error:", err);
+        // Manejo de error opcional
       }
     };
 
     getProjects();
   }, []);
-
-  const navigate = useNavigate();
 
   const isLg = width >= 1024 && width < 1280;
   const itemsToShow = isLg ? 4 : 6;
@@ -106,26 +103,25 @@ const MainComponentProyects = () => {
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
               <path d="m12 3-1.9 5.8a2 2 0 0 1-1.287 1.288L3 12l5.8 1.9a2 2 0 0 1 1.288 1.287L12 21l1.9-5.8a2 2 0 0 1 1.287-1.288L21 12l-5.8-1.9a2 2 0 0 1-1.288-1.287Z"></path>
             </svg>
             <ShinyText
-              text="Some of my work"
+              text={t("home.projects.subtitle")}
               disabled={false}
               speed={2}
               className="text-lg-custom text-secondary dark:text-dark-secondary"
             />
           </div>
           <h1 className="text-6xl-custom font-bold font-clash mt-1 text-text_primary dark:text-dark-text_primary">
-            Projects
+            {t("home.projects.title")}
           </h1>
           <div className="flex flex-row justify-between">
             <p className="mt-4 text-lg-custom text-text_secondary dark:text-dark-text_secondary">
-              Here's a selection showcasing my expertise and the achieved
-              results
+              {t("home.projects.description")}
             </p>
             <div>
               {!phoneView ? (
@@ -135,7 +131,7 @@ const MainComponentProyects = () => {
                     navigate("/projects");
                   }}
                 >
-                  <span>View all projects</span>
+                  <span>{t("home.projects.viewAllButton")}</span>
                 </button>
               ) : null}
             </div>
@@ -174,13 +170,13 @@ const MainComponentProyects = () => {
                 navigate("/projects");
               }}
             >
-              <span>View all projects</span>
+              <span>{t("home.projects.viewAllButton")}</span>
             </button>
           ) : null}
         </div>
         {showProjectDetail && selectedProject && (
           <MainComponentProjectDetail
-            projectDetails={selectedProject} // Pasar el proyecto seleccionado
+            projectDetails={selectedProject}
             onClose={handleClose}
             isClosing={isClosing}
             prevRoute="home"

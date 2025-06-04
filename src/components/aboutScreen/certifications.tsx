@@ -1,14 +1,13 @@
 import React, { useEffect } from "react";
 import { Certification as CertificationInterface } from "../../interface/Certification";
 import supabase from "../../supabase/client";
-
 import { useVariablesContext } from "../../context/variablesContext";
+import { useTranslation } from "react-i18next";
 
 const Certification: React.FC = () => {
-  const [certification, setCertification] = React.useState<
-    CertificationInterface[]
-  >([]);
+  const [certification, setCertification] = React.useState<CertificationInterface[]>([]);
   const { phoneView } = useVariablesContext();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const getCertification = async () => {
@@ -18,18 +17,11 @@ const Certification: React.FC = () => {
           .select("*")
           .order("date", { ascending: false });
 
-        if (error) {
-          //console.error("Error fetching Certification:", error);
-          return;
-        }
-
-        if (Certification) {
+        if (!error && Certification) {
           setCertification(Certification);
-        } else {
-          //console.error("No Certification found");
         }
       } catch (err) {
-        //console.error("Error:", err);
+        // handle error if needed
       }
     };
 
@@ -39,22 +31,21 @@ const Certification: React.FC = () => {
   return (
     <div className="w-full flex flex-col h-auto gap-5">
       <p className="text-text_primary dark:text-dark-text_primary text-bold flex flex-row items-center gap-2 font-bold font-clash text-xl-custom">
-        {" "}
-       <svg
-                className="size-4 text-secondary fill-background dark:fill-dark-background"
-                xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="m12 3-1.9 5.8a2 2 0 0 1-1.287 1.288L3 12l5.8 1.9a2 2 0 0 1 1.288 1.287L12 21l1.9-5.8a2 2 0 0 1 1.287-1.288L21 12l-5.8-1.9a2 2 0 0 1-1.288-1.287Z"></path>
-              </svg>
-        Certifications
+        <svg
+          className="size-4 text-secondary fill-background dark:fill-dark-background"
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="m12 3-1.9 5.8a2 2 0 0 1-1.287 1.288L3 12l5.8 1.9a2 2 0 0 1 1.288 1.287L12 21l1.9-5.8a2 2 0 0 1 1.287-1.288L21 12l-5.8-1.9a2 2 0 0 1-1.288-1.287Z"></path>
+        </svg>
+        {t("about.certifications.title")}
       </p>
 
       {certification.map((cer, index) => (

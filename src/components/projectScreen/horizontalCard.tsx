@@ -1,6 +1,3 @@
-import { FaCode } from "react-icons/fa";
-import { FaArrowRight } from "react-icons/fa6";
-
 import { FaJava } from "react-icons/fa"; //Java
 import { FaAngular } from "react-icons/fa"; //Angular
 import { FaPhp } from "react-icons/fa"; //Php
