@@ -38,7 +38,8 @@ import { useNavigate } from "react-router-dom";
 interface ProjectDetails {
   id: number;
   name: string;
-  description: string;
+  descriptionEN: string;
+  descriptionES: string;
   date: string;
   link: string;
   storage: string[];
@@ -86,7 +87,7 @@ const MainComponentProjectDetail = ({
   prevRoute: string;
 }) => {
   const navigate = useNavigate();
-  const { showGallery, setShowGallery, phoneView } = useVariablesContext();
+  const { showGallery, setShowGallery, phoneView, language } = useVariablesContext();
 
   useEffect(() => {
     document.title = `Emimenza | ${projectDetails.slug}`;
@@ -127,7 +128,7 @@ const MainComponentProjectDetail = ({
             <div className="flex flex-[1] flex-col sm:flex-row gap-2">
               <div className="flex flex-col justify-between h-full w-full flex-1">
                 <span className="w-full h-full sm:w-[70%] text-text_secondary dark:text-dark-text_secondary text-xl-custom">
-                  {projectDetails.description}
+                  {language === "es" ? projectDetails.descriptionEN : projectDetails.descriptionES}
                 </span>
                 <div className="">
                   <p className="text-text_secondary dark:text-dark-text_secondary text-lg-custom mt-4">

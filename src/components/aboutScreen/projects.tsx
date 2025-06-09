@@ -4,11 +4,12 @@ import { Project } from "../../interface/Project";
 import AboutMeProjectCard from "../aboutScreen/projectCardAboutMe";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-
+import { useVariablesContext } from "../../context/variablesContext";
 const Projects: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { language } = useVariablesContext();
 
   useEffect(() => {
     const getProjects = async () => {
@@ -86,10 +87,10 @@ const Projects: React.FC = () => {
           <AboutMeProjectCard
             id={project.id}
             name={project.name}
-            description={project.description}
+            description={language === "es" ? project.descriptionEN : project.descriptionES}
             date={project.date}
             link={project.link}
-            status={project.status}
+            status={language === "es" ? project.statusEN : project.statusES}
             storage={project.storage}
             technologies={project.technologies}
             cover={project.cover}

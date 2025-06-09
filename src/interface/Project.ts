@@ -1,10 +1,12 @@
 export interface Project {
     id: number;
     name: string;
-    description: string;
+    descriptionEN: string;
+    descriptionES: string;
     date: string; // o Date si prefieres
     link: string;
-    status: string;
+    statusEN: string;
+    statusES: string;
     frontPage: boolean;
     technologies: string[];
     storage: string[];

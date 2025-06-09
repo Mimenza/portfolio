@@ -9,8 +9,8 @@ import PhoneMenu from "../components/shared/menu/phoneMenu";
 import { useVariablesContext } from "../context/variablesContext";
 import Gallery from "../components/shared/projectDetail/gallery";
 import { FiExternalLink } from "react-icons/fi";
+import { useTranslation } from "react-i18next";
 
-const htmlPath = "/html/portfolio.html";
 const SlugScreen = () => {
   const { slug } = useParams<{ slug: string }>();
   const [project, setProject] = useState<any>(null);
@@ -21,8 +21,8 @@ const SlugScreen = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(-1);
   const [htmlContent, setHtmlContent] = useState<string>("");
   const navigate = useNavigate();
-  const { logedUser } = useLogedUser();
-  const { phoneView } = useVariablesContext();
+  const { t } = useTranslation();
+  const { phoneView, language } = useVariablesContext();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -58,10 +58,12 @@ const SlugScreen = () => {
           id: number;
           name: string;
           slug: string;
-          description: string;
+          descriptionEN: string;
+          descriptionES: string;
           date?: string;
           link?: string;
-          status?: string;
+          statusEN?: string;
+          statusES?: string;
           html?: string;
           htmlLink?: string;
           ["Projects-Tecnologies"]?: { Tecnologies?: { name: string } }[];
@@ -213,13 +215,15 @@ const SlugScreen = () => {
                 className="mb-6 text-md-custom text-text_secondary dark:text-dark-text_secondary hover:underline flex items-center gap-1"
                 onClick={() => navigate(-1)}
               >
-                &larr; Go back
+                &larr;  {t("slug.go back")}
               </button>
               <h1 className="text-4xl-custom md:text-5xl-custom text-text_primary dark:text-dark-text_primary font-bold mb-3 font-clash">
                 {project.name}
               </h1>
               <p className="text-base text-justify md:text-lg-custom md:text-left text-text_primary dark:text-dark-text_primary mb-6 max-w-3xl">
-                {project.description}
+                {language === "es"
+                  ? project.descriptionEN
+                  : project.descriptionES}
               </p>
               {/* Tags/Technologies */}
               <div className="flex flex-wrap gap-2 mb-8">
@@ -247,7 +251,7 @@ const SlugScreen = () => {
                   rel="noopener noreferrer"
                   className="bg-text_primary dark:bg-dark-text_primary text-background dark:text-dark-background px-6 py-2 rounded-full font-semibold transition flex items-center gap-2 shadow"
                 >
-                  Code <FiExternalLink />
+                  {t("slug.code")} <FiExternalLink />
                 </a>
               )}
               <div className="flex flex-col gap-1 text-sm w-full mt-2">
@@ -256,7 +260,7 @@ const SlugScreen = () => {
                     Status:
                   </span>
                   <span className="text-text_secondary dark:text-dark-text_secondary">
-                    {project.status || "N/A"}
+                    {language === "es" ? project.statusEN : project.statusES}
                   </span>
                 </div>
               </div>
@@ -394,7 +398,7 @@ const SlugScreen = () => {
             >
               &larr;{" "}
               <span className="hidden md:inline text-xs font-semibold">
-                Prev
+                {t("slug.prev")}
               </span>
             </button>
             <button
@@ -405,7 +409,7 @@ const SlugScreen = () => {
               }}
             >
               <span className="hidden md:inline text-xs font-semibold">
-                Next
+                {t("slug.next")}
               </span>
               &rarr;
             </button>

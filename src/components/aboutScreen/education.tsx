@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 const Education: React.FC = () => {
   const [education, setEducation] = React.useState<EducationInterface[]>([]);
-  const { phoneView } = useVariablesContext();
+  const { phoneView, language } = useVariablesContext();
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -82,7 +82,7 @@ const Education: React.FC = () => {
               )}
             </div>
             <div className="text-text_secondary dark:text-dark-text_secondary">
-              {edu.description}
+               {language === "es" ? edu.descriptionEN : edu.descriptionES}
             </div>
           </div>
         </div>

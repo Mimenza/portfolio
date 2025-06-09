@@ -18,7 +18,7 @@ const MainComponentProyects = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [width, setWidth] = useState(window.innerWidth);
-  const { phoneView } = useVariablesContext();
+  const { phoneView, language } = useVariablesContext();
 
   const navigate = useNavigate();
 
@@ -151,7 +151,7 @@ const MainComponentProyects = () => {
                   id={project.id}
                   name={project.name}
                   link={project.link}
-                  status={project.status}
+                  status={language === "es" ? project.statusEN : project.statusES}
                   img={project.storage}
                   technologies={project.technologies}
                   cover={project.cover}

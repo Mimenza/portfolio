@@ -91,5 +91,11 @@
     "Handled with": "Gestionado con",
     "All rights reserved": "Todos los derechos reservados"
   },
-  "menu": { "Home": "Inicio", "About": "Acerca", "Projects": "Proyectos" }
+  "menu": { "Home": "Inicio", "About": "Acerca", "Projects": "Proyectos" },
+  "slug": {
+    "go back": "Volver",
+    "code": "Código",
+    "prev": "Anterior",
+    "next": "Siguiente"
+  }
 }

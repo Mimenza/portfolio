@@ -1,7 +1,9 @@
 export interface Certification {
     id: number;
-    name: string;
-    description: string;
+    nameEN: string;
+    nameES: string;
+    descriptionEN: string;
+    descriptionES: string;
     date: string;
     logo: string;
   }

@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 const Experience: React.FC = () => {
   const [experience, setExperience] = React.useState<ExperienceInterface[]>([]);
-  const { phoneView } = useVariablesContext();
+  const { phoneView, language} = useVariablesContext();
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -85,7 +85,7 @@ const Experience: React.FC = () => {
             </div>
 
             <div className="text-text_secondary dark:text-dark-text_secondary">
-              {exp.description}
+               {language === "es" ? exp.descriptionEN : exp.descriptionES}
             </div>
           </div>
         </div>

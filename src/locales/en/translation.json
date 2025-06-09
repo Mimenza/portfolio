@@ -91,5 +91,11 @@
     "Handled with": "Handled with",
     "All rights reserved": "All rights reserved"
   },
-  "menu": { "Home": "Home", "About": "About", "Projects": "Projects" }
+  "menu": { "Home": "Home", "About": "About", "Projects": "Projects" },
+  "slug": {
+    "go back": "Go back",
+    "code": "Code",
+    "prev": "Prev",
+    "next": "Next"
+  }
 }

@@ -1,7 +1,8 @@
 export interface Education {
     id: number;
     name: string;
-    description: string;
+    descriptionEN: string;
+    descriptionES: string;
     date: string;
     logo: string;
   }

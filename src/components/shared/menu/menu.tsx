@@ -21,8 +21,8 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
     darkMode,
     setDarkMode,
     customScroll,
-    phoneView,
-    setPhoneView,
+    language,
+    setLanguage
   } = useVariablesContext();
   const navigate = useNavigate();
   const [activeIcon, setActiveIcon] = useState<number | null>(null);
@@ -82,6 +82,9 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
   // Nuevo handler para cambiar idioma
   const handleLanguageToggle = () => {
     i18n.changeLanguage(i18n.language === "es" ? "en" : "es");
+    if (setLanguage) {
+      setLanguage(i18n.language === "es" ? "en" : "es");
+    }
   };
 
   const normalizedScroll = Math.min(scrollPosition / 150, 1);

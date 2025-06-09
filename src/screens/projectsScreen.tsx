@@ -29,7 +29,7 @@ const ProjectsScreen = () => {
   const [projects, setProjects] = useState<any[]>([]);
   const [filteredProjects, setFilteredProjects] = useState<any[]>([]);
   const [selectedProject, setSelectedProject] = useState<any | null>(null);
-  const { phoneView } = useVariablesContext();
+  const { phoneView, language } = useVariablesContext();
 
   const [statusFilter, setStatusFilter] = useState<string>("All");
   const [orderBy, setOrderBy] = useState<string>("Newest");
@@ -243,8 +243,8 @@ const ProjectsScreen = () => {
                     id={project.id}
                     name={project.name}
                     link={project.link}
-                    status={project.status}
-                    description={project.description}
+                    status={language === "es" ? project.statusEN : project.statusES}
+                    description={language === "es" ? project.descriptionEN : project.descriptionES}
                     img={project.storage}
                     technologies={project.technologies}
                     cover={project.cover}

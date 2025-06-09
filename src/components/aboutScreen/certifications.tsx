@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 const Certification: React.FC = () => {
   const [certification, setCertification] = React.useState<CertificationInterface[]>([]);
-  const { phoneView } = useVariablesContext();
+  const { phoneView, language } = useVariablesContext();
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -67,7 +67,7 @@ const Certification: React.FC = () => {
                     className="h-full aspect-square rounded-[10px]"
                   />
                 ) : null}
-                {cer.name}
+                {language === "es" ? cer.nameEN : cer.nameES}
               </div>
               {phoneView ? (
                 <div className="font-bold text-text_primary dark:text-dark-text_primary">
@@ -82,7 +82,7 @@ const Certification: React.FC = () => {
               )}
             </div>
             <div className="text-text_secondary dark:text-dark-text_secondary">
-              {cer.description}
+               {language === "es" ? cer.descriptionEN : cer.descriptionES}
             </div>
           </div>
         </div>
