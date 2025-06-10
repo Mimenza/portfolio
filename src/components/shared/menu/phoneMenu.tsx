@@ -12,7 +12,7 @@ interface PhoneMenuProps {
 }
 
 const PhoneMenu: React.FC<PhoneMenuProps> = ({ selectedSection }) => {
-  const { darkMode, setDarkMode } = useVariablesContext();
+  const { darkMode, setDarkMode, setLanguage } = useVariablesContext();
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(true);
   const lastScrollY = useRef(0);
@@ -48,8 +48,12 @@ const PhoneMenu: React.FC<PhoneMenuProps> = ({ selectedSection }) => {
     navigate(navItems[idx].route);
   };
 
-  const handleLanguageToggle = () => {
+   const handleLanguageToggle = () => {
     i18n.changeLanguage(i18n.language === "es" ? "en" : "es");
+
+    if (setLanguage) {
+      setLanguage(i18n.language === "es" ? "en" : "es");
+    }
   };
 
   return (

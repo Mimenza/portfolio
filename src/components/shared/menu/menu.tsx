@@ -82,6 +82,7 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
   // Nuevo handler para cambiar idioma
   const handleLanguageToggle = () => {
     i18n.changeLanguage(i18n.language === "es" ? "en" : "es");
+
     if (setLanguage) {
       setLanguage(i18n.language === "es" ? "en" : "es");
     }
