@@ -26,7 +26,7 @@ const ProjectCard = ({
   cover: string;
   slug: string;
 }) => {
-  const { phoneView } = useVariablesContext();
+  const { phoneView, language } = useVariablesContext();
   return (
     <div
       className={`flex flex-col w-full sm:w-full md:w-full lg:w-full dark:bg-dark-muted bg-muted bg-opacity-25 shadow-lg shadow-black/30 border dark:border-dark-muted border-muted border-opacity-25 cursor-pointer group gap-2 ${

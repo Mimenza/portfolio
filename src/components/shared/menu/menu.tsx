@@ -90,10 +90,7 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
 
   const normalizedScroll = Math.min(scrollPosition / 150, 1);
   const bgOpacity = normalizedScroll * 0.9;
-  const width =
-    normalizedScroll < 1
-      ? `calc(100% - ${normalizedScroll * (window.innerWidth - 950)}px)`
-      : "400px";
+  const width =  normalizedScroll < 1 ? `calc(100% - ${normalizedScroll * (window.innerWidth - 950)}px)` : "450px";
   const border = `1px solid rgba(11, 11, 13, ${normalizedScroll})`;
   const isDark = document.documentElement.classList.contains("dark");
   const backgroundColor = isDark ? "#0b0b0d" : "#ababab";

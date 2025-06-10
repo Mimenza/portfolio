@@ -65,7 +65,8 @@ const SlugScreen = () => {
           statusEN?: string;
           statusES?: string;
           html?: string;
-          htmlLink?: string;
+          htmlLinkEN?: string;
+          htmlLinkES?: string;
           ["Projects-Tecnologies"]?: { Tecnologies?: { name: string } }[];
           ["Projects-Storage"]?: {
             Storage?: { link: string; cover?: boolean };
@@ -122,21 +123,23 @@ const SlugScreen = () => {
           document.title = `Emimenza | ${data.slug}`;
 
           // Obtener el HTML
+          // Cambia aquí para usar htmlLinkEN o htmlLinkES según language
+          const htmlLink =
+            language === "es" ? data.htmlLinkEN : data.htmlLinkES;
+
           if (
-            data.htmlLink &&
-            typeof data.htmlLink === "string" &&
-            data.htmlLink.startsWith("http")
+            htmlLink &&
+            typeof htmlLink === "string" &&
+            htmlLink.startsWith("http")
           ) {
             try {
-              // const response = await fetch(htmlPath);
-              const response = await fetch(data.htmlLink);
+              const response = await fetch(htmlLink);
               if (!response.ok) {
                 throw new Error("Error fetching HTML file");
               }
               const html = await response.text();
               setHtmlContent(html);
             } catch (fetchError) {
-              // console.error("Error fetching HTML file:", fetchError);
               setHtmlContent("<h1>Error loading project content</h1>");
             }
           } else {
@@ -156,7 +159,7 @@ const SlugScreen = () => {
     };
 
     fetchData();
-  }, [slug]);
+  }, [slug, language]);
 
   // Calcula el slug anterior y siguiente
   const prevSlug =
@@ -186,7 +189,7 @@ const SlugScreen = () => {
   if (loading)
     return (
       <div className="bg-background dark:bg-dark-background min-h-screen w-full flex items-center justify-center text-text_primary dark:text-dark-text_primary">
-        Loading content...
+        {language === "es" ? "Loading content..." : "Cargando contenido..."}
       </div>
     );
 
@@ -215,7 +218,7 @@ const SlugScreen = () => {
                 className="mb-6 text-md-custom text-text_secondary dark:text-dark-text_secondary hover:underline flex items-center gap-1"
                 onClick={() => navigate(-1)}
               >
-                &larr;  {t("slug.go back")}
+                &larr; {t("slug.go back")}
               </button>
               <h1 className="text-4xl-custom md:text-5xl-custom text-text_primary dark:text-dark-text_primary font-bold mb-3 font-clash">
                 {project.name}
