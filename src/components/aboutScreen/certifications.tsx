@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+
+import { useVariablesContext } from "../../context/variablesContext";
 import { Certification as CertificationInterface } from "../../interface/Certification";
 import supabase from "../../supabase/client";
-import { useVariablesContext } from "../../context/variablesContext";
-import { useTranslation } from "react-i18next";
+
 
 const Certification: React.FC = () => {
   const [certification, setCertification] = React.useState<CertificationInterface[]>([]);

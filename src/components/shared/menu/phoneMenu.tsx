@@ -1,11 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
 import { IoIosSunny } from "react-icons/io";
 import { IoMoon } from "react-icons/io5";
 import { AiOutlineHome, AiOutlineUser, AiOutlineAppstore } from "react-icons/ai";
-import EmSvg from "../../ui/emSvg";
-import { useNavigate } from "react-router-dom";
+
 import { useVariablesContext } from "../../../context/variablesContext";
-import { useTranslation } from "react-i18next";
+import EmSvg from "../../ui/emSvg";
+
 
 interface PhoneMenuProps {
   selectedSection: number; // 0: Home, 1: About, 2: Projects

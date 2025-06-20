@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+
+import { useVariablesContext } from "../../context/variablesContext";
 import { Education as EducationInterface } from "../../interface/Education";
 import supabase from "../../supabase/client";
-import { useVariablesContext } from "../../context/variablesContext";
-import { useTranslation } from "react-i18next";
+
 
 const Education: React.FC = () => {
   const [education, setEducation] = React.useState<EducationInterface[]>([]);

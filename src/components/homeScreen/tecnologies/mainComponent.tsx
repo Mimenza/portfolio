@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-import ShinyText from "../../../blocks/TextAnimations/ShinyText/ShinyText";
 import { useVariablesContext } from "../../../context/variablesContext";
+
+import ShinyText from "../../../blocks/TextAnimations/ShinyText/ShinyText";
 import Dropdown from "./dropdown";
 
 import defaultImg from "../../../assets/imgs/pg.jpeg";
@@ -10,6 +11,7 @@ import img2 from "../../../assets/imgs/WD.webp";
 import img3 from "../../../assets/imgs/FE.webp";
 import img4 from "../../../assets/imgs/BE.jpeg";
 import img5 from "../../../assets/imgs/TS.jpeg";
+
 
 import { useTranslation } from "react-i18next";
 

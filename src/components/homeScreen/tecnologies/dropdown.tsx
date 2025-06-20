@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
+import { useTranslation } from "react-i18next";
 
-import supabase from "../../../supabase/client";
+import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import { FaCode } from "react-icons/fa6";
 import { MdWebAsset } from "react-icons/md";
 import { PiPaintBrushHousehold } from "react-icons/pi";
@@ -9,7 +9,7 @@ import { DiStackoverflow } from "react-icons/di";
 import { BsGear } from "react-icons/bs";
 
 import { useVariablesContext } from "../../../context/variablesContext";
-import { useTranslation } from "react-i18next";
+import supabase from "../../../supabase/client";
 
 type DropdownProps = {
   category: number;

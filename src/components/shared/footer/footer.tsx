@@ -1,20 +1,18 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
 import { SiGmail } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa6";
-import { FaGithub } from "react-icons/fa";
-
-import { FaReact } from "react-icons/fa";
-import { RiTailwindCssFill } from "react-icons/ri";
+import { FaGithub, FaReact } from "react-icons/fa";
+import { RiTailwindCssFill, RiSupabaseLine } from "react-icons/ri";
 import { IoLogoVercel } from "react-icons/io5";
-import { RiSupabaseLine } from "react-icons/ri";
-
 import { CiPlane } from "react-icons/ci";
 import { TbPingPong } from "react-icons/tb";
 import { MdOutlineContactPage } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
 
 import { useVariablesContext } from "../../../context/variablesContext";
-import { useTranslation } from "react-i18next";
+
 
 const Footer: React.FC = () => {
   const navigate = useNavigate();

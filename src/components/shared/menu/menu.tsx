@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { FaCircle } from "react-icons/fa";
 import { IoIosSunny } from "react-icons/io";
 import { IoMoon } from "react-icons/io5";
 
+import { useVariablesContext } from "../../../context/variablesContext";
 import EmSvg from "../../ui/emSvg";
 
-import { useNavigate } from "react-router-dom";
-import { useVariablesContext } from "../../../context/variablesContext";
-
-import { useTranslation } from "react-i18next";
 
 interface MenuProps {
   selectedSection: number; // 0 for Home, 1 for About, 2 for Projects
@@ -20,33 +19,17 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
     scrollPosition,
     darkMode,
     setDarkMode,
-    customScroll,
-    language,
     setLanguage
   } = useVariablesContext();
   const navigate = useNavigate();
   const [activeIcon, setActiveIcon] = useState<number | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [showCloud, setShowCloud] = useState(true);
-  const [cloudPosition, setCloudPosition] = useState<{ top: number; left: number }>({ top: 0, left: 0 });
 
   const { t, i18n } = useTranslation();
-
-  const mouseBtnRef = React.useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
     setTimeout(() => setActiveIcon(selectedSection), 100);
   }, [selectedSection]);
-
-  useEffect(() => {
-    if (showCloud && mouseBtnRef.current) {
-      const rect = mouseBtnRef.current.getBoundingClientRect();
-      setCloudPosition({
-        top: rect.bottom + window.scrollY + 12,
-        left: rect.left + window.scrollX - 40,
-      });
-    }
-  }, [showCloud, selectedSection, customScroll]);
 
   const handleNavigation = (index: number) => {
     setTimeout(() => {

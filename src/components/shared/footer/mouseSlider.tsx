@@ -1,5 +1,7 @@
 import React from "react";
+
 import { useVariablesContext } from "../../../context/variablesContext";
+
 
 const FooterSlider: React.FC = () => {
   const { phoneView, darkMode } = useVariablesContext();

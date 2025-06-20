@@ -1,14 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
-import ProjectCard from "./projectCard";
 import { useNavigate } from "react-router-dom";
-import { useVariablesContext } from "../../../context/variablesContext";
+import { useTranslation } from "react-i18next";
 
-import ShinyText from "../../../blocks/TextAnimations/ShinyText/ShinyText";
-import MainComponentProjectDetail from "../../shared/projectDetail/mainComponent";
+import { useVariablesContext } from "../../../context/variablesContext";
 import supabase from "../../../supabase/client";
 import { Project } from "../../../interface/Project";
 
-import { useTranslation } from "react-i18next";
+import ShinyText from "../../../blocks/TextAnimations/ShinyText/ShinyText";
+import MainComponentProjectDetail from "../../shared/projectDetail/mainComponent";
+import ProjectCard from "./projectCard";
 
 const MainComponentProyects = () => {
   const { t } = useTranslation();

@@ -3,7 +3,6 @@ import { useTranslation, Trans } from "react-i18next";
 
 import ShinyText from "../../../blocks/TextAnimations/ShinyText/ShinyText";
 import Particles from "../../../blocks/Backgrounds/Particles/Particles";
-import Magnet from "../../../blocks/Animations/Magnet/Magnet";
 
 const MainComponentAboutMe = () => {
   const navigate = useNavigate();

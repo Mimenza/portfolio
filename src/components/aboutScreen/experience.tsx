@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+
+import { useVariablesContext } from "../../context/variablesContext";
 import { Experience as ExperienceInterface } from "../../interface/Experience";
 import supabase from "../../supabase/client";
-import { useVariablesContext } from "../../context/variablesContext";
-import { useTranslation } from "react-i18next";
+
 
 const Experience: React.FC = () => {
   const [experience, setExperience] = React.useState<ExperienceInterface[]>([]);

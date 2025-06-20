@@ -1,13 +1,17 @@
-import Footer from "../../shared/footer/footer";
-import ShinyText from "../../../blocks/TextAnimations/ShinyText/ShinyText";
-import RotatingText from "../../../blocks/TextAnimations/RotatingText/RotatingText";
-import { useVariablesContext } from "../../../context/variablesContext";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import emailjs from "emailjs-com";
+
 import { SiGmail } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
-import { useState } from "react";
-import emailjs from "emailjs-com";
-import { useTranslation } from "react-i18next";
+
+import { useVariablesContext } from "../../../context/variablesContext";
+
+import Footer from "../../shared/footer/footer";
+import ShinyText from "../../../blocks/TextAnimations/ShinyText/ShinyText";
+import RotatingText from "../../../blocks/TextAnimations/RotatingText/RotatingText";
+
 
 const MainComponentContact = () => {
   const { t } = useTranslation();

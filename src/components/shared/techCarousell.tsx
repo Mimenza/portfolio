@@ -1,30 +1,37 @@
 import React from "react";
-import { FaJava } from "react-icons/fa";
-import { FaAngular } from "react-icons/fa";
-import { FaPhp } from "react-icons/fa";
+
+import {
+  FaJava,
+  FaAngular,
+  FaPhp,
+  FaHtml5,
+  FaReact,
+  FaGithub,
+  FaDocker,
+  FaDrupal,
+} from "react-icons/fa";
+
 import { DiJqueryLogo } from "react-icons/di";
-import { IoLogoJavascript } from "react-icons/io5";
-import { SiTypescript } from "react-icons/si";
-import { SiMysql } from "react-icons/si";
+
+import {
+  IoLogoJavascript,
+  IoLogoFirebase,
+  IoLogoVercel,
+} from "react-icons/io5";
+
+import { SiTypescript, SiMysql, SiCivicrm, SiAppwrite, SiExpo } from "react-icons/si";
+
 import { GiTreeBranch } from "react-icons/gi";
-import { SiCivicrm } from "react-icons/si";
+
 import { BsFiletypeXml } from "react-icons/bs";
-import { FaHtml5 } from "react-icons/fa";
-import { FaDrupal } from "react-icons/fa6";
-import { TbBrandKotlin } from "react-icons/tb";
-import { PiFileCDuotone } from "react-icons/pi";
-import { PiFileCpp  } from "react-icons/pi";
-import { FaReact } from "react-icons/fa";
-import { TbBrandReactNative } from "react-icons/tb";
-import { RiTailwindCssFill } from "react-icons/ri";
-import { RiSupabaseFill } from "react-icons/ri";
-import { SiAppwrite } from "react-icons/si";
-import { IoLogoFirebase } from "react-icons/io5";
+
+import { TbBrandKotlin, TbBrandReactNative } from "react-icons/tb";
+
+import { PiFileCDuotone, PiFileCpp } from "react-icons/pi";
+
+import { RiTailwindCssFill, RiSupabaseFill } from "react-icons/ri";
+
 import { RxFontStyle } from "react-icons/rx";
-import { IoLogoVercel } from "react-icons/io5";
-import { SiExpo } from "react-icons/si";
-import { FaGithub } from "react-icons/fa";
-import { FaDocker } from "react-icons/fa"; //Docker
 
 const techs = [
   { name: "Java", icon: FaJava },

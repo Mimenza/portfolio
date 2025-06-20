@@ -2,6 +2,7 @@ import { FaCode } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa6";
 
 import { useVariablesContext } from "../../../context/variablesContext";
+
 const Default = process.env.REACT_APP_PROJECT_DEFAULT_IMG;
 
 const ProjectCard = ({
@@ -26,7 +27,7 @@ const ProjectCard = ({
   cover: string;
   slug: string;
 }) => {
-  const { phoneView, language } = useVariablesContext();
+  const { phoneView } = useVariablesContext();
   return (
     <div
       className={`flex flex-col w-full sm:w-full md:w-full lg:w-full dark:bg-dark-muted bg-muted bg-opacity-25 shadow-lg shadow-black/30 border dark:border-dark-muted border-muted border-opacity-25 cursor-pointer group gap-2 ${

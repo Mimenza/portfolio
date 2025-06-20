@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import supabase from "../../supabase/client";
-import { Project } from "../../interface/Project";
-import AboutMeProjectCard from "../aboutScreen/projectCardAboutMe";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+
 import { useVariablesContext } from "../../context/variablesContext";
+import supabase from "../../supabase/client";
+import { Project } from "../../interface/Project";
+
+import AboutMeProjectCard from "../aboutScreen/projectCardAboutMe";
+
 const Projects: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const navigate = useNavigate();
