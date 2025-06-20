@@ -125,7 +125,7 @@ const SlugScreen = () => {
           // Obtener el HTML
           // Cambia aquí para usar htmlLinkEN o htmlLinkES según language
           const htmlLink =
-            language === "es" ? data.htmlLinkEN : data.htmlLinkES;
+            language === "en" ? data.htmlLinkEN : data.htmlLinkES;
 
           if (
             htmlLink &&
@@ -189,7 +189,7 @@ const SlugScreen = () => {
   if (loading)
     return (
       <div className="bg-background dark:bg-dark-background min-h-screen w-full flex items-center justify-center text-text_primary dark:text-dark-text_primary">
-        {language === "es" ? "Loading content..." : "Cargando contenido..."}
+        {language === "en" ? "Loading content..." : "Cargando contenido..."}
       </div>
     );
 
@@ -224,7 +224,7 @@ const SlugScreen = () => {
                 {project.name}
               </h1>
               <p className="text-base text-justify md:text-lg-custom md:text-left text-text_primary dark:text-dark-text_primary mb-6 max-w-3xl">
-                {language === "es"
+                {language === "en"
                   ? project.descriptionEN
                   : project.descriptionES}
               </p>
@@ -263,7 +263,7 @@ const SlugScreen = () => {
                     Status:
                   </span>
                   <span className="text-text_secondary dark:text-dark-text_secondary">
-                    {language === "es" ? project.statusEN : project.statusES}
+                    {language === "en" ? project.statusEN : project.statusES}
                   </span>
                 </div>
               </div>

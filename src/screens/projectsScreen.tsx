@@ -243,8 +243,8 @@ const ProjectsScreen = () => {
                     id={project.id}
                     name={project.name}
                     link={project.link}
-                    status={language === "es" ? project.statusEN : project.statusES}
-                    description={language === "es" ? project.descriptionEN : project.descriptionES}
+                    status={language === "en" ? project.statusEN : project.statusES}
+                    description={language === "en" ? project.descriptionEN : project.descriptionES}
                     img={project.storage}
                     technologies={project.technologies}
                     cover={project.cover}

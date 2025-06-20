@@ -82,7 +82,7 @@ const Education: React.FC = () => {
               )}
             </div>
             <div className="text-text_secondary dark:text-dark-text_secondary">
-               {language === "es" ? edu.descriptionEN : edu.descriptionES}
+               {language === "en" ? edu.descriptionEN : edu.descriptionES}
             </div>
           </div>
         </div>

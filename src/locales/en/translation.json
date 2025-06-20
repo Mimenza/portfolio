@@ -4,7 +4,7 @@
     "aboutMe": {
       "subtitle": "Developer",
       "title": "About",
-      "intro": "I'm <1>Endika Mimenza</1>, a 25-year-old web and mobile developer with experience in application development. Currently learning React and React Native, while expanding my knowledge in backend development and languages like C and C++ at <3>42 Urduliz</3>. Passionate about technology and continuous learning.",
+      "intro": "I'm <1>Endika Mimenza</1>, a 25-year-old web and mobile developer with experience in application development. Currently focused on building with React and React Native, while expanding my knowledge in backend development and languages like C and C++ at <3>42 Urduliz</3>. Passionate about technology and continuous learning.",
       "hobbies": "I'm passionate about the world of vintage technology and mechanical keyboards. In my free time, I'm working on a mobile app called <1>TravelLens</1>, built with React Native. I've also created other mobile apps like <3>Sagarra Jo</3> and <5>Zap</5>. These are personal projects that let me explore and enjoy the intersection of creativity, code, and tech."
     },
     "certifications": {

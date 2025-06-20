@@ -87,10 +87,10 @@ const Projects: React.FC = () => {
           <AboutMeProjectCard
             id={project.id}
             name={project.name}
-            description={language === "es" ? project.descriptionEN : project.descriptionES}
+            description={language === "en" ? project.descriptionEN : project.descriptionES}
             date={project.date}
             link={project.link}
-            status={language === "es" ? project.statusEN : project.statusES}
+            status={language === "en" ? project.statusEN : project.statusES}
             storage={project.storage}
             technologies={project.technologies}
             cover={project.cover}

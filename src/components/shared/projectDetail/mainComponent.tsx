@@ -128,7 +128,7 @@ const MainComponentProjectDetail = ({
             <div className="flex flex-[1] flex-col sm:flex-row gap-2">
               <div className="flex flex-col justify-between h-full w-full flex-1">
                 <span className="w-full h-full sm:w-[70%] text-text_secondary dark:text-dark-text_secondary text-xl-custom">
-                  {language === "es" ? projectDetails.descriptionEN : projectDetails.descriptionES}
+                  {language === "en" ? projectDetails.descriptionEN : projectDetails.descriptionES}
                 </span>
                 <div className="">
                   <p className="text-text_secondary dark:text-dark-text_secondary text-lg-custom mt-4">

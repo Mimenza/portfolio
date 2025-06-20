@@ -85,7 +85,7 @@ const Experience: React.FC = () => {
             </div>
 
             <div className="text-text_secondary dark:text-dark-text_secondary">
-               {language === "es" ? exp.descriptionEN : exp.descriptionES}
+               {language === "en" ? exp.descriptionEN : exp.descriptionES}
             </div>
           </div>
         </div>

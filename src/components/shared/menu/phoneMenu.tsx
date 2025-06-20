@@ -48,11 +48,12 @@ const PhoneMenu: React.FC<PhoneMenuProps> = ({ selectedSection }) => {
     navigate(navItems[idx].route);
   };
 
-   const handleLanguageToggle = () => {
+  // Nuevo handler para cambiar idioma
+  const handleLanguageToggle = () => {
     i18n.changeLanguage(i18n.language === "es" ? "en" : "es");
 
     if (setLanguage) {
-      setLanguage(i18n.language === "es" ? "en" : "es");
+      setLanguage(i18n.language === "es" ? "es" : "en"); //Opposite because the i18n is already set
     }
   };
 

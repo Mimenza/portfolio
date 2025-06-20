@@ -151,7 +151,7 @@ const MainComponentProyects = () => {
                   id={project.id}
                   name={project.name}
                   link={project.link}
-                  status={language === "es" ? project.statusEN : project.statusES}
+                  status={language === "en" ? project.statusEN : project.statusES}
                   img={project.storage}
                   technologies={project.technologies}
                   cover={project.cover}

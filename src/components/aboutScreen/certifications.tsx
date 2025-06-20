@@ -67,7 +67,7 @@ const Certification: React.FC = () => {
                     className="h-full aspect-square rounded-[10px]"
                   />
                 ) : null}
-                {language === "es" ? cer.nameEN : cer.nameES}
+                {language === "en" ? cer.nameEN : cer.nameES}
               </div>
               {phoneView ? (
                 <div className="font-bold text-text_primary dark:text-dark-text_primary">
@@ -82,7 +82,7 @@ const Certification: React.FC = () => {
               )}
             </div>
             <div className="text-text_secondary dark:text-dark-text_secondary">
-               {language === "es" ? cer.descriptionEN : cer.descriptionES}
+               {language === "en" ? cer.descriptionEN : cer.descriptionES}
             </div>
           </div>
         </div>
