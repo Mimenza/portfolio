@@ -1,3 +1,101 @@
 {
-  "aboutMe": "About me"
+  "about": {
+    "About": "About",
+    "aboutMe": {
+      "subtitle": "Developer",
+      "title": "About",
+      "intro": "I'm <1>Endika Mimenza</1>, a 25-year-old web and mobile developer with experience in application development from Bilbao, Spain. Currently focused on building with React and React Native, while expanding my knowledge in backend development and languages like C and C++ at <3>42 Urduliz</3>. Passionate about technology and continuous learning.",
+      "hobbies": "I'm passionate about the world of vintage technology and mechanical keyboards. In my free time, I'm working on a mobile app called <1>TravelLens</1>, built with React Native. I've also created other mobile apps like <3>Sagarra Jo</3> and <5>Zap</5>. These are personal projects that let me explore and enjoy the intersection of creativity, code, and tech."
+    },
+    "certifications": {
+      "title": "Certifications"
+    },
+    "education": {
+      "title": "Education"
+    },
+    "experience": {
+      "title": "Experience"
+    },
+    "projects": {
+      "title": "Side Projects",
+      "more": "More projects"
+    }
+  },
+  "home": {
+    "Home": "Home",
+    "aboutMe": {
+      "greeting": "Hey! It's me Endika,",
+      "headline": "<1>Purpose-driven</1> development, meaningful digital solutions from <3>front</3> to <5>back</5>",
+      "description": "I build meaningful digital solutions from front to back. Passionate about technology, vintage hardware, and continuous learning. Currently focused on React, React Native, and backend development.",
+      "cta": "Know me better"
+    },
+    "contactMe": {
+      "title": "Contact",
+      "intro": "Have a question or want to get in touch? Feel free to reach out.",
+      "getInTouch": "Let's get in touch!",
+      "talkAbout": "Let's talk about",
+      "topics": ["Vintage hardware", "Films", "code", "design", "coffee"],
+      "form": {
+        "subjectPlaceholder": "Subject",
+        "messagePlaceholder": "Message",
+        "sendButton": "Send",
+        "successMessage": "Message sent successfully!",
+        "errorMessage": "Error sending message. Please try again."
+      }
+    },
+    "projects": {
+      "subtitle": "Some of my work",
+      "title": "Projects",
+      "description": "Here's a selection showcasing my expertise and the achieved results",
+      "viewAllButton": "View all projects"
+    },
+    "technologies": {
+      "speciality": "Speciality",
+      "title": "Areas of Expertise",
+      "description": "Here you can find some of the technologies I have worked with.",
+      "dropdown": {
+        "programmingLanguages": "Programming Languages",
+        "webDevelopment": "Web Development",
+        "frontendFrameworks": "Frontend Frameworks & Libraries",
+        "backendPlatforms": "Backend & Full Stack Platforms",
+        "toolsServices": "Tools & Services"
+      }
+    },
+    "carousel": {
+      "Team collaboration": "Team collaboration",
+      "Adaptability": "Adaptability",
+      "Communication skills": "Communication skills",
+      "Time management": "Time management",
+      "Attention to detail": "Attention to detail",
+      "Curiosity": "Curiosity"
+    }
+  },
+  "projects": {
+    "Projects": "Projects",
+    "Most of my work": "Most of my work",
+    "Here you can find most of my projects.": "Here you can find most of my projects.",
+    "All Status": "All Status",
+    "On Development": "On Development",
+    "Finished": "Finished",
+    "Getting Updates": "Getting Updates",
+    "Newest": "Newest",
+    "Oldest": "Oldest",
+    "A-Z": "A-Z",
+    "Z-A": "Z-A",
+    "All Technologies": "All Technologies"
+  },
+  "footer": {
+    "Built with": "Built with",
+    "Styled with": "Styled with",
+    "Deployed with": "Deployed with",
+    "Handled with": "Handled with",
+    "All rights reserved": "All rights reserved"
+  },
+  "menu": { "Home": "Home", "About": "About", "Projects": "Projects" },
+  "slug": {
+    "go back": "Go back",
+    "code": "Code",
+    "prev": "Prev",
+    "next": "Next"
+  }
 }

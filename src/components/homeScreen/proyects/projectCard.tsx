@@ -2,6 +2,7 @@ import { FaCode } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa6";
 
 import { useVariablesContext } from "../../../context/variablesContext";
+
 const Default = process.env.REACT_APP_PROJECT_DEFAULT_IMG;
 
 const ProjectCard = ({

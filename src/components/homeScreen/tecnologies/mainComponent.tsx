@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-import ShinyText from "../../../blocks/TextAnimations/ShinyText/ShinyText";
 import { useVariablesContext } from "../../../context/variablesContext";
+
+import ShinyText from "../../../blocks/TextAnimations/ShinyText/ShinyText";
 import Dropdown from "./dropdown";
 
 import defaultImg from "../../../assets/imgs/pg.jpeg";
@@ -11,11 +12,14 @@ import img3 from "../../../assets/imgs/FE.webp";
 import img4 from "../../../assets/imgs/BE.jpeg";
 import img5 from "../../../assets/imgs/TS.jpeg";
 
+
+import { useTranslation } from "react-i18next";
+
 const MainComponentTecnologies = () => {
+  const { t } = useTranslation();
   const { currentDropDown } = useVariablesContext();
   const images = [img1, img2, img3, img4, img5];
 
-  // Nuevo estado para el fade y la imagen mostrada
   const [fade, setFade] = useState(true);
   const [imgSrc, setImgSrc] = useState(defaultImg);
 
@@ -24,7 +28,7 @@ const MainComponentTecnologies = () => {
     const timeout = setTimeout(() => {
       setImgSrc(currentDropDown === -1 ? defaultImg : images[currentDropDown]);
       setFade(true); // inicia fade in
-    }, 200); // duración del fade out
+    }, 200);
 
     return () => clearTimeout(timeout);
   }, [currentDropDown]);
@@ -42,24 +46,24 @@ const MainComponentTecnologies = () => {
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
               <path d="m12 3-1.9 5.8a2 2 0 0 1-1.287 1.288L3 12l5.8 1.9a2 2 0 0 1 1.288 1.287L12 21l1.9-5.8a2 2 0 0 1 1.287-1.288L21 12l-5.8-1.9a2 2 0 0 1-1.288-1.287Z"></path>
             </svg>
             <ShinyText
-              text="Speciality"
+              text={t("home.technologies.speciality")}
               disabled={false}
               speed={2}
               className="text-lg-custom text-secondary dark:text-dark-secondary"
             />
           </div>
           <h1 className="text-text_primary dark:text-dark-text_primary text-6xl-custom font-bold font-clash">
-            Areas of Expertise
+            {t("home.technologies.title")}
           </h1>
           <p className="mt-4 text-lg-custom text-text_secondary dark:text-dark-text_secondary">
-            Here you can find some of the tecnologies I have worked with.
+            {t("home.technologies.description")}
           </p>
         </div>
 
@@ -74,7 +78,9 @@ const MainComponentTecnologies = () => {
           <div className="flex-1 w-full mt-4 md:mt-0">
             <div className="relative w-full aspect-[16/9] rounded-[25px] overflow-hidden">
               <img
-                className={`absolute inset-0 w-full h-full object-cover rounded-[25px] transition-opacity duration-300 ${fade ? "opacity-100" : "opacity-0"}`}
+                className={`absolute inset-0 w-full h-full object-cover rounded-[25px] transition-opacity duration-300 ${
+                  fade ? "opacity-100" : "opacity-0"
+                }`}
                 src={imgSrc}
                 alt=""
               />

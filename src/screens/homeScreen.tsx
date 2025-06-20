@@ -1,12 +1,9 @@
 import React, {
   useRef,
-  useState,
-  useMemo,
-  useEffect,
-  useCallback,
-  use,
+  useEffect
 } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { useLogedUser } from "../context/logedUserContext";
 import { useVariablesContext } from "../context/variablesContext";
@@ -22,6 +19,7 @@ import Carousell from "../components/shared/carousell";
 import TechCarousell from "../components/shared/techCarousell";
 
 const HomeScreen = () => {
+  const { t } = useTranslation();
   const aboutMeRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
   const technologiesRef = useRef<HTMLDivElement>(null);
@@ -30,17 +28,16 @@ const HomeScreen = () => {
   const { logedUser } = useLogedUser();
   const { phoneView } = useVariablesContext();
 
-  // Check if the user is logged in
   useEffect(() => {
     // if (!logedUser) {
     //   navigate("/login");
     // }
-    document.title = "Emimenza | Home";    
-  }, []);
+    document.title = `Emimenza | ${t("home.Home")}`;
+  }, [t]);
 
   return (
     <div className="flex flex-col h-auto w-full">
-       {/* Gradientes */}
+      {/* Gradientes */}
       <div className="fixed top-0 left-0 w-screen h-10 z-10 bg-gradient-to-b from-background dark:from-dark-background to-transparent"></div>
       <div className="fixed bottom-0 left-0 w-screen h-10 z-10 bg-gradient-to-b from-transparent dark:to-dark-background to-background"></div>
       {phoneView ? (<PhoneMenu selectedSection={0} />): (<Menu selectedSection={0} />)}
@@ -48,38 +45,34 @@ const HomeScreen = () => {
       {/* Sections */}
       <div
         ref={aboutMeRef}
-        className={`relative w-full py-20 justify-center items-center flex  md:min-h-screen h-auto`}
+        className="relative w-full py-20 justify-center items-center flex md:min-h-screen h-auto"
       >
         <MainComponentAboutMe />
         <FooterSlider />
       </div>
+
       <Carousell
         words={[
-          "Team collaboration",
-          "Adaptability",
-          "Communication skills",
-          "Time management",
-          "Attention to detail",
-          "Curiosity",
+          t("home.carousel.Team collaboration"),
+          t("home.carousel.Adaptability"),
+          t("home.carousel.Communication skills"),
+          t("home.carousel.Time management"),
+          t("home.carousel.Attention to detail"),
+          t("home.carousel.Curiosity")
         ]}
       />
-      <div
-        ref={projectsRef}
-        className={`w-full py-10 justify-center items-center flex h-auto`}
-      >
+
+      <div ref={projectsRef} className="w-full py-10 justify-center items-center flex h-auto">
         <MainComponentProyects />
       </div>
-      <div
-        ref={technologiesRef}
-        className={`w-full py-10 justify-center items-center flex h-auto`}
-      >
+
+      <div ref={technologiesRef} className="w-full py-10 justify-center items-center flex h-auto">
         <MainComponentTecnologies />
       </div>
+
       <TechCarousell />
-      <div
-        ref={contactRef}
-        className={`w-full py-10 justify-center items-center flex h-auto`}
-      >
+
+      <div ref={contactRef} className="w-full py-10 justify-center items-center flex h-auto">
         <MainComponentContact />
       </div>
     </div>

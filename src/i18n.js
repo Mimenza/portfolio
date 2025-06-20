@@ -17,7 +17,7 @@ i18n
         translation: translationEn,
       },
     },
-    lng: 'es', // idioma predeterminado
+    lng: 'en', // idioma predeterminado
     fallbackLng: 'es', // idioma de respaldo
     interpolation: {
       escapeValue: false, // react ya se encarga de escapar los valores

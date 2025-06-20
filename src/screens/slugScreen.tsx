@@ -9,8 +9,8 @@ import PhoneMenu from "../components/shared/menu/phoneMenu";
 import { useVariablesContext } from "../context/variablesContext";
 import Gallery from "../components/shared/projectDetail/gallery";
 import { FiExternalLink } from "react-icons/fi";
+import { useTranslation } from "react-i18next";
 
-const htmlPath = "/html/portfolio.html";
 const SlugScreen = () => {
   const { slug } = useParams<{ slug: string }>();
   const [project, setProject] = useState<any>(null);
@@ -21,8 +21,8 @@ const SlugScreen = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(-1);
   const [htmlContent, setHtmlContent] = useState<string>("");
   const navigate = useNavigate();
-  const { logedUser } = useLogedUser();
-  const { phoneView } = useVariablesContext();
+  const { t } = useTranslation();
+  const { phoneView, language } = useVariablesContext();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -58,12 +58,15 @@ const SlugScreen = () => {
           id: number;
           name: string;
           slug: string;
-          description: string;
+          descriptionEN: string;
+          descriptionES: string;
           date?: string;
           link?: string;
-          status?: string;
+          statusEN?: string;
+          statusES?: string;
           html?: string;
-          htmlLink?: string;
+          htmlLinkEN?: string;
+          htmlLinkES?: string;
           ["Projects-Tecnologies"]?: { Tecnologies?: { name: string } }[];
           ["Projects-Storage"]?: {
             Storage?: { link: string; cover?: boolean };
@@ -120,21 +123,23 @@ const SlugScreen = () => {
           document.title = `Emimenza | ${data.slug}`;
 
           // Obtener el HTML
+          // Cambia aquí para usar htmlLinkEN o htmlLinkES según language
+          const htmlLink =
+            language === "en" ? data.htmlLinkEN : data.htmlLinkES;
+
           if (
-            data.htmlLink &&
-            typeof data.htmlLink === "string" &&
-            data.htmlLink.startsWith("http")
+            htmlLink &&
+            typeof htmlLink === "string" &&
+            htmlLink.startsWith("http")
           ) {
             try {
-              // const response = await fetch(htmlPath);
-              const response = await fetch(data.htmlLink);
+              const response = await fetch(htmlLink);
               if (!response.ok) {
                 throw new Error("Error fetching HTML file");
               }
               const html = await response.text();
               setHtmlContent(html);
             } catch (fetchError) {
-              // console.error("Error fetching HTML file:", fetchError);
               setHtmlContent("<h1>Error loading project content</h1>");
             }
           } else {
@@ -154,7 +159,7 @@ const SlugScreen = () => {
     };
 
     fetchData();
-  }, [slug]);
+  }, [slug, language]);
 
   // Calcula el slug anterior y siguiente
   const prevSlug =
@@ -184,7 +189,7 @@ const SlugScreen = () => {
   if (loading)
     return (
       <div className="bg-background dark:bg-dark-background min-h-screen w-full flex items-center justify-center text-text_primary dark:text-dark-text_primary">
-        Loading content...
+        {language === "en" ? "Loading content..." : "Cargando contenido..."}
       </div>
     );
 
@@ -213,13 +218,15 @@ const SlugScreen = () => {
                 className="mb-6 text-md-custom text-text_secondary dark:text-dark-text_secondary hover:underline flex items-center gap-1"
                 onClick={() => navigate(-1)}
               >
-                &larr; Go back
+                &larr; {t("slug.go back")}
               </button>
               <h1 className="text-4xl-custom md:text-5xl-custom text-text_primary dark:text-dark-text_primary font-bold mb-3 font-clash">
                 {project.name}
               </h1>
               <p className="text-base text-justify md:text-lg-custom md:text-left text-text_primary dark:text-dark-text_primary mb-6 max-w-3xl">
-                {project.description}
+                {language === "en"
+                  ? project.descriptionEN
+                  : project.descriptionES}
               </p>
               {/* Tags/Technologies */}
               <div className="flex flex-wrap gap-2 mb-8">
@@ -247,7 +254,7 @@ const SlugScreen = () => {
                   rel="noopener noreferrer"
                   className="bg-text_primary dark:bg-dark-text_primary text-background dark:text-dark-background px-6 py-2 rounded-full font-semibold transition flex items-center gap-2 shadow"
                 >
-                  Code <FiExternalLink />
+                  {t("slug.code")} <FiExternalLink />
                 </a>
               )}
               <div className="flex flex-col gap-1 text-sm w-full mt-2">
@@ -256,7 +263,7 @@ const SlugScreen = () => {
                     Status:
                   </span>
                   <span className="text-text_secondary dark:text-dark-text_secondary">
-                    {project.status || "N/A"}
+                    {language === "en" ? project.statusEN : project.statusES}
                   </span>
                 </div>
               </div>
@@ -394,7 +401,7 @@ const SlugScreen = () => {
             >
               &larr;{" "}
               <span className="hidden md:inline text-xs font-semibold">
-                Prev
+                {t("slug.prev")}
               </span>
             </button>
             <button
@@ -405,7 +412,7 @@ const SlugScreen = () => {
               }}
             >
               <span className="hidden md:inline text-xs font-semibold">
-                Next
+                {t("slug.next")}
               </span>
               &rarr;
             </button>

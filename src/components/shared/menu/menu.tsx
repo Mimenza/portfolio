@@ -1,13 +1,14 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { FaCircle } from "react-icons/fa";
 import { IoIosSunny } from "react-icons/io";
 import { IoMoon } from "react-icons/io5";
 
+import { useVariablesContext } from "../../../context/variablesContext";
 import EmSvg from "../../ui/emSvg";
 
-import { useNavigate } from "react-router-dom";
-import { useVariablesContext } from "../../../context/variablesContext";
 
 interface MenuProps {
   selectedSection: number; // 0 for Home, 1 for About, 2 for Projects
@@ -18,79 +19,62 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
     scrollPosition,
     darkMode,
     setDarkMode,
-    customScroll,
-    setCustomScroll,
-    phoneView,
-    setPhoneView
+    setLanguage
   } = useVariablesContext();
   const navigate = useNavigate();
-  const [activeIcon, setActiveIcon] = useState<number | null>(null); // Track the active icon
-  const [isAnimating, setIsAnimating] = useState(false); // Track animation state
-  const [showCloud, setShowCloud] = useState(true);
-  const [cloudPosition, setCloudPosition] = useState<{
-    top: number;
-    left: number;
-  }>({ top: 0, left: 0 });
-  const cloudText =
-    "Activate a beta custom scroll here! Click to toggle it on/off.";
+  const [activeIcon, setActiveIcon] = useState<number | null>(null);
+  const [isAnimating, setIsAnimating] = useState(false);
 
-  const mouseBtnRef = React.useRef<HTMLParagraphElement>(null);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
-    setTimeout(() => setActiveIcon(selectedSection), 100); // Animate to size 100 on load
+    setTimeout(() => setActiveIcon(selectedSection), 100);
   }, [selectedSection]);
-
-  useEffect(() => {
-    // Solo calcula la posición si la nube debe mostrarse y el botón existe
-    if (showCloud && mouseBtnRef.current) {
-      const rect = mouseBtnRef.current.getBoundingClientRect();
-      setCloudPosition({
-        top: rect.bottom + window.scrollY + 12,
-        left: rect.left + window.scrollX - 40, // Ajusta para centrar la nube respecto al botón
-      });
-    }
-  }, [showCloud, selectedSection, customScroll]);
 
   const handleNavigation = (index: number) => {
     setTimeout(() => {
       if (index === 0) navigate("/home");
       else if (index === 1) navigate("/about");
       else if (index === 2) navigate("/projects");
-    }, 250); // Delay for animation
+    }, 250);
   };
 
   const handleIconClick = (index: number) => {
-    if (activeIcon === index) return; // Prevent shrinking the same active icon
-    setIsAnimating(true); // Start shrinking animation
+    if (activeIcon === index) return;
+    setIsAnimating(true);
     setTimeout(() => {
-      setActiveIcon(index); // Set the new active icon after shrinking
-      setIsAnimating(false); // Reset animation state
+      setActiveIcon(index);
+      setIsAnimating(false);
       handleNavigation(index);
-    }, 300); // Match the animation duration
+    }, 300);
   };
 
   const handleDarkModeToggle = () => {
     setDarkMode((prev) => !prev);
     if (darkMode) {
-      document.documentElement.classList.remove("dark"); // Desactivar modo oscuro
+      document.documentElement.classList.remove("dark");
       document.documentElement.classList.remove("scrollbar-dark");
       document.documentElement.classList.add("scrollbar-light");
     } else {
       document.documentElement.classList.remove("scrollbar-light");
-      document.documentElement.classList.add("dark"); // Activar modo oscuro
+      document.documentElement.classList.add("dark");
       document.documentElement.classList.add("scrollbar-dark");
-      
     }
   };
 
-  // Calculate styles based on scroll position
-  const normalizedScroll = Math.min(scrollPosition / 150, 1); // Normalize scroll position to a range of 0 to 1
-  const bgOpacity = normalizedScroll * 0.9; // Gradual opacity up to 0.5
-  const width =
-    normalizedScroll < 1
-      ? `calc(100% - ${normalizedScroll * (window.innerWidth - 950)}px)`
-      : "400px"; // Gradual width reduction from 100% to 400px
-  const border = `1px solid rgba(11, 11, 13, ${normalizedScroll})`; // Border with dynamic opacity
+  // Nuevo handler para cambiar idioma
+  const handleLanguageToggle = () => {
+    i18n.changeLanguage(i18n.language === "es" ? "en" : "es");
+
+    if (setLanguage) {
+      setLanguage(i18n.language === "es" ? "es" : "en"); //Opposite because the i18n is already set
+    }
+  };
+
+  const normalizedScroll = Math.min(scrollPosition / 150, 1);
+  const bgOpacity = normalizedScroll * 0.9;
+  const width =  normalizedScroll < 1 ? `calc(100% - ${normalizedScroll * (window.innerWidth - 950)}px)` : "450px";
+  const border = `1px solid rgba(11, 11, 13, ${normalizedScroll})`;
   const isDark = document.documentElement.classList.contains("dark");
   const backgroundColor = isDark ? "#0b0b0d" : "#ababab";
 
@@ -99,24 +83,17 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
     opacity: number;
   }
 
-  const hexToRgba = (
-    hex: HexToRgbaParams["hex"],
-    opacity: HexToRgbaParams["opacity"]
-  ): string => {
+  const hexToRgba = (hex: HexToRgbaParams["hex"], opacity: HexToRgbaParams["opacity"]): string => {
     hex = hex.replace("#", "");
-
-    // Soporta shorthand (#fff)
     if (hex.length === 3) {
       hex = hex
         .split("")
         .map((c) => c + c)
         .join("");
     }
-
     const r = parseInt(hex.slice(0, 2), 16);
     const g = parseInt(hex.slice(2, 4), 16);
     const b = parseInt(hex.slice(4, 6), 16);
-
     return `rgba(${r}, ${g}, ${b}, ${opacity})`;
   };
 
@@ -130,10 +107,7 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
           backgroundColor: hexToRgba(backgroundColor, bgOpacity),
         }}
       >
-        {/* <p className="text-text_primary dark:text-dark-text_primary text-2xl-custom ">
-          EM
-        </p> */}
-        <EmSvg/>
+        <EmSvg />
         <div className="flex flex-row gap-1 lg:gap-4 xs:text-xs-custom md:text-lg-custom">
           <p
             className={`flex flex-row items-center gap-1 cursor-pointer ${
@@ -152,7 +126,7 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
                 />
               )}
             </span>
-            Home
+            {t("menu.Home")}
           </p>
           <p
             className={`flex flex-row items-center gap-1 cursor-pointer ${
@@ -171,13 +145,13 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
                 />
               )}
             </span>
-            About
+            {t("menu.About")}
           </p>
           <p
             className={`flex flex-row items-center gap-1 cursor-pointer ${
               selectedSection === 2
                 ? "text-text_primary dark:text-dark-text_primary"
-               : "text-text_secondary dark:text-dark-text_secondary hover:text-text_primary dark:hover:text-dark-text_primary"
+                : "text-text_secondary dark:text-dark-text_secondary hover:text-text_primary dark:hover:text-dark-text_primary"
             }`}
             onClick={() => handleIconClick(2)}
           >
@@ -190,11 +164,12 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
                 />
               )}
             </span>
-            Projects
+            {t("menu.Projects")}
           </p>
         </div>
+        <div className="flex flex-row items-center">
           <div
-            className="text-text_primary dark:text-dark-text_primary text-2xl-custom cursor-pointer transition-all duration-300 ease-in-out transform ml-8"
+            className="text-text_primary dark:text-dark-text_primary text-2xl-custom cursor-pointer transition-all duration-300 ease-in-out transform"
             onClick={handleDarkModeToggle}
           >
             <span
@@ -204,6 +179,15 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
               {darkMode ? <IoIosSunny /> : <IoMoon />}
             </span>
           </div>
+          <button
+            className="ml-2 px-3 py-1 rounded-full text-text_primary dark:text-dark-text_primary border border-text_secondary dark:border-dark-text_secondary text-xs-custom font-bold bg-transparent hover:bg-secondary/10 transition"
+            onClick={handleLanguageToggle}
+            aria-label="Change language"
+            type="button"
+          >
+            {i18n.language === "es" ? "EN" : "ES"}
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
+import { useTranslation } from "react-i18next";
 
-import supabase from "../../../supabase/client";
+import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import { FaCode } from "react-icons/fa6";
 import { MdWebAsset } from "react-icons/md";
 import { PiPaintBrushHousehold } from "react-icons/pi";
@@ -9,6 +9,7 @@ import { DiStackoverflow } from "react-icons/di";
 import { BsGear } from "react-icons/bs";
 
 import { useVariablesContext } from "../../../context/variablesContext";
+import supabase from "../../../supabase/client";
 
 type DropdownProps = {
   category: number;
@@ -23,14 +24,18 @@ const icons = [
 ];
 
 export default function Dropdown({ category }: DropdownProps) {
+  const { t } = useTranslation();
   const [skills, setSkills] = useState<any[]>([]);
-  const [title] = useState([
-    "Programming Languages",
-    "Web Development",
-    "Frontend Frameworks & Libraries",
-    "Backend & Full Stack Platforms",
-    "Tools & Services",
-  ]);
+  
+  // Reemplazamos el array title por claves i18n:
+  const titleKeys = [
+    "home.technologies.dropdown.programmingLanguages",
+    "home.technologies.dropdown.webDevelopment",
+    "home.technologies.dropdown.frontendFrameworks",
+    "home.technologies.dropdown.backendPlatforms",
+    "home.technologies.dropdown.toolsServices",
+  ];
+
   const [winHeight, setWinHeight] = useState(window.innerHeight);
   const [maxHeight, setMaxHeight] = useState(winHeight - 480);
 
@@ -46,7 +51,7 @@ export default function Dropdown({ category }: DropdownProps) {
           .eq("category", category);
 
         if (error) {
-         // console.error("Error fetching technologies:", error);
+          //console.error("Error fetching technologies:", error);
           return;
         }
 
@@ -70,11 +75,14 @@ export default function Dropdown({ category }: DropdownProps) {
   const Icon = icons[category];
 
   return (
-    <div className="w-full mx-auto dark:bg-dark-muted bg-muted bg-opacity-25 text-white rounded-2xl shadow cursor-pointer" onClick={() => setCurrentDropDown(isOpen ? -1 : category)}>
+    <div
+      className="w-full mx-auto dark:bg-dark-muted bg-muted bg-opacity-25 text-white rounded-2xl shadow cursor-pointer"
+      onClick={() => setCurrentDropDown(isOpen ? -1 : category)}
+    >
       <div className="p-5 text-left font-medium flex items-center justify-between cursor-pointer text-text_primary dark:text-dark-text_primary">
         <span className="flex items-center gap-2">
           {Icon && <Icon className="mr-2" />}
-          {title[category]}
+          {t(titleKeys[category])}
         </span>
         <button>
           {isOpen ? (
@@ -86,15 +94,15 @@ export default function Dropdown({ category }: DropdownProps) {
       </div>
 
       <div
-  className="transition-[max-height] duration-500 overflow-hidden px-4"
-  style={{ maxHeight: isOpen ? `${maxHeight}px` : "0px" }}
->
-  <div
-    className={`flex flex-wrap gap-2 text-white/90 ${
-      isOpen ? "overflow-y-auto pb-4" : "overflow-hidden pb-0"
-    } scrollbar-hide transition-all duration-500`}
-    style={{ maxHeight: `${maxHeight}px` }}
-  >
+        className="transition-[max-height] duration-500 overflow-hidden px-4"
+        style={{ maxHeight: isOpen ? `${maxHeight}px` : "0px" }}
+      >
+        <div
+          className={`flex flex-wrap gap-2 text-white/90 ${
+            isOpen ? "overflow-y-auto pb-4" : "overflow-hidden pb-0"
+          } scrollbar-hide transition-all duration-500`}
+          style={{ maxHeight: `${maxHeight}px` }}
+        >
           {skills.map((skill, idx) => (
             <span key={skill.id} className="flex items-center">
               {skill.name}

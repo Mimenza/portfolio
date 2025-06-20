@@ -1,40 +1,17 @@
-import { FaCode } from "react-icons/fa";
-import { FaArrowRight } from "react-icons/fa6";
-
-import { FaJava } from "react-icons/fa"; //Java
-import { FaAngular } from "react-icons/fa"; //Angular
-import { FaPhp } from "react-icons/fa"; //Php
-import { DiJqueryLogo } from "react-icons/di"; //Jquery
-import { IoLogoJavascript } from "react-icons/io5"; //JavaScript
-import { SiTypescript } from "react-icons/si"; //TypeScript
-import { SiMysql } from "react-icons/si"; //MySQL
-import { GiTreeBranch } from "react-icons/gi"; //Twig
-import { SiCivicrm } from "react-icons/si"; //crm erp
-import { BsFiletypeXml } from "react-icons/bs"; //Xml
-import { FaHtml5 } from "react-icons/fa"; //html css
-import { FaDrupal } from "react-icons/fa6"; //Drupal
-import { TbBrandKotlin } from "react-icons/tb"; //kotlin
-import { PiFileCDuotone } from "react-icons/pi"; //C
-import { PiFileCpp  } from "react-icons/pi"; //C++
-import { FaReact } from "react-icons/fa"; //React
-import { TbBrandReactNative } from "react-icons/tb"; //React Native
-import { RiTailwindCssFill } from "react-icons/ri"; //Tailwind
-import { RiSupabaseFill } from "react-icons/ri"; //Supabase
-import { SiAppwrite } from "react-icons/si"; //appwrite
-import { IoLogoFirebase } from "react-icons/io5"; //Firebase
-import { FaPlus } from "react-icons/fa"; //Plus
-import { RxFontStyle } from "react-icons/rx"; // StyleSheet
-
-import { IoLogoVercel } from "react-icons/io5"; //Vercel
-import { SiExpo } from "react-icons/si"; //Expo
-import { FaGithub } from "react-icons/fa"; //Github
-
-import { FaDocker } from "react-icons/fa"; //Docker
-import { FaWordpress } from "react-icons/fa"; //Wordpress
-import { SiMariadb } from "react-icons/si";  //MariaDB
-import { SiNginx } from "react-icons/si"; //Nginx
+import { FaJava, FaAngular, FaPhp, FaHtml5, FaReact, FaPlus, FaDocker, FaWordpress, FaGithub } from "react-icons/fa";
+import { FaDrupal } from "react-icons/fa6";
+import { DiJqueryLogo } from "react-icons/di";
+import { IoLogoJavascript, IoLogoFirebase, IoLogoVercel } from "react-icons/io5";
+import { SiTypescript, SiMysql, SiCivicrm, SiAppwrite, SiMariadb, SiNginx, SiExpo } from "react-icons/si";
+import { GiTreeBranch } from "react-icons/gi";
+import { BsFiletypeXml } from "react-icons/bs";
+import { TbBrandKotlin, TbBrandReactNative } from "react-icons/tb";
+import { PiFileCDuotone, PiFileCpp } from "react-icons/pi";
+import { RiTailwindCssFill, RiSupabaseFill } from "react-icons/ri";
+import { RxFontStyle } from "react-icons/rx";
 
 import { useVariablesContext } from "../../context/variablesContext";
+
 const Default = process.env.REACT_APP_PROJECT_DEFAULT_IMG;
 
 const HorizontalCard = ({

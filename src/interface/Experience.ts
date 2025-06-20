@@ -1,7 +1,8 @@
 export interface Experience {
     id: number;
     company: string;
-    description: string;
+    descriptionEN: string;
+    descriptionES: string;
     date: string;
     logo: string;
   }

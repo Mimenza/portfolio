@@ -1,44 +1,28 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-import Gallery from "./gallery";
+import { IoMdClose } from "react-icons/io";
+import { IoLogoJavascript, IoLogoFirebase, IoLogoVercel } from "react-icons/io5";
+import { FiExternalLink } from "react-icons/fi";
+import { FaJava, FaAngular, FaPhp, FaHtml5, FaReact, FaPlus, FaGithub } from "react-icons/fa";
+import { FaDrupal } from "react-icons/fa6";
+import { DiJqueryLogo } from "react-icons/di";
+import { SiTypescript, SiMysql, SiCivicrm, SiAppwrite, SiExpo, SiMariadb, SiNginx } from "react-icons/si";
+import { GiTreeBranch } from "react-icons/gi";
+import { BsFiletypeXml } from "react-icons/bs";
+import { TbBrandKotlin, TbBrandReactNative } from "react-icons/tb";
+import { PiFileCDuotone, PiFileCpp } from "react-icons/pi";
+import { RiTailwindCssFill, RiSupabaseFill } from "react-icons/ri";
+import { RxFontStyle } from "react-icons/rx";
 
 import { useVariablesContext } from "../../../context/variablesContext";
-import { IoMdClose } from "react-icons/io";
-import { FiExternalLink } from "react-icons/fi";
-
-import { FaJava } from "react-icons/fa"; //Java
-import { FaAngular } from "react-icons/fa"; //Angular
-import { FaPhp } from "react-icons/fa"; //Php
-import { DiJqueryLogo } from "react-icons/di"; //Jquery
-import { IoLogoJavascript } from "react-icons/io5"; //JavaScript
-import { SiTypescript } from "react-icons/si"; //TypeScript
-import { SiMysql } from "react-icons/si"; //MySQL
-import { GiTreeBranch } from "react-icons/gi"; //Twig
-import { SiCivicrm } from "react-icons/si"; //crm erp
-import { BsFiletypeXml } from "react-icons/bs"; //Xml
-import { FaHtml5 } from "react-icons/fa"; //html css
-import { FaDrupal } from "react-icons/fa6"; //Drupal
-import { TbBrandKotlin } from "react-icons/tb"; //kotlin
-import { PiFileCDuotone } from "react-icons/pi"; //C
-import { PiFileCpp  } from "react-icons/pi"; //C++
-import { FaReact } from "react-icons/fa"; //React
-import { TbBrandReactNative } from "react-icons/tb"; //React Native
-import { RiTailwindCssFill } from "react-icons/ri"; //Tailwind
-import { RiSupabaseFill } from "react-icons/ri"; //Supabase
-import { SiAppwrite } from "react-icons/si"; //appwrite
-import { IoLogoFirebase } from "react-icons/io5"; //Firebase
-import { FaPlus } from "react-icons/fa"; //Plus
-import { RxFontStyle } from "react-icons/rx"; // StyleSheet
-import { IoLogoVercel } from "react-icons/io5"; //Vercel
-import { SiExpo } from "react-icons/si"; //Expo
-import { FaGithub } from "react-icons/fa"; //Github
-
-import { useNavigate } from "react-router-dom";
+import Gallery from "./gallery";
 
 interface ProjectDetails {
   id: number;
   name: string;
-  description: string;
+  descriptionEN: string;
+  descriptionES: string;
   date: string;
   link: string;
   storage: string[];
@@ -86,7 +70,7 @@ const MainComponentProjectDetail = ({
   prevRoute: string;
 }) => {
   const navigate = useNavigate();
-  const { showGallery, setShowGallery, phoneView } = useVariablesContext();
+  const { showGallery, setShowGallery, phoneView, language } = useVariablesContext();
 
   useEffect(() => {
     document.title = `Emimenza | ${projectDetails.slug}`;
@@ -127,7 +111,7 @@ const MainComponentProjectDetail = ({
             <div className="flex flex-[1] flex-col sm:flex-row gap-2">
               <div className="flex flex-col justify-between h-full w-full flex-1">
                 <span className="w-full h-full sm:w-[70%] text-text_secondary dark:text-dark-text_secondary text-xl-custom">
-                  {projectDetails.description}
+                  {language === "en" ? projectDetails.descriptionEN : projectDetails.descriptionES}
                 </span>
                 <div className="">
                   <p className="text-text_secondary dark:text-dark-text_secondary text-lg-custom mt-4">

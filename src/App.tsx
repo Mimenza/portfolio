@@ -13,7 +13,6 @@ import ProjectsScreen from "./screens/projectsScreen";
 import LoginScreen from "./screens/loginScreen";
 import SlugScreen from "./screens/slugScreen";
 import AboutScreen from "./screens/aboutScreen";
-
 import { useVariablesContext } from "./context/variablesContext";
 
 const useBreakpointLogger = () => {

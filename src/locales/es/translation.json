@@ -1,3 +1,101 @@
 {
-  "aboutMe": "Sobre mí"
+  "about": {
+    "About": "Acerca",
+    "aboutMe": {
+      "subtitle": "Desarrollador",
+      "title": "Acerca de",
+      "intro": "Soy <1>Endika Mimenza</1>, un desarrollador web y móvil de 25 años con experiencia en desarrollo de aplicaciones de Bilbao, España. Actualmente enfocado en el desarrollo con React y React Native, mientras amplío mis conocimientos en desarrollo backend y lenguajes como C y C++ en <3>42 Urduliz</3>. Apasionado por la tecnología y el aprendizaje continuo.",
+      "hobbies": "Me apasiona el mundo de la tecnología vintage y los teclados mecánicos. En mi tiempo libre, trabajo en una aplicación móvil llamada <1>TravelLens</1>, construida con React Native. También he creado otras apps móviles como <3>Sagarra Jo</3> y <5>Zap</5>. Son proyectos personales que me permiten explorar y disfrutar la intersección entre creatividad, código y tecnología."
+    },
+    "certifications": {
+      "title": "Certificaciones"
+    },
+    "education": {
+      "title": "Educación"
+    },
+    "experience": {
+      "title": "Experiencia"
+    },
+    "projects": {
+      "title": "Proyectos personales",
+      "more": "Más proyectos"
+    }
+  },
+  "home": {
+    "Home": "Inicio",
+    "aboutMe": {
+      "greeting": "¡Hola! Soy Endika,",
+      "headline": "<1>Desarrollo con propósito</1>, soluciones digitales significativas desde <3>frontend</3> hasta <5>backend</5>",
+      "description": "Creo soluciones digitales significativas de principio a fin. Apasionado por la tecnología, hardware vintage y el aprendizaje constante. Actualmente enfocado en React, React Native y desarrollo backend.",
+      "cta": "Conóceme mejor"
+    },
+    "contactMe": {
+      "title": "Contacto",
+      "intro": "¿Tienes alguna pregunta o quieres ponerte en contacto? No dudes en escribirme.",
+      "getInTouch": "¡Ponte en contacto!",
+      "talkAbout": "Hablemos sobre",
+      "topics": ["hardware vintage", "películas", "código", "diseño", "café"],
+      "form": {
+        "subjectPlaceholder": "Asunto",
+        "messagePlaceholder": "Mensaje",
+        "sendButton": "Enviar",
+        "successMessage": "¡Mensaje enviado con éxito!",
+        "errorMessage": "Error al enviar el mensaje. Por favor, inténtalo de nuevo."
+      }
+    },
+    "projects": {
+      "subtitle": "Algunos de mis trabajos",
+      "title": "Proyectos",
+      "description": "Aquí tienes una selección que muestra mi experiencia y los resultados obtenidos",
+      "viewAllButton": "Ver todos los proyectos"
+    },
+    "technologies": {
+      "speciality": "Especialidad",
+      "title": "Áreas de especialización",
+      "description": "Aquí puedes encontrar algunas de las tecnologías con las que he trabajado.",
+      "dropdown": {
+        "programmingLanguages": "Lenguajes de Programación",
+        "webDevelopment": "Desarrollo Web",
+        "frontendFrameworks": "Frameworks y Librerías Frontend",
+        "backendPlatforms": "Plataformas Backend y Full Stack",
+        "toolsServices": "Herramientas y Servicios"
+      }
+    },
+    "carousel": {
+      "Team collaboration": "Colaboración en equipo",
+      "Adaptability": "Adaptabilidad",
+      "Communication skills": "Habilidades de comunicación",
+      "Time management": "Gestión del tiempo",
+      "Attention to detail": "Atención al detalle",
+      "Curiosity": "Curiosidad"
+    }
+  },
+  "projects": {
+    "Projects": "Proyectos",
+    "Most of my work": "La mayoría de mis trabajos",
+    "Here you can find most of my projects.": "Aquí puedes encontrar la mayoría de mis proyectos.",
+    "All Status": "Todos los estados",
+    "On Development": "En desarrollo",
+    "Finished": "Finalizados",
+    "Getting Updates": "Recibiendo actualizaciones",
+    "Newest": "Más nuevos",
+    "Oldest": "Más antiguos",
+    "A-Z": "A-Z",
+    "Z-A": "Z-A",
+    "All Technologies": "Todas las tecnologías"
+  },
+  "footer": {
+    "Built with": "Construido con",
+    "Styled with": "Estilizado con",
+    "Deployed with": "Desplegado con",
+    "Handled with": "Gestionado con",
+    "All rights reserved": "Todos los derechos reservados"
+  },
+  "menu": { "Home": "Inicio", "About": "Acerca", "Projects": "Proyectos" },
+  "slug": {
+    "go back": "Volver",
+    "code": "Código",
+    "prev": "Anterior",
+    "next": "Siguiente"
+  }
 }
