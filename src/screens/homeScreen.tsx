@@ -12,6 +12,7 @@ import MainComponentProyects from "../components/homeScreen/proyects/mainCompone
 import MainComponentTecnologies from "../components/homeScreen/tecnologies/mainComponent";
 import MainComponentContact from "../components/homeScreen/contactMe/mainComponent";
 import FooterSlider from "../components/shared/footer/mouseSlider";
+import ChatWidget from "../components/shared/chat/chatWidget";
 
 import Menu from "../components/shared/menu/menu";
 import PhoneMenu from "../components/shared/menu/phoneMenu";
@@ -50,6 +51,8 @@ const HomeScreen = () => {
         <MainComponentAboutMe />
         <FooterSlider />
       </div>
+
+      <ChatWidget />
 
       <Carousell
         words={[
