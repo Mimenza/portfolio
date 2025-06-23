@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Bot, Send } from "lucide-react";
 import { TbReload } from "react-icons/tb";
 import { ImSpinner2 } from "react-icons/im"; // Ícono de spinner
+type Message = {
+    text: string;
+    sender: "user" | "bot";
+}
 
 const suggestedQuestions = [
     "What are your main skills and areas of expertise?",
@@ -14,12 +18,67 @@ const ChatWidget: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [input, setInput] = useState("");
     const [cleaning, setLoading] = useState(false);
+    const [messages, setMessages] = useState<Message[]>([]);
+    const [showSuggestions, setShowSuggestions] = useState(true);
+    const functionUrl = "/api/chat";
+    const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
-    const handleClick = () => {
+    useEffect(() => {
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    }, [messages]);
+
+    // Nueva función para enviar mensajes, reutilizable para input y sugerencias
+    const handleSend = async (e?: React.FormEvent, customText?: string) => {
+        if (e) e.preventDefault();
+        const text = customText !== undefined ? customText : input;
+        if (!text.trim()) return;
+        const newMessages = [...messages, { text, sender: "user" as const }];
+        setMessages(newMessages);
+        setInput("");
+        try {
+            const response = await fetch(functionUrl, {
+                method: "POST",
+                body: JSON.stringify({
+                    messages: newMessages,
+                    context: "home"
+                }),
+            });
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                setMessages(prev => [
+                    ...prev,
+                    {
+                        text: errorData?.response
+                            ? `Error: ${errorData.response}`
+                            : `Error: ${response.status} ${response.statusText}`,
+                        sender: "bot"
+                    }
+                ]);
+                return;
+            }
+            const data = await response.json();
+            setMessages(prev => [...prev, { text: data.response, sender: "bot" }]);
+        } catch (error: any) {
+            setMessages(prev => [
+                ...prev,
+                {
+                    text: error?.message
+                        ? `Error: ${error.message}`
+                        : "Sorry, there was an error processing your request.",
+                    sender: "bot"
+                }
+            ]);
+        }
+    }
+
+    const handleReload = () => {
         setLoading(true);
-        // Simula un proceso de carga (ej: 2 segundos)
         setTimeout(() => {
             setLoading(false); // ejecuta función de recarga real si existe
+            setShowSuggestions(true); // muestra las preguntas sugeridas nuevamente
+            setMessages([]); // limpia los mensajes
         }, 1000);
     };
     return (
@@ -44,7 +103,7 @@ const ChatWidget: React.FC = () => {
                             </div>
                             <div className="ml-auto flex items-center gap-4">
                                 <button
-                                    onClick={handleClick}
+                                    onClick={handleReload}
                                     className="ml-auto text-gray-400 hover:text-text_primary dark:hover:text-dark-text_primary text-xl transition-transform duration-300"
                                     aria-label="Reload"
                                 >
@@ -66,27 +125,69 @@ const ChatWidget: React.FC = () => {
                         </div>
                         {/* Body */}
                         <div className="flex-1 flex flex-col px-6 py-4 overflow-y-auto">
-                            <p className="text-sm text-text_secondary dark:text-dark-text_secondary mb-5">
-                                Hello! I am Endika's personal assistant. Ask me about his work, experience, skills, or projects, or choose a suggested question:
-                            </p>
-                            <div className="flex flex-col gap-3">
-                                {suggestedQuestions.map((q, i) => (
-                                    <button
-                                        key={i}
-                                        className="bg-muted_light dark:bg-dark-muted_light text-text_primary dark:text-dark-text_primary rounded-2xl py-2 px-4 text-sm font-medium text-left transition"
+                            <AnimatePresence>
+                                {messages.length === 0 && (
+                                    <motion.p
+                                        className="text-sm text-text_secondary dark:text-dark-text_secondary mb-5"
+                                        initial={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.3 }}
                                     >
-                                        {q}
-                                    </button>
-                                ))}
+                                        Hello! I am Endika's personal assistant. Ask me about his work, experience, skills, or projects, or choose a suggested question:
+                                    </motion.p>
+                                )}
+                            </AnimatePresence>
+                            <AnimatePresence>
+                                {showSuggestions && messages.length === 0 && (
+                                    <motion.div
+                                        key="suggestions"
+                                        initial={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -30 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.3 }}
+                                        className="flex flex-col gap-3"
+                                    >
+                                        {suggestedQuestions.map((q, i) => (
+                                            <button
+                                                key={i}
+                                                className="bg-muted_light dark:bg-dark-muted_light text-text_primary dark:text-dark-text_primary rounded-2xl py-2 px-4 text-sm font-medium text-left transition"
+                                                onClick={() => {
+                                                    setShowSuggestions(false);
+                                                    handleSend(undefined, q);
+                                                }}
+                                            >
+                                                {q}
+                                            </button>
+                                        ))}
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                            <div className="flex flex-col gap-3 mb-4">
+                                <AnimatePresence initial={false}>
+                                    {messages.map((msg, i) => (
+                                        <motion.div
+                                            key={i}
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: -20 }}
+                                            transition={{ duration: 0.25 }}
+                                            className={`p-2 rounded-xl max-w-[80%] ${msg.sender === "user"
+                                                ? "bg-secondary text-white self-end"
+                                                : "bg-muted_light dark:bg-dark-muted_light text-text_primary dark:text-dark-text_primary self-start"
+                                                }`}
+                                        >
+                                            {msg.text}
+                                        </motion.div>
+                                    ))}
+                                </AnimatePresence>
+                                <div ref={messagesEndRef} />
                             </div>
                         </div>
                         {/* Input */}
                         <form
                             className="flex items-center gap-2 px-6 py-4 border-t border-[#23232a] dark:bg-dark-muted bg-muted rounded-b-3xl"
-                            onSubmit={e => {
-                                e.preventDefault();
-                                setInput("");
-                            }}
+                            onSubmit={handleSend}
                         >
                             <input
                                 type="text"
