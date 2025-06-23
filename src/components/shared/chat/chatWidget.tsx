@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Bot, Send } from "lucide-react";
 import { TbReload } from "react-icons/tb";
-import { ImSpinner2 } from "react-icons/im"; // Ícono de spinner
+import { ImSpinner2 } from "react-icons/im";
+import { MdFullscreen, MdFullscreenExit } from "react-icons/md"; // Nuevo ícono
 type Message = {
     text: string;
     sender: "user" | "bot";
@@ -20,8 +21,10 @@ const ChatWidget: React.FC = () => {
     const [cleaning, setLoading] = useState(false);
     const [messages, setMessages] = useState<Message[]>([]);
     const [showSuggestions, setShowSuggestions] = useState(true);
-    const functionUrl = "/api/chat";
-    //const functionUrl = 'http://localhost:5000/api/chat'
+    const [isBotTyping, setIsBotTyping] = useState(false); // Nuevo estado
+    const [isLarge, setIsLarge] = useState(false); // Nuevo estado para tamaño
+    //const functionUrl = "/api/chat";
+    const functionUrl = 'http://localhost:5000/api/chat'
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
@@ -38,6 +41,7 @@ const ChatWidget: React.FC = () => {
         const newMessages = [...messages, { text, sender: "user" as const }];
         setMessages(newMessages);
         setInput("");
+        setIsBotTyping(true); // <-- IA está "escribiendo"
         try {
             const response = await fetch(functionUrl, {
                 method: "POST",
@@ -46,7 +50,7 @@ const ChatWidget: React.FC = () => {
                 },
                 body: JSON.stringify({
                     messages: newMessages,
-                    context: "home"
+                    context: "https://emimenza.vercel.app/home"
                 }),
             });
             if (!response.ok) {
@@ -74,6 +78,8 @@ const ChatWidget: React.FC = () => {
                     sender: "bot"
                 }
             ]);
+        } finally {
+            setIsBotTyping(false); // <-- IA terminó de "escribir"
         }
     }
 
@@ -85,6 +91,15 @@ const ChatWidget: React.FC = () => {
             setMessages([]); // limpia los mensajes
         }, 1000);
     };
+
+    function parseMarkdown(text: string) {
+    // Negrita: **texto**
+    text = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+    // Cursiva: *texto*
+    text = text.replace(/\*(.*?)\*/g, '<i>$1</i>');
+    return text;
+}
+
     return (
         <>
             {/* Chat Box */}
@@ -94,7 +109,14 @@ const ChatWidget: React.FC = () => {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 30 }}
-                        className="fixed bottom-4 right-4 z-50 w-96 max-w-[95vw] h-[500px] dark:bg-dark-muted bg-muted text-text_primary dark:text-dark-text_primary rounded-3xl shadow-2xl flex flex-col p-0 mb-5"
+                        // Animación de tamaño
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                        className={`fixed bottom-4 right-4 z-50 dark:bg-dark-muted bg-muted text-text_primary dark:text-dark-text_primary rounded-3xl shadow-2xl flex flex-col p-0 mb-5`}
+                        style={{
+                            width: isLarge ? 700 : 384, // 700px o 96 (384px)
+                            maxWidth: isLarge ? "98vw" : "95vw",
+                            height: isLarge ? 700 : 500,
+                        }}
                     >
                         {/* Header */}
                         <div className="flex items-center gap-3 px-6 py-4 border-b border-[#23232a]">
@@ -112,12 +134,19 @@ const ChatWidget: React.FC = () => {
                                     aria-label="Reload"
                                 >
                                     {cleaning ? (
-                                        <ImSpinner2 className="animate-spin" /> // spinner animado
+                                        <ImSpinner2 className="animate-spin" />
                                     ) : (
                                         <TbReload />
                                     )}
                                 </button>
-
+                                {/* Nuevo botón de tamaño */}
+                                <button
+                                    onClick={() => setIsLarge(l => !l)}
+                                    className="text-gray-400 hover:text-text_primary dark:hover:text-dark-text_primary text-xl transition-transform duration-300"
+                                    aria-label={isLarge ? "Reduce chat size" : "Enlarge chat"}
+                                >
+                                    {isLarge ? <MdFullscreenExit /> : <MdFullscreen />}
+                                </button>
                                 <button
                                     onClick={() => setIsOpen(false)}
                                     className="ml-auto text-gray-400 hover:text-text_primary dark:hover:text-dark-text_primary text-xl"
@@ -181,9 +210,23 @@ const ChatWidget: React.FC = () => {
                                                 : "bg-muted_light dark:bg-dark-muted_light text-text_primary dark:text-dark-text_primary self-start"
                                                 }`}
                                         >
-                                            {msg.text}
+                                            <span dangerouslySetInnerHTML={{ __html: parseMarkdown(msg.text) }} />
                                         </motion.div>
                                     ))}
+                                    {/* Loading message del bot */}
+                                    {isBotTyping && (
+                                        <motion.div
+                                            key="bot-typing"
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: -20 }}
+                                            transition={{ duration: 0.25 }}
+                                            className="p-2 rounded-xl max-w-[80%] bg-muted_light dark:bg-dark-muted_light text-text_primary dark:text-dark-text_primary self-start flex items-center gap-2"
+                                        >
+                                            <ImSpinner2 className="animate-spin mr-2" />
+                                            <span>Loading...</span>
+                                        </motion.div>
+                                    )}
                                 </AnimatePresence>
                                 <div ref={messagesEndRef} />
                             </div>
