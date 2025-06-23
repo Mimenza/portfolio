@@ -21,6 +21,7 @@ const ChatWidget: React.FC = () => {
     const [messages, setMessages] = useState<Message[]>([]);
     const [showSuggestions, setShowSuggestions] = useState(true);
     const functionUrl = "/api/chat";
+    //const functionUrl = 'http://localhost:5000/api/chat'
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
@@ -40,6 +41,9 @@ const ChatWidget: React.FC = () => {
         try {
             const response = await fetch(functionUrl, {
                 method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
                 body: JSON.stringify({
                     messages: newMessages,
                     context: "home"
