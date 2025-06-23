@@ -23,8 +23,7 @@ const ChatWidget: React.FC = () => {
     const [showSuggestions, setShowSuggestions] = useState(true);
     const [isBotTyping, setIsBotTyping] = useState(false); // Nuevo estado
     const [isLarge, setIsLarge] = useState(false); // Nuevo estado para tamaño
-    //const functionUrl = "/api/chat";
-    const functionUrl = 'http://localhost:5000/api/chat'
+    const functionUrl =  typeof window !== "undefined" && window.location.hostname === "localhost" ? "http://localhost:5000/api/chat" : "/api/chat";
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
@@ -271,3 +270,6 @@ const ChatWidget: React.FC = () => {
 };
 
 export default ChatWidget;
+
+//npx tsc
+//npx ts-node chat.ts
