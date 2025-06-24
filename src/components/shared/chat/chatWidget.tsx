@@ -23,7 +23,6 @@ const ChatWidget: React.FC = () => {
     const [showSuggestions, setShowSuggestions] = useState(true);
     const [isBotTyping, setIsBotTyping] = useState(false); // Nuevo estado
     const [isLarge, setIsLarge] = useState(false); // Nuevo estado para tamaño
-    const functionUrl =  typeof window !== "undefined" && window.location.hostname === "localhost" ? "http://localhost:5000/api/chat" : "/api/chat";
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
@@ -42,7 +41,11 @@ const ChatWidget: React.FC = () => {
         setInput("");
         setIsBotTyping(true); // <-- IA está "escribiendo"
         try {
-            const response = await fetch(functionUrl, {
+            const aiUrl = process.env.REACT_APP_AI_URL;
+            if (!aiUrl) {
+                throw new Error("REACT_APP_AI_URL environment variable is not set");
+            }
+            const response = await fetch(aiUrl, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
