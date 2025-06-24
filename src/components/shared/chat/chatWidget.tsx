@@ -4,6 +4,8 @@ import { Bot, Send } from "lucide-react";
 import { TbReload } from "react-icons/tb";
 import { ImSpinner2 } from "react-icons/im";
 import { MdFullscreen, MdFullscreenExit } from "react-icons/md"; // Nuevo ícono
+import { useLocation } from "react-router-dom";
+
 type Message = {
     text: string;
     sender: "user" | "bot";
@@ -24,6 +26,7 @@ const ChatWidget: React.FC = () => {
     const [isBotTyping, setIsBotTyping] = useState(false); // Nuevo estado
     const [isLarge, setIsLarge] = useState(false); // Nuevo estado para tamaño
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
+    const location = useLocation(); // <-- Nuevo hook
 
     useEffect(() => {
         if (messagesEndRef.current) {
@@ -33,6 +36,7 @@ const ChatWidget: React.FC = () => {
 
     // Nueva función para enviar mensajes, reutilizable para input y sugerencias
     const handleSend = async (e?: React.FormEvent, customText?: string) => {
+        console.log("Location:", location.pathname);
         if (e) e.preventDefault();
         const text = customText !== undefined ? customText : input;
         if (!text.trim()) return;
@@ -42,6 +46,7 @@ const ChatWidget: React.FC = () => {
         setIsBotTyping(true); // <-- IA está "escribiendo"
         try {
             const aiUrl = process.env.REACT_APP_AI_URL;
+            //const aiUrl = "http://localhost:5000/api/chat"; // Cambiado para Vite
             if (!aiUrl) {
                 throw new Error("REACT_APP_AI_URL environment variable is not set");
             }
@@ -52,7 +57,7 @@ const ChatWidget: React.FC = () => {
                 },
                 body: JSON.stringify({
                     messages: newMessages,
-                    context: "https://emimenza.vercel.app/home"
+                    context: location.pathname
                 }),
             });
             if (!response.ok) {
@@ -101,7 +106,6 @@ const ChatWidget: React.FC = () => {
     text = text.replace(/\*(.*?)\*/g, '<i>$1</i>');
     return text;
 }
-
     return (
         <>
             {/* Chat Box */}

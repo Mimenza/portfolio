@@ -31,6 +31,7 @@ const AboutScreen: React.FC = () => {
 
   return (
     <div className="w-full h-auto">
+      
       {/* Gradientes */}
       <div className="fixed top-0 left-0 w-screen h-10 z-10 bg-gradient-to-b from-background dark:from-dark-background to-transparent"></div>
       <div className="fixed bottom-0 left-0 w-screen h-10 z-10 bg-gradient-to-b from-transparent dark:to-dark-background to-background"></div>

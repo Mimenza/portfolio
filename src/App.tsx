@@ -10,9 +10,10 @@ import {
 import "./tailwind.css";
 import HomeScreen from "./screens/homeScreen";
 import ProjectsScreen from "./screens/projectsScreen";
-import LoginScreen from "./screens/loginScreen";
 import SlugScreen from "./screens/slugScreen";
 import AboutScreen from "./screens/aboutScreen";
+import ChatWidget from "./components/shared/chat/chatWidget";
+
 import { useVariablesContext } from "./context/variablesContext";
 
 const useBreakpointLogger = () => {
@@ -112,6 +113,8 @@ function App() {
         <Route path="/" element={<Navigate to="/home" />} />{" "}
         <Route path="*" element={<Navigate to="/home" />} />{" "}
       </Routes>
+
+      <ChatWidget/>
     </div>
   );
 }

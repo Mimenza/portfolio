@@ -98,7 +98,7 @@ const ProjectsScreen = () => {
           setProjects(formattedProjects);
           setFilteredProjects(formattedProjects);
         }
-      } catch (err) {}
+      } catch (err) { }
     };
 
     getProjects();
