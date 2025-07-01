@@ -5,16 +5,35 @@ import { TbReload } from "react-icons/tb";
 import { ImSpinner2 } from "react-icons/im";
 import { MdFullscreen, MdFullscreenExit } from "react-icons/md"; // Nuevo ícono
 import { useLocation } from "react-router-dom";
+import { useVariablesContext } from "../../../context/variablesContext";
+
 
 type Message = {
     text: string;
     sender: "user" | "bot";
 }
 
-const suggestedQuestions = [
+const suggestedQuestionsHome = [
     "What are your main skills and areas of expertise?",
     "Give me a detailed summary of your past work experience",
     "What are some of your most outstanding projects?",
+];
+
+const suggestedQuestionsAbout = [
+    "What is your professional background?",
+    "What are your main skills and areas of expertise?",
+    "What are some of your most outstanding projects?",
+];
+
+const suggestedQuestionsProjects = [
+    "What technologies do you use in your projects?",
+    "What is the most challenging project you've worked on?",
+    "How do you approach problem-solving in your projects?",
+];
+
+const suggestedQuestionsCurrentProject = [
+    "What is the main goal of this project?",
+    "What technologies are you using in this project?",
 ];
 
 const ChatWidget: React.FC = () => {
@@ -27,6 +46,7 @@ const ChatWidget: React.FC = () => {
     const [isLarge, setIsLarge] = useState(false); // Nuevo estado para tamaño
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
     const location = useLocation(); // <-- Nuevo hook
+    const { phoneView } = useVariablesContext();
 
     useEffect(() => {
         if (messagesEndRef.current) {
@@ -99,13 +119,21 @@ const ChatWidget: React.FC = () => {
         }, 1000);
     };
 
+    const getSuggestedQuestions = () => {
+        if (location.pathname === "/") return suggestedQuestionsHome;
+        if (location.pathname === "/about") return suggestedQuestionsAbout;
+        if (location.pathname === "/projects") return suggestedQuestionsProjects;
+        if (location.pathname.startsWith("/projects/")) return suggestedQuestionsCurrentProject;
+        return suggestedQuestionsHome;
+    };
+
     function parseMarkdown(text: string) {
-    // Negrita: **texto**
-    text = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
-    // Cursiva: *texto*
-    text = text.replace(/\*(.*?)\*/g, '<i>$1</i>');
-    return text;
-}
+        // Negrita: **texto**
+        text = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+        // Cursiva: *texto*
+        text = text.replace(/\*(.*?)\*/g, '<i>$1</i>');
+        return text;
+    }
     return (
         <>
             {/* Chat Box */}
@@ -117,16 +145,24 @@ const ChatWidget: React.FC = () => {
                         exit={{ opacity: 0, y: 30 }}
                         // Animación de tamaño
                         transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                        className={`fixed bottom-4 right-4 z-50 dark:bg-dark-muted bg-muted text-text_primary dark:text-dark-text_primary rounded-3xl shadow-2xl flex flex-col p-0 mb-5`}
-                        style={{
-                            width: isLarge ? 700 : 384, // 700px o 96 (384px)
-                            maxWidth: isLarge ? "98vw" : "95vw",
-                            height: isLarge ? 700 : 500,
-                        }}
+                        className={
+                            `
+                            fixed z-50 dark:bg-dark-muted bg-muted text-text_primary dark:text-dark-text_primary shadow-2xl flex flex-col p-0
+                            ${phoneView
+                                ? " rounded-t-3xl bottom-0 left-0 w-full h-[50%] max-w-none max-h-none m-0"
+                                : isLarge
+                                    ? "rounded-3xl bottom-0 right-4 mb-5 w-[44rem] h-[52rem] max-w-[98vw] max-h-[96vh]"
+                                    : "rounded-3xl bottom-0 right-4 mb-5 w-[32rem] h-[40rem] max-w-[98vw] max-h-[96vh]"
+                            }
+                            sm:bottom-0 sm:right-4
+                            `
+                        }
                     >
                         {/* Header */}
                         <div className="flex items-center gap-3 px-6 py-4 border-b border-[#23232a]">
-                            <div className="bg-muted_light dark:bg-dark-muted_light rounded-full p-2">
+                            <div className={`bg-muted_light dark:bg-dark-muted_light rounded-full p-2
+                                "absolute top-4 left-4 z-10"
+                            `}>
                                 <Bot className="w-7 h-7 text-secondary" />
                             </div>
                             <div>
@@ -151,7 +187,7 @@ const ChatWidget: React.FC = () => {
                                     className="text-gray-400 hover:text-text_primary dark:hover:text-dark-text_primary text-xl transition-transform duration-300"
                                     aria-label={isLarge ? "Reduce chat size" : "Enlarge chat"}
                                 >
-                                    {isLarge ? <MdFullscreenExit /> : <MdFullscreen />}
+                                    {!phoneView ? (isLarge ? <MdFullscreenExit /> : <MdFullscreen />) : null}
                                 </button>
                                 <button
                                     onClick={() => setIsOpen(false)}
@@ -187,7 +223,7 @@ const ChatWidget: React.FC = () => {
                                         transition={{ duration: 0.3 }}
                                         className="flex flex-col gap-3"
                                     >
-                                        {suggestedQuestions.map((q, i) => (
+                                        {getSuggestedQuestions().map((q, i) => (
                                             <button
                                                 key={i}
                                                 className="bg-muted_light dark:bg-dark-muted_light text-text_primary dark:text-dark-text_primary rounded-2xl py-2 px-4 text-sm font-medium text-left transition"
@@ -263,7 +299,9 @@ const ChatWidget: React.FC = () => {
             {/* Floating Button */}
             <motion.button
                 onClick={() => setIsOpen(!isOpen)}
-                className="fixed bottom-4 right-4 z-50 w-14 h-14 rounded-full bg-secondary flex items-center justify-center shadow-lg"
+                className={`fixed z-50 w-14 h-14 rounded-full bg-secondary flex items-center justify-center shadow-lg
+                    ${phoneView ? "top-20 left-4" : "bottom-4 right-4"}
+                `}
                 aria-label="Open chat"
                 style={{ display: isOpen ? "none" : "flex" }}
                 initial={{ scale: 0.7, opacity: 0 }}
