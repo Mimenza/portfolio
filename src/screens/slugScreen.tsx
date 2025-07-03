@@ -22,18 +22,27 @@ const SlugScreen = () => {
   const [htmlContent, setHtmlContent] = useState<string>("");
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { phoneView, language } = useVariablesContext();
+  const { phoneView, language, setLoadingBarLoading } = useVariablesContext();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [slug]);
 
-  useEffect(() => {
-    // if (!logedUser) {
-    //   navigate("/login");
-    // }
-  }, []);
+  const handleRedirectBack = () => {
+    setLoadingBarLoading(true);
+    setTimeout(() => {
+      setLoadingBarLoading(false);
+      navigate(-1);
+    }, 500);
+  };
 
+  const handleRedirect = (slug: string) => {
+    setLoadingBarLoading(true);
+    setTimeout(() => {
+      setLoadingBarLoading(false);
+      navigate(`${slug}`);
+    }, 500);
+  };
   // Modificado: fetch de todos los slugs y del proyecto actual
   useEffect(() => {
     const fetchData = async () => {
@@ -103,18 +112,18 @@ const SlugScreen = () => {
             ...(typeof data === "object" && data !== null ? data : {}),
             technologies: Array.isArray(data["Projects-Tecnologies"])
               ? (data["Projects-Tecnologies"] as any[])
-                  .map((tech: any) => tech.Tecnologies?.name)
-                  .filter((name: string | undefined) => name !== undefined)
+                .map((tech: any) => tech.Tecnologies?.name)
+                .filter((name: string | undefined) => name !== undefined)
               : [],
             storage: Array.isArray(data["Projects-Storage"])
               ? (data["Projects-Storage"] as any[])
-                  .filter((store: any) => store.Storage)
-                  .map((store: any) => store.Storage.link)
+                .filter((store: any) => store.Storage)
+                .map((store: any) => store.Storage.link)
               : [],
             cover: Array.isArray(data["Projects-Storage"])
               ? (data["Projects-Storage"] as any[])
-                  .filter((store: any) => store.Storage?.cover)
-                  .map((store: any) => store.Storage.link)[0] || null
+                .filter((store: any) => store.Storage?.cover)
+                .map((store: any) => store.Storage.link)[0] || null
               : null,
           };
           setProject(formattedProject);
@@ -173,17 +182,17 @@ const SlugScreen = () => {
   const galleryItems =
     project && project.storage
       ? project.storage.map((src: string) => {
-          // Detecta si es video o imagen por la extensión
-          const isVideo =
-            typeof src === "string" &&
-            (src.includes(".mp4") ||
-              src.includes(".webm") ||
-              src.includes(".ogg"));
-          return {
-            type: isVideo ? "video" : "image",
-            src,
-          };
-        })
+        // Detecta si es video o imagen por la extensión
+        const isVideo =
+          typeof src === "string" &&
+          (src.includes(".mp4") ||
+            src.includes(".webm") ||
+            src.includes(".ogg"));
+        return {
+          type: isVideo ? "video" : "image",
+          src,
+        };
+      })
       : [];
 
   if (loading)
@@ -216,7 +225,7 @@ const SlugScreen = () => {
             <div className="flex-1">
               <button
                 className="mb-6 text-md-custom text-text_secondary dark:text-dark-text_secondary hover:underline flex items-center gap-1"
-                onClick={() => navigate(-1)}
+                onClick={() => handleRedirectBack()}
               >
                 &larr; {t("slug.go back")}
               </button>
@@ -273,7 +282,7 @@ const SlugScreen = () => {
           <div className="w-full bg-black rounded-xl overflow-hidden flex items-center justify-center">
             <div className="w-full aspect-w-16 aspect-h-9 relative group">
               {project.cover ||
-              (project.storage && project.storage.length > 0) ? (
+                (project.storage && project.storage.length > 0) ? (
                 <>
                   {/* Flecha izquierda */}
                   {galleryItems.length > 1 && (
@@ -299,9 +308,8 @@ const SlugScreen = () => {
                     if (item.type === "video") {
                       return (
                         <div
-                          className={`aspect-[16/9] overflow-hidden cursor-pointer ${
-                            phoneView ? "rounded-[12px]" : "rounded-[25px]"
-                          }`}
+                          className={`aspect-[16/9] overflow-hidden cursor-pointer ${phoneView ? "rounded-[12px]" : "rounded-[25px]"
+                            }`}
                           onClick={() => setGalleryOpen(true)}
                         >
                           <video
@@ -309,9 +317,8 @@ const SlugScreen = () => {
                             autoPlay
                             muted
                             loop
-                            className={`h-full w-full object-cover transition-transform duration-300 ease-in-out ${
-                              phoneView ? "rounded-[12px]" : "rounded-[25px]"
-                            }`}
+                            className={`h-full w-full object-cover transition-transform duration-300 ease-in-out ${phoneView ? "rounded-[12px]" : "rounded-[25px]"
+                              }`}
                             onError={(e) => {
                               const videoElement = e.target as HTMLVideoElement;
                               videoElement.style.display = "none";
@@ -323,9 +330,8 @@ const SlugScreen = () => {
                           />
                           <img
                             src={item.src}
-                            className={`h-full w-full object-cover transition-transform duration-300 ease-in-out hidden ${
-                              phoneView ? "rounded-[12px]" : "rounded-[25px]"
-                            }`}
+                            className={`h-full w-full object-cover transition-transform duration-300 ease-in-out hidden ${phoneView ? "rounded-[12px]" : "rounded-[25px]"
+                              }`}
                             alt={project.name}
                           />
                         </div>
@@ -396,7 +402,7 @@ const SlugScreen = () => {
               className="flex items-center gap-2 bg-background-muted dark:bg-dark-muted text-text_secondary dark:text-dark-text_secondary transition border border-[#232329] rounded-lg px-6 py-3 shadow"
               disabled={!prevSlug}
               onClick={() => {
-                if (prevSlug) navigate(`/projects/${prevSlug}`);
+                if (prevSlug) handleRedirect(`/projects/${prevSlug}`);
               }}
             >
               &larr;{" "}
@@ -408,7 +414,7 @@ const SlugScreen = () => {
               className="flex items-center gap-2 bg-background-muted dark:bg-dark-muted text-text_secondary dark:text-dark-text_secondary transition border border-[#232329] rounded-lg px-6 py-3 shadow"
               disabled={!nextSlug}
               onClick={() => {
-                if (nextSlug) navigate(`/projects/${nextSlug}`);
+                if (nextSlug) handleRedirect(`/projects/${nextSlug}`);
               }}
             >
               <span className="hidden md:inline text-xs font-semibold">

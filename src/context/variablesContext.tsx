@@ -19,6 +19,8 @@ interface VariablesContextProps {
   setAnimateLogo: React.Dispatch<React.SetStateAction<boolean>>;
   language?: string;
   setLanguage?: React.Dispatch<React.SetStateAction<string>>;
+  loadingBarLoading: boolean;
+  setLoadingBarLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const VariablesContext = createContext<VariablesContextProps | undefined>(
@@ -37,6 +39,7 @@ export const VariablesProvider: React.FC<{ children: React.ReactNode }> = ({
   const [currentDropDown, setCurrentDropDown] = useState(-1);
   const [animateLogo, setAnimateLogo] = useState(true);
   const [language, setLanguage] = useState<string>("en");
+  const [loadingBarLoading, setLoadingBarLoading] = useState<boolean>(false);
 
   return (
     <VariablesContext.Provider
@@ -59,6 +62,8 @@ export const VariablesProvider: React.FC<{ children: React.ReactNode }> = ({
         setAnimateLogo,
         language,
         setLanguage,
+        loadingBarLoading,
+        setLoadingBarLoading,
       }}
     >
       {children}

@@ -18,7 +18,7 @@ const MainComponentProyects = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [width, setWidth] = useState(window.innerWidth);
-  const { phoneView, language } = useVariablesContext();
+  const { phoneView, language, setLoadingBarLoading } = useVariablesContext();
 
   const navigate = useNavigate();
 
@@ -29,7 +29,19 @@ const MainComponentProyects = () => {
   }, []);
 
   const handleProjectCardClick = (project: any) => {
-    navigate(`/projects/${project.slug}`);
+    setLoadingBarLoading(true);
+    setTimeout(() => {
+      setLoadingBarLoading(false);
+      navigate(`/projects/${project.slug}`);
+    }, 500);
+  };
+
+  const handleRedirect = () => {
+    setLoadingBarLoading(true);
+    setTimeout(() => {
+      setLoadingBarLoading(false);
+      navigate(`/projects`);
+    }, 500);
   };
 
   const handleClose = () => {
@@ -127,9 +139,7 @@ const MainComponentProyects = () => {
               {!phoneView ? (
                 <button
                   className="bg-text_primary dark:bg-dark-text_primary text-background dark:text-dark-background px-7 py-3 rounded-full font-bold hover:bg-opacity-90 flex flex-row items-center space-x-2 text-lg-custom shadow hover:scale-105 transition-all duration-300"
-                  onClick={() => {
-                    navigate("/projects");
-                  }}
+                  onClick={handleRedirect}
                 >
                   <span>{t("home.projects.viewAllButton")}</span>
                 </button>
@@ -167,7 +177,7 @@ const MainComponentProyects = () => {
             <button
               className="w-auto bg-text_primary dark:bg-dark-text_primary text-background dark:text-dark-background px-7 py-3 rounded-full font-bold hover:bg-opacity-90 flex flex-row items-center space-x-2 text-lg-custom shadow hover:scale-105 transition-all duration-300"
               onClick={() => {
-                navigate("/projects");
+                handleRedirect();
               }}
             >
               <span>{t("home.projects.viewAllButton")}</span>

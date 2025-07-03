@@ -27,7 +27,7 @@ const AboutScreen: React.FC = () => {
     document.title = `Emimenza | ${t("about.About")}`;
     // Scroll to top on page load
     window.scrollTo(0, 0);
-  }, [logedUser, navigate]);
+  }, [logedUser, navigate, t]);
 
   return (
     <div className="w-full h-auto">

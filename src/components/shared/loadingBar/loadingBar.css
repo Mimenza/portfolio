@@ -1,0 +1,9 @@
+/* Sobrescribe los estilos de NProgress usando Tailwind */
+#nprogress .bar {
+  @apply bg-dark-secondary; /* Cambia a cualquier color de Tailwind */
+  height: 4px;         /* Puedes ajustar el grosor aquí */
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px #9333EA, 0 0 5px #9333EA; /* Usa el color de Tailwind en hexadecimal */
+}

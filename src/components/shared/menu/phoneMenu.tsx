@@ -7,7 +7,7 @@ import { IoMoon } from "react-icons/io5";
 import { AiOutlineHome, AiOutlineUser, AiOutlineAppstore } from "react-icons/ai";
 
 import { useVariablesContext } from "../../../context/variablesContext";
-import EmSvg from "../../ui/emSvg";
+import EmSvg from "../../ui/emSvgW";
 
 
 interface PhoneMenuProps {
@@ -15,7 +15,7 @@ interface PhoneMenuProps {
 }
 
 const PhoneMenu: React.FC<PhoneMenuProps> = ({ selectedSection }) => {
-  const { darkMode, setDarkMode, setLanguage } = useVariablesContext();
+  const { darkMode, setDarkMode, setLanguage, setLoadingBarLoading } = useVariablesContext();
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(true);
   const lastScrollY = useRef(0);
@@ -43,21 +43,34 @@ const PhoneMenu: React.FC<PhoneMenuProps> = ({ selectedSection }) => {
   }, []);
 
   const handleDarkModeToggle = () => {
-    setDarkMode((prev: boolean) => !prev);
-    document.documentElement.classList.toggle("dark");
+    setLoadingBarLoading(true);
+    setTimeout(() => {
+      setLoadingBarLoading(false);
+      setDarkMode((prev: boolean) => !prev);
+      document.documentElement.classList.toggle("dark");
+    }, 500);
   };
 
   const handleNav = (idx: number) => {
-    navigate(navItems[idx].route);
+    setLoadingBarLoading(true);
+    setTimeout(() => {
+      setLoadingBarLoading(false);
+      navigate(navItems[idx].route);
+    }, 500);
   };
 
   // Nuevo handler para cambiar idioma
   const handleLanguageToggle = () => {
-    i18n.changeLanguage(i18n.language === "es" ? "en" : "es");
+    setLoadingBarLoading(true);
+    setTimeout(() => {
+      setLoadingBarLoading(false);
+      i18n.changeLanguage(i18n.language === "es" ? "en" : "es");
 
-    if (setLanguage) {
-      setLanguage(i18n.language === "es" ? "es" : "en"); //Opposite because the i18n is already set
-    }
+      if (setLanguage) {
+        setLanguage(i18n.language === "es" ? "es" : "en"); //Opposite because the i18n is already set
+      }
+    }, 500);
+
   };
 
   return (
@@ -83,20 +96,18 @@ const PhoneMenu: React.FC<PhoneMenuProps> = ({ selectedSection }) => {
       </div>
 
       <nav
-        className={`fixed bottom-0 left-0 w-full flex justify-center items-center z-20 transition-transform duration-300 ${
-          showMenu ? "translate-y-0" : "translate-y-full"
-        }`}
+        className={`fixed bottom-0 left-0 w-full flex justify-center items-center z-20 transition-transform duration-300 ${showMenu ? "translate-y-0" : "translate-y-full"
+          }`}
         style={{ willChange: "transform" }}
       >
         <div className="flex flex-row w-full justify-between items-center bg-background dark:bg-dark-background bg-opacity-10 backdrop-blur-md rounded-t-[25px] py-1 shadow-lg border border-[#232325]">
           {navItems.map((item, idx) => (
             <button
               key={item.label}
-              className={`flex flex-col items-center justify-center flex-1 px-2 py-1 transition-all ${
-                selectedSection === idx
-                  ? "text-secondary font-semibold"
-                  : "text-text_secondary dark:text-dark-text_secondary"
-              }`}
+              className={`flex flex-col items-center justify-center flex-1 px-2 py-1 transition-all ${selectedSection === idx
+                ? "text-secondary font-semibold"
+                : "text-text_secondary dark:text-dark-text_secondary"
+                }`}
               onClick={() => handleNav(idx)}
             >
               <span className={`text-2xl mb-1 ${selectedSection === idx ? "scale-110" : "scale-100"} transition-transform`}>

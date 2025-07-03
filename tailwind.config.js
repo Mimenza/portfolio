@@ -40,7 +40,7 @@ module.exports = {
         dark: {
           background: "#0b0b0d",
           background_light: "#17171c",
-          secondary: "#9333EA", // Example purple
+          secondary: "#7C3AED", // Example purple
           muted: "#17181d", // gray-700
           muted_light: "#212226", // gray-800
           text_primary: "#FFFF", // white

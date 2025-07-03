@@ -26,6 +26,9 @@ const MainComponentContact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus(null);
+    if (!form.subject || !form.message) {
+      return;
+    }
     try {
       await emailjs.send(
         process.env.REACT_APP_EMAILJS_SERVICE_ID!,

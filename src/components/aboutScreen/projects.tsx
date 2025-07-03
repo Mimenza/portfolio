@@ -12,7 +12,15 @@ const Projects: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { language } = useVariablesContext();
+  const { language, setLoadingBarLoading } = useVariablesContext();
+
+  const handleRedirect = () => {
+    setLoadingBarLoading(true);
+    setTimeout(() => {
+      setLoadingBarLoading(false);
+      navigate(`/projects`);
+    }, 500);
+  };
 
   useEffect(() => {
     const getProjects = async () => {
@@ -79,7 +87,7 @@ const Projects: React.FC = () => {
         </p>
         <button
           className="bg-text_primary dark:bg-dark-text_primary text-background dark:text-dark-background px-6 py-2 rounded-full hover:bg-opacity-90"
-          onClick={() => navigate("/projects")}
+          onClick={() => handleRedirect()}
         >
           <span>{t("about.projects.more")}</span>
         </button>

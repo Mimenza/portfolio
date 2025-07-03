@@ -7,8 +7,8 @@ import { IoIosSunny } from "react-icons/io";
 import { IoMoon } from "react-icons/io5";
 
 import { useVariablesContext } from "../../../context/variablesContext";
-import EmSvg from "../../ui/emSvg";
-
+import EmSvgW from "../../ui/emSvgW";
+import EmSvgB from "../../ui/emSvgB";
 
 interface MenuProps {
   selectedSection: number; // 0 for Home, 1 for About, 2 for Projects
@@ -19,7 +19,9 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
     scrollPosition,
     darkMode,
     setDarkMode,
-    setLanguage
+    setLanguage,
+    loadingBarLoading,
+    setLoadingBarLoading,
   } = useVariablesContext();
   const navigate = useNavigate();
   const [activeIcon, setActiveIcon] = useState<number | null>(null);
@@ -32,11 +34,13 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
   }, [selectedSection]);
 
   const handleNavigation = (index: number) => {
+    setLoadingBarLoading(true);
     setTimeout(() => {
+      setLoadingBarLoading(false);
       if (index === 0) navigate("/home");
       else if (index === 1) navigate("/about");
       else if (index === 2) navigate("/projects");
-    }, 250);
+    }, 500);
   };
 
   const handleIconClick = (index: number) => {
@@ -50,30 +54,40 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
   };
 
   const handleDarkModeToggle = () => {
-    setDarkMode((prev) => !prev);
-    if (darkMode) {
-      document.documentElement.classList.remove("dark");
-      document.documentElement.classList.remove("scrollbar-dark");
-      document.documentElement.classList.add("scrollbar-light");
-    } else {
-      document.documentElement.classList.remove("scrollbar-light");
-      document.documentElement.classList.add("dark");
-      document.documentElement.classList.add("scrollbar-dark");
-    }
+    setLoadingBarLoading(true);
+    setTimeout(() => {
+      setLoadingBarLoading(false);
+      setDarkMode((prev) => !prev);
+      if (darkMode) {
+        document.documentElement.classList.remove("dark");
+        document.documentElement.classList.remove("scrollbar-dark");
+        document.documentElement.classList.add("scrollbar-light");
+      } else {
+        document.documentElement.classList.remove("scrollbar-light");
+        document.documentElement.classList.add("dark");
+        document.documentElement.classList.add("scrollbar-dark");
+      }
+    }, 500);
+
   };
 
   // Nuevo handler para cambiar idioma
   const handleLanguageToggle = () => {
-    i18n.changeLanguage(i18n.language === "es" ? "en" : "es");
+    setLoadingBarLoading(true);
+    setTimeout(() => {
+      setLoadingBarLoading(false);
+      i18n.changeLanguage(i18n.language === "es" ? "en" : "es");
 
-    if (setLanguage) {
-      setLanguage(i18n.language === "es" ? "es" : "en"); //Opposite because the i18n is already set
-    }
+      if (setLanguage) {
+        setLanguage(i18n.language === "es" ? "es" : "en"); //Opposite because the i18n is already set
+      }
+    }, 500);
+
   };
 
   const normalizedScroll = Math.min(scrollPosition / 150, 1);
   const bgOpacity = normalizedScroll * 0.9;
-  const width =  normalizedScroll < 1 ? `calc(100% - ${normalizedScroll * (window.innerWidth - 950)}px)` : "450px";
+  const width = normalizedScroll < 1 ? `calc(100% - ${normalizedScroll * (window.innerWidth - 950)}px)` : "450px";
   const border = `1px solid rgba(11, 11, 13, ${normalizedScroll})`;
   const isDark = document.documentElement.classList.contains("dark");
   const backgroundColor = isDark ? "#0b0b0d" : "#ababab";
@@ -107,60 +121,54 @@ const Menu: React.FC<MenuProps> = ({ selectedSection }) => {
           backgroundColor: hexToRgba(backgroundColor, bgOpacity),
         }}
       >
-        <EmSvg />
+        {!isDark ? <EmSvgB /> : <EmSvgW />}
         <div className="flex flex-row gap-1 lg:gap-4 xs:text-xs-custom md:text-lg-custom">
           <p
-            className={`flex flex-row items-center gap-1 cursor-pointer ${
-              selectedSection === 0
-                ? "text-text_primary dark:text-dark-text_primary"
-                : "text-text_secondary dark:text-dark-text_secondary hover:text-text_primary dark:hover:text-dark-text_primary"
-            }`}
+            className={`flex flex-row items-center gap-1 cursor-pointer ${selectedSection === 0
+              ? "text-text_primary dark:text-dark-text_primary"
+              : "text-text_secondary dark:text-dark-text_secondary hover:text-text_primary dark:hover:text-dark-text_primary"
+              }`}
             onClick={() => handleIconClick(0)}
           >
             <span className="inline-block w-4 h-4 flex items-center justify-center">
               {selectedSection === 0 && (
                 <FaCircle
-                  className={`h-2 w-2 text-secondary transition-transform duration-300 ${
-                    activeIcon === 0 ? "scale-100" : "scale-0"
-                  }`}
+                  className={`h-2 w-2 text-secondary transition-transform duration-300 ${activeIcon === 0 ? "scale-100" : "scale-0"
+                    }`}
                 />
               )}
             </span>
             {t("menu.Home")}
           </p>
           <p
-            className={`flex flex-row items-center gap-1 cursor-pointer ${
-              selectedSection === 1
-                ? "text-text_primary dark:text-dark-text_primary"
-                : "text-text_secondary dark:text-dark-text_secondary hover:text-text_primary dark:hover:text-dark-text_primary"
-            }`}
+            className={`flex flex-row items-center gap-1 cursor-pointer ${selectedSection === 1
+              ? "text-text_primary dark:text-dark-text_primary"
+              : "text-text_secondary dark:text-dark-text_secondary hover:text-text_primary dark:hover:text-dark-text_primary"
+              }`}
             onClick={() => handleIconClick(1)}
           >
             <span className="inline-block w-4 h-4 flex items-center justify-center">
               {selectedSection === 1 && (
                 <FaCircle
-                  className={`h-2 w-2 text-secondary transition-transform duration-300 ${
-                    activeIcon === 1 ? "scale-100" : "scale-0"
-                  }`}
+                  className={`h-2 w-2 text-secondary transition-transform duration-300 ${activeIcon === 1 ? "scale-100" : "scale-0"
+                    }`}
                 />
               )}
             </span>
             {t("menu.About")}
           </p>
           <p
-            className={`flex flex-row items-center gap-1 cursor-pointer ${
-              selectedSection === 2
-                ? "text-text_primary dark:text-dark-text_primary"
-                : "text-text_secondary dark:text-dark-text_secondary hover:text-text_primary dark:hover:text-dark-text_primary"
-            }`}
+            className={`flex flex-row items-center gap-1 cursor-pointer ${selectedSection === 2
+              ? "text-text_primary dark:text-dark-text_primary"
+              : "text-text_secondary dark:text-dark-text_secondary hover:text-text_primary dark:hover:text-dark-text_primary"
+              }`}
             onClick={() => handleIconClick(2)}
           >
             <span className="inline-block w-4 h-4 flex items-center justify-center">
               {selectedSection === 2 && (
                 <FaCircle
-                  className={`h-2 w-2 text-secondary transition-transform duration-300 ${
-                    activeIcon === 2 ? "scale-100" : "scale-0"
-                  }`}
+                  className={`h-2 w-2 text-secondary transition-transform duration-300 ${activeIcon === 2 ? "scale-100" : "scale-0"
+                    }`}
                 />
               )}
             </span>

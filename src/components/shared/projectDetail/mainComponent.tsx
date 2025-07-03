@@ -70,7 +70,7 @@ const MainComponentProjectDetail = ({
   prevRoute: string;
 }) => {
   const navigate = useNavigate();
-  const { showGallery, setShowGallery, phoneView, language } = useVariablesContext();
+  const { showGallery, setShowGallery, phoneView, language, setLoadingBarLoading } = useVariablesContext();
 
   useEffect(() => {
     document.title = `Emimenza | ${projectDetails.slug}`;
@@ -79,6 +79,14 @@ const MainComponentProjectDetail = ({
   const handleClose = () => {
     document.title = `Emimenza | ${prevRoute}`;
     onClose();
+  };
+
+  const handleRedirect = (slug:string) => {
+    setLoadingBarLoading(true);
+    setTimeout(() => {
+      setLoadingBarLoading(false);
+      navigate(`/projects/${slug}`);
+    }, 500);
   };
 
   return (
@@ -151,7 +159,7 @@ const MainComponentProjectDetail = ({
                   </div>
                   <div
                     className="text-lg-custom Scroll text-gray-300 flex flex-row items-center justify-center space-x-2 cursor-pointer px-2"
-                    onClick={() => navigate(`/projects/${projectDetails.slug}`)}
+                    onClick={() => handleRedirect(projectDetails.slug)}
                   >
                     <span>Go</span>
                     <FiExternalLink />

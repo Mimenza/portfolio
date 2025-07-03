@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -13,20 +13,19 @@ import ProjectsScreen from "./screens/projectsScreen";
 import SlugScreen from "./screens/slugScreen";
 import AboutScreen from "./screens/aboutScreen";
 import ChatWidget from "./components/shared/chat/chatWidget";
+import LoadingBar from "./components/shared/loadingBar/loadingBar";
 
 import { useVariablesContext } from "./context/variablesContext";
+import useLenisScroll from "./hooks/useLenisScroll";
+
 
 const useBreakpointLogger = () => {
-  const { setCustomScroll, phoneView, setPhoneView } = useVariablesContext();
-
-  // useEffect(() => {
-  //   console.log("Phone view:", phoneView);
-  // }, [phoneView]);
-
+  const { setPhoneView} = useVariablesContext();
+  
   useEffect(() => {
     const breakpoints = {
       sm: window.matchMedia("(min-width: 640px)"),
-      "smPlus": window.matchMedia("(min-width: 700px)"),
+      smPlus: window.matchMedia("(min-width: 700px)"),
       md: window.matchMedia("(min-width: 768px)"),
       lg: window.matchMedia("(min-width: 1024px)"),
       xl: window.matchMedia("(min-width: 1280px)"),
@@ -37,57 +36,49 @@ const useBreakpointLogger = () => {
     const logBreakpoint = () => {
       setPhoneView(false);
       if (breakpoints["3xl"].matches) {
-        // console.log("Breakpoint: 3xl");
+        // 3xl
       } else if (breakpoints["2xl"].matches) {
-        // console.log("Breakpoint: 2xl");
+        // 2xl
       } else if (breakpoints.xl.matches) {
-        // console.log("Breakpoint: xl");
+        // xl
       } else if (breakpoints.lg.matches) {
-        // console.log("Breakpoint: lg");
+        // lg
       } else if (breakpoints.md.matches) {
-        // console.log("Breakpoint: md");
+        // md
       } else if (breakpoints.smPlus.matches) {
-        // console.log("Breakpoint: sm-plus");
+        // smPlus
       } else if (breakpoints.sm.matches) {
-        // console.log("Breakpoint: sm");
         setPhoneView(true);
       } else {
         setPhoneView(true);
-        // console.log("Breakpoint: default (xs)");
       }
     };
-    // Log the initial breakpoint
+
     logBreakpoint();
 
-    // Add listeners for changes
-    Object.values(breakpoints).forEach((mediaQuery) =>
-      mediaQuery.addEventListener("change", logBreakpoint)
+    Object.values(breakpoints).forEach((mq) =>
+      mq.addEventListener("change", logBreakpoint)
     );
 
-    // Cleanup listeners on unmount
     return () => {
-      Object.values(breakpoints).forEach((mediaQuery) =>
-        mediaQuery.removeEventListener("change", logBreakpoint)
+      Object.values(breakpoints).forEach((mq) =>
+        mq.removeEventListener("change", logBreakpoint)
       );
     };
   }, []);
 };
+
+
 function App() {
   useBreakpointLogger();
-  const {
-    setScrollPosition,
-    setDarkMode,
-    darkMode,
-    setCustomScroll,
-    customScroll,
-  } = useVariablesContext();
+  useLenisScroll(); // 👈 Aquí activamos el scroll inercial
+  const [loading, setLoading] = useState(false);
+  const location = useLocation();
+  const { setScrollPosition, setDarkMode, loadingBarLoading } = useVariablesContext();
 
   useEffect(() => {
-    setDarkMode(true); // Set dark mode to true by default
-    document.documentElement.classList.add("dark"); // Activar modo oscuro
-
-    // Agrega la clase scrollbar-custom
-    document.documentElement.classList.add("scrollbar-dark");
+    setDarkMode(true);
+    document.documentElement.classList.add("dark", "scrollbar-dark");
 
     const handleScroll = () => {
       setScrollPosition(window.scrollY);
@@ -96,25 +87,26 @@ function App() {
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      // Limpia la clase al desmontar si lo deseas
-      document.body.classList.remove("scrollbar-custom");
     };
-  }, []); // Add darkMode as a dependency
+  }, []);
 
   return (
-    <div className="h-auto max-w-screen px-[30px] sm:px-[100px] 2xl:px-[20%] dark:bg-dark-background bg-background transition-colors duration-700 overflow-hidden ">
+    <div
+      className="h-auto max-w-screen px-[30px] sm:px-[100px] 2xl:px-[20%] dark:bg-dark-background bg-background transition-colors duration-700 overflow-hidden"
+      data-lenis-root
+    >
+      <LoadingBar isLoading={!!loadingBarLoading} />
+
       <Routes>
         <Route path="/home" element={<HomeScreen />} />
         <Route path="/projects" element={<ProjectsScreen />} />
-        {/* <Route path="/login" element={<LoginScreen />} /> */}
         <Route path="/about" element={<AboutScreen />} />
-        <Route path="projects/:slug" element={<SlugScreen />} />
-        
-        <Route path="/" element={<Navigate to="/home" />} />{" "}
-        <Route path="*" element={<Navigate to="/home" />} />{" "}
+        <Route path="/projects/:slug" element={<SlugScreen />} />
+        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="*" element={<Navigate to="/home" />} />
       </Routes>
 
-      <ChatWidget/>
+      <ChatWidget />
     </div>
   );
 }

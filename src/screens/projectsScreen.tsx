@@ -11,7 +11,6 @@ import PhoneMenu from "../components/shared/menu/phoneMenu";
 
 import Footer from "../components/shared/footer/footer";
 import HorizontalCard from "../components/projectScreen/horizontalCard";
-import MainComponentProjectDetail from "../components/shared/projectDetail/mainComponent";
 
 import { IoMdArrowDropdown } from "react-icons/io";
 
@@ -29,7 +28,7 @@ const ProjectsScreen = () => {
   const [projects, setProjects] = useState<any[]>([]);
   const [filteredProjects, setFilteredProjects] = useState<any[]>([]);
   const [selectedProject, setSelectedProject] = useState<any | null>(null);
-  const { phoneView, language } = useVariablesContext();
+  const { phoneView, language, setLoadingBarLoading } = useVariablesContext();
 
   const [statusFilter, setStatusFilter] = useState<string>("All");
   const [orderBy, setOrderBy] = useState<string>("Newest");
@@ -51,16 +50,13 @@ const ProjectsScreen = () => {
   }, [t]);
 
   const handleProjectCardClick = (project: any) => {
-    navigate(`/projects/${project.slug}`);
-  };
-
-  const handleClose = () => {
-    setIsClosing(true);
+    setLoadingBarLoading(true);
     setTimeout(() => {
-      setShowProjectDetail(false);
+      setLoadingBarLoading(false);
+      navigate(`/projects/${project.slug}`);
     }, 500);
   };
-
+  
   useEffect(() => {
     const getProjects = async () => {
       try {
@@ -258,14 +254,14 @@ const ProjectsScreen = () => {
 
       <Footer />
 
-      {showProjectDetail && selectedProject && (
+      {/* {showProjectDetail && selectedProject && (
         <MainComponentProjectDetail
           projectDetails={selectedProject}
           onClose={handleClose}
           isClosing={isClosing}
           prevRoute="projects"
         />
-      )}
+      )} */}
     </div>
   );
 };

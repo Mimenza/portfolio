@@ -16,9 +16,17 @@ import { useVariablesContext } from "../../../context/variablesContext";
 
 const Footer: React.FC = () => {
   const navigate = useNavigate();
-  const { phoneView } = useVariablesContext();
+  const { phoneView, setLoadingBarLoading } = useVariablesContext();
   const { t } = useTranslation();
 
+  const handleRedirect = (slug: string) => {
+    setLoadingBarLoading(true);
+    setTimeout(() => {
+      setLoadingBarLoading(false);
+      navigate(`/projects/${slug} `);
+    }, 500);
+
+  };
   return (
     <div className="w-full min-h-[200px] flex flex-col items-center justify-center pb-0">
       <div className="w-full border-t border-t-text_secondary dark:border-t-dark-text_secondary border-opacity-25 mx-[40px] my-5" />
@@ -67,19 +75,19 @@ const Footer: React.FC = () => {
             <div className="flex flex-col gap-5  text-text_secondary dark:text-dark-text_secondary justify-between w-full md:w-auto">
               <span
                 className="flex flex-row items-center gap-5 justify-between hover:text-text_primary hover:dark:text-dark-text_primary  cursor-pointer"
-                onClick={() => navigate("/projects/TravelLens")}
+                onClick={() => handleRedirect("TravelLens")}
               >
                 TravelLens <CiPlane className="h-5 w-5" />
               </span>
               <span
                 className="flex flex-row items-center gap-5 justify-between hover:text-text_primary hover:dark:text-dark-text_primary  cursor-pointer"
-                onClick={() => navigate("/projects/Transcendence")}
+                onClick={() => handleRedirect("Transcendence")}
               >
                 Transcendence <TbPingPong className="h-5 w-5" />
               </span>
               <span
                 className="flex flex-row items-center gap-5 justify-between hover:text-text_primary hover:dark:text-dark-text_primary  cursor-pointer"
-                onClick={() => navigate("/projects/Portfolio")}
+                onClick={() => handleRedirect("Portfolio")}
               >
                 Portfolio <MdOutlineContactPage className="h-5 w-5" />
               </span>

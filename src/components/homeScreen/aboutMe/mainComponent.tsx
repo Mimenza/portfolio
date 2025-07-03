@@ -1,12 +1,21 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation, Trans } from "react-i18next";
-
+import { useVariablesContext } from "../../../context/variablesContext";
 import ShinyText from "../../../blocks/TextAnimations/ShinyText/ShinyText";
 import Particles from "../../../blocks/Backgrounds/Particles/Particles";
 
 const MainComponentAboutMe = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { setLoadingBarLoading } = useVariablesContext();
+
+  const handleRedirect = () => {
+    setLoadingBarLoading(true);
+    setTimeout(() => {
+      setLoadingBarLoading(false);
+      navigate(`/about`);
+    }, 500);
+  };
 
   return (
     <section className="w-full min-h-[70vh] flex flex-col justify-center items-start md:pt-16 md:pb-8 px-2 md:px-0">
@@ -119,7 +128,7 @@ const MainComponentAboutMe = () => {
         <div className="mt-6 md:mt-0 flex items-center">
           <button
             className="bg-text_primary dark:bg-dark-text_primary text-background dark:text-dark-background px-7 py-3 rounded-full font-bold hover:bg-opacity-90 flex flex-row items-center space-x-2 text-lg-custom shadow hover:scale-105 transition-all duration-300"
-            onClick={() => navigate("/about")}
+            onClick={() => handleRedirect()}
           >
             {t("home.aboutMe.cta")}
           </button>
